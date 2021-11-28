@@ -1,6 +1,6 @@
 import React from "react";
-import VerticalNavBar from "./subComponents/VerticalNavBar";
-import GradeReport from "./subComponents/GradeReport";
+import VerticalNavBar from "./widgets/VerticalNavBar";
+import GradeReport from "./widgets/GradeReport";
 
 function GradeReportPage() {
   return (

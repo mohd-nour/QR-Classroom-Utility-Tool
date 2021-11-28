@@ -1,7 +1,7 @@
 import React from "react";
 import Students from "../../Students";
 import StudentCard from "./StudentCard";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 
 function createStudentCard(student) {
   return <StudentCard name={student.studentName} mode="AttendanceRecord" />;

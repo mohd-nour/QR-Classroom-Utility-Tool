@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 function createCard(course) {
   return (
     <Link
-      to="/Attendance"
+      to="/Selection"
       state={{ data: course.courseName }}
       className="removeUnderline black"
     >
@@ -19,7 +19,7 @@ function createCard(course) {
   );
 }
 
-function LowerSectionMainPage(props) {
+function ClassesWidget(props) {
   return (
     <div>
       <div id="lower-section">
@@ -34,4 +34,4 @@ function LowerSectionMainPage(props) {
   );
 }
 
-export default LowerSectionMainPage;
+export default ClassesWidget;

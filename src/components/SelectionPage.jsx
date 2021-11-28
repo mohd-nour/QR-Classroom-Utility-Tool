@@ -1,14 +1,14 @@
 import React from "react";
 import VerticalNavBar from "./widgets/VerticalNavBar";
-import Dashboard from "./widgets/Dashboard";
+import SelectionPanel from "./widgets/SelectionPanel";
 
-function MainPage(props) {
+function SelectionPage(props) {
   return (
     <div>
       <VerticalNavBar />
-      <Dashboard />
+      <SelectionPanel />
     </div>
   );
 }
 
-export default MainPage;
+export default SelectionPage;

@@ -18,7 +18,7 @@ function VerticalNavBar() {
               Home
             </li>
           </Link>
-          <Link to="/GradeReport" className="removeUnderline white">
+          <Link to="/" className="removeUnderline white">
             <li className="nav-item">
               <i className="uil uil-exclamation-circle"></i>
               Alerts
