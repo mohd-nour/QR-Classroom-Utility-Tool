@@ -36,6 +36,10 @@ html {
   margin-right: 4.5rem;
 }
 
+#addClassButton:hover {
+  background-color: #3a424d;
+}
+
 i {
   color: #fff;
   font-size: 2rem;
@@ -66,7 +70,6 @@ ul {
 
 .nav-item:hover {
   background-color: #3c444e;
-  box-shadow: none;
 }
 
 .aub-logo {
