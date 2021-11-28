@@ -13,13 +13,13 @@ function VerticalNavBar() {
         />
         <ul className="nav-list grid">
           <Link to="/" className="removeUnderline white">
-            <li className="nav-item">
+            <li className="nav-item box-shadow">
               <i className="uil uil-estate"></i>
               Home
             </li>
           </Link>
           <Link to="/GradeReport" className="removeUnderline white">
-            <li className="nav-item">
+            <li className="nav-item box-shadow">
               <i className="uil uil-exclamation-circle"></i>
               Alerts
             </li>
