@@ -64,10 +64,6 @@ ul {
   box-sizing: border-box;
 }
 
-.box-shadow {
-  box-shadow: 0px 10px 1.5px -10px white;
-}
-
 .nav-item:hover {
   background-color: #3c444e;
   box-shadow: none;
@@ -187,7 +183,6 @@ ul {
 }
 
 .main-panel {
-  padding: ;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
