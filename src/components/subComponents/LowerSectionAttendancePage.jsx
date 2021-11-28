@@ -1,5 +1,5 @@
 import React from "react";
-import Students from "../Students";
+import Students from "../../Students";
 import StudentCard from "./StudentCard";
 import { useLocation } from 'react-router-dom';
 

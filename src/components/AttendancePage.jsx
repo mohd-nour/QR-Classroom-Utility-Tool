@@ -1,14 +1,14 @@
 import React from 'react';
 import VerticalNavBar from "./subComponents/VerticalNavBar";
-import MainPageRight from "./subComponents/MainPageRight";
+import AttendanceRight from "./subComponents/AttendanceRight";
 
-function MainPage(props){
+function AttendancePage(props){
     return (
     <div>
         <VerticalNavBar />
-        <MainPageRight />
+        <AttendanceRight/>
     </div>
       );
 }
 
-export default MainPage;
+export default AttendancePage;

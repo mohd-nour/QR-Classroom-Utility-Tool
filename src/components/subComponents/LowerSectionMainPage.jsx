@@ -1,6 +1,6 @@
 import React from "react";
 import ClassCard from "./ClassCard";
-import courses from "../courses";
+import courses from "../../courses";
 import { Link } from "react-router-dom";
 
 function createCard(course) {

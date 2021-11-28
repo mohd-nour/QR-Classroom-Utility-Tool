@@ -1,5 +1,5 @@
 import React from "react";
-import Students from "../Students";
+import Students from "../../Students";
 import StudentCard from "./StudentCard";
 import { useLocation } from "react-router-dom";
 
@@ -12,10 +12,8 @@ function GradeReport() {
   //const { data } = location.state;
   return (
     <div className="dash-container">
-      <div id="lower-section">
         <h1 className="title">EECE 442 - Attendance Report</h1>
         <div id="card-section">{Students.map(createStudentCard)}</div>
-      </div>
     </div>
   );
 }

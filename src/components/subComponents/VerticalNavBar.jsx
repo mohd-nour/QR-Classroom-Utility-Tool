@@ -25,9 +25,7 @@ function VerticalNavBar() {
             </li>
           </Link>
           <li className="nav-item">
-            <a href="#">
-              <i className="uil uil-comment-alt"></i>
-            </a>
+            <i className="uil uil-comment-alt"></i>
             Chats
           </li>
         </ul>
