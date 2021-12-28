@@ -4,6 +4,7 @@ import MainPage from "./MainPage";
 import SelectionPage from "./SelectionPage";
 import GradeReportPage from "./GradeReportPage";
 import AttendancePage from "./AttendancePage";
+import AddClassPage from "./AddClassPage";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/Selection" element={<SelectionPage />} />
         <Route path="/Gradebook" element={<GradeReportPage />} />
         <Route path="/Attendance" element={<AttendancePage />} />
+        <Route path="/AddClassPage" element={<AddClassPage />}/>
       </Routes>
     </BrowserRouter>
   );
