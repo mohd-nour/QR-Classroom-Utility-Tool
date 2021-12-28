@@ -26,7 +26,7 @@ function ClassesWidget(props) {
         <h1 className="title">Welcome, Dr. Ali El Hajj</h1>
         <div className="main-panel">
           <h2 className="sub-title">Your classes</h2>
-          <button id="addClassButton">Add a class</button>
+          <Link to="/AddClassPage"><button id="addClassButton">Add a class</button></Link>
         </div>
         <div id="card-section">{courses.map(createCard)}</div>
       </div>
