@@ -12,8 +12,8 @@ function GradeReport() {
   //const { data } = location.state;
   return (
     <div className="dash-container">
-        <h1 className="title">EECE 442 - Attendance Report</h1>
-        <div id="card-section">{Students.map(createStudentCard)}</div>
+      <h1 className="title">EECE 502 -  Attendance Report</h1>
+      <div id="card-section">{Students.map(createStudentCard)}</div>
     </div>
   );
 }

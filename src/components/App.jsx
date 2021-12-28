@@ -4,12 +4,14 @@ import MainPage from "./MainPage";
 import SelectionPage from "./SelectionPage";
 import GradeReportPage from "./GradeReportPage";
 import AttendancePage from "./AttendancePage";
+import LoginPage from "./LoginPage";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<MainPage />} />
+        <Route path="/" element={<LoginPage />} />
+        {/* <Route path="/" element={<MainPage />} /> */}
         <Route path="/Selection" element={<SelectionPage />} />
         <Route path="/Gradebook" element={<GradeReportPage />} />
         <Route path="/Attendance" element={<AttendancePage />} />

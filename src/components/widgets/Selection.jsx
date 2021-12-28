@@ -3,13 +3,13 @@ import { Link, useLocation } from "react-router-dom";
 
 function Selection() {
   const location = useLocation();
-  const {data} = location.state;
+  const { data } = location.state;
   return (
     <div>
       <div className="selection-panel">
         <h1 className="title"> Select an Action </h1>{" "}
         <div class="selection-container">
-          <Link to="/Attendance" state={{data:data}}>
+          <Link to="/Attendance" state={{ data: data }}>
             <div className="selection">
               <i class="selection-icon uil uil-edit-alt"> </i>{" "}
               <h2> Take attendance </h2>{" "}

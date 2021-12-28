@@ -37,11 +37,11 @@ html {
   background-color: #24292f;
   color: white;
   font-weight: bold;
-  margin-right: 4.5rem;
+  margin-right: 5rem;
 }
 
 #addClassButton:hover {
-  background-color: #3a424d;
+  background-color: #273647;
 }
 
 i {
@@ -248,4 +248,145 @@ a:-webkit-any-link {
 
 .white {
   color: white;
+}
+
+/* Login Page */
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(237, 242, 247);
+  height: 100vh;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: row;
+  height: 70%;
+  width: 70rem;
+  background-color: white;
+  box-shadow: 4.4px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+    10.6px 6.8px 5.3px rgba(0, 0, 0, 0.028),
+    19.9px 12.8px 10px rgba(0, 0, 0, 0.035),
+    35.5px 22.8px 17.9px rgba(0, 0, 0, 0.042),
+    66.4px 42.6px 33.4px rgba(0, 0, 0, 0.05),
+    159px 102px 80px rgba(0, 0, 0, 0.07);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 40px 80px;
+}
+
+.login-image {
+  width: 50%;
+  background-color: wheat;
+}
+
+#login-message {
+  color: #8d8d8d;
+  margin-top: 0.5rem;
+}
+
+.google-button {
+  font-family: "Roboto", sans-serif;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd9d9;
+  height: 50px;
+  border-radius: 0.5rem;
+  margin: 2.5rem 0;
+  font-weight: bold;
+}
+
+.google-button:hover {
+  background-color: rgb(237, 242, 247);
+}
+
+.form-divider {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.divider {
+  height: 1px;
+  background-color: #ddd9d9;
+  width: 28%;
+}
+
+.optional-message {
+  font-size: 0.8rem;
+  margin: 0 0.5rem;
+  color: #b8b8b8;
+}
+
+.google-logo {
+  height: 1.5rem;
+  margin-right: 0.8rem;
+}
+
+input {
+  height: 50px;
+  width: 100%;
+  padding: 0 10px;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid #ddd9d9;
+  border-radius: 0.5rem;
+  color: #b8b8b8;
+}
+::placeholder {
+  color: #b8b8b8;
+}
+
+label {
+  display: block;
+  margin-top: 30px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.login-image {
+  background-image: url("../assets/Masri_2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.form-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 100%;
+  padding: 0 10px;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid #ddd9d9;
+  border-radius: 0.5rem;
+  background-color: #24292f;
+  color: white;
+}
+
+.form-button:hover {
+  background-color: #273647;
+}
+
+#forgotpass-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  font-size: 12px;
+  padding: 0.8rem 0;
+  font-weight: bold;
 }
