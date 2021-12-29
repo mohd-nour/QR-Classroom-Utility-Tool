@@ -12,7 +12,7 @@ function VerticalNavBar() {
           width="100"
         />
         <ul className="nav-list grid">
-          <Link to="/" className="removeUnderline white">
+          <Link to="/MainPage" className="removeUnderline white">
             <li className="nav-item">
               <i className="uil uil-estate"></i>
               Home
