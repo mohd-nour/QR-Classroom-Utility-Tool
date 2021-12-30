@@ -1,0 +1,450 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: "Roboto", sans-serif;
+  background-color: #f8f6f6;
+}
+
+#lower-section {
+  margin-left: 2rem;
+}
+
+.dash-container {
+  margin-left: 5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  padding: 2rem 3rem;
+  display: inline-block;
+}
+
+.sub-title {
+  margin: 2rem 3rem 2rem;
+}
+
+#addClassButton {
+  border: none;
+  border-radius: 0.5rem;
+  height: 2.5rem;
+  width: 6rem;
+  background-color: #24292f;
+  color: white;
+  font-weight: bold;
+  margin-right: 5rem;
+}
+
+#addClassButton:hover {
+  background-color: #273647;
+}
+
+i {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+ul {
+  list-style: none;
+}
+
+.nav-menu {
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  color: #fff;
+}
+
+.nav-item {
+  width: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.8rem 0;
+  box-sizing: border-box;
+}
+
+.nav-item:hover {
+  background-color: #3c444e;
+}
+
+.aub-logo {
+  width: 3.8rem;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.grid {
+  display: grid;
+}
+
+.nav-list {
+  grid-template-rows: repeat(3, 1fr);
+  align-items: center;
+}
+
+#navBar {
+  background-color: #24292f;
+  height: 100vh;
+  width: 5rem;
+  position: fixed;
+}
+
+.banner-overlay {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
+  z-index: 1;
+}
+
+.banner-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 1.5rem 5rem;
+  color: white;
+  font-size: 2.5rem;
+}
+
+#banner {
+  background-color: #b8b8b8;
+  height: 27rem;
+  background-image: url("../assets/collegehall_img.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+#card-section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: left;
+  margin: 0 1rem;
+}
+
+.panel {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.QR-Panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #fff;
+  width: 100%;
+  height: 500px;
+}
+
+.QR-Panel img {
+  height: 400px;
+}
+
+.right-card-section {
+  display: flex;
+  flex-direction: column;
+  width: 3rem;
+  height: 12rem;
+  justify-content: center;
+  margin: 1rem 2rem 2rem;
+  text-align: center;
+}
+
+.class-card {
+  display: flex;
+  flex-direction: column;
+  width: 14rem;
+  height: 12rem;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 0.5rem;
+  justify-content: center;
+  margin: 0 2rem 2rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+
+.selection-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.selection-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.selection {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #fff;
+  align-items: center;
+  width: 25rem;
+  height: 20rem;
+  border-radius: 0.5rem;
+  margin: 0 2rem 2rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+
+a:-webkit-any-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.selection-icon {
+  color: black;
+  font-size: 6rem;
+}
+
+.class-card-student {
+  display: flex;
+  flex-direction: column;
+  width: 14rem;
+  height: 14rem;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 50%;
+  justify-content: center;
+  margin: 0 2rem 2rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+
+.removeUnderline {
+  text-decoration: none;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.main-panel {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.black {
+  color: black;
+}
+
+.white {
+  color: white;
+}
+
+/* Login Page */
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(237, 242, 247);
+  height: 100vh;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: row;
+  height: 70%;
+  width: 70rem;
+  background-color: white;
+  box-shadow: 4.4px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+    10.6px 6.8px 5.3px rgba(0, 0, 0, 0.028),
+    19.9px 12.8px 10px rgba(0, 0, 0, 0.035),
+    35.5px 22.8px 17.9px rgba(0, 0, 0, 0.042),
+    66.4px 42.6px 33.4px rgba(0, 0, 0, 0.05),
+    159px 102px 80px rgba(0, 0, 0, 0.07);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 40px 80px;
+}
+
+.login-image {
+  width: 50%;
+  background-color: wheat;
+}
+
+#login-message {
+  color: #8d8d8d;
+  margin-top: 0.5rem;
+}
+
+.google-button {
+  font-family: "Roboto", sans-serif;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd9d9;
+  height: 50px;
+  border-radius: 0.5rem;
+  margin: 2.5rem 0;
+  font-weight: bold;
+}
+
+.google-button:hover {
+  background-color: rgb(237, 242, 247);
+}
+
+.form-divider {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.divider {
+  height: 1px;
+  background-color: #ddd9d9;
+  width: 28%;
+}
+
+.optional-message {
+  font-size: 0.8rem;
+  margin: 0 0.5rem;
+  color: #b8b8b8;
+}
+
+.google-logo {
+  height: 1.5rem;
+  margin-right: 0.8rem;
+}
+
+.login-input{
+  height: 50px;
+  width: 100%;
+  padding: 0 10px;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid #ddd9d9;
+  border-radius: 0.5rem;
+  color: #b8b8b8;
+}
+
+.addClass-input{
+  height: 30px;
+  width: 80%;
+  padding: 0 10px;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid #ddd9d9;
+  border-radius: 0.5rem;
+  color: #b8b8b8;
+}
+::placeholder {
+  color: #b8b8b8;
+}
+
+label {
+  display: block;
+  margin-top: 30px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.login-image {
+  background-image: url("../assets/Masri_2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.form-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 100%;
+  padding: 0 10px;
+  margin-top: -5px;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid #ddd9d9;
+  border-radius: 0.5rem;
+  background-color: #24292f;
+  color: white;
+}
+
+.form-button:hover {
+  background-color: #273647;
+}
+
+#forgotpass-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction:row;
+  justify-content: right;
+  font-size: 12px;
+  padding: 0.8rem 0;
+  font-weight: bold;
+}
+
+#signup-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction:row;
+  justify-content: left;
+  font-size: 12px;
+  padding: 0.8rem 0;
+  font-weight: bold;
+}
+
+.left-register{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  font-size: 12px;
+  padding: 0.8rem 0;
+  font-weight: bold;
+}
+
+#addClassComponent{
+  margin-top:70px;
+  margin-left:380px;
+  margin-right:380px;
+  background-color:lightgray;
+  display:flex;
+  flex-direction:row;
+  padding:10px;
+  border-radius:10px;
+  justify-content:space-evenly;
+}
+
+.flex-column{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-around;
+}
+
+.addClassButton{
+  border-radius:5px;
+  width:5rem;
+  height:2rem;
+}
