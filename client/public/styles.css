@@ -7,7 +7,7 @@
 html {
   scroll-behavior: smooth;
   font-family: "Roboto", sans-serif;
-  background-color: #f8f6f6;
+  background-color: rgb(237, 242, 247);
 }
 
 #lower-section {
@@ -38,6 +38,15 @@ html {
   color: white;
   font-weight: bold;
   margin-right: 5rem;
+}
+
+.circular-progress {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
 }
 
 #addClassButton:hover {
@@ -250,7 +259,7 @@ a:-webkit-any-link {
   color: white;
 }
 
-/* Login Page */
+/* --------- Login Page --------- */
 
 .main-container {
   display: flex;
@@ -332,7 +341,7 @@ a:-webkit-any-link {
   margin-right: 0.8rem;
 }
 
-.login-input{
+.login-input {
   height: 50px;
   width: 100%;
   padding: 0 10px;
@@ -344,9 +353,11 @@ a:-webkit-any-link {
   color: #b8b8b8;
 }
 
-.addClass-input{
-  height: 30px;
-  width: 80%;
+/* --------- Class Creation Page --------- */
+
+.addClass-input {
+  height: 50px;
+  width: 20rem;
   padding: 0 10px;
   margin-top: 8px;
   font-size: 14px;
@@ -397,7 +408,7 @@ label {
   width: 100%;
   display: flex;
   align-items: center;
-  flex-direction:row;
+  flex-direction: row;
   justify-content: right;
   font-size: 12px;
   padding: 0.8rem 0;
@@ -408,14 +419,14 @@ label {
   width: 100%;
   display: flex;
   align-items: center;
-  flex-direction:row;
+  flex-direction: row;
   justify-content: left;
   font-size: 12px;
   padding: 0.8rem 0;
   font-weight: bold;
 }
 
-.left-register{
+.left-register {
   width: 100%;
   display: flex;
   align-items: center;
@@ -425,26 +436,70 @@ label {
   font-weight: bold;
 }
 
-#addClassComponent{
-  margin-top:70px;
-  margin-left:380px;
-  margin-right:380px;
-  background-color:lightgray;
-  display:flex;
-  flex-direction:row;
-  padding:10px;
-  border-radius:10px;
-  justify-content:space-evenly;
+#addClassComponent {
+  margin: 50px 0;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  justify-content: center;
+  flex-direction: row;
 }
 
-.flex-column{
-  display:flex;
-  flex-direction:column;
-  justify-content:space-around;
+.addClass-column {
+  padding: 0 40px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 0.5rem;
+  background-color: white;
 }
 
-.addClassButton{
-  border-radius:5px;
-  width:5rem;
-  height:2rem;
+.save-button {
+  border: none;
+  border-radius: 0.5rem;
+  height: 2.5rem;
+  width: 20rem;
+  background-color: #24292f;
+  color: white;
+  font-weight: bold;
+  margin-top: 38px;
+}
+
+.save-button:hover {
+  background-color: #273647;
+}
+
+.clear-button {
+  border: none;
+  border-radius: 0.5rem;
+  height: 2.5rem;
+  width: 20rem;
+  background-color: #d31f1f;
+  color: white;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.clear-button:hover {
+  background-color: #db3535;
+}
+
+.time-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.time-input {
+  height: 50px;
+  width: 6rem;
+  padding: 0 10px;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid #ddd9d9;
+  border-radius: 0.5rem;
+  color: #b8b8b8;
+}
+::placeholder {
+  color: #b8b8b8;
 }
