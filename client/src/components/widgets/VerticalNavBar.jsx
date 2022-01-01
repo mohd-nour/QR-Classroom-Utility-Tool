@@ -1,7 +1,35 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { Link } from "react-router-dom";
+import {useDispatch} from 'react-redux';
+import {useNavigate, useLocation} from 'react-router-dom';
+import * as actionType from '../../constants/actionTypes';
+import decode from 'jwt-decode';
 
 function VerticalNavBar() {
+
+  const dispatch = useDispatch(); 
+  const navigate = useNavigate();
+  const location = useLocation();
+  const logout = () => {
+    dispatch({type: actionType.LOGOUT});
+    console.log("hello from logout!");
+    navigate('/');
+
+  };
+
+  const user = JSON.parse(localStorage.getItem('profile'));
+
+  useEffect(() => {
+    const token = user?.token;
+    console.log("hello from useeffect!");
+    if (token){
+      const decodedToken = decode(token);
+      if (decodedToken.exp * 1000 < new Date().getTime()) {
+        logout();
+      }
+    }
+  }, [location, user?.token]);
+
   return (
     <div id="navBar">
       <div className="nav-menu">
@@ -30,6 +58,10 @@ function VerticalNavBar() {
               Chats
             </li>
           </Link>
+          <li className="nav-item" onClick={logout}>
+              <i className="uil uil-comment-alt"></i>
+              Logout
+            </li>
         </ul>
       </div>
     </div>

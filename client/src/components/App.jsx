@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainPage from "./MainPage";
 import SelectionPage from "./SelectionPage";
@@ -7,6 +7,7 @@ import AttendancePage from "./AttendancePage";
 import LoginPage from "./LoginPage";
 import RegisterPage from "./RegisterPage"
 import AddClassPage from "./AddClassPage";
+
 
 function App() {
   return (
