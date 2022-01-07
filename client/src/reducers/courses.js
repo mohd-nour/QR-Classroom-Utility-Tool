@@ -1,4 +1,4 @@
-import { FETCH_ALL, CREATE } from '../constants/actionTypes';
+import { FETCH_ALL, CREATE, DELETE } from '../constants/actionTypes';
 
 
 const reducer = (courses = [], action) => {
@@ -7,6 +7,8 @@ const reducer = (courses = [], action) => {
       return action.payload;
     case CREATE:
       return [...courses, action.payload];
+    case DELETE:
+      return courses.filter((course) => course._id !== action.payload); //return all courses except course with id = payload id
     default:
       return courses;
   }

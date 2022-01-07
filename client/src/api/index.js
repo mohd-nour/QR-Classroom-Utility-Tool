@@ -21,5 +21,7 @@ API.interceptors.request.use((req) => {
 */
 export const fetchCourses = (uniqueId) => API.get("/courses/"+uniqueId);
 export const createCourse = (newCourse) => API.post("/courses", newCourse);
+export const deleteCourse = (id) => API.delete("/courses/"+id);
+
 export const signin = (formData) => API.post("/users/signin", formData);
 export const signup = (formData) => API.post("/users/signup", formData);

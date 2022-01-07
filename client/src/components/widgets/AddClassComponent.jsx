@@ -1,21 +1,27 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createCourse } from "../../actions/courses";
+import { useNavigate } from "react-router-dom";
+
 
 function AddClassComponent() {
   const [courseData, setCourseData] = useState({
-    courseName: "",
-    courseNumber: "",
-    schedule: "",
+    title: "",
+    creator: localStorage.getItem('currentUserUniqueId'),
+    schedule: "MWF",
+    students: [],
     startTime: "",
-    endTime: "",
-    creator: localStorage.getItem('currentUserUniqueId')
+    endTime: ""
   });
 
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
+    e.preventDefault();
     dispatch(createCourse(courseData));
+    navigate("/MainPage", { replace: true });
   };
   return (
     <div id="addClassComponent">

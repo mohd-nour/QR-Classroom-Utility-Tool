@@ -7,20 +7,15 @@ import {getCourses} from "../../actions/courses";
 
 function createCard(course) {
   return (
-    <Link
-      to="/Selection"
-      state={{ data: course.courseName }}
-      className="removeUnderline black"
-    >
       <ClassCard
         key={course._id}
+        id={course._id}
         courseName={course.courseName}
         courseNumber={course.courseNumber}
         startTime={course.startTime}
         endTime={course.endTime}
         schedule={course.schedule}
       />
-    </Link>
   );
 }
 

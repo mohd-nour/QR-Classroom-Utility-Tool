@@ -20,3 +20,13 @@ export const createCourse = (course) => async (dispatch) => {
     console.log(error.message);
   }
 };
+
+export const deleteCourse = (id) => async (dispatch) => {
+  try {
+    console.log(id);
+    await api.deleteCourse(id);
+    dispatch({ type: "DELETE", payload: id });
+  } catch (error) {
+    console.log(error);
+  }
+};
