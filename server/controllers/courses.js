@@ -5,7 +5,10 @@ import courseClass from "../models/courseClass.js";
 
 export const getCourses = async (req, res) => {
   try {
-    const courses = await courseClass.find();
+    const currentUserUniqueId = req.params.id;
+    console.log(currentUserUniqueId);
+    const courses = await courseClass.find({creator: currentUserUniqueId});
+    console.log(courses);
 
     res.status(200).json(courses);
   } catch (error) {

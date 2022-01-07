@@ -12,7 +12,6 @@ function VerticalNavBar() {
   const location = useLocation();
   const logout = () => {
     dispatch({type: actionType.LOGOUT});
-    console.log("hello from logout!");
     navigate('/');
 
   };
@@ -21,7 +20,6 @@ function VerticalNavBar() {
 
   useEffect(() => {
     const token = user?.token;
-    console.log("hello from useeffect!");
     if (token){
       const decodedToken = decode(token);
       if (decodedToken.exp * 1000 < new Date().getTime()) {
@@ -46,18 +44,14 @@ function VerticalNavBar() {
               Home
             </li>
           </Link>
-          <Link to="/" className="removeUnderline white">
-            <li className="nav-item">
-              <i className="uil uil-exclamation-circle"></i>
-              Alerts
-            </li>
-          </Link>
-          <Link to="/RegisterPage" className="removeUnderline white">
-            <li className="nav-item">
-              <i className="uil uil-comment-alt"></i>
-              Chats
-            </li>
-          </Link>
+          <li className="nav-item">
+            <i className="uil uil-exclamation-circle"></i>
+            Alerts
+          </li>
+          <li className="nav-item">
+            <i className="uil uil-comment-alt"></i>
+            Chats
+          </li>
           <li className="nav-item" onClick={logout}>
               <i className="uil uil-comment-alt"></i>
               Logout

@@ -17,7 +17,10 @@ function LoginPage() {
     const token = res?.tokenId;
     try {
       dispatch({type:'GoogleAUTH', data: { result, token } });
+      const uniqueId = result.googleId;
       localStorage.setItem('profile', JSON.stringify({ result }));
+      localStorage.setItem('currentUserUniqueId', uniqueId);
+
       navigate('/MainPage');
     } catch (error) {
       console.log(error);

@@ -5,8 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon index.js",
-    "server": "nodemon index.js --ignore client"
+    "start": "nodemon index.js"
   },
   "keywords": [],
   "author": "",

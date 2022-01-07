@@ -1,6 +1,8 @@
 import { combineReducers } from "redux";
 
-import auth from "./auth";
 import courses from "./courses";
+import auth from "./auth";
 
-export default combineReducers({ auth, courses });
+export default combineReducers({
+  courses, auth
+});

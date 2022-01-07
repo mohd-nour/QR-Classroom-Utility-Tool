@@ -6,7 +6,7 @@ import {signup} from '../actions/auth';
 function RegisterPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const initialState = {email: '', password: '', confirmPassword: ''};
+  const initialState = {name: '', email: '', password: '', confirmPassword: ''};
   const [formData, setFormData] = useState(initialState);
 
   const register = async (e) => {
@@ -21,6 +21,18 @@ function RegisterPage() {
             <h1>Register</h1>
             <h4 id="login-message">Welcome to the University Companion App</h4>
             <form onSubmit={register}>
+            <div className="field-wrapper">
+              <label for="email">Name</label>
+              <input
+                type="text"
+                name="name"
+                placeholder="First and last name"
+                id="registername"
+                className="login-input"
+                value={formData.name}
+                onChange={(e) => setFormData({...formData, name:e.target.value})}
+              />
+            </div>
             <div className="field-wrapper">
               <label for="email">Email</label>
               <input

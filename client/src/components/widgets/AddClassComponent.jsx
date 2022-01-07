@@ -4,11 +4,12 @@ import { createCourse } from "../../actions/courses";
 
 function AddClassComponent() {
   const [courseData, setCourseData] = useState({
-    title: "",
-    creator: "",
-    students: [],
+    courseName: "",
+    courseNumber: "",
+    schedule: "",
     startTime: "",
     endTime: "",
+    creator: localStorage.getItem('currentUserUniqueId')
   });
 
   const dispatch = useDispatch();
@@ -16,7 +17,6 @@ function AddClassComponent() {
   const handleSubmit = (e) => {
     dispatch(createCourse(courseData));
   };
-
   return (
     <div id="addClassComponent">
       <form autoComplete="off" noValidate onSubmit={handleSubmit}>
