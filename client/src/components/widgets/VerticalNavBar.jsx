@@ -18,14 +18,12 @@ function VerticalNavBar() {
 
   useEffect(() => {
     const token = user?.token;
-    const logout = () => {
-      dispatch({ type: actionType.LOGOUT });
-      navigate("/");
-    };
+
     if (token) {
       const decodedToken = decode(token);
       if (decodedToken.exp * 1000 < new Date().getTime()) {
-        logout();
+        dispatch({ type: actionType.LOGOUT });
+        navigate("/");
       }
     }
   }, [dispatch, navigate, location, user?.token]);

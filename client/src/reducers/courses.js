@@ -1,8 +1,13 @@
-import { FETCH_ALL, CREATE, DELETE } from '../constants/actionTypes';
+import { FETCH_ALL, CREATE, DELETE } from "../constants/actionTypes";
 
+// reducers change state
 
 const reducer = (courses = [], action) => {
   switch (action.type) {
+    case "UPDATE":
+      return courses.map((course) =>
+        course._id === action.payload._id ? action.payload : course
+      );
     case FETCH_ALL:
       return action.payload;
     case CREATE:

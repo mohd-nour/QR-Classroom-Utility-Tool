@@ -1,6 +1,10 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createCourse } from "../../actions/courses";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  clearCurrentCourse,
+  createCourse,
+  updateCourse,
+} from "../../actions/courses";
 import { useNavigate } from "react-router-dom";
 
 function AddClassComponent() {
@@ -13,20 +17,51 @@ function AddClassComponent() {
     endTime: "",
   });
 
+  //after updating course clear currentCourseId
+
+  // upon update, get currentCourseId and fetch courseData
+
+  // if a currentCourseId exists, fetch the corresponding course
+  const currentCourseId = useSelector((state) => state.currentCourse);
+
+  const course = useSelector((state) =>
+    currentCourseId
+      ? state.courses.find((post) => post._id === currentCourseId)
+      : null
+  );
+
+  // when course value changes, run function
+  // if course exists, set courseData to course
+  useEffect(() => {
+    if (course) {
+      setCourseData(course);
+    }
+  }, [course]);
+
+  console.log(currentCourseId);
+
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createCourse(courseData));
-    navigate("/Home", { replace: true });
+
+    if (currentCourseId) {
+      dispatch(updateCourse(currentCourseId, courseData));
+      navigate("/Home", { replace: true });
+    } else {
+      dispatch(createCourse(courseData));
+      navigate("/Home", { replace: true });
+    }
+    dispatch(clearCurrentCourse());
   };
   return (
     <div id="addClassComponent">
       <form autoComplete="off" noValidate onSubmit={handleSubmit}>
-        <div class="addClass-column">
-          <label for="courseName">Course Name</label>
+        <h1> {currentCourseId ? "Edit Mode" : "Add a Class"}</h1>
+        <div className="addClass-column">
+          <label>Course Name</label>
           <input
             name="courseName"
             placeholder="ex: EECE"
@@ -40,7 +75,7 @@ function AddClassComponent() {
               })
             }
           ></input>
-          <label for="courseNumber">Course Number</label>
+          <label>Course Number</label>
           <input
             name="courseNumber"
             placeholder="ex: 502"
@@ -54,7 +89,7 @@ function AddClassComponent() {
               })
             }
           ></input>
-          <label for="schedule">Schedule</label>
+          <label>Schedule</label>
           <select
             className="addClass-input"
             value={courseData.schedule}
@@ -76,7 +111,7 @@ function AddClassComponent() {
           </select>
           <div className="time-container">
             <div>
-              <label for="startTime">Starting time</label>
+              <label>Starting time</label>
               <input
                 name="startTime"
                 placeholder="ex: 10:00"
@@ -92,7 +127,7 @@ function AddClassComponent() {
               ></input>
             </div>
             <div>
-              <label for="endTime">Ending time</label>
+              <label>Ending time</label>
               <input
                 name="endTime"
                 placeholder="ex: 10:50"

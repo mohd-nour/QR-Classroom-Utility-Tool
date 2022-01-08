@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ClassCard from "./ClassCard";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { CircularProgress } from "@material-ui/core";
-import { getCourses } from "../../actions/courses";
+import { getCourses, clearCurrentCourse } from "../../actions/courses";
 
 function createCard(course) {
   return (
@@ -20,9 +20,14 @@ function createCard(course) {
 }
 
 function ClassesWidget(props) {
+  // fetch state of courses from store
+
   const courses = useSelector((state) => state.courses);
 
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
   useEffect(() => {
     dispatch(getCourses());
   }, [dispatch]);
@@ -37,9 +42,15 @@ function ClassesWidget(props) {
         </h1>
         <div className="main-panel">
           <h2 className="sub-title">Your classes</h2>
-          <Link to="/AddClassPage">
-            <button id="addClassButton">Add a class</button>
-          </Link>
+          <button
+            id="addClassButton"
+            onClick={() => {
+              dispatch(clearCurrentCourse());
+              navigate("/AddClassPage", { replace: true });
+            }}
+          >
+            Add a class
+          </button>
         </div>
         {!courses.length ? (
           <CircularProgress className="circular-progress" />
