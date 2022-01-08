@@ -3,15 +3,14 @@ import { useDispatch } from "react-redux";
 import { createCourse } from "../../actions/courses";
 import { useNavigate } from "react-router-dom";
 
-
 function AddClassComponent() {
   const [courseData, setCourseData] = useState({
     title: "",
-    creator: localStorage.getItem('currentUserUniqueId'),
+    creator: localStorage.getItem("currentUserUniqueId"),
     schedule: "MWF",
     students: [],
     startTime: "",
-    endTime: ""
+    endTime: "",
   });
 
   const dispatch = useDispatch();
@@ -21,7 +20,7 @@ function AddClassComponent() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createCourse(courseData));
-    navigate("/MainPage", { replace: true });
+    navigate("/Home", { replace: true });
   };
   return (
     <div id="addClassComponent">

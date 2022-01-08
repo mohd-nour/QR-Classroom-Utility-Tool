@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import MainPage from "./MainPage";
+import Home from "./Home";
 import SelectionPage from "./SelectionPage";
 import GradeReportPage from "./GradeReportPage";
 import AttendancePage from "./AttendancePage";
@@ -23,7 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/RegisterPage" element={<RegisterPage />} />
-        <Route path="/MainPage" element={<MainPage />} />
+        <Route path="/Home" element={<Home />} />
         <Route path="/Selection" element={<SelectionPage />} />
         <Route path="/Gradebook" element={<GradeReportPage />} />
         <Route path="/Attendance" element={<AttendancePage />} />

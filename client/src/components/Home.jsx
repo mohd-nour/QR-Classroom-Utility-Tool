@@ -2,7 +2,7 @@ import React from "react";
 import VerticalNavBar from "./widgets/VerticalNavBar";
 import Dashboard from "./widgets/Dashboard";
 
-function MainPage(props) {
+function Home(props) {
   return (
     <div>
       <VerticalNavBar />
@@ -11,4 +11,4 @@ function MainPage(props) {
   );
 }
 
-export default MainPage;
+export default Home;
