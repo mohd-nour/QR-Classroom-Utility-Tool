@@ -59,8 +59,10 @@ function AddClassComponent() {
   return (
     <div id="addClassComponent">
       <form autoComplete="off" noValidate onSubmit={handleSubmit}>
-        <h1> {currentCourseId ? "Edit Mode" : "Add a Class"}</h1>
         <div className="addClass-column">
+          <h3 id="form-title">
+            {currentCourseId ? "EDIT CLASS" : "ADD CLASS"}
+          </h3>
           <label>Course Name</label>
           <input
             name="courseName"
