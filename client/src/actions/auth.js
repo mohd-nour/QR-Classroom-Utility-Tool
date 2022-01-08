@@ -8,7 +8,7 @@ export const signup = (formData, navigate) => async (dispatch) => {
         dispatch({type: AUTH, data});
         const uniqueId= JSON.parse(localStorage.getItem('profile')).result._id;
         localStorage.setItem('currentUserUniqueId', uniqueId);
-        navigate('/MainPage');
+        navigate('/Home');
     } catch (error) {
         console.log(error);
     }
@@ -20,7 +20,7 @@ export const signin = (formData, navigate) => async (dispatch) => {
         dispatch({type: AUTH, data});
         const uniqueId= JSON.parse(localStorage.getItem('profile')).result._id;
         localStorage.setItem('currentUserUniqueId', uniqueId);
-        navigate('/MainPage');
+        navigate('/Home');
     } catch (error) {
         console.log(error);
     }
