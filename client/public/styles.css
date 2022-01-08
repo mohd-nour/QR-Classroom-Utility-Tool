@@ -363,6 +363,10 @@ a:-webkit-any-link {
   background-color: rgb(237, 242, 247);
 }
 
+.google-signin {
+  color: black;
+}
+
 .form-divider {
   display: flex;
   flex-direction: row;
@@ -544,7 +548,7 @@ label {
   font-weight: bold;
   border: 1px solid #ddd9d9;
   border-radius: 0.5rem;
-  color: #b8b8b8;
+  color: black;
 }
 ::placeholder {
   color: #b8b8b8;

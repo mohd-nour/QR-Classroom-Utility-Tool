@@ -54,7 +54,7 @@ function LoginPage() {
                     src="https://freesvg.org/img/1534129544.png"
                     alt="google-logo"
                   />
-                  <h4>Sign in with Google</h4>
+                  <h4 className="google-signin">Sign in with Google</h4>
                 </button>
               )}
               onSuccess={googleSuccess}
