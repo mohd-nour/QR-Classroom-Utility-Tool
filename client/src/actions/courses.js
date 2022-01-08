@@ -11,10 +11,11 @@ export const getCourses = () => async (dispatch) => {
   }
 };
 
-export const createCourse = (course) => async (dispatch) => {
+export const createCourse = (course, navigate) => async (dispatch) => {
   try {
     const { data } = await api.createCourse(course);
     dispatch({ type: CREATE, payload: data });
+    navigate("/Home", { replace: true });
   } catch (error) {
     console.log(error.message);
   }
@@ -30,10 +31,11 @@ export const deleteCourse = (id) => async (dispatch) => {
   }
 };
 
-export const updateCourse = (id, course) => async (dispatch) => {
+export const updateCourse = (id, course, navigate) => async (dispatch) => {
   try {
     const { data } = await api.updateCourse(id, course);
     dispatch({ type: "UPDATE", payload: data });
+    navigate("/Home", { replace: true });
   } catch (error) {
     console.log(error);
   }

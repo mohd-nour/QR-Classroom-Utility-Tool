@@ -48,11 +48,9 @@ function AddClassComponent() {
     e.preventDefault();
 
     if (currentCourseId) {
-      dispatch(updateCourse(currentCourseId, courseData));
-      navigate("/Home", { replace: true });
+      dispatch(updateCourse(currentCourseId, courseData, navigate));
     } else {
-      dispatch(createCourse(courseData));
-      navigate("/Home", { replace: true });
+      dispatch(createCourse(courseData, navigate));
     }
     dispatch(clearCurrentCourse());
   };

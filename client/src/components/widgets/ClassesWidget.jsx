@@ -23,16 +23,16 @@ function ClassesWidget(props) {
   // fetch state of courses from store
 
   const courses = useSelector((state) => state.courses);
+  console.log(courses);
 
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     dispatch(getCourses());
   }, [dispatch]);
-
-  console.log(courses);
+  
   const [user] = useState(JSON.parse(localStorage.getItem("profile")));
   return (
     <div>
