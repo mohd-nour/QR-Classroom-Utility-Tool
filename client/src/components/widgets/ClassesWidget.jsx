@@ -21,10 +21,12 @@ function createCard(course) {
 
 function ClassesWidget(props) {
   const courses = useSelector((state) => state.courses);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCourses());
   }, [dispatch]);
+
   console.log(courses);
   const [user] = useState(JSON.parse(localStorage.getItem("profile")));
   return (

@@ -55,7 +55,7 @@ function VerticalNavBar() {
             Chats
           </li>
           <li className="nav-item" onClick={logout}>
-            <i class="uil uil-signout"></i>
+            <i className="uil uil-signout"></i>
             Logout
           </li>
         </ul>
