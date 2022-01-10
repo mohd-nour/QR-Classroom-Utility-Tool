@@ -23,7 +23,6 @@ export const createCourse = (course, navigate) => async (dispatch) => {
 
 export const deleteCourse = (id) => async (dispatch) => {
   try {
-    console.log(id);
     await api.deleteCourse(id);
     dispatch({ type: "DELETE", payload: id });
   } catch (error) {

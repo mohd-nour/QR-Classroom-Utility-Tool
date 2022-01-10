@@ -28,11 +28,12 @@ function ClassesWidget(props) {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-  
+
+  // runs when mounted
   useEffect(() => {
     dispatch(getCourses());
   }, [dispatch]);
-  
+
   const [user] = useState(JSON.parse(localStorage.getItem("profile")));
   return (
     <div>

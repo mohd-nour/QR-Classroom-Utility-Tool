@@ -318,7 +318,6 @@ a:-webkit-any-link {
 .form-container {
   display: flex;
   flex-direction: row;
-  height: 70%;
   width: 70rem;
   background-color: white;
   box-shadow: 4.4px 2.8px 2.2px rgba(0, 0, 0, 0.02),
