@@ -14,9 +14,14 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.1",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "deep-email-validator": "^0.1.21",
+    "dotenv": "^10.0.0",
     "express": "^4.17.2",
+    "joi": "^17.5.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.4",
+    "nodemailer": "^6.7.2",
     "nodemon": "^2.0.15"
   }
 }

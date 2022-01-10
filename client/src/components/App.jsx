@@ -7,6 +7,8 @@ import AttendancePage from "./AttendancePage";
 import LoginPage from "./LoginPage";
 import RegisterPage from "./RegisterPage";
 import AddClassPage from "./AddClassPage";
+import ForgotPassword from "./ForgotPassword";
+
 import { getCourses } from "../actions/courses";
 
 import { useDispatch } from "react-redux";
@@ -28,6 +30,7 @@ function App() {
         <Route path="/Gradebook" element={<GradeReportPage />} />
         <Route path="/Attendance" element={<AttendancePage />} />
         <Route path="/AddClassPage" element={<AddClassPage />} />
+        <Route path="/ForgotPassword" element={<ForgotPassword />} />
       </Routes>
     </BrowserRouter>
   );

@@ -96,7 +96,7 @@ function LoginPage() {
                 />
               </div>
               <div id="forgotpass-container">
-                <a href="www.google.com">Forgot Password?</a>
+                <a href="/ForgotPassword">Forgot Password?</a>
               </div>
               <button className="form-button" type="submit">
                 <h4>Login</h4>

@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../models/user.js';
+import emailValidator from 'deep-email-validator';
 
 export const signin = async (req,res) => {
     const { email, password } = req.body;
@@ -19,6 +20,8 @@ export const signin = async (req,res) => {
 export const signup = async (req,res) => {
     const { name, email, password, confirmPassword } = req.body;
     try {
+        const {valid, validators, reason} = await emailValidator.validate(email);
+        if (!valid) return res.status(400).json({message: "Mail does not exist!"});
         const existingUser = await User.findOne({ email });
         if (existingUser) return res.status(400).json({message:"User already exists."});
         if (password!=confirmPassword) return res.status(400).json({message:"Passwords don't match."});
