@@ -12,6 +12,7 @@ import SendEmailForgotPassword from "./SendEmailForgotPassword";
 import { getCourses } from "../actions/courses";
 
 import { useDispatch } from "react-redux";
+import ResetPassword from "./ResetPassword";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ function App() {
         <Route path="/Attendance" element={<AttendancePage />} />
         <Route path="/AddClassPage" element={<AddClassPage />} />
         <Route path="/SendEmailForgotPassword" element={<SendEmailForgotPassword />} />
+        <Route path="/forgotPass/resetPass/:id/:token" element={<ResetPassword />} />
       </Routes>
     </BrowserRouter>
   );

@@ -19,7 +19,7 @@ function SendEmailForgotPassword() {
             <h4 id="login-message">Welcome to the University Companion App</h4>
             <form onSubmit={SendEmail}>
             <div className="field-wrapper">
-              <label for="confirmPassword">Email: </label>
+              <label for="confirmPassword">Email: </label><br/>
               <input
                 type="email"
                 name="registerConfirmPassword"
