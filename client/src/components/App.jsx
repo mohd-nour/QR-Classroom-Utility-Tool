@@ -7,7 +7,7 @@ import AttendancePage from "./AttendancePage";
 import LoginPage from "./LoginPage";
 import RegisterPage from "./RegisterPage";
 import AddClassPage from "./AddClassPage";
-import ForgotPassword from "./ForgotPassword";
+import SendEmailForgotPassword from "./SendEmailForgotPassword";
 
 import { getCourses } from "../actions/courses";
 
@@ -30,7 +30,7 @@ function App() {
         <Route path="/Gradebook" element={<GradeReportPage />} />
         <Route path="/Attendance" element={<AttendancePage />} />
         <Route path="/AddClassPage" element={<AddClassPage />} />
-        <Route path="/ForgotPassword" element={<ForgotPassword />} />
+        <Route path="/SendEmailForgotPassword" element={<SendEmailForgotPassword />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,17 +1,23 @@
 import React, {useState} from "react";
+import {useDispatch} from 'react-redux';
+import { sendEmail } from "../actions/auth";
 
-function ForgotPassword() {
-  const register = async (e) => {
+function SendEmailForgotPassword() {
+  const [email, setEmail] = useState({email: ''});
+  const dispatch = useDispatch();
+  const SendEmail = async (e) => {
    e.preventDefault();
+   console.log(email);
+   dispatch(sendEmail(email));
   }
   return (
     <div>
       <div className="main-container">
         <div className="form-container">
           <div className="login-form">
-            <h1>Reset password</h1>
+            <h1>Forgot password?</h1>
             <h4 id="login-message">Welcome to the University Companion App</h4>
-            <form onSubmit={register}>
+            <form onSubmit={SendEmail}>
             <div className="field-wrapper">
               <label for="confirmPassword">Email: </label>
               <input
@@ -20,6 +26,7 @@ function ForgotPassword() {
                 placeholder="min. 8 characters"
                 id="registerConfirmPassword"
                 className="login-input"
+                onChange={(e) => setEmail({email: e.target.value})}
               />
             </div>
             <button className="form-button" type='submit'>
@@ -34,4 +41,4 @@ function ForgotPassword() {
   );
 }
 
-export default ForgotPassword;
+export default SendEmailForgotPassword;

@@ -1,8 +1,9 @@
+import express from 'express';
+import { sendEmail } from '../controllers/passwordReset.js';
+
 const router = express.Router();
-import {sendEmail, resetPassword} from "../controllers/passwordReset.js";
 
-router.post("/", sendEmail);
-
-router.post("/:userId/:token", resetPassword);
+router.post('/sendEmail', sendEmail);
 
 export default router;
+

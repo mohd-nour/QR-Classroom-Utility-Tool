@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import courseRoutes from "./routes/courses.js";
 import userRoutes from "./routes/users.js";
+import forgotPasswordRoutes from "./routes/passwordReset.js";
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(cors());
 // Every route inside of courseRoutes will start with /course
 app.use("/courses", courseRoutes);
 app.use("/users", userRoutes);
+app.use("/forgotPassword", forgotPasswordRoutes);
 
 const CONNECTION_URL =
   "mongodb+srv://QRCodeAMS:QRCodeAMSQRcodeAMS@cluster0.bula3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";

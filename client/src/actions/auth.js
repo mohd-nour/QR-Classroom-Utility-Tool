@@ -25,3 +25,12 @@ export const signin = (formData, navigate) => async (dispatch) => {
         console.log(error);
     }
 }
+
+export const sendEmail = (emailData) => async (dispatch) => {
+    try {
+        console.log(emailData);
+        const {data} = await api.sendEmail(emailData);
+    } catch (error) {
+        console.log(error);
+    }
+}
