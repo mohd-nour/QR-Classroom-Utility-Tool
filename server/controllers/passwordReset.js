@@ -11,11 +11,10 @@ export const sendEmail = async (req,res) => {
     const userId = existingUser._id;
     const name = existingUser.name;
     if (!existingUser) {return res.status(404).json({message:"User does not exist."});}
-    console.log(userId);
     try {
         const token = crypto.randomBytes(32).toString("hex");
         const link = "http://localhost:3000/forgotPass/resetPass/"+userId+"/"+token;
-        const message = "Hello "+name+"\n If you want to reset your password, please click the link below:\n"+link;
+        const message = "Hello "+name+"\nIf you want to reset your password, please click the link below:\n"+link;
         mailSend(email,"Reset password", message);
 
         const addedToken = await Token.create({id: userId, token: token});
@@ -34,7 +33,7 @@ export const resetPassword = async (req,res) => {
         return res.json({message:"Invalid request, user does not exist", error: true});
     }   
     if (!existingToken){
-        return res.json({message:"Link has expired, please send another request for pass reset", error: true});
+        return res.json({message:"Link has expired, please send another request to reset your password", error: true});
     } 
     if (newPass!=confirmNewPass){
         return res.json({message:"Password and confirm password fields do not match", error: true});
@@ -43,10 +42,7 @@ export const resetPassword = async (req,res) => {
     User.findByIdAndUpdate(id, { password: hashedPassword },
                             function (err, docs) {
     if (err){
-        console.log(err)
-    }
-    else{
-        console.log("Updated User : ", docs);
+        return res.json({message: err.message});
     }
 });
     return res.json({message:"Password changed successfully! ", error: false});
