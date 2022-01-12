@@ -5,10 +5,16 @@ export const signup = (formData, navigate) => async (dispatch) => {
   try {
     // register the user
     const { data } = await api.signup(formData);
-    dispatch({ type: AUTH, data });
-    const uniqueId = JSON.parse(localStorage.getItem("profile")).result._id;
-    localStorage.setItem("currentUserUniqueId", uniqueId);
-    navigate("/Home");
+    console.log(data)
+    if (data.error){
+      alert(data.message);
+    }
+    else{
+      dispatch({ type: AUTH, data });
+      const uniqueId = JSON.parse(localStorage.getItem("profile")).result._id;
+      localStorage.setItem("currentUserUniqueId", uniqueId);
+      navigate("/Home");
+    }
   } catch (error) {
     alert(error.message);
   }
@@ -17,10 +23,15 @@ export const signup = (formData, navigate) => async (dispatch) => {
 export const signin = (formData, navigate) => async (dispatch) => {
   try {
     const { data } = await api.signin(formData);
-    dispatch({ type: AUTH, data });
-    const uniqueId = JSON.parse(localStorage.getItem("profile")).result._id;
-    localStorage.setItem("currentUserUniqueId", uniqueId);
-    navigate("/Home");
+    if (data.error){
+      alert(data.message);
+    }
+    else{
+      dispatch({ type: AUTH, data });
+      const uniqueId = JSON.parse(localStorage.getItem("profile")).result._id;
+      localStorage.setItem("currentUserUniqueId", uniqueId);
+      navigate("/Home");
+    }
   } catch (error) {
     alert(error.message);
   }
