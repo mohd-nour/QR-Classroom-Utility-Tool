@@ -9,7 +9,8 @@ import { useNavigate } from "react-router-dom";
 
 function AddClassComponent() {
   const [courseData, setCourseData] = useState({
-    title: "",
+    courseName: "",
+    courseNumber: "",
     creator: localStorage.getItem("currentUserUniqueId"),
     schedule: "MWF",
     students: [],
