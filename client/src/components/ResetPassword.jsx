@@ -1,12 +1,18 @@
 import React, {useState} from "react";
-import {useParams} from 'react-router-dom';
+import {useParams, useNavigate} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+import {resetPasswordClient} from '../actions/forgotPass';
+
 
 function ResetPassword() {
   const {id, token} = useParams();
   const [newPassword, setNewPassword] = useState({newPass: '', confirmNewPass: ''});
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const register = async (e) => {
    e.preventDefault();
-   console.log(newPassword);
+   dispatch(resetPasswordClient(newPassword,id,token,navigate));
   }
   return (
     <div>

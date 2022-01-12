@@ -28,3 +28,4 @@ export const updateCourse = (id, updatedCourse) =>
 export const signin = (formData) => API.post("/users/signin", formData);
 export const signup = (formData) => API.post("/users/signup", formData);
 export const sendEmail = (emailData) => API.post("/forgotPassword/sendEmail", emailData);
+export const resetPasswordClient = (newPassword, id, token) => API.patch("/forgotPassword/resetPass/"+id+"/"+token,newPassword);

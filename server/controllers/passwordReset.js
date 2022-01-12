@@ -2,6 +2,8 @@ import mailSend from "../utils/sendEmail.js";
 import User from "../models/user.js";
 import Token from "../models/token.js";
 import crypto from "crypto";
+import bcrypt from 'bcryptjs';
+
 
 export const sendEmail = async (req,res) => {
     const { email } = req.body;
@@ -25,12 +27,27 @@ export const sendEmail = async (req,res) => {
 export const resetPassword = async (req,res) => {
     const id = req.params.id;
     const token = req.params.token;
-    const existingId = await User.findOne({ _id: id });
+    const {newPass, confirmNewPass} = req.body;
+    const existingUser = await User.findOne({ _id: id });
     const existingToken = await Token.findOne({token: token});
-    if (!existingId){
-        return res.status(404).json({message:"Invalid request, user does not exist"});
+    if (!existingUser){
+        return res.json({message:"Invalid request, user does not exist", error: true});
     }   
     if (!existingToken){
-        return res.status(404).json({message:"Link has expired, please send another request for pass reset"});
+        return res.json({message:"Link has expired, please send another request for pass reset", error: true});
     } 
+    if (newPass!=confirmNewPass){
+        return res.json({message:"Password and confirm password fields do not match", error: true});
+    }
+    const hashedPassword = await bcrypt.hash(newPass, 12);
+    User.findByIdAndUpdate(id, { password: hashedPassword },
+                            function (err, docs) {
+    if (err){
+        console.log(err)
+    }
+    else{
+        console.log("Updated User : ", docs);
+    }
+});
+    return res.json({message:"Password changed successfully! ", error: false});
 }
