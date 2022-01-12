@@ -4,7 +4,7 @@ import StudentCard from "./StudentCard";
 // import { useLocation } from "react-router-dom";
 
 function createStudentCard(student) {
-  return <StudentCard name={student.studentName} mode="AttendanceRecord" />;
+  return <StudentCard key ={student.id} name={student.studentName} mode="AttendanceRecord" />;
 }
 
 function GradeReport() {

@@ -7,6 +7,8 @@ import {useLocation} from 'react-router-dom';
 function AttendancePage() {
   const location = useLocation();
   const {data} = location.state;
+  console.log(data);
+  console.log("Hello from AttendancePage");
   return (
     <div>
       <VerticalNavBar />

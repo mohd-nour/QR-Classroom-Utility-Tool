@@ -11,7 +11,7 @@ function AttendanceWidget(props) {
     <div className="dash-container">
       <div id="lower-section">
         {/* <h1 className="title">{data} - Taking Attendance - Session 12</h1> */}
-        <h1 className="title">{props.data} - Taking Attendance</h1>
+        <h1 className="title">{props.data.courseName + " " + props.data.courseNumber} - Taking Attendance</h1>
         <div id="card-section">{Students.map(createStudentCard)}</div>
       </div>
     </div>

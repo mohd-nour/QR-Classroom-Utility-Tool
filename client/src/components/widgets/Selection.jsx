@@ -8,16 +8,16 @@ function Selection() {
     <div>
       <div className="selection-panel">
         <h1 className="title"> Select an Action </h1>{" "}
-        <div class="selection-container">
+        <div className="selection-container">
           <Link to="/Attendance" state={{ data: data }}>
             <div className="selection">
-              <i class="selection-icon uil uil-edit-alt"> </i>{" "}
+              <i className="selection-icon uil uil-edit-alt"> </i>{" "}
               <h2> Take attendance </h2>{" "}
             </div>{" "}
           </Link>{" "}
           <Link to="/Gradebook">
             <div className="selection">
-              <i class="selection-icon uil uil-book-open"> </i>{" "}
+              <i className="selection-icon uil uil-book-open"> </i>{" "}
               <h2> Gradebook </h2>{" "}
             </div>{" "}
           </Link>{" "}
