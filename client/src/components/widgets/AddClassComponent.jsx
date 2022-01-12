@@ -38,8 +38,6 @@ function AddClassComponent() {
     }
   }, [course]);
 
-  console.log(currentCourseId);
-
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
