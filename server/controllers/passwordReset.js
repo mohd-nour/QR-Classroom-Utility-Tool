@@ -14,7 +14,7 @@ export const sendEmail = async (req,res) => {
     try {
         const token = crypto.randomBytes(32).toString("hex");
         const link = "http://localhost:3000/forgotPass/resetPass/"+userId+"/"+token;
-        const message = "Hello "+name+"\nIf you want to reset your password, please click the link below:\n"+link;
+        const message = "Hello "+name+"\nIf you want to reset your password, please click the link below:\n"+link+"\nThis link will expire in 15 minutes";
         mailSend(email,"Reset password", message);
 
         const addedToken = await Token.create({id: userId, token: token});
@@ -45,5 +45,6 @@ export const resetPassword = async (req,res) => {
         return res.json({message: err.message});
     }
 });
+    await Token.findByIdAndDelete(existingToken._id);
     return res.json({message:"Password changed successfully! ", error: false});
 }
