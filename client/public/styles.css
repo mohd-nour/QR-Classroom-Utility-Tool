@@ -305,8 +305,6 @@ a:-webkit-any-link {
   color: white;
 }
 
-/* --------- Login Page --------- */
-
 .main-container {
   display: flex;
   justify-content: center;
@@ -333,11 +331,6 @@ a:-webkit-any-link {
   flex-direction: column;
   width: 50%;
   padding: 40px 80px;
-}
-
-.login-image {
-  width: 50%;
-  background-color: wheat;
 }
 
 #login-message {
@@ -402,8 +395,6 @@ a:-webkit-any-link {
   color: #b8b8b8;
 }
 
-/* --------- Class Creation Page --------- */
-
 .addClass-input {
   height: 50px;
   width: 20rem;
@@ -427,7 +418,16 @@ label {
 }
 
 .login-image {
+  width: 50%;
   background-image: url("../assets/Masri_2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.forgot-image {
+  width: 50%;
+  background-image: url("../assets/IFI_img.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -440,7 +440,7 @@ label {
   height: 50px;
   width: 100%;
   padding: 0 10px;
-  margin-top: -5px;
+  margin-top: 5px;
   font-size: 14px;
   font-weight: bold;
   border: 1px solid #ddd9d9;
