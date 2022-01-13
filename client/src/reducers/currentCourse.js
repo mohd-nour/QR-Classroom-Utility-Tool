@@ -1,10 +1,12 @@
+import { SET, CLEAR } from "../constants/actionTypes";
+
 // when edit button is clicked, state is set to payload (the course id)
 
 const currentCourseReducer = (currentCourse = null, action) => {
   switch (action.type) {
-    case "SET":
+    case SET:
       return action.payload;
-    case "CLEAR":
+    case CLEAR:
       return null;
     default:
       return currentCourse;

@@ -23,7 +23,6 @@ function ClassesWidget(props) {
   // fetch state of courses from store
 
   const courses = useSelector((state) => state.courses);
-  console.log(courses);
 
   const dispatch = useDispatch();
 

@@ -25,6 +25,7 @@ export const deleteCourse = (id) => API.delete("/courses/" + id);
 export const updateCourse = (id, updatedCourse) =>
   API.patch("/courses/" + id, updatedCourse);
 
+export const fetchStudents = (courseId) => API.get("/courses/enroll/" + courseId);
 export const signin = (formData) => API.post("/users/signin", formData);
 export const signup = (formData) => API.post("/users/signup", formData);
 export const sendEmail = (emailData) => API.post("/forgotPassword/sendEmail", emailData);

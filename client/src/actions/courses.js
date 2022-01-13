@@ -11,6 +11,16 @@ export const getCourses = () => async (dispatch) => {
   }
 };
 
+export const getStudents = (id) => async (dispatch) => {
+  try {
+    const { data } = await api.fetchStudents(id);
+    console.log(data);
+    dispatch({ type: "FETCH_STUDENTS", payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 export const createCourse = (course, navigate) => async (dispatch) => {
   try {
     const { data } = await api.createCourse(course);
@@ -32,6 +42,7 @@ export const deleteCourse = (id) => async (dispatch) => {
 
 export const updateCourse = (id, course, navigate) => async (dispatch) => {
   try {
+    console.log(id);
     const { data } = await api.updateCourse(id, course);
     dispatch({ type: "UPDATE", payload: data });
     navigate("/Home", { replace: true });

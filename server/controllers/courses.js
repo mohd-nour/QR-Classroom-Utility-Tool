@@ -7,7 +7,7 @@ import mongoose from "mongoose";
 export const getCourses = async (req, res) => {
   try {
     const currentUserUniqueId = req.params.id;
-    const courses = await courseClass.find({creator: currentUserUniqueId});
+    const courses = await courseClass.find({ creator: currentUserUniqueId });
 
     res.status(200).json(courses);
   } catch (error) {
@@ -51,5 +51,16 @@ export const deleteCourse = async (req, res) => {
   } else {
     await courseClass.findByIdAndRemove(id);
     res.json({ message: "Post deleted successfully" });
+  }
+};
+
+export const getStudents = async (req, res) => {
+  try {
+    const courseId = req.params.id;
+    const course = await courseClass.findById(courseId);
+    console.log(course.students);
+    res.status(200).json(course.students);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
   }
 };

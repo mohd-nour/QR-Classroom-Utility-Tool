@@ -1,12 +1,22 @@
-import React from "react";
-import Students from "../../Students";
+import React, { useEffect } from "react";
 import StudentCard from "./StudentCard";
+import { useSelector, useDispatch } from "react-redux";
+import { getStudents } from "../../actions/courses";
 
 function createStudentCard(student) {
-  return <StudentCard name={student.studentName} mode="Normal" />;
+  return <StudentCard student={student} mode="Normal" />;
 }
 
 function EnrollmentWidget(props) {
+  const dispatch = useDispatch();
+
+  const students = useSelector((state) => state.students);
+
+  // takes course ID, fetches students in course
+  useEffect(() => {
+    dispatch(getStudents(props.data.id));
+  }, [props.data.id, dispatch]);
+
   return (
     <div className="primary-container">
       <div className="dash-container">
@@ -15,7 +25,7 @@ function EnrollmentWidget(props) {
             Enrolling Students -
             {" " + props.data.courseName + " " + props.data.courseNumber}
           </h1>
-          <div id="card-section">{Students.map(createStudentCard)}</div>
+          <div id="card-section">{students.map(createStudentCard)}</div>
         </div>
       </div>
       <form autoComplete="off" noValidate onSubmit>

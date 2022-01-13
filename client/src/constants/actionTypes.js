@@ -1,6 +1,10 @@
-export const CREATE = 'CREATE';
-export const FETCH_ALL = 'FETCH_ALL';
-export const AUTH = 'AUTH';
-export const LOGOUT = 'LOGOUT';
-export const ADDCLASS = 'ADDCLASS';
-export const DELETE = 'DELETE';
+export const CREATE = "CREATE";
+export const FETCH_ALL = "FETCH_ALL";
+export const AUTH = "AUTH";
+export const LOGOUT = "LOGOUT";
+export const ADDCLASS = "ADDCLASS";
+export const DELETE = "DELETE";
+export const UPDATE = "UPDATE";
+export const SET = "SET";
+export const CLEAR = "CLEAR";
+export const FETCH_STUDENTS = "FETCH_STUDENTS";
