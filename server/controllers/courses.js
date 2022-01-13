@@ -1,4 +1,5 @@
 import courseClass from "../models/courseClass.js";
+import user from "../models/user.js";
 import mongoose from "mongoose";
 //takes schema from models
 
@@ -60,6 +61,23 @@ export const getStudents = async (req, res) => {
     const course = await courseClass.findById(courseId);
     console.log(course.students);
     res.status(200).json(course.students);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+export const addStudent = async (req, res) => {
+  try {
+    const courseId = req.params.id;
+    const studentId = req.params.studentId;
+    const course = await courseClass.findById(courseId);
+    const student = await user.findOne({ instituteId: studentId });
+    console.log(courseId);
+    console.log(studentId);
+    console.log(course);
+    console.log(student);
+    courseClass.update({ _id: courseId }, { $addToSet: { students: student } });
+    console.log("meshe lhal");
   } catch (error) {
     res.status(404).json({ message: error.message });
   }

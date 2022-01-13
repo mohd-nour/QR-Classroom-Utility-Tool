@@ -5,6 +5,7 @@ import {
   createCourse,
   deleteCourse,
   updateCourse,
+  addStudent,
 } from "../controllers/courses.js";
 
 const router = express.Router();
@@ -15,5 +16,6 @@ router.post("/", createCourse);
 router.patch("/:id", updateCourse);
 router.delete("/:id", deleteCourse);
 router.get("/enroll/:id", getStudents);
+router.post("/enroll/:id/:studentId", addStudent);
 
 export default router;

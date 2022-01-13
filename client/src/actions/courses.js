@@ -21,6 +21,16 @@ export const getStudents = (id) => async (dispatch) => {
   }
 };
 
+export const addStudent = (courseId, studentId) => async (dispatch) => {
+  try {
+    console.log("in api " + courseId + " and " + studentId);
+    await api.addStudent(courseId, studentId);
+    dispatch({ type: "ADD_STUDENT", payload: studentId });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 export const createCourse = (course, navigate) => async (dispatch) => {
   try {
     const { data } = await api.createCourse(course);

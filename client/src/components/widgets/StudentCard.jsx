@@ -5,8 +5,8 @@ function StudentCard(props) {
     <div className="card-container">
       <div className="student-card">
         <div className="avatar"></div>
-        <h3 className="student-name">{props.student.name}</h3>
-        <h3 className="student-name">{props.student.instituionId}</h3>
+        <h3 className="student-name">{props.name}</h3>
+        <h3 className="student-name">{props.institutionId}</h3>
       </div>
       <button onClick={() => {}} className="uil uil-times remove-icon"></button>
       {props.mode === "AttendanceRecord" && (

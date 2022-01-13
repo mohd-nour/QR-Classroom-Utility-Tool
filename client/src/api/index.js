@@ -25,8 +25,13 @@ export const deleteCourse = (id) => API.delete("/courses/" + id);
 export const updateCourse = (id, updatedCourse) =>
   API.patch("/courses/" + id, updatedCourse);
 
-export const fetchStudents = (courseId) => API.get("/courses/enroll/" + courseId);
+export const fetchStudents = (courseId) =>
+  API.get("/courses/enroll/" + courseId);
+export const addStudent = (courseId, studentId) =>
+  API.post("/courses/enroll/" + courseId + "/" + studentId);
 export const signin = (formData) => API.post("/users/signin", formData);
 export const signup = (formData) => API.post("/users/signup", formData);
-export const sendEmail = (emailData) => API.post("/forgotPassword/sendEmail", emailData);
-export const resetPasswordClient = (newPassword, id, token) => API.patch("/forgotPassword/resetPass/"+id+"/"+token,newPassword);
+export const sendEmail = (emailData) =>
+  API.post("/forgotPassword/sendEmail", emailData);
+export const resetPasswordClient = (newPassword, id, token) =>
+  API.patch("/forgotPassword/resetPass/" + id + "/" + token, newPassword);

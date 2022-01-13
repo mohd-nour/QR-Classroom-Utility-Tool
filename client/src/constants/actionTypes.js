@@ -8,3 +8,4 @@ export const UPDATE = "UPDATE";
 export const SET = "SET";
 export const CLEAR = "CLEAR";
 export const FETCH_STUDENTS = "FETCH_STUDENTS";
+export const ADD_STUDENT = "ADD_STUDENT";
