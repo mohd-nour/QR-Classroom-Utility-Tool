@@ -6,13 +6,13 @@ function createStudentCard(student) {
   return <StudentCard name={student.studentName} mode="Normal" />;
 }
 
-function AttendanceWidget(props) {
+function EnrollmentWidget(props) {
   return (
     <div className="primary-container">
       <div className="dash-container">
         <div id="lower-section">
           <h1 className="title">
-            Taking Attendance -
+            Enrolling Students -
             {" " + props.data.courseName + " " + props.data.courseNumber}
           </h1>
           <div id="card-section">{Students.map(createStudentCard)}</div>
@@ -40,4 +40,4 @@ function AttendanceWidget(props) {
   );
 }
 
-export default AttendanceWidget;
+export default EnrollmentWidget;

@@ -4,6 +4,7 @@ import Home from "./Home";
 import SelectionPage from "./SelectionPage";
 import GradeReportPage from "./GradeReportPage";
 import AttendancePage from "./AttendancePage";
+import EnrollmentPage from "./EnrollmentPage.jsx";
 import LoginPage from "./LoginPage";
 import RegisterPage from "./RegisterPage";
 import AddClassPage from "./AddClassPage";
@@ -30,9 +31,16 @@ function App() {
         <Route path="/Selection" element={<SelectionPage />} />
         <Route path="/Gradebook" element={<GradeReportPage />} />
         <Route path="/Attendance" element={<AttendancePage />} />
+        <Route path="/Enroll" element={<EnrollmentPage />} />
         <Route path="/AddClassPage" element={<AddClassPage />} />
-        <Route path="/SendEmailForgotPassword" element={<SendEmailForgotPassword />} />
-        <Route path="/forgotPass/resetPass/:id/:token" element={<ResetPassword />} />
+        <Route
+          path="/SendEmailForgotPassword"
+          element={<SendEmailForgotPassword />}
+        />
+        <Route
+          path="/forgotPass/resetPass/:id/:token"
+          element={<ResetPassword />}
+        />
       </Routes>
     </BrowserRouter>
   );

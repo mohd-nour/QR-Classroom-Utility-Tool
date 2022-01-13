@@ -2,10 +2,12 @@ import React from "react";
 
 function StudentCard(props) {
   return (
-    <div className="wrapper">
-      <div className="class-card-student">
-        <h3>{props.name}</h3>
+    <div className="card-container">
+      <div className="student-card">
+        <div className="avatar"></div>
+        <h3 className="student-name">{props.name}</h3>
       </div>
+      <button onClick={() => {}} className="uil uil-times remove-icon"></button>
       {props.mode === "AttendanceRecord" && (
         <div className="right-card-section">
           <h3>62/70</h3>
