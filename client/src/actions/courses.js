@@ -29,6 +29,15 @@ export const addStudent = (courseId, studentId) => async (dispatch) => {
   }
 };
 
+export const removeStudent = (courseId, studentId) => async (dispatch) => {
+  try {
+    const { data } = await api.removeStudent(courseId, studentId);
+    dispatch({ type: "REMOVE_STUDENT", payload: data });
+  } catch (error) {
+    alert("ID not found!");
+  }
+};
+
 export const createCourse = (course, navigate) => async (dispatch) => {
   try {
     const { data } = await api.createCourse(course);

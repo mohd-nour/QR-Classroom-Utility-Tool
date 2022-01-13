@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Home from "./Home";
 import SelectionPage from "./SelectionPage";
 import GradeReportPage from "./GradeReportPage";

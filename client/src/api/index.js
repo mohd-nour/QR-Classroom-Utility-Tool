@@ -29,6 +29,8 @@ export const fetchStudents = (courseId) =>
   API.get("/courses/enroll/" + courseId);
 export const addStudent = (courseId, studentId) =>
   API.post("/courses/enroll/" + courseId + "/" + studentId);
+export const removeStudent = (courseId, studentId) =>
+  API.post("/courses/enroll/removeStudent/" + courseId + "/" + studentId);
 export const signin = (formData) => API.post("/users/signin", formData);
 export const signup = (formData) => API.post("/users/signup", formData);
 export const sendEmail = (emailData) =>

@@ -1,4 +1,4 @@
-import { FETCH_STUDENTS, ADD_STUDENT } from "../constants/actionTypes";
+import { FETCH_STUDENTS, ADD_STUDENT, REMOVE_STUDENT } from "../constants/actionTypes";
 
 // reducers change state
 
@@ -8,6 +8,8 @@ const reducer = (students = [], action) => {
       return action.payload;
     case ADD_STUDENT:
       return [...students, action.payload];
+    case REMOVE_STUDENT:
+      return students.filter((student) => student.instituteId !== action.payload.instituteId);
     default:
       return students;
   }

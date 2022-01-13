@@ -16,6 +16,22 @@ function createStudentCard(student) {
   }
 }
 
+var createStudentCardWrapped = function(courseIdParam) {
+  return function createStudentCard(student) {
+    if (student) {
+      return (
+        <StudentCard
+          key={student._id}
+          id={student.instituteId}
+          courseId = {courseIdParam}
+          name={student.name}
+          mode="Normal"
+        />
+      );
+    }
+  };
+};
+
 function EnrollmentWidget(props) {
   const dispatch = useDispatch();
 
@@ -58,7 +74,7 @@ function EnrollmentWidget(props) {
             Enrolling Students -
             {" " + props.data.courseName + " " + props.data.courseNumber}
           </h1>
-          <div id="card-section">{students.map(createStudentCard)}</div>
+          <div id="card-section">{students.map(createStudentCardWrapped(props.data.id))}</div>
         </div>
       </div>
       <form autoComplete="off" noValidate onSubmit={handleSubmit}>

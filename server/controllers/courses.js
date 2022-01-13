@@ -89,3 +89,28 @@ export const addStudent = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+
+export const removeStudent = async (req, res) => {
+  try {
+    const courseId = req.params.id;
+    const studentId = req.params.studentId;
+    const student = await user.findOne({ instituteId: studentId });
+    if (student) {
+      courseClass.updateOne(
+        { _id: courseId },
+        { $pull: { students: {"instituteId": studentId} } },
+        function (err, result) {
+          if (err) {
+            res.send(err);
+          } else {
+            res.status(200).json(student);
+          }
+        }
+      );
+    } else {
+      res.send(err);
+    }
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
