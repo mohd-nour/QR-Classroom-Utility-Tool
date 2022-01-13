@@ -31,14 +31,22 @@ function EnrollmentWidget(props) {
     dispatch(getStudents(props.data.id));
   }, [props.data.id, dispatch]);
 
-  // if state of student Id = id of one of the students in useSelector state, dont add
+  // if there are no students with an id equal to state, add student
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (studentData.studentId !== "") {
-      dispatch(addStudent(props.data.id, studentData.studentId));
+    if (studentData.studentId !== "" && studentData.studentId.length === 9) {
+      if (
+        !students.filter(
+          (student) => student.instituteId === studentData.studentId
+        )
+      ) {
+        dispatch(addStudent(props.data.id, studentData.studentId));
+      } else {
+        alert("Student is already enrolled!");
+      }
     } else {
-      alert("Student ID field is empty!");
+      alert("Invalid Entry");
     }
   };
 

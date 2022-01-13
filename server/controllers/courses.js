@@ -59,7 +59,6 @@ export const getStudents = async (req, res) => {
   try {
     const courseId = req.params.id;
     const course = await courseClass.findById(courseId);
-    console.log(course.students);
     res.status(200).json(course.students);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -83,6 +82,8 @@ export const addStudent = async (req, res) => {
           }
         }
       );
+    } else {
+      console.log("No such student");
     }
   } catch (error) {
     res.status(404).json({ message: error.message });
