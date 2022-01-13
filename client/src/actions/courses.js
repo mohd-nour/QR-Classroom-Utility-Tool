@@ -14,7 +14,7 @@ export const getCourses = () => async (dispatch) => {
 export const getStudents = (id) => async (dispatch) => {
   try {
     const { data } = await api.fetchStudents(id);
-    console.log(data);
+    console.log("FETCH_STUDENTS");
     dispatch({ type: "FETCH_STUDENTS", payload: data });
   } catch (error) {
     console.log(error.message);
@@ -24,8 +24,8 @@ export const getStudents = (id) => async (dispatch) => {
 export const addStudent = (courseId, studentId) => async (dispatch) => {
   try {
     console.log("in api " + courseId + " and " + studentId);
-    await api.addStudent(courseId, studentId);
-    dispatch({ type: "ADD_STUDENT", payload: studentId });
+    const { data } = await api.addStudent(courseId, studentId);
+    dispatch({ type: "ADD_STUDENT", payload: data });
   } catch (error) {
     console.log(error.message);
   }

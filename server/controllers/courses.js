@@ -70,14 +70,19 @@ export const addStudent = async (req, res) => {
   try {
     const courseId = req.params.id;
     const studentId = req.params.studentId;
-    const course = await courseClass.findById(courseId);
     const student = await user.findOne({ instituteId: studentId });
-    console.log(courseId);
-    console.log(studentId);
-    console.log(course);
-    console.log(student);
-    courseClass.update({ _id: courseId }, { $addToSet: { students: student } });
-    console.log("meshe lhal");
+    courseClass.updateOne(
+      { _id: courseId },
+      { $addToSet: { students: student } },
+      function (err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send(result);
+        }
+      }
+    );
+    // res.status(200).json(student);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }

@@ -11,7 +11,7 @@ function Selection() {
         <div className="selection-container">
           <Link to="/Enroll" state={{ data: data }}>
             <div className="selection">
-              <div class=" selection-icon uil uil-user-plus"></div>
+              <div className="selection-icon uil uil-user-plus"></div>
               <h2> Enroll Students </h2>
             </div>
           </Link>

@@ -20,20 +20,21 @@ function EnrollmentWidget(props) {
   const students = useSelector((state) => state.students);
 
   const [studentData, setStudentData] = useState({
-    studentId: null,
+    studentId: "",
   });
 
   // takes course ID, fetches students in course
+  // runs when mounted
   useEffect(() => {
-    console.log(props.data.id);
     dispatch(getStudents(props.data.id));
   }, [props.data.id, dispatch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("in UI " + props.data.id + " and " + studentData.studentId);
-    if (studentData) {
+    if (studentData.studentId !== "") {
       dispatch(addStudent(props.data.id, studentData.studentId));
+    } else {
+      alert("Student ID field is empty!");
     }
   };
 
