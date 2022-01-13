@@ -7,7 +7,6 @@ const reducer = (students = [], action) => {
     case FETCH_STUDENTS:
       return action.payload;
     case ADD_STUDENT:
-      console.log(action.payload);
       return [...students, action.payload];
     default:
       return students;

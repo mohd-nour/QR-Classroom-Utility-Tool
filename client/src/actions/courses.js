@@ -14,7 +14,6 @@ export const getCourses = () => async (dispatch) => {
 export const getStudents = (id) => async (dispatch) => {
   try {
     const { data } = await api.fetchStudents(id);
-    console.log("FETCH_STUDENTS");
     dispatch({ type: "FETCH_STUDENTS", payload: data });
   } catch (error) {
     console.log(error.message);
@@ -23,8 +22,9 @@ export const getStudents = (id) => async (dispatch) => {
 
 export const addStudent = (courseId, studentId) => async (dispatch) => {
   try {
-    console.log("in api " + courseId + " and " + studentId);
     const { data } = await api.addStudent(courseId, studentId);
+    console.log("here");
+    console.log(data);
     dispatch({ type: "ADD_STUDENT", payload: data });
   } catch (error) {
     console.log(error.message);
@@ -52,7 +52,6 @@ export const deleteCourse = (id) => async (dispatch) => {
 
 export const updateCourse = (id, course, navigate) => async (dispatch) => {
   try {
-    console.log(id);
     const { data } = await api.updateCourse(id, course);
     dispatch({ type: "UPDATE", payload: data });
     navigate("/Home", { replace: true });

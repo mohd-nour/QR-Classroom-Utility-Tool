@@ -71,18 +71,20 @@ export const addStudent = async (req, res) => {
     const courseId = req.params.id;
     const studentId = req.params.studentId;
     const student = await user.findOne({ instituteId: studentId });
-    courseClass.updateOne(
-      { _id: courseId },
-      { $addToSet: { students: student } },
-      function (err, result) {
-        if (err) {
-          res.send(err);
-        } else {
-          res.send(result);
+    if (student) {
+      courseClass.updateOne(
+        { _id: courseId },
+        { $addToSet: { students: student } },
+        function (err, result) {
+          if (err) {
+            res.send(err);
+          } else {
+            res.send(result);
+          }
         }
-      }
-    );
-    // res.status(200).json(student);
+      );
+      res.status(200).json(student);
+    }
   } catch (error) {
     res.status(404).json({ message: error.message });
   }

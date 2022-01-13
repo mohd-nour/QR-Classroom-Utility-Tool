@@ -7,7 +7,6 @@ import { useLocation } from "react-router-dom";
 function EnrollmentPage() {
   const location = useLocation();
   const { data } = location.state;
-  console.log(data);
   return (
     <div>
       <VerticalNavBar />

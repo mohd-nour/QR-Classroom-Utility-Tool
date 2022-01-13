@@ -4,14 +4,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { getStudents, addStudent } from "../../actions/courses";
 
 function createStudentCard(student) {
-  return (
-    <StudentCard
-      key={student._id}
-      id={student.instituteId}
-      name={student.name}
-      mode="Normal"
-    />
-  );
+  if (student) {
+    return (
+      <StudentCard
+        key={student._id}
+        id={student.instituteId}
+        name={student.name}
+        mode="Normal"
+      />
+    );
+  }
 }
 
 function EnrollmentWidget(props) {
