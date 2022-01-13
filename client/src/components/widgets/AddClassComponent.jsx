@@ -28,7 +28,7 @@ function AddClassComponent() {
   // if currentCourseId exists, return the post with the same Id as currentCourseId
   const course = useSelector((state) =>
     currentCourseId
-      ? state.courses.find((post) => post._id === currentCourseId)
+      ? state.courses.find((course) => course._id === currentCourseId)
       : null
   );
 

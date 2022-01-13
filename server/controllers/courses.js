@@ -79,11 +79,10 @@ export const addStudent = async (req, res) => {
           if (err) {
             res.send(err);
           } else {
-            res.send(result);
+            res.status(200).json(student);
           }
         }
       );
-      res.status(200).json(student);
     }
   } catch (error) {
     res.status(404).json({ message: error.message });

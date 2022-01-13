@@ -23,8 +23,6 @@ export const getStudents = (id) => async (dispatch) => {
 export const addStudent = (courseId, studentId) => async (dispatch) => {
   try {
     const { data } = await api.addStudent(courseId, studentId);
-    console.log("here");
-    console.log(data);
     dispatch({ type: "ADD_STUDENT", payload: data });
   } catch (error) {
     console.log(error.message);

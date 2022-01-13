@@ -31,6 +31,8 @@ function EnrollmentWidget(props) {
     dispatch(getStudents(props.data.id));
   }, [props.data.id, dispatch]);
 
+  // if state of student Id = id of one of the students in useSelector state, dont add
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (studentData.studentId !== "") {
