@@ -37,9 +37,9 @@ function EnrollmentWidget(props) {
     e.preventDefault();
     if (studentData.studentId !== "" && studentData.studentId.length === 9) {
       if (
-        !students.filter(
+        students.filter(
           (student) => student.instituteId === studentData.studentId
-        )
+        ).length === 0
       ) {
         dispatch(addStudent(props.data.id, studentData.studentId));
       } else {

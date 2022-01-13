@@ -83,7 +83,7 @@ export const addStudent = async (req, res) => {
         }
       );
     } else {
-      console.log("No such student");
+      res.send(err);
     }
   } catch (error) {
     res.status(404).json({ message: error.message });

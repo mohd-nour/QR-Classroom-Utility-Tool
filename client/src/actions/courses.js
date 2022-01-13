@@ -25,7 +25,7 @@ export const addStudent = (courseId, studentId) => async (dispatch) => {
     const { data } = await api.addStudent(courseId, studentId);
     dispatch({ type: "ADD_STUDENT", payload: data });
   } catch (error) {
-    console.log(error.message);
+    alert("No ID found!");
   }
 };
 
