@@ -157,3 +157,16 @@ export const getSessions = async (req, res) => {
   }
 };
 
+export const addStudentToSession = async (req,res) => {
+  try {
+    const courseId = req.params.classId;
+    const sessionNumber = req.params.sessionNumber;
+    const { studentId } = req.body;
+    const student = await user.findOne({ instituteId: studentId }, {password:0});
+    const currentSession = await Session.findOneAndUpdate({sessionNumber: sessionNumber, classId: courseId}, {$addToSet: { attendedStudents: student }} );
+    res.status(200).json(student);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+}
+

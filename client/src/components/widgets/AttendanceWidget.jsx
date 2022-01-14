@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ useState } from "react";
 import Students from "../../Students";
 import StudentCard from "./StudentCard";
 
@@ -7,8 +7,11 @@ function createStudentCard(student) {
 }
 
 function AttendanceWidget(props) {
-  console.log(props.sessionNumber);
-  console.log(props.data);
+  [student, setStudent] = useState({studentId: ''});
+
+  const addStudentById = () => {
+    
+  }
   return (
     <div className="primary-container">
       <div className="dash-container">
@@ -21,7 +24,7 @@ function AttendanceWidget(props) {
           <div id="card-section">{Students.map(createStudentCard)}</div>
         </div>
       </div>
-      <form autoComplete="off" noValidate>
+      <form autoComplete="off" noValidate onSubmit={addStudentById}>
         <div className="addStudent-column">
           <h3 id="form-title">Add Student</h3>
           <label>Student ID</label>
@@ -30,11 +33,12 @@ function AttendanceWidget(props) {
             placeholder="ex: 2021XXXXX"
             id="studentId"
             className="addClass-input"
+            onChange={(e) => setStudent({studentId: e.target.value})}
           ></input>
           <button type="submit" className="save-button">
             Add
           </button>
-          <button className="clear-button">
+          <button className="clear-button" type="submit">
             Clear
           </button>
         </div>
