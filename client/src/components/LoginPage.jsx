@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { GoogleLogin } from "react-google-login";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import { signin } from "../actions/auth";
 
 function LoginPage() {
@@ -34,6 +34,9 @@ function LoginPage() {
     dispatch(signin(formData, navigate));
   };
 
+  if (localStorage.getItem('profile') != null){
+    return(<Navigate to = "/Home"></Navigate>);
+  }
   return (
     <div>
       <div className="main-container">

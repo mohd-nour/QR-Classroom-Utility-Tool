@@ -14,6 +14,8 @@ import { getCourses } from "../actions/courses";
 
 import { useDispatch } from "react-redux";
 import ResetPassword from "./ResetPassword";
+import {Navigate} from "react-router-dom";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -27,7 +29,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/RegisterPage" element={<RegisterPage />} />
-        <Route path="/Home" element={<Home />} />
+        <Route path="/Home" element={<Home />} /> 
         <Route path="/Selection" element={<SelectionPage />} />
         <Route path="/Gradebook" element={<GradeReportPage />} />
         <Route path="/Attendance" element={<AttendancePage />} />

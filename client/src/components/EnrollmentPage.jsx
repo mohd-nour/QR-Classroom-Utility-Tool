@@ -2,11 +2,15 @@ import React from "react";
 import VerticalNavBar from "./widgets/VerticalNavBar";
 import EnrollmentWidget from "./widgets/EnrollmentWidget";
 import QRWidget from "./widgets/QRWidget";
-import { useLocation } from "react-router-dom";
+import { useLocation, Navigate } from "react-router-dom";
+
 
 function EnrollmentPage() {
   const location = useLocation();
   const { data } = location.state;
+  if (localStorage.getItem('profile') == null){
+    return(<Navigate to = "/"></Navigate>);
+  }
   return (
     <div>
       <VerticalNavBar />

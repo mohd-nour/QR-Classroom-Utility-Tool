@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {useDispatch} from 'react-redux';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, Navigate} from 'react-router-dom';
 import {signup} from '../actions/auth';
 
 function RegisterPage() {
@@ -12,6 +12,10 @@ function RegisterPage() {
   const register = async (e) => {
    e.preventDefault();
    dispatch(signup(formData,navigate));
+  }
+
+  if (localStorage.getItem('profile') != null){
+    return(<Navigate to = "/Home"></Navigate>);
   }
   return (
     <div>
