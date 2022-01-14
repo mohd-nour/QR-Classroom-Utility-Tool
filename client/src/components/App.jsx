@@ -14,7 +14,7 @@ import { getCourses } from "../actions/courses";
 
 import { useDispatch } from "react-redux";
 import ResetPassword from "./ResetPassword";
-import {Navigate} from "react-router-dom";
+import SessionsPage from "./SessionsPage";
 
 
 function App() {
@@ -35,6 +35,7 @@ function App() {
         <Route path="/Attendance" element={<AttendancePage />} />
         <Route path="/Enroll" element={<EnrollmentPage />} />
         <Route path="/AddClassPage" element={<AddClassPage />} />
+        <Route path="/SessionsPage" element={<SessionsPage />}/>
         <Route
           path="/SendEmailForgotPassword"
           element={<SendEmailForgotPassword />}

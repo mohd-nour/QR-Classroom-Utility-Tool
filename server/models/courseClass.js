@@ -4,7 +4,12 @@ const userSchema = mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true },
-  instituteId: { type: String },
+  instituteId: { type: String }
+});
+
+const sessionNestedSchema = mongoose.Schema({
+  sessionNumber: {type: Number, required: true},
+  sessionUniqueId: {type: String, required: true}
 });
 
 const courseSchema = mongoose.Schema({
@@ -15,7 +20,8 @@ const courseSchema = mongoose.Schema({
   schedule: String,
   startTime: String, //Time of class
   endTime: String,
-  sessions: [String], //Session
+  sessions: [sessionNestedSchema], //Session
+  currentSession: {type: Number, default: 0}
 });
 
 //Session {

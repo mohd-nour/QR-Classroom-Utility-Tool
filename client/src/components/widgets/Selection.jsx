@@ -15,7 +15,7 @@ function Selection() {
               <h2> Enroll Students </h2>
             </div>
           </Link>
-          <Link to="/Attendance" state={{ data: data }}>
+          <Link to="/SessionsPage" state={{ data: data }}>
             <div className="selection">
               <div className="selection-icon uil uil-edit-alt"> </div>
               <h2> Take attendance </h2>

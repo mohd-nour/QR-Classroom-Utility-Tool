@@ -1,5 +1,6 @@
 import courseClass from "../models/courseClass.js";
 import user from "../models/user.js";
+import Session from "../models/session.js";
 import mongoose from "mongoose";
 //takes schema from models
 
@@ -51,6 +52,7 @@ export const deleteCourse = async (req, res) => {
     return res.status(404).send("No course with this ID");
   } else {
     await courseClass.findByIdAndRemove(id);
+    await Session.deleteMany({classId: id});
     res.json({ message: "Post deleted successfully" });
   }
 };
@@ -114,3 +116,44 @@ export const removeStudent = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+
+export const addSession = async (req, res) => {
+  try {
+    const courseId = req.params.classId;
+    const course = await courseClass.findOne({ _id: courseId });
+    if (course) {
+      const currentSessionNumber = course.currentSession;
+      const newSession = new Session({sessionNumber: currentSessionNumber, classId: courseId, attendedStudents: []});
+      await newSession.save();
+      courseClass.updateOne(
+        { _id: courseId },
+        { $addToSet: { sessions: {sessionNumber: currentSessionNumber, sessionUniqueId: newSession._id} }, $set: {currentSession: currentSessionNumber+1} },
+        function (err, result) {
+          if (err) {
+            console.log(err);
+            res.send(err);
+          } else {
+            res.status(200).json(newSession);
+          }
+        }
+      );
+    }
+    else {
+      res.send(err);
+    }
+  } 
+  catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+export const getSessions = async (req, res) => {
+  try {
+    const courseId = req.params.classId;
+    const course = await courseClass.findById(courseId);
+    res.status(200).json(course.sessions);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+

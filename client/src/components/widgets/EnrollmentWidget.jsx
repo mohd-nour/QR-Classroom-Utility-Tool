@@ -3,19 +3,6 @@ import StudentCard from "./StudentCard";
 import { useSelector, useDispatch } from "react-redux";
 import { getStudents, addStudent } from "../../actions/courses";
 
-function createStudentCard(student) {
-  if (student) {
-    return (
-      <StudentCard
-        key={student._id}
-        id={student.instituteId}
-        name={student.name}
-        mode="Normal"
-      />
-    );
-  }
-}
-
 var createStudentCardWrapped = function(courseIdParam) {
   return function createStudentCard(student) {
     if (student) {

@@ -54,10 +54,11 @@ function RegisterPage() {
               <input
                 type="password"
                 name="registerPassword"
-                placeholder="min. 8 characters"
+                placeholder="Minimum eight characters"
                 id="registerPassword"
                 className="login-input"
                 value={formData.password}
+                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
                 onChange={(e) => setFormData({...formData, password:e.target.value})}
               />
             </div>

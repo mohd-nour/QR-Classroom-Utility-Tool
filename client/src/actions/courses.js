@@ -1,5 +1,6 @@
 import * as api from "../api";
 import { FETCH_ALL, CREATE } from "../constants/actionTypes";
+import swal from 'sweetalert';
 
 export const getCourses = () => async (dispatch) => {
   try {
@@ -26,6 +27,25 @@ export const addStudent = (courseId, studentId) => async (dispatch) => {
     dispatch({ type: "ADD_STUDENT", payload: data });
   } catch (error) {
     alert("ID not found!");
+  }
+};
+
+export const addSession = (courseId) => async (dispatch) => {
+  try {
+    const { data } = await api.addSession(courseId);
+    dispatch({ type: "ADD_SESSION", payload: data });
+    swal("New session created!", {icon: "success"});
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getSessions = (courseId) => async (dispatch) => {
+  try {
+    const { data } = await api.getSessions(courseId);
+    dispatch({ type: "FETCH_ALL_SESSIONS", payload: data });
+  } catch (error) {
+    alert("Sessions have not been fetched for the following reason: "+error);
   }
 };
 

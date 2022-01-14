@@ -22,18 +22,17 @@ API.interceptors.request.use((req) => {
 export const fetchCourses = (uniqueId) => API.get("/courses/" + uniqueId);
 export const createCourse = (newCourse) => API.post("/courses", newCourse);
 export const deleteCourse = (id) => API.delete("/courses/" + id);
-export const updateCourse = (id, updatedCourse) =>
-  API.patch("/courses/" + id, updatedCourse);
+export const updateCourse = (id, updatedCourse) => API.patch("/courses/" + id, updatedCourse);
 
-export const fetchStudents = (courseId) =>
-  API.get("/courses/enroll/" + courseId);
-export const addStudent = (courseId, studentId) =>
-  API.post("/courses/enroll/" + courseId + "/" + studentId);
-export const removeStudent = (courseId, studentId) =>
-  API.post("/courses/enroll/removeStudent/" + courseId + "/" + studentId);
+export const fetchStudents = (courseId) => API.get("/courses/enroll/" + courseId);
+export const addStudent = (courseId, studentId) => API.post("/courses/enroll/" + courseId + "/" + studentId);
+export const removeStudent = (courseId, studentId) => API.post("/courses/enroll/removeStudent/" + courseId + "/" + studentId);
+
+export const addSession = (courseId) => API.patch("/courses/sessions/addSession/"+courseId);
+
+export const getSessions = (courseId) => API.get("/courses/sessions/getSessions/"+courseId);
+
 export const signin = (formData) => API.post("/users/signin", formData);
 export const signup = (formData) => API.post("/users/signup", formData);
-export const sendEmail = (emailData) =>
-  API.post("/forgotPassword/sendEmail", emailData);
-export const resetPasswordClient = (newPassword, id, token) =>
-  API.patch("/forgotPassword/resetPass/" + id + "/" + token, newPassword);
+export const sendEmail = (emailData) => API.post("/forgotPassword/sendEmail", emailData);
+export const resetPasswordClient = (newPassword, id, token) => API.patch("/forgotPassword/resetPass/" + id + "/" + token, newPassword);

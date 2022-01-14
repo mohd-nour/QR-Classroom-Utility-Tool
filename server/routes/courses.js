@@ -7,6 +7,8 @@ import {
   updateCourse,
   addStudent,
   removeStudent,
+  addSession,
+  getSessions
 } from "../controllers/courses.js";
 
 const router = express.Router();
@@ -16,8 +18,14 @@ router.get("/:id", getCourses);
 router.post("/", createCourse);
 router.patch("/:id", updateCourse);
 router.delete("/:id", deleteCourse);
+
 router.get("/enroll/:id", getStudents);
 router.post("/enroll/:id/:studentId", addStudent);
 router.post("/enroll/removeStudent/:id/:studentId", removeStudent);
+
+router.patch("/sessions/addSession/:classId", addSession);
+router.get("/sessions/getSessions/:classId", getSessions);
+//router.post("/sessions/removeSession/:classId", removeSession);
+
 
 export default router;

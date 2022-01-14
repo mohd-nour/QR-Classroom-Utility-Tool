@@ -10,3 +10,7 @@ export const CLEAR = "CLEAR";
 export const FETCH_STUDENTS = "FETCH_STUDENTS";
 export const ADD_STUDENT = "ADD_STUDENT";
 export const REMOVE_STUDENT = "REMOVE_STUDENT";
+export const ADD_SESSION = "ADD_SESSION";
+export const FETCH_ALL_SESSIONS = "FETCH_ALL_SESSIONS";
+
+
