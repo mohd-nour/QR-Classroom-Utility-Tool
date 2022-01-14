@@ -9,8 +9,7 @@ import {
   removeStudent,
   addSession,
   getSessions,
-  addStudentToSession,
-  getStudentsFromSession
+  addStudentToSession
 } from "../controllers/courses.js";
 
 const router = express.Router();
@@ -29,7 +28,7 @@ router.patch("/sessions/addSession/:classId", addSession);
 router.get("/sessions/getSessions/:classId", getSessions);
 
 router.patch("/sessions/markAttendance/:classId/:sessionNumber", addStudentToSession);
-router.get("/sessions/getSessionAttendance/:classId/:sessionNumber", getStudentsFromSession);
+//router.get("/sessions/getSessionAttendance/:classId/:sessionNumber", getStudentsFromSession);
 
 
 export default router;

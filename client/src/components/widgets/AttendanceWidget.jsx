@@ -1,16 +1,22 @@
 import React,{ useState } from "react";
 import Students from "../../Students";
 import StudentCard from "./StudentCard";
+import {useDispatch} from "react-redux";
+import {addStudentToSession} from "../../actions/courses";
 
 function createStudentCard(student) {
   return <StudentCard name={student.studentName} mode="Normal" />;
 }
 
 function AttendanceWidget(props) {
-  [student, setStudent] = useState({studentId: ''});
+  const dispatch = useDispatch();
+  const [student, setStudent] = useState({studentId: ''});
 
-  const addStudentById = () => {
-    
+  const addStudentById = (e) => {
+    e.preventDefault();
+    console.log(student);
+    console.log(props);
+    dispatch(addStudentToSession(student,props.data.id,props.sessionNumber));
   }
   return (
     <div className="primary-container">

@@ -159,12 +159,26 @@ export const getSessions = async (req, res) => {
 
 export const addStudentToSession = async (req,res) => {
   try {
+    //var didAdd = false;
     const courseId = req.params.classId;
     const sessionNumber = req.params.sessionNumber;
     const { studentId } = req.body;
-    const student = await user.findOne({ instituteId: studentId }, {password:0});
-    const currentSession = await Session.findOneAndUpdate({sessionNumber: sessionNumber, classId: courseId}, {$addToSet: { attendedStudents: student }} );
-    res.status(200).json(student);
+    const currentCourse = await courseClass.findById(courseId);
+    //console.log(currentCourse.students);
+    currentCourse.students.forEach( async (obj) => {
+      console.log(obj);
+      if (obj.instituteId == studentId){
+        const student = await user.findOne({ instituteId: studentId }, {password:0});
+        Session.findOneAndUpdate({sessionNumber: sessionNumber, classId: courseId}, {$addToSet: { attendedStudents: student }}, function (err, result){
+          if (err){
+            res.send(err);
+          }
+          else{
+            res.status(200).json(student);
+          }
+        } );
+      }
+    });    
   } catch (error) {
     res.status(404).json({ message: error.message });
   }

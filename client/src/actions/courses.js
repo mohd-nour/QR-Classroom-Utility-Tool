@@ -40,6 +40,15 @@ export const addSession = (courseId) => async (dispatch) => {
   }
 };
 
+export const addStudentToSession = (studentId, classId, sessionNumber) => async (dispatch) => {
+  try {
+    const { data } = await api.addStudentToSession(studentId, classId, sessionNumber);
+    dispatch({ type: "ADD_STUDENT_TO_SESSION", payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getSessions = (courseId) => async (dispatch) => {
   try {
     const { data } = await api.getSessions(courseId);
