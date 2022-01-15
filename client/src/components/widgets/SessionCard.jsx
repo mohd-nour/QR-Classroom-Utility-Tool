@@ -22,7 +22,9 @@ function SessionCard(props) {
           onMouseOver={loadStudentsInSession}
           state={{ data: props.courseData, sessionNumber: props.sessionNumber }}
         >
-          <h3>Session {props.sessionNumber}</h3>
+          <div className="session-link">
+            <h3>Session {props.sessionNumber}</h3>
+          </div>
         </Link>
         <button
           onClick={() => {

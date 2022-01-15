@@ -59,7 +59,7 @@ function EnrollmentWidget(props) {
       <div className="dash-container">
         <div id="lower-section">
           <h1 className="title">
-            Enrolling Students -
+            Student Enrolment -
             {" " + props.data.courseName + " " + props.data.courseNumber}
           </h1>
           <div id="card-section">

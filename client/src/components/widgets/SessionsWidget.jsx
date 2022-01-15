@@ -51,13 +51,13 @@ function SessionsWidget(props) {
     <div>
       <div id="lower-section">
         <h1 className="title">
-          {props.data.courseName + " " + props.data.courseNumber} sessions
+          {props.data.courseName + " " + props.data.courseNumber} - Sessions
         </h1>
         <div className="main-panel">
           <h2 className="sub-title">Your sessions</h2>
           <form onSubmit={createNewSession}>
             <button id="addClassButton" type="submit">
-              Create a new session
+              Create a session
             </button>
           </form>
         </div>

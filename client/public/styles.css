@@ -195,6 +195,17 @@ ul {
     rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
+.swal-modal .swal-text {
+  text-align: center;
+}
+
+.session-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 12rem;
+}
+
 .avatar {
   background-image: url("../assets/default-avatar.jpg");
   background-repeat: no-repeat;
