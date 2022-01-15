@@ -85,6 +85,8 @@ export const addStudent = async (req, res) => {
         }
       );
     } else {
+
+      console.log(err);
       res.send(err);
     }
   } catch (error) {
@@ -130,7 +132,6 @@ export const addSession = async (req, res) => {
         { $addToSet: { sessions: {sessionNumber: currentSessionNumber, sessionUniqueId: newSession._id} }, $set: {currentSession: currentSessionNumber+1} },
         function (err, result) {
           if (err) {
-            console.log(err);
             res.send(err);
           } else {
             res.status(200).json(newSession);
@@ -170,10 +171,8 @@ export const removeSession = async (req, res) => {
           { $pull: { sessions: {"sessionNumber": sessionNumber}}},
           function (err, result) {
             if (err) {
-              console.log(err);
               res.send(err);
             } else {
-              console.log(removedSession);
               res.status(200).json(removedSession);
             }
           }
@@ -193,26 +192,34 @@ export const removeSession = async (req, res) => {
 export const addStudentToSession = async (req,res) => {
   try {
     //var didAdd = false;
+    var enrolled = false;
     const courseId = req.params.classId;
     const sessionNumber = req.params.sessionNumber;
     const { studentId } = req.body;
     const currentCourse = await courseClass.findById(courseId);
     //console.log(currentCourse.students);
     currentCourse.students.forEach( async (obj) => {
-      console.log(obj);
       if (obj.instituteId == studentId){
+        enrolled=true;
         const student = await user.findOne({ instituteId: studentId }, {password:0});
-        console.log(student);
-        Session.findOneAndUpdate({sessionNumber: sessionNumber, classId: courseId}, {$addToSet: { attendedStudents: student }}, function (err, result){
-          if (err){
-            res.send(err);
-          }
-          else{
-            res.status(200).json(student);
-          }
-        } );
+        if (student){
+          Session.findOneAndUpdate({sessionNumber: sessionNumber, classId: courseId}, {$addToSet: { attendedStudents: student }}, function (err, result){
+            if (err){
+              res.send(err);
+            }
+            else{
+              res.status(200).json(student);
+            }
+          } );
+        }
+        else{
+          res.send(err);
+        } 
       }
-    });    
+    });  
+    if (!enrolled){
+      res.send(err);
+    } 
   } catch (error) {
     res.status(404).json({ message: error.message });
   }

@@ -55,6 +55,7 @@ export const addStudentToSession = (studentId, classId, sessionNumber) => async 
     const { data } = await api.addStudentToSession(studentId, classId, sessionNumber);
     dispatch({ type: "ADD_STUDENT_TO_SESSION", payload: data });
   } catch (error) {
+    swal("The ID you entered is either non existing or isn't enrolled in your class", {icon: "warning"});
     console.log(error);
   }
 };
