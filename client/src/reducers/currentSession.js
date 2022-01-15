@@ -1,4 +1,7 @@
-import { ADD_STUDENT_TO_SESSION, FETCH_STUDENTS_IN_SESSION  } from "../constants/actionTypes";
+import {
+  ADD_STUDENT_TO_SESSION,
+  FETCH_STUDENTS_IN_SESSION,
+} from "../constants/actionTypes";
 
 // reducers change state
 

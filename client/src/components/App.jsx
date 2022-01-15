@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import SelectionPage from "./SelectionPage";
 import GradeReportPage from "./GradeReportPage";
@@ -16,7 +16,6 @@ import { useDispatch } from "react-redux";
 import ResetPassword from "./ResetPassword";
 import SessionsPage from "./SessionsPage";
 
-
 function App() {
   const dispatch = useDispatch();
 
@@ -29,13 +28,13 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/RegisterPage" element={<RegisterPage />} />
-        <Route path="/Home" element={<Home />} /> 
+        <Route path="/Home" element={<Home />} />
         <Route path="/Selection" element={<SelectionPage />} />
         <Route path="/Gradebook" element={<GradeReportPage />} />
         <Route path="/Attendance" element={<AttendancePage />} />
         <Route path="/Enroll" element={<EnrollmentPage />} />
         <Route path="/AddClassPage" element={<AddClassPage />} />
-        <Route path="/SessionsPage" element={<SessionsPage />}/>
+        <Route path="/SessionsPage" element={<SessionsPage />} />
         <Route
           path="/SendEmailForgotPassword"
           element={<SendEmailForgotPassword />}

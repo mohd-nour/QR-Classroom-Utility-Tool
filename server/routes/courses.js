@@ -11,7 +11,7 @@ import {
   getSessions,
   addStudentToSession,
   getStudentsFromSession,
-  removeSession
+  removeSession,
 } from "../controllers/courses.js";
 
 const router = express.Router();
@@ -30,8 +30,13 @@ router.patch("/sessions/addSession/:classId", addSession);
 router.get("/sessions/getSessions/:classId", getSessions);
 router.patch("/sessions/addSession/:classId/:sessionNumber", removeSession);
 
-router.patch("/sessions/markAttendance/:classId/:sessionNumber", addStudentToSession);
-router.get("/sessions/getSessionAttendance/:classId/:sessionNumber", getStudentsFromSession);
-
+router.patch(
+  "/sessions/markAttendance/:classId/:sessionNumber",
+  addStudentToSession
+);
+router.get(
+  "/sessions/getSessionAttendance/:classId/:sessionNumber",
+  getStudentsFromSession
+);
 
 export default router;

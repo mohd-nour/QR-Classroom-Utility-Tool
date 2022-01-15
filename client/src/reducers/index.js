@@ -13,5 +13,5 @@ export default combineReducers({
   currentCourse,
   students,
   sessions,
-  currentSessionStudents
+  currentSessionStudents,
 });

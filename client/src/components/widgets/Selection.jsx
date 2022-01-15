@@ -1,9 +1,7 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { getSessions, getStudents} from "../../actions/courses";
-
-
+import { getSessions, getStudents } from "../../actions/courses";
 
 function Selection() {
   const location = useLocation();

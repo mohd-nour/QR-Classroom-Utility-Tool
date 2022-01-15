@@ -34,8 +34,8 @@ function LoginPage() {
     dispatch(signin(formData, navigate));
   };
 
-  if (localStorage.getItem('profile') != null){
-    return(<Navigate to = "/Home"></Navigate>);
+  if (localStorage.getItem("profile") != null) {
+    return <Navigate to="/Home"></Navigate>;
   }
   return (
     <div>

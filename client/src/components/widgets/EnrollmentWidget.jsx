@@ -2,16 +2,16 @@ import React, { useState, useEffect } from "react";
 import StudentCard from "./StudentCard";
 import { useSelector, useDispatch } from "react-redux";
 import { getStudents, addStudent } from "../../actions/courses";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 
-var createStudentCardWrapped = function(courseIdParam) {
+var createStudentCardWrapped = function (courseIdParam) {
   return function createStudentCard(student) {
     if (student) {
       return (
         <StudentCard
           key={student._id}
           id={student.instituteId}
-          courseId = {courseIdParam}
+          courseId={courseIdParam}
           name={student.name}
           mode="Normal"
         />
@@ -47,10 +47,10 @@ function EnrollmentWidget(props) {
       ) {
         dispatch(addStudent(props.data.id, studentData.studentId));
       } else {
-        swal("Student is already enrolled!", {icon: "warning"});
+        swal("Student is already enrolled!", { icon: "warning" });
       }
     } else {
-      swal("Invalid Entry", {icon: "warning"});
+      swal("Invalid Entry", { icon: "warning" });
     }
   };
 
@@ -62,7 +62,9 @@ function EnrollmentWidget(props) {
             Enrolling Students -
             {" " + props.data.courseName + " " + props.data.courseNumber}
           </h1>
-          <div id="card-section">{students.map(createStudentCardWrapped(props.data.id))}</div>
+          <div id="card-section">
+            {students.map(createStudentCardWrapped(props.data.id))}
+          </div>
         </div>
       </div>
       <form autoComplete="off" noValidate onSubmit={handleSubmit}>

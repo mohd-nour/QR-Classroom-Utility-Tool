@@ -1,6 +1,6 @@
 import * as api from "../api";
 import { FETCH_ALL, CREATE } from "../constants/actionTypes";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 
 export const getCourses = () => async (dispatch) => {
   try {
@@ -26,7 +26,7 @@ export const addStudent = (courseId, studentId) => async (dispatch) => {
     const { data } = await api.addStudent(courseId, studentId);
     dispatch({ type: "ADD_STUDENT", payload: data });
   } catch (error) {
-    swal("ID not found!", {icon: "warning"});
+    swal("ID not found!", { icon: "warning" });
   }
 };
 
@@ -34,7 +34,7 @@ export const addSession = (courseId) => async (dispatch) => {
   try {
     const { data } = await api.addSession(courseId);
     dispatch({ type: "ADD_SESSION", payload: data });
-    swal("New session created!", {icon: "success"});
+    swal("New session created!", { icon: "success" });
   } catch (error) {
     console.log(error);
   }
@@ -42,39 +42,48 @@ export const addSession = (courseId) => async (dispatch) => {
 
 export const removeSession = (courseId, sessionNumber) => async (dispatch) => {
   try {
-    const { data } = await api.removeSession(courseId, sessionNumber);
+    await api.removeSession(courseId, sessionNumber);
     dispatch({ type: "REMOVE_SESSION", payload: sessionNumber });
-    swal("Session removed!", {icon: "success"});
+    swal("Session removed!", { icon: "success" });
   } catch (error) {
     console.log(error);
   }
 };
 
-export const addStudentToSession = (studentId, classId, sessionNumber) => async (dispatch) => {
-  try {
-    const { data } = await api.addStudentToSession(studentId, classId, sessionNumber);
-    dispatch({ type: "ADD_STUDENT_TO_SESSION", payload: data });
-  } catch (error) {
-    swal("The ID you entered is either non existing or isn't enrolled in your class", {icon: "warning"});
-    console.log(error);
-  }
-};
+export const addStudentToSession =
+  (studentId, classId, sessionNumber) => async (dispatch) => {
+    try {
+      const { data } = await api.addStudentToSession(
+        studentId,
+        classId,
+        sessionNumber
+      );
+      dispatch({ type: "ADD_STUDENT_TO_SESSION", payload: data });
+    } catch (error) {
+      swal(
+        "The ID you entered is either non existing or isn't enrolled in your class",
+        { icon: "warning" }
+      );
+      console.log(error);
+    }
+  };
 
-export const getStudentsFromSession = (classId, sessionNumber) => async (dispatch) => {
-  try {
-    const { data } = await api.getStudentsFromSession(classId, sessionNumber);
-    dispatch({ type: "FETCH_STUDENTS_IN_SESSION", payload: data });
-  } catch (error) {
-    console.log(error);
-  }
-};
+export const getStudentsFromSession =
+  (classId, sessionNumber) => async (dispatch) => {
+    try {
+      const { data } = await api.getStudentsFromSession(classId, sessionNumber);
+      dispatch({ type: "FETCH_STUDENTS_IN_SESSION", payload: data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 export const getSessions = (courseId) => async (dispatch) => {
   try {
     const { data } = await api.getSessions(courseId);
     dispatch({ type: "FETCH_ALL_SESSIONS", payload: data });
   } catch (error) {
-    alert("Sessions have not been fetched for the following reason: "+error);
+    alert("Sessions have not been fetched for the following reason: " + error);
   }
 };
 

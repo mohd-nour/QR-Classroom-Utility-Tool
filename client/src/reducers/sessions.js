@@ -1,4 +1,8 @@
-import { ADD_SESSION, FETCH_ALL_SESSIONS, REMOVE_SESSION  } from "../constants/actionTypes";
+import {
+  ADD_SESSION,
+  FETCH_ALL_SESSIONS,
+  REMOVE_SESSION,
+} from "../constants/actionTypes";
 
 // reducers change state
 
@@ -9,7 +13,9 @@ const reducer = (sessions = [], action) => {
     case FETCH_ALL_SESSIONS:
       return action.payload;
     case REMOVE_SESSION:
-      return sessions.filter((session) => session.sessionNumber !== action.payload);
+      return sessions.filter(
+        (session) => session.sessionNumber !== action.payload
+      );
     default:
       return sessions;
   }

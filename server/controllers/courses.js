@@ -52,7 +52,7 @@ export const deleteCourse = async (req, res) => {
     return res.status(404).send("No course with this ID");
   } else {
     await courseClass.findByIdAndRemove(id);
-    await Session.deleteMany({classId: id});
+    await Session.deleteMany({ classId: id });
     res.json({ message: "Post deleted successfully" });
   }
 };
@@ -85,7 +85,6 @@ export const addStudent = async (req, res) => {
         }
       );
     } else {
-
       console.log(err);
       res.send(err);
     }
@@ -102,7 +101,7 @@ export const removeStudent = async (req, res) => {
     if (student) {
       courseClass.updateOne(
         { _id: courseId },
-        { $pull: { students: {"instituteId": studentId} } },
+        { $pull: { students: { instituteId: studentId } } },
         function (err, result) {
           if (err) {
             res.send(err);
@@ -125,11 +124,23 @@ export const addSession = async (req, res) => {
     const course = await courseClass.findOne({ _id: courseId });
     if (course) {
       const currentSessionNumber = course.currentSession;
-      const newSession = new Session({sessionNumber: currentSessionNumber, classId: courseId, attendedStudents: []});
+      const newSession = new Session({
+        sessionNumber: currentSessionNumber,
+        classId: courseId,
+        attendedStudents: [],
+      });
       await newSession.save();
       courseClass.updateOne(
         { _id: courseId },
-        { $addToSet: { sessions: {sessionNumber: currentSessionNumber, sessionUniqueId: newSession._id} }, $set: {currentSession: currentSessionNumber+1} },
+        {
+          $addToSet: {
+            sessions: {
+              sessionNumber: currentSessionNumber,
+              sessionUniqueId: newSession._id,
+            },
+          },
+          $set: { currentSession: currentSessionNumber + 1 },
+        },
         function (err, result) {
           if (err) {
             res.send(err);
@@ -138,12 +149,10 @@ export const addSession = async (req, res) => {
           }
         }
       );
-    }
-    else {
+    } else {
       res.send(err);
     }
-  } 
-  catch (error) {
+  } catch (error) {
     res.status(404).json({ message: error.message });
   }
 };
@@ -164,11 +173,14 @@ export const removeSession = async (req, res) => {
     const sessionNumber = req.params.sessionNumber;
     const course = await courseClass.findOne({ _id: courseId });
     if (course) {
-      const removedSession = await Session.findOneAndRemove({sessionNumber: sessionNumber, classId: courseId});
+      const removedSession = await Session.findOneAndRemove({
+        sessionNumber: sessionNumber,
+        classId: courseId,
+      });
       if (removedSession) {
         courseClass.updateOne(
           { _id: courseId },
-          { $pull: { sessions: {"sessionNumber": sessionNumber}}},
+          { $pull: { sessions: { sessionNumber: sessionNumber } } },
           function (err, result) {
             if (err) {
               res.send(err);
@@ -178,18 +190,15 @@ export const removeSession = async (req, res) => {
           }
         );
       }
-    }
-    else {
+    } else {
       res.send(err);
     }
-  } 
-  catch (error) {
+  } catch (error) {
     res.status(404).json({ message: error.message });
   }
 };
 
-
-export const addStudentToSession = async (req,res) => {
+export const addStudentToSession = async (req, res) => {
   try {
     //var didAdd = false;
     var enrolled = false;
@@ -198,28 +207,33 @@ export const addStudentToSession = async (req,res) => {
     const { studentId } = req.body;
     const currentCourse = await courseClass.findById(courseId);
     //console.log(currentCourse.students);
-    currentCourse.students.forEach( async (obj) => {
-      if (obj.instituteId == studentId){
-        enrolled=true;
-        const student = await user.findOne({ instituteId: studentId }, {password:0});
-        if (student){
-          Session.findOneAndUpdate({sessionNumber: sessionNumber, classId: courseId}, {$addToSet: { attendedStudents: student }}, function (err, result){
-            if (err){
-              res.send(err);
+    currentCourse.students.forEach(async (obj) => {
+      if (obj.instituteId == studentId) {
+        enrolled = true;
+        const student = await user.findOne(
+          { instituteId: studentId },
+          { password: 0 }
+        );
+        if (student) {
+          Session.findOneAndUpdate(
+            { sessionNumber: sessionNumber, classId: courseId },
+            { $addToSet: { attendedStudents: student } },
+            function (err, result) {
+              if (err) {
+                res.send(err);
+              } else {
+                res.status(200).json(student);
+              }
             }
-            else{
-              res.status(200).json(student);
-            }
-          } );
-        }
-        else{
+          );
+        } else {
           res.send(err);
-        } 
+        }
       }
-    });  
-    if (!enrolled){
+    });
+    if (!enrolled) {
       res.send(err);
-    } 
+    }
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
@@ -229,7 +243,10 @@ export const getStudentsFromSession = async (req, res) => {
   try {
     const courseId = req.params.classId;
     const sessionNumber = req.params.sessionNumber;
-    const session = await Session.findOne({classId: courseId, sessionNumber: sessionNumber});
+    const session = await Session.findOne({
+      classId: courseId,
+      sessionNumber: sessionNumber,
+    });
     res.status(200).json(session.attendedStudents);
   } catch (error) {
     res.status(404).json({ message: error.message });

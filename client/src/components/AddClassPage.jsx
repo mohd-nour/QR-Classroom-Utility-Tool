@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import VerticalNavBar from "./widgets/VerticalNavBar";
 import Banner from "./widgets/Banner";
 import AddClassComponent from "./widgets/AddClassComponent";
-import {Navigate} from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 function AddClassPage(props) {
   const endRef = useRef(null);
@@ -15,8 +15,8 @@ function AddClassPage(props) {
     scrollToBottom();
   }, []);
 
-  if (localStorage.getItem('profile') == null){
-    return(<Navigate to = "/"></Navigate>);
+  if (localStorage.getItem("profile") == null) {
+    return <Navigate to="/"></Navigate>;
   }
   return (
     <div>

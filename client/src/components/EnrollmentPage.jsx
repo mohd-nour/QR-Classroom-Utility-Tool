@@ -4,12 +4,11 @@ import EnrollmentWidget from "./widgets/EnrollmentWidget";
 import QRWidget from "./widgets/QRWidget";
 import { useLocation, Navigate } from "react-router-dom";
 
-
 function EnrollmentPage() {
   const location = useLocation();
   const { data } = location.state;
-  if (localStorage.getItem('profile') == null){
-    return(<Navigate to = "/"></Navigate>);
+  if (localStorage.getItem("profile") == null) {
+    return <Navigate to="/"></Navigate>;
   }
   return (
     <div>

@@ -3,8 +3,7 @@ import { useDispatch } from "react-redux";
 import { deleteCourse, setCurrentCourse } from "../../actions/courses";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import swal from 'sweetalert';
-
+import swal from "sweetalert";
 
 function ClassCard(props) {
   const dispatch = useDispatch();
@@ -57,8 +56,8 @@ function ClassCard(props) {
                 text: "Yes",
                 value: true,
                 visible: true,
-              }
-            }
+              },
+            },
           }).then((value) => {
             if (value) {
               dispatch(deleteCourse(props.id));

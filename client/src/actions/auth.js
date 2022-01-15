@@ -5,11 +5,10 @@ export const signup = (formData, navigate) => async (dispatch) => {
   try {
     // register the user
     const { data } = await api.signup(formData);
-    console.log(data)
-    if (data.error){
+    console.log(data);
+    if (data.error) {
       alert(data.message);
-    }
-    else{
+    } else {
       dispatch({ type: AUTH, data });
       const uniqueId = JSON.parse(localStorage.getItem("profile")).result._id;
       localStorage.setItem("currentUserUniqueId", uniqueId);
@@ -23,10 +22,9 @@ export const signup = (formData, navigate) => async (dispatch) => {
 export const signin = (formData, navigate) => async (dispatch) => {
   try {
     const { data } = await api.signin(formData);
-    if (data.error){
+    if (data.error) {
       alert(data.message);
-    }
-    else{
+    } else {
       dispatch({ type: AUTH, data });
       const uniqueId = JSON.parse(localStorage.getItem("profile")).result._id;
       localStorage.setItem("currentUserUniqueId", uniqueId);
@@ -40,7 +38,7 @@ export const signin = (formData, navigate) => async (dispatch) => {
 export const sendEmail = (emailData) => async (dispatch) => {
   try {
     console.log(emailData);
-    const { data } = await api.sendEmail(emailData);
+    await api.sendEmail(emailData);
   } catch (error) {
     console.log(error);
   }

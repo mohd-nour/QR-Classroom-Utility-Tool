@@ -1,12 +1,11 @@
 import React from "react";
 import VerticalNavBar from "./widgets/VerticalNavBar";
 import SelectionPanel from "./widgets/SelectionPanel";
-import {Navigate} from "react-router-dom";
-
+import { Navigate } from "react-router-dom";
 
 function SelectionPage(props) {
-  if (localStorage.getItem('profile') == null){
-    return(<Navigate to = "/"></Navigate>);
+  if (localStorage.getItem("profile") == null) {
+    return <Navigate to="/"></Navigate>;
   }
   return (
     <div>

@@ -4,7 +4,13 @@ import StudentCard from "./StudentCard";
 // import { useLocation } from "react-router-dom";
 
 function createStudentCard(student) {
-  return <StudentCard key ={student.id} name={student.studentName} mode="AttendanceRecord" />;
+  return (
+    <StudentCard
+      key={student.id}
+      name={student.studentName}
+      mode="AttendanceRecord"
+    />
+  );
 }
 
 function GradeReport() {
@@ -12,7 +18,7 @@ function GradeReport() {
   //const { data } = location.state;
   return (
     <div className="dash-container">
-      <h1 className="title">EECE 502 -  Attendance Report</h1>
+      <h1 className="title">EECE 502 - Attendance Report</h1>
       <div id="card-section">{Students.map(createStudentCard)}</div>
     </div>
   );

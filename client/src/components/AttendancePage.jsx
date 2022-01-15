@@ -6,15 +6,15 @@ import { useLocation, Navigate } from "react-router-dom";
 
 function AttendancePage() {
   const location = useLocation();
-  const { data, sessionNumber, Students } = location.state;
-  if (localStorage.getItem('profile') == null){
-    return(<Navigate to = "/"></Navigate>);
+  const { data, sessionNumber } = location.state;
+  if (localStorage.getItem("profile") == null) {
+    return <Navigate to="/"></Navigate>;
   }
   return (
     <div>
       <VerticalNavBar />
       <QRWidget />
-      <AttendanceWidget data={data} sessionNumber = {sessionNumber} />
+      <AttendanceWidget data={data} sessionNumber={sessionNumber} />
     </div>
   );
 }

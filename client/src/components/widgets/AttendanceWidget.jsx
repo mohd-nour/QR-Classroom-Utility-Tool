@@ -1,38 +1,46 @@
-import React,{ useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import StudentCard from "./StudentCard";
-import {useDispatch, useSelector} from "react-redux";
-import {addStudentToSession} from "../../actions/courses";
+import { useDispatch, useSelector } from "react-redux";
+import { addStudentToSession } from "../../actions/courses";
 import { getStudentsFromSession } from "../../actions/courses";
-import swal from 'sweetalert';
-
+import swal from "sweetalert";
 
 function createStudentCard(student) {
-  return <StudentCard name={student.name} key={student._id} id={student.instituteId} mode="Normal" />;
+  return (
+    <StudentCard
+      name={student.name}
+      key={student._id}
+      id={student.instituteId}
+      mode="Normal"
+    />
+  );
 }
 
 function AttendanceWidget(props) {
   const dispatch = useDispatch();
-  const [studentData, setStudentData] = useState({studentId: ''});
+  const [studentData, setStudentData] = useState({ studentId: "" });
   const Students = useSelector((state) => state.currentSessionStudents);
 
   useEffect(() => {
-    dispatch(getStudentsFromSession(props.data.id,props.sessionNumber));
+    dispatch(getStudentsFromSession(props.data.id, props.sessionNumber));
   }, [dispatch, props.data.id, props.sessionNumber]);
-
-
 
   const addStudentById = (e) => {
     e.preventDefault();
-    if (studentData.studentId !== "" && studentData.studentId.length === 9){
-      if (Students.filter((student) => student.instituteId === studentData.studentId).length===0){
-        dispatch(addStudentToSession(studentData,props.data.id,props.sessionNumber));
+    if (studentData.studentId !== "" && studentData.studentId.length === 9) {
+      if (
+        Students.filter(
+          (student) => student.instituteId === studentData.studentId
+        ).length === 0
+      ) {
+        dispatch(
+          addStudentToSession(studentData, props.data.id, props.sessionNumber)
+        );
+      } else {
+        swal("This student already took attendance!", { icon: "warning" });
       }
-      else {
-        swal("This student already took attendance!", {icon: "warning"});
-      }
-    }
-    else {
-      swal("Invalid entry!", {icon: "warning"});
+    } else {
+      swal("Invalid entry!", { icon: "warning" });
     }
   };
   return (
@@ -41,8 +49,8 @@ function AttendanceWidget(props) {
         <div id="lower-section">
           <h1 className="title">
             Taking Attendance -
-            {" " + props.data.courseName + " " + props.data.courseNumber+ " "}
-            - Session {props.sessionNumber}
+            {" " + props.data.courseName + " " + props.data.courseNumber + " "}-
+            Session {props.sessionNumber}
           </h1>
           <div id="card-section">{Students.map(createStudentCard)}</div>
         </div>
@@ -56,14 +64,12 @@ function AttendanceWidget(props) {
             placeholder="ex: 2021XXXXX"
             id="studentId"
             className="addClass-input"
-            onChange={(e) => setStudentData({studentId: e.target.value})}
+            onChange={(e) => setStudentData({ studentId: e.target.value })}
           ></input>
           <button type="submit" className="save-button">
             Add
           </button>
-          <button className="clear-button">
-            Clear
-          </button>
+          <button className="clear-button">Clear</button>
         </div>
       </form>
     </div>

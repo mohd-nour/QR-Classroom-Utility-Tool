@@ -4,12 +4,11 @@ import SessionsWidget from "./widgets/SessionsWidget";
 import Banner from "./widgets/Banner";
 import { useLocation, Navigate } from "react-router-dom";
 
-
 function SessionsPage() {
   const location = useLocation();
   const { data } = location.state;
-  if (localStorage.getItem('profile') == null){
-    return(<Navigate to = "/"></Navigate>);
+  if (localStorage.getItem("profile") == null) {
+    return <Navigate to="/"></Navigate>;
   }
   return (
     <div>
