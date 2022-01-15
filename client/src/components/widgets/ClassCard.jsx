@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { deleteCourse, setCurrentCourse } from "../../actions/courses";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import swal from 'sweetalert';
+
 
 function ClassCard(props) {
   const dispatch = useDispatch();
@@ -44,7 +46,24 @@ function ClassCard(props) {
       </Link>
       <button
         onClick={() => {
-          dispatch(deleteCourse(props.id));
+          swal("Are you sure you would like to delete this course?", {
+            buttons: {
+              cancel: {
+                text: "Cancel",
+                value: false,
+                visible: true,
+              },
+              confirm: {
+                text: "Yes",
+                value: true,
+                visible: true,
+              }
+            }
+          }).then((value) => {
+            if (value) {
+              dispatch(deleteCourse(props.id));
+            }
+          });
         }}
         className="uil uil-trash delete-icon"
       ></button>

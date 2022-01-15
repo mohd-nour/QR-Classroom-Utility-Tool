@@ -157,6 +157,39 @@ export const getSessions = async (req, res) => {
   }
 };
 
+export const removeSession = async (req, res) => {
+  try {
+    const courseId = req.params.classId;
+    const sessionNumber = req.params.sessionNumber;
+    const course = await courseClass.findOne({ _id: courseId });
+    if (course) {
+      const removedSession = await Session.findOneAndRemove({sessionNumber: sessionNumber, classId: courseId});
+      if (removedSession) {
+        courseClass.updateOne(
+          { _id: courseId },
+          { $pull: { sessions: {"sessionNumber": sessionNumber}}},
+          function (err, result) {
+            if (err) {
+              console.log(err);
+              res.send(err);
+            } else {
+              console.log(removedSession);
+              res.status(200).json(removedSession);
+            }
+          }
+        );
+      }
+    }
+    else {
+      res.send(err);
+    }
+  } 
+  catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+
 export const addStudentToSession = async (req,res) => {
   try {
     //var didAdd = false;
@@ -169,6 +202,7 @@ export const addStudentToSession = async (req,res) => {
       console.log(obj);
       if (obj.instituteId == studentId){
         const student = await user.findOne({ instituteId: studentId }, {password:0});
+        console.log(student);
         Session.findOneAndUpdate({sessionNumber: sessionNumber, classId: courseId}, {$addToSet: { attendedStudents: student }}, function (err, result){
           if (err){
             res.send(err);
@@ -182,5 +216,15 @@ export const addStudentToSession = async (req,res) => {
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
-}
+};
 
+export const getStudentsFromSession = async (req, res) => {
+  try {
+    const courseId = req.params.classId;
+    const sessionNumber = req.params.sessionNumber;
+    const session = await Session.findOne({classId: courseId, sessionNumber: sessionNumber});
+    res.status(200).json(session.attendedStudents);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};

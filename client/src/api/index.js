@@ -29,8 +29,11 @@ export const addStudent = (courseId, studentId) => API.post("/courses/enroll/" +
 export const removeStudent = (courseId, studentId) => API.post("/courses/enroll/removeStudent/" + courseId + "/" + studentId);
 
 export const addSession = (courseId) => API.patch("/courses/sessions/addSession/"+courseId);
+export const removeSession = (courseId,sessionNumber) => API.patch("/courses/sessions/addSession/"+courseId+"/"+sessionNumber);
+
 export const getSessions = (courseId) => API.get("/courses/sessions/getSessions/"+courseId);
 export const addStudentToSession = (studentId, classId, sessionNumber) => API.patch("/courses/sessions/markAttendance/"+classId+"/"+sessionNumber, studentId);
+export const getStudentsFromSession = (classId, sessionNumber) => API.get("/courses/sessions/getSessionAttendance/"+classId+"/"+sessionNumber);
 
 export const signin = (formData) => API.post("/users/signin", formData);
 export const signup = (formData) => API.post("/users/signup", formData);

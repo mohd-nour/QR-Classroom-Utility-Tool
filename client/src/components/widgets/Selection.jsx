@@ -1,9 +1,19 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getSessions, getStudents} from "../../actions/courses";
+
+
 
 function Selection() {
   const location = useLocation();
+  const dispatch = useDispatch();
   const { data } = location.state;
+  console.log(data);
+  useEffect(() => {
+    dispatch(getSessions(data.id));
+    dispatch(getStudents(data.id));
+  }, [data.id, dispatch]);
   return (
     <div>
       <div className="selection-panel">

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import { CircularProgress } from "@material-ui/core";
 import SessionCard from "./SessionCard";
 import { getSessions, addSession} from "../../actions/courses";
@@ -13,13 +13,6 @@ var createSessionCardWrapped = function(courseData) {
     );
 }
 };
-
-
-function createSessionCard(session) {
-    return (
-      <SessionCard sessionNumber={session.sessionNumber} key = {session.sessionUniqueId}/>
-    );
-}
 
 
 function SessionsWidget(props){

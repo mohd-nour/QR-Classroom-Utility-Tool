@@ -21,7 +21,7 @@ const courseSchema = mongoose.Schema({
   startTime: String, //Time of class
   endTime: String,
   sessions: [sessionNestedSchema], //Session
-  currentSession: {type: Number, default: 0}
+  currentSession: {type: Number, default: 1}
 });
 
 //Session {

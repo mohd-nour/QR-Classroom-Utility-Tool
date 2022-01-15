@@ -26,7 +26,7 @@ export const addStudent = (courseId, studentId) => async (dispatch) => {
     const { data } = await api.addStudent(courseId, studentId);
     dispatch({ type: "ADD_STUDENT", payload: data });
   } catch (error) {
-    alert("ID not found!");
+    swal("ID not found!", {icon: "warning"});
   }
 };
 
@@ -40,10 +40,29 @@ export const addSession = (courseId) => async (dispatch) => {
   }
 };
 
+export const removeSession = (courseId, sessionNumber) => async (dispatch) => {
+  try {
+    const { data } = await api.removeSession(courseId, sessionNumber);
+    dispatch({ type: "REMOVE_SESSION", payload: sessionNumber });
+    swal("Session removed!", {icon: "success"});
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const addStudentToSession = (studentId, classId, sessionNumber) => async (dispatch) => {
   try {
     const { data } = await api.addStudentToSession(studentId, classId, sessionNumber);
     dispatch({ type: "ADD_STUDENT_TO_SESSION", payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getStudentsFromSession = (classId, sessionNumber) => async (dispatch) => {
+  try {
+    const { data } = await api.getStudentsFromSession(classId, sessionNumber);
+    dispatch({ type: "FETCH_STUDENTS_IN_SESSION", payload: data });
   } catch (error) {
     console.log(error);
   }

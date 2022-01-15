@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import StudentCard from "./StudentCard";
 import { useSelector, useDispatch } from "react-redux";
 import { getStudents, addStudent } from "../../actions/courses";
+import swal from 'sweetalert';
 
 var createStudentCardWrapped = function(courseIdParam) {
   return function createStudentCard(student) {
@@ -46,10 +47,10 @@ function EnrollmentWidget(props) {
       ) {
         dispatch(addStudent(props.data.id, studentData.studentId));
       } else {
-        alert("Student is already enrolled!");
+        swal("Student is already enrolled!", {icon: "warning"});
       }
     } else {
-      alert("Invalid Entry");
+      swal("Invalid Entry", {icon: "warning"});
     }
   };
 

@@ -1,23 +1,40 @@
-import React,{ useState } from "react";
-import Students from "../../Students";
+import React,{ useState, useEffect, useLayoutEffect } from "react";
 import StudentCard from "./StudentCard";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {addStudentToSession} from "../../actions/courses";
+import { getStudentsFromSession } from "../../actions/courses";
+import swal from 'sweetalert';
+
 
 function createStudentCard(student) {
-  return <StudentCard name={student.studentName} mode="Normal" />;
+  return <StudentCard name={student.name} key={student._id} id={student.instituteId} mode="Normal" />;
 }
 
 function AttendanceWidget(props) {
   const dispatch = useDispatch();
-  const [student, setStudent] = useState({studentId: ''});
+  const [studentData, setStudentData] = useState({studentId: ''});
+  const Students = useSelector((state) => state.currentSessionStudents);
+
+  useEffect(() => {
+    dispatch(getStudentsFromSession(props.data.id,props.sessionNumber));
+  }, [dispatch, props.data.id, props.sessionNumber]);
+
+
 
   const addStudentById = (e) => {
     e.preventDefault();
-    console.log(student);
-    console.log(props);
-    dispatch(addStudentToSession(student,props.data.id,props.sessionNumber));
-  }
+    if (studentData.studentId !== "" && studentData.studentId.length === 9){
+      if (Students.filter((student) => student.instituteId === studentData.studentId).length===0){
+        dispatch(addStudentToSession(studentData,props.data.id,props.sessionNumber));
+      }
+      else {
+        swal("This student already took attendance!", {icon: "warning"});
+      }
+    }
+    else {
+      swal("Invalid entry!", {icon: "warning"});
+    }
+  };
   return (
     <div className="primary-container">
       <div className="dash-container">
@@ -39,12 +56,12 @@ function AttendanceWidget(props) {
             placeholder="ex: 2021XXXXX"
             id="studentId"
             className="addClass-input"
-            onChange={(e) => setStudent({studentId: e.target.value})}
+            onChange={(e) => setStudentData({studentId: e.target.value})}
           ></input>
           <button type="submit" className="save-button">
             Add
           </button>
-          <button className="clear-button" type="submit">
+          <button className="clear-button">
             Clear
           </button>
         </div>

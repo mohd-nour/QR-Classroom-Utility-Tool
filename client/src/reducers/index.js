@@ -5,7 +5,7 @@ import auth from "./auth";
 import students from "./students";
 import currentCourse from "./currentCourse";
 import sessions from "./sessions";
-import currentSession from "./currentSession";
+import currentSessionStudents from "./currentSession";
 
 export default combineReducers({
   courses,
@@ -13,5 +13,5 @@ export default combineReducers({
   currentCourse,
   students,
   sessions,
-  currentSession
+  currentSessionStudents
 });
