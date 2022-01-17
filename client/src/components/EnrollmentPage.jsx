@@ -13,7 +13,7 @@ function EnrollmentPage() {
   return (
     <div>
       <VerticalNavBar />
-      <QRWidget />
+      <QRWidget QRCodeData = {data.id}/>
       <EnrollmentWidget data={data} />
     </div>
   );

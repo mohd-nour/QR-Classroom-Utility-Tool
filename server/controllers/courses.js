@@ -72,6 +72,9 @@ export const addStudent = async (req, res) => {
     const courseId = req.params.id;
     const studentId = req.params.studentId;
     const student = await user.findOne({ instituteId: studentId });
+    console.log(courseId);
+    console.log(studentId);
+    console.log(student);
     if (student) {
       courseClass.updateOne(
         { _id: courseId },
@@ -200,13 +203,15 @@ export const removeSession = async (req, res) => {
 
 export const addStudentToSession = async (req, res) => {
   try {
-    //var didAdd = false;
+    console.log("adding student to session");
     var enrolled = false;
     const courseId = req.params.classId;
     const sessionNumber = req.params.sessionNumber;
     const { studentId } = req.body;
     const currentCourse = await courseClass.findById(courseId);
-    //console.log(currentCourse.students);
+    console.log(sessionNumber);
+    console.log(studentId);
+    console.log(currentCourse);
     currentCourse.students.forEach(async (obj) => {
       if (obj.instituteId == studentId) {
         enrolled = true;

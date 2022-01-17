@@ -7,7 +7,6 @@ function Selection() {
   const location = useLocation();
   const dispatch = useDispatch();
   const { data } = location.state;
-  console.log(data);
   useEffect(() => {
     dispatch(getSessions(data.id));
     dispatch(getStudents(data.id));

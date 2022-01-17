@@ -1,9 +1,10 @@
 import React from "react";
+import QRCode from "react-qr-code"
 
 function QRWidget(props) {
   return (
     <div className="QR-Panel">
-      <img className="QR-image" src="/assets/RickRollQRCode.png" alt=""></img>
+      <QRCode value={props.QRCodeData} />
     </div>
   );
 }

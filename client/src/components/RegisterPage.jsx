@@ -67,7 +67,6 @@ function RegisterPage() {
                   id="registerPassword"
                   className="login-input"
                   value={formData.password}
-                  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
                   onChange={(e) =>
                     setFormData({ ...formData, password: e.target.value })
                   }
