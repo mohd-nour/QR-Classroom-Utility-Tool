@@ -22,7 +22,11 @@ function AttendanceWidget(props) {
   const Students = useSelector((state) => state.currentSessionStudents);
 
   useEffect(() => {
-    dispatch(getStudentsFromSession(props.data.id, props.sessionNumber));
+    const interval = setInterval(() => {
+      console.log("re rendering attendance");
+      dispatch(getStudentsFromSession(props.data.id, props.sessionNumber));
+    },2000);
+    return () => clearInterval(interval);
   }, [dispatch, props.data.id, props.sessionNumber]);
 
   const addStudentById = (e) => {

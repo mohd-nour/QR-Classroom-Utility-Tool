@@ -20,6 +20,7 @@ var createStudentCardWrapped = function (courseIdParam) {
   };
 };
 
+
 function EnrollmentWidget(props) {
   const dispatch = useDispatch();
 
@@ -29,10 +30,18 @@ function EnrollmentWidget(props) {
     studentId: "",
   });
 
+  //setInterval(function () {console.log("Rerendering"); dispatch(getStudents(props.data.id));}, 10000);
+
+
   // takes course ID, fetches students in course
   // runs when mounted
   useEffect(() => {
-    dispatch(getStudents(props.data.id));
+    const interval = setInterval(() => {
+      console.log("Re rendering enrollment");
+      dispatch(getStudents(props.data.id));
+    }, 1000);
+    return () => clearInterval(interval);
+    //dispatch(getStudents(props.data.id));
   }, [props.data.id, dispatch]);
 
   // if there are no students with an id equal to state, add student
