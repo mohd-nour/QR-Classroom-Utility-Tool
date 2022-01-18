@@ -2,9 +2,12 @@ import React, { useEffect, useRef } from "react";
 import VerticalNavBar from "./widgets/VerticalNavBar";
 import Banner from "./widgets/Banner";
 import AddClassComponent from "./widgets/AddClassComponent";
-import { Navigate } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 
 function AddClassPage(props) {
+
+  const { courseId } = useParams();
+
   const endRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -23,7 +26,7 @@ function AddClassPage(props) {
       <VerticalNavBar />
       <div className="dash-container">
         <Banner />
-        <AddClassComponent />
+        <AddClassComponent courseId={courseId} />
       </div>
       <div ref={endRef}></div>
     </div>

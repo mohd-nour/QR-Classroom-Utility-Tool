@@ -10,6 +10,7 @@ function ClassCard(props) {
 
   const navigate = useNavigate();
 
+
   // edit button must send current course Id to form
 
   // set a global variable to the current course id
@@ -23,7 +24,7 @@ function ClassCard(props) {
       <button
         onClick={() => {
           dispatch(setCurrentCourse(props.id));
-          navigate("/AddClassPage", { replace: true });
+          navigate("/AddClassPage/"+props.id , { replace: true });
         }}
         className="uil uil-ellipsis-h edit-icon"
       ></button>

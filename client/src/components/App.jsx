@@ -33,7 +33,7 @@ function App() {
         <Route path="/Gradebook" element={<GradeReportPage />} />
         <Route path="/Attendance" element={<AttendancePage />} />
         <Route path="/Enroll" element={<EnrollmentPage />} />
-        <Route path="/AddClassPage" element={<AddClassPage />} />
+        <Route path="/AddClassPage/:courseId" element={<AddClassPage />} />
         <Route path="/SessionsPage" element={<SessionsPage />} />
         <Route
           path="/SendEmailForgotPassword"

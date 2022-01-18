@@ -19,9 +19,9 @@ function createStudentCard(student) {
 function AttendanceWidget(props) {
   const dispatch = useDispatch();
   const [studentData, setStudentData] = useState({ studentId: "" });
-  const Students = useSelector((state) => state.currentSessionStudents);
+  const Students = useSelector((state) => state.currentSession);
 
-  useEffect(() => {
+  useEffect(() => { 
     const interval = setInterval(() => {
       console.log("re rendering attendance");
       dispatch(getStudentsFromSession(props.data.id, props.sessionNumber));

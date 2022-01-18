@@ -7,7 +7,7 @@ import {
 } from "../../actions/courses";
 import { useNavigate } from "react-router-dom";
 
-function AddClassComponent() {
+function AddClassComponent(props) {
   const [courseData, setCourseData] = useState({
     courseName: "",
     courseNumber: "",
@@ -18,17 +18,9 @@ function AddClassComponent() {
     endTime: "",
   });
 
-  //after updating course clear currentCourseId
-
-  // upon update, get currentCourseId and fetch courseData
-
-  // if a currentCourseId exists, fetch the corresponding course
-  const currentCourseId = useSelector((state) => state.currentCourse);
-
-  // if currentCourseId exists, return the post with the same Id as currentCourseId
   const course = useSelector((state) =>
-    currentCourseId
-      ? state.courses.find((course) => course._id === currentCourseId)
+    props.courseId
+      ? state.courses.find((course) => course._id === props.courseId)
       : null
   );
 
@@ -47,8 +39,8 @@ function AddClassComponent() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (currentCourseId) {
-      dispatch(updateCourse(currentCourseId, courseData, navigate));
+    if (props.courseId) {
+      dispatch(updateCourse(props.courseId, courseData, navigate));
     } else {
       dispatch(createCourse(courseData, navigate));
     }
@@ -59,7 +51,7 @@ function AddClassComponent() {
       <form autoComplete="off" noValidate onSubmit={handleSubmit}>
         <div className="addClass-column">
           <h3 id="form-title">
-            {currentCourseId ? "EDIT CLASS" : "ADD CLASS"}
+            {props.courseId ? "EDIT CLASS" : "ADD CLASS"}
           </h3>
           <label>Course Name</label>
           <input
