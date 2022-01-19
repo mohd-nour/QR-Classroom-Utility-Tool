@@ -20,10 +20,11 @@ var createSessionCardWrapped = function (courseData) {
 function SessionsWidget(props) {
   const dispatch = useDispatch();
   const sessions = useSelector((state) => state.sessions);
+  const {courseId, courseName, courseNumber} = useSelector((state) => state.currentCourse);
 
   useEffect(() => {
-    dispatch(getSessions(props.data.id));
-  }, [props.data.id, dispatch]);
+    dispatch(getSessions(courseId));
+  }, [courseId, dispatch]);
 
   const createNewSession = (e) => {
     e.preventDefault();
@@ -42,7 +43,7 @@ function SessionsWidget(props) {
       },
     }).then((value) => {
       if (value) {
-        dispatch(addSession(props.data.id));
+        dispatch(addSession(courseId));
       }
     });
   };
@@ -51,7 +52,7 @@ function SessionsWidget(props) {
     <div>
       <div id="lower-section">
         <h1 className="title">
-          {props.data.courseName + " " + props.data.courseNumber} - Sessions
+          {courseName + " " + courseNumber} - Sessions
         </h1>
         <div className="main-panel">
           <h2 className="sub-title">Your sessions</h2>
@@ -65,7 +66,7 @@ function SessionsWidget(props) {
           <CircularProgress className="circular-progress" />
         ) : (
           <div id="card-section">
-            {sessions.map(createSessionCardWrapped(props.data))}
+            {sessions.map(createSessionCardWrapped({courseId, courseName, courseNumber}))}
           </div>
         )}
       </div>

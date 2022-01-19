@@ -1,28 +1,30 @@
 import React, { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getSessions, getStudents, setCurrentCourse } from "../../actions/courses";
+import { getSessions, getStudents } from "../../actions/courses";
 
 function Selection() {
   const location = useLocation();
   const dispatch = useDispatch();
   const { data } = location.state;
+
+  const {courseId, courseName, courseNumber} = useSelector((state) => state.currentCourse);
   useEffect(() => {
-    dispatch(getSessions(data.id));
-    dispatch(getStudents(data.id));
-  }, [data.id, dispatch]);
+    dispatch(getSessions(courseId));
+    dispatch(getStudents(courseId));
+  }, [courseId, dispatch]);
   return (
     <div>
       <div className="selection-panel">
         <h1 className="title"> Select an Action </h1>{" "}
         <div className="selection-container">
-          <Link to="/Enroll" state={{ data: data }}>
+          <Link to="/Enroll">
             <div className="selection">
               <div className="selection-icon uil uil-user-plus"></div>
               <h2> Enroll Students </h2>
             </div>
           </Link>
-          <Link to="/SessionsPage" state={{ data: data }}>
+          <Link to="/SessionsPage">
             <div className="selection">
               <div className="selection-icon uil uil-edit-alt"> </div>
               <h2> Take attendance </h2>

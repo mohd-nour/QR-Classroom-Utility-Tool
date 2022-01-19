@@ -21,7 +21,7 @@ var createStudentCardWrapped = function (courseIdParam) {
 };
 
 
-function EnrollmentWidget(props) {
+function EnrollmentWidget() {
   const dispatch = useDispatch();
 
   const students = useSelector((state) => state.students);
@@ -30,19 +30,16 @@ function EnrollmentWidget(props) {
     studentId: "",
   });
 
-  //setInterval(function () {console.log("Rerendering"); dispatch(getStudents(props.data.id));}, 10000);
+  const {courseId, courseName, courseNumber} = useSelector((state) => state.currentCourse);
 
-
-  // takes course ID, fetches students in course
-  // runs when mounted
   useEffect(() => {
     const interval = setInterval(() => {
       console.log("Re rendering enrollment");
-      dispatch(getStudents(props.data.id));
+      dispatch(getStudents(courseId));
     }, 1000);
     return () => clearInterval(interval);
     //dispatch(getStudents(props.data.id));
-  }, [props.data.id, dispatch]);
+  }, [courseId, dispatch]);
 
   // if there are no students with an id equal to state, add student
 
@@ -54,7 +51,7 @@ function EnrollmentWidget(props) {
           (student) => student.instituteId === studentData.studentId
         ).length === 0
       ) {
-        dispatch(addStudent(props.data.id, studentData.studentId));
+        dispatch(addStudent(courseId, studentData.studentId));
       } else {
         swal("Student is already enrolled!", { icon: "warning" });
       }
@@ -69,10 +66,10 @@ function EnrollmentWidget(props) {
         <div id="lower-section">
           <h1 className="title">
             Student Enrolment -
-            {" " + props.data.courseName + " " + props.data.courseNumber}
+            {" " + courseName + " " + courseNumber}
           </h1>
           <div id="card-section">
-            {students.map(createStudentCardWrapped(props.data.id))}
+            {students.map(createStudentCardWrapped(courseId))}
           </div>
         </div>
       </div>

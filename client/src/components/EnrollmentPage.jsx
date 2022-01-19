@@ -3,18 +3,20 @@ import VerticalNavBar from "./widgets/VerticalNavBar";
 import EnrollmentWidget from "./widgets/EnrollmentWidget";
 import QRWidget from "./widgets/QRWidget";
 import { useLocation, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 
 function EnrollmentPage() {
-  const location = useLocation();
-  const { data } = location.state;
+  const {courseId} = useSelector((state) => state.currentCourse);
   if (localStorage.getItem("profile") == null) {
     return <Navigate to="/"></Navigate>;
   }
+
   return (
     <div>
       <VerticalNavBar />
-      <QRWidget QRCodeData = {data.id}/>
-      <EnrollmentWidget data={data} />
+      <QRWidget QRCodeData = {courseId}/>
+      <EnrollmentWidget />
     </div>
   );
 }

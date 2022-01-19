@@ -24,10 +24,10 @@ function AttendanceWidget(props) {
   useEffect(() => { 
     const interval = setInterval(() => {
       console.log("re rendering attendance");
-      dispatch(getStudentsFromSession(props.data.id, props.sessionNumber));
+      dispatch(getStudentsFromSession(props.data.courseId, props.sessionNumber));
     },2000);
     return () => clearInterval(interval);
-  }, [dispatch, props.data.id, props.sessionNumber]);
+  }, [dispatch, props.data.courseId, props.sessionNumber]);
 
   const addStudentById = (e) => {
     e.preventDefault();
@@ -38,7 +38,7 @@ function AttendanceWidget(props) {
         ).length === 0
       ) {
         dispatch(
-          addStudentToSession(studentData, props.data.id, props.sessionNumber)
+          addStudentToSession(studentData, props.data.courseId, props.sessionNumber)
         );
       } else {
         swal("This student already took attendance!", { icon: "warning" });

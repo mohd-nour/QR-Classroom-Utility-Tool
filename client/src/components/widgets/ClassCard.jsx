@@ -23,8 +23,8 @@ function ClassCard(props) {
     <div className="card-container">
       <button
         onClick={() => {
-          dispatch(setCurrentCourse(props.id));
-          navigate("/AddClassPage/"+props.id , { replace: true });
+          dispatch(setCurrentCourse({courseId: props.id, courseName: props.courseName, courseNumber: props.courseNumber}));
+          navigate("/AddClassPage", { replace: true });
         }}
         className="uil uil-ellipsis-h edit-icon"
       ></button>
@@ -33,7 +33,7 @@ function ClassCard(props) {
         state={{ data: props }}
         className="removeUnderline black"
       >
-        <div className="class-card">
+        <div className="class-card" onClick={() => {dispatch(setCurrentCourse({courseId: props.id, courseName: props.courseName, courseNumber: props.courseNumber}));} }>
           <h3>
             {props.courseName} {props.courseNumber}
           </h3>

@@ -10,8 +10,6 @@ function AttendancePage() {
   if (localStorage.getItem("profile") == null) {
     return <Navigate to="/"></Navigate>;
   }
-  console.log(data);
-  console.log(sessionNumber);
   const QRCodeData = data.id+" "+sessionNumber;
   return (
     <div>

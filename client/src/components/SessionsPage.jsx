@@ -5,8 +5,6 @@ import Banner from "./widgets/Banner";
 import { useLocation, Navigate } from "react-router-dom";
 
 function SessionsPage() {
-  const location = useLocation();
-  const { data } = location.state;
   if (localStorage.getItem("profile") == null) {
     return <Navigate to="/"></Navigate>;
   }
@@ -15,7 +13,7 @@ function SessionsPage() {
       <VerticalNavBar />
       <div className="dash-container">
         <Banner />
-        <SessionsWidget data={data} />
+        <SessionsWidget/>
       </div>
     </div>
   );

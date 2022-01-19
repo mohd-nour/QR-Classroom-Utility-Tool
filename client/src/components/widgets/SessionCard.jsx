@@ -7,7 +7,7 @@ import swal from "sweetalert";
 function SessionCard(props) {
   const dispatch = useDispatch();
   const loadStudentsInSession = () => {
-    dispatch(getStudentsFromSession(props.courseData.id, props.sessionNumber));
+    dispatch(getStudentsFromSession(props.courseData.courseId, props.sessionNumber));
   };
   /*
   useEffect(() => {
@@ -44,7 +44,7 @@ function SessionCard(props) {
             }).then((value) => {
               if (value) {
                 dispatch(
-                  removeSession(props.courseData.id, props.sessionNumber)
+                  removeSession(props.courseData.courseId, props.sessionNumber)
                 );
               }
             });
