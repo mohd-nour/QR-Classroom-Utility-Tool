@@ -15,11 +15,10 @@ function SessionCard(props) {
   }, [dispatch, props.courseData.id, props.sessionNumber]);
   */
   return (
-    <div className="card-container">
+    <div className="card-container" onMouseOver={loadStudentsInSession}>
       <div className="class-card">
         <Link
           to="/Attendance"
-          onMouseOver={loadStudentsInSession}
           state={{ data: props.courseData, sessionNumber: props.sessionNumber }}
         >
           <div className="session-link">
