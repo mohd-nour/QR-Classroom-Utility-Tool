@@ -20,14 +20,16 @@ function AttendanceWidget(props) {
   const dispatch = useDispatch();
   const [studentData, setStudentData] = useState({ studentId: "" });
   const Students = useSelector((state) => state.currentSession);
+  const {courseId, courseName, courseNumber} = useSelector((state) => state.currentCourse);
+
 
   useEffect(() => { 
     const interval = setInterval(() => {
       console.log("re rendering attendance");
-      dispatch(getStudentsFromSession(props.data.courseId, props.sessionNumber));
+      dispatch(getStudentsFromSession(courseId, props.sessionNumber));
     },2000);
     return () => clearInterval(interval);
-  }, [dispatch, props.data.courseId, props.sessionNumber]);
+  }, [dispatch, courseId, props.sessionNumber]);
 
   const addStudentById = (e) => {
     e.preventDefault();
@@ -38,7 +40,7 @@ function AttendanceWidget(props) {
         ).length === 0
       ) {
         dispatch(
-          addStudentToSession(studentData, props.data.courseId, props.sessionNumber)
+          addStudentToSession(studentData, courseId, props.sessionNumber)
         );
       } else {
         swal("This student already took attendance!", { icon: "warning" });
@@ -53,7 +55,7 @@ function AttendanceWidget(props) {
         <div id="lower-section">
           <h1 className="title">
             Taking Attendance -
-            {" " + props.data.courseName + " " + props.data.courseNumber + " "}-
+            {" " + courseName + " " + courseNumber + " "}-
             Session {props.sessionNumber}
           </h1>
           <div id="card-section">{Students.map(createStudentCard)}</div>

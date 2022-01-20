@@ -3,11 +3,14 @@ import { useDispatch } from "react-redux";
 import { getStudentsFromSession, removeSession } from "../../actions/courses";
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
+import { useSelector } from "react-redux";
+
 
 function SessionCard(props) {
   const dispatch = useDispatch();
+  const {courseId} = useSelector((state) => state.currentCourse);
   const loadStudentsInSession = () => {
-    dispatch(getStudentsFromSession(props.courseData.courseId, props.sessionNumber));
+    dispatch(getStudentsFromSession(courseId, props.sessionNumber));
   };
   /*
   useEffect(() => {
@@ -19,7 +22,7 @@ function SessionCard(props) {
       <div className="class-card">
         <Link
           to="/Attendance"
-          state={{ data: props.courseData, sessionNumber: props.sessionNumber }}
+          state={{ sessionNumber: props.sessionNumber }}
         >
           <div className="session-link">
             <h3>Session {props.sessionNumber}</h3>
@@ -43,7 +46,7 @@ function SessionCard(props) {
             }).then((value) => {
               if (value) {
                 dispatch(
-                  removeSession(props.courseData.courseId, props.sessionNumber)
+                  removeSession(courseId, props.sessionNumber)
                 );
               }
             });
