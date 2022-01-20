@@ -18,14 +18,11 @@ function AddClassComponent(props) {
     endTime: "",
   });
 
-  const { courseId, courseName, courseNumber } = useSelector((state) => state.currentCourse);
+  const currentCourse = useSelector((state) => state.currentCourse);
 
-
-  const obj = { courseId, courseName, courseNumber };
-  console.log(obj);
   const course = useSelector((state) =>
-    courseId
-      ? state.courses.find((course) => course._id === courseId)
+  currentCourse
+      ? state.courses.find((course) => course._id === currentCourse.courseId)
       : null
   );
 
@@ -44,8 +41,8 @@ function AddClassComponent(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (courseId) {
-      dispatch(updateCourse(courseId, courseData, navigate));
+    if (currentCourse) {
+      dispatch(updateCourse(currentCourse.courseId, courseData, navigate));
     } else {
       dispatch(createCourse(courseData, navigate));
     }
@@ -55,7 +52,7 @@ function AddClassComponent(props) {
       <form autoComplete="off" noValidate onSubmit={handleSubmit}>
         <div className="addClass-column">
           <h3 id="form-title">
-            {courseId ? "EDIT CLASS" : "ADD CLASS"}
+            {currentCourse ? "EDIT CLASS" : "ADD CLASS"}
           </h3>
           <label>Course Name</label>
           <input
