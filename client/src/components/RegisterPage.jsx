@@ -31,7 +31,7 @@ function RegisterPage() {
             <h4 id="login-message">Welcome to the University Companion App</h4>
             <form onSubmit={register}>
               <div className="field-wrapper">
-                <label for="email">Name</label>
+                <label htmlFor="email">Name</label>
                 <input
                   type="text"
                   name="name"
@@ -45,7 +45,7 @@ function RegisterPage() {
                 />
               </div>
               <div className="field-wrapper">
-                <label for="email">Email</label>
+                <label htmlFor="email">Email</label>
                 <input
                   type="email"
                   name="registerEmail"
@@ -59,7 +59,7 @@ function RegisterPage() {
                 />
               </div>
               <div className="field-wrapper">
-                <label for="password">Password</label>
+                <label htmlFor="password">Password</label>
                 <input
                   type="password"
                   name="registerPassword"
@@ -73,7 +73,7 @@ function RegisterPage() {
                 />
               </div>
               <div className="field-wrapper">
-                <label for="confirmPassword">Confirm Password</label>
+                <label htmlFor="confirmPassword">Confirm Password</label>
                 <input
                   type="password"
                   name="registerConfirmPassword"

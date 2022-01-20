@@ -3,6 +3,7 @@ import { GoogleLogin } from "react-google-login";
 import { useDispatch } from "react-redux";
 import { useNavigate, Navigate } from "react-router-dom";
 import { signin } from "../actions/auth";
+import { getCourses } from "../actions/courses";
 
 function LoginPage() {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ function LoginPage() {
       const uniqueId = result.googleId;
       localStorage.setItem("profile", JSON.stringify({ result }));
       localStorage.setItem("currentUserUniqueId", uniqueId);
-
+      await dispatch(getCourses());
       navigate("/Home");
     } catch (error) {
       console.log(error);

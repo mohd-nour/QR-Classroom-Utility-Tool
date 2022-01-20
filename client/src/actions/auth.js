@@ -1,5 +1,6 @@
 import { AUTH } from "../constants/actionTypes";
 import * as api from "../api/index.js";
+import {getCourses} from "./courses";
 
 export const signup = (formData, navigate) => async (dispatch) => {
   try {
@@ -12,6 +13,7 @@ export const signup = (formData, navigate) => async (dispatch) => {
       dispatch({ type: AUTH, data });
       const uniqueId = JSON.parse(localStorage.getItem("profile")).result._id;
       localStorage.setItem("currentUserUniqueId", uniqueId);
+      await dispatch(getCourses());
       navigate("/Home");
     }
   } catch (error) {
@@ -28,6 +30,7 @@ export const signin = (formData, navigate) => async (dispatch) => {
       dispatch({ type: AUTH, data });
       const uniqueId = JSON.parse(localStorage.getItem("profile")).result._id;
       localStorage.setItem("currentUserUniqueId", uniqueId);
+      await dispatch(getCourses());
       navigate("/Home");
     }
   } catch (error) {

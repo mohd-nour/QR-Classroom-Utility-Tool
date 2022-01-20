@@ -17,12 +17,6 @@ import ResetPassword from "./ResetPassword";
 import SessionsPage from "./SessionsPage";
 
 function App() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getCourses());
-  }, [dispatch]);
-
   return (
     <BrowserRouter>
       <Routes>
