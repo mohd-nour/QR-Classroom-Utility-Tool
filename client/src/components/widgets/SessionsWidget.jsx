@@ -7,11 +7,13 @@ import swal from "sweetalert";
 
 var createSessionCardWrapped = function (courseData) {
   return function createSessionCard(session) {
+    //console.log(session.sessionUniqueId);
     return (
       <SessionCard
         sessionNumber={session.sessionNumber}
-        key={session.sessionUniqueId}
+        key={session._id}
         courseData={courseData}
+        finalized={session.finalized}
       />
     );
   };

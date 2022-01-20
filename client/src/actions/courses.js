@@ -50,6 +50,15 @@ export const removeSession = (courseId, sessionNumber) => async (dispatch) => {
   }
 };
 
+export const finalizeSession = (courseId, sessionNumber) => async (dispatch) => {
+  try {
+    await api.finalizeSession(courseId, sessionNumber);
+    swal("Attendance taking for this session has been finalized", { icon: "success" })
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export const addStudentToSession =
   (studentId, classId, sessionNumber) => async (dispatch) => {
     try {
@@ -77,6 +86,18 @@ export const getStudentsFromSession =
       console.log(error);
     }
   };
+
+export const setSingleSession =
+  (classId, sessionNumber) => async (dispatch) => {
+    try {
+      const { data } = await api.getSingleSession(classId, sessionNumber);
+      dispatch({ type: "SET_SESSION_DATA", payload: data });
+    } catch (error) {
+      console.log(error);
+    }
+};
+
+
 
 export const getSessions = (courseId) => async (dispatch) => {
   try {

@@ -23,7 +23,7 @@ function ClassCard(props) {
     <div className="card-container">
       <button
         onClick={() => {
-          dispatch(setCurrentCourse({courseId: props.id, courseName: props.courseName, courseNumber: props.courseNumber}));
+          dispatch(setCurrentCourse({courseId: props.id, courseName: props.courseName, courseNumber: props.courseNumber, courseStudents: props.students}));
           navigate("/AddClassPage", { replace: true });
         }}
         className="uil uil-ellipsis-h edit-icon"
@@ -33,7 +33,7 @@ function ClassCard(props) {
         state={{ data: props }}
         className="removeUnderline black"
       >
-        <div className="class-card" onClick={() => {dispatch(setCurrentCourse({courseId: props.id, courseName: props.courseName, courseNumber: props.courseNumber}));} }>
+        <div className="class-card" onClick={() => {dispatch(setCurrentCourse({courseId: props.id, courseName: props.courseName, courseNumber: props.courseNumber, courseStudents: props.students}));} }>
           <h3>
             {props.courseName} {props.courseNumber}
           </h3>

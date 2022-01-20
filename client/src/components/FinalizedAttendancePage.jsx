@@ -1,13 +1,12 @@
 import React from "react";
 import VerticalNavBar from "./widgets/VerticalNavBar";
-import EnrollmentWidget from "./widgets/EnrollmentWidget";
-import QRWidget from "./widgets/QRWidget";
 import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Banner from "./widgets/Banner";
+import FinalizedAttendanceWidget from "./widgets/FinalizedAttendanceWidget";
 
 
-function EnrollmentPage() {
-  const {courseId} = useSelector((state) => state.currentCourse);
+function FinalizedAttendancePage() {
   if (localStorage.getItem("profile") == null) {
     return <Navigate to="/"></Navigate>;
   }
@@ -15,10 +14,12 @@ function EnrollmentPage() {
   return (
     <div>
       <VerticalNavBar />
-      <QRWidget QRCodeData = {courseId}/>
-      <EnrollmentWidget />
+      <div className="dash-container">
+        <Banner />
+        <FinalizedAttendanceWidget />
+      </div>
     </div>
   );
 }
 
-export default EnrollmentPage;
+export default FinalizedAttendancePage;

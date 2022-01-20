@@ -600,8 +600,23 @@ label {
   margin-top: 20px;
 }
 
+.finalize-button {
+  border: none;
+  border-radius: 0.5rem;
+  height: 2.5rem;
+  width: 20rem;
+  background-color: green;
+  color: white;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
 .clear-button:hover {
   background-color: #db3535;
+}
+
+.finalize-button:hover {
+  background-color: #0d4103;
 }
 
 .time-container {

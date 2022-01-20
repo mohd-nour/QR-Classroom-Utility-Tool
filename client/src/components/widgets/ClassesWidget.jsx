@@ -15,6 +15,7 @@ function createCard(course) {
       startTime={course.startTime}
       endTime={course.endTime}
       schedule={course.schedule}
+      students={course.students}
     />
   );
 }

@@ -72,9 +72,6 @@ export const addStudent = async (req, res) => {
     const courseId = req.params.id;
     const studentId = req.params.studentId;
     const student = await user.findOne({ instituteId: studentId });
-    console.log(courseId);
-    console.log(studentId);
-    console.log(student);
     if (student) {
       courseClass.updateOne(
         { _id: courseId },
@@ -159,12 +156,22 @@ export const addSession = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
-
+/*
 export const getSessions = async (req, res) => {
   try {
     const courseId = req.params.classId;
     const course = await courseClass.findById(courseId);
     res.status(200).json(course.sessions);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+*/
+export const getSessions = async (req, res) => {
+  try {
+    const courseId = req.params.classId;
+    const sessions = await Session.find({ classId: courseId });
+    res.status(200).json(sessions);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
@@ -209,9 +216,6 @@ export const addStudentToSession = async (req, res) => {
     const sessionNumber = req.params.sessionNumber;
     const { studentId } = req.body;
     const currentCourse = await courseClass.findById(courseId);
-    console.log(sessionNumber);
-    console.log(studentId);
-    console.log(currentCourse);
     currentCourse.students.forEach(async (obj) => {
       if (obj.instituteId == studentId) {
         enrolled = true;
@@ -257,3 +261,44 @@ export const getStudentsFromSession = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+
+export const getSingleSession = async (req, res) => {
+  try {
+    const courseId = req.params.classId;
+    const sessionNumber = req.params.sessionNumber;
+    const session = await Session.findOne({
+      classId: courseId,
+      sessionNumber: sessionNumber,
+    });
+    res.status(200).json(session);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+export const finalizeSession = async (req, res) => {
+  try {
+    const courseId = req.params.classId;
+    const sessionNumber = req.params.sessionNumber;
+    if (courseId && sessionNumber) {
+      Session.updateOne(
+        { classId: courseId, sessionNumber: sessionNumber },
+        {
+          $set: { finalized: true }
+        },
+        function (err, result) {
+          if (err) {
+            res.send(err);
+          } else {
+            res.status(200).json({message: "Session has been finalized"});
+          }
+        }
+      );
+    }
+    else {
+      res.send(err);
+    }
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+}

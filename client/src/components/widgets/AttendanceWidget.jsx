@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import StudentCard from "./StudentCard";
 import { useDispatch, useSelector } from "react-redux";
-import { addStudentToSession } from "../../actions/courses";
-import { getStudentsFromSession } from "../../actions/courses";
+import { addStudentToSession, setSingleSession, finalizeSession, getSessions } from "../../actions/courses";
 import swal from "sweetalert";
+import {useNavigate} from "react-router-dom";
 
 function createStudentCard(student) {
   return (
@@ -17,19 +17,19 @@ function createStudentCard(student) {
 }
 
 function AttendanceWidget(props) {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [studentData, setStudentData] = useState({ studentId: "" });
-  const Students = useSelector((state) => state.currentSession);
+  const Students = useSelector((state) => state.currentSession.attendedStudents);
   const {courseId, courseName, courseNumber} = useSelector((state) => state.currentCourse);
-
-
+ 
   useEffect(() => { 
-    const interval = setInterval(() => {
-      console.log("re rendering attendance");
-      dispatch(getStudentsFromSession(courseId, props.sessionNumber));
-    },2000);
-    return () => clearInterval(interval);
-  }, [dispatch, courseId, props.sessionNumber]);
+      const interval = setInterval(() => {
+        console.log("re rendering attendance");
+        dispatch(setSingleSession(courseId, props.sessionNumber));
+      },2000);
+      return () => clearInterval(interval);
+  }, [dispatch, props.sessionNumber, courseId]);
 
   const addStudentById = (e) => {
     e.preventDefault();
@@ -49,6 +49,29 @@ function AttendanceWidget(props) {
       swal("Invalid entry!", { icon: "warning" });
     }
   };
+
+  const FinalizeAttendance = () => {
+    swal("Are you sure you would like to finalize taking attendance for this session?", {
+      buttons: {
+        cancel: {
+          text: "Cancel",
+          value: false,
+          visible: true,
+        },
+        confirm: {
+          text: "Yes",
+          value: true,
+          visible: true,
+        },
+      },
+    }).then((value) => {
+      if (value) {
+        dispatch(finalizeSession(courseId, props.sessionNumber));
+        dispatch(getSessions(courseId));
+        navigate("/FinalizeAttendance");
+      }
+    });
+  }
   return (
     <div className="primary-container">
       <div className="dash-container">
@@ -70,12 +93,22 @@ function AttendanceWidget(props) {
             placeholder="ex: 2021XXXXX"
             id="studentId"
             className="addClass-input"
+            value={studentData.studentId}
             onChange={(e) => setStudentData({ studentId: e.target.value })}
           ></input>
           <button type="submit" className="save-button">
             Add
           </button>
-          <button className="clear-button">Clear</button>
+          <button type="button" className="clear-button"
+            onClick={() => setStudentData({ studentId: '' })}
+          >
+            Clear
+          </button>
+          <button type="button" className="finalize-button"
+            onClick={FinalizeAttendance}
+          >
+            Finalize attendance
+          </button>
         </div>
       </form>
     </div>
