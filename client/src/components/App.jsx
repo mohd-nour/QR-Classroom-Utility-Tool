@@ -12,6 +12,7 @@ import SendEmailForgotPassword from "./SendEmailForgotPassword";
 import ResetPassword from "./ResetPassword";
 import SessionsPage from "./SessionsPage";
 import FinalizedAttendancePage from "./FinalizedAttendancePage";
+import Verified from "./Verified";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/AddClassPage" element={<AddClassPage />} />
         <Route path="/SessionsPage" element={<SessionsPage />} />
         <Route path="/FinalizeAttendance" element={<FinalizedAttendancePage />} />
+        <Route path="/verifyRegistration/:email/:verificationToken" element = {<Verified />}/>
         <Route
           path="/SendEmailForgotPassword"
           element={<SendEmailForgotPassword />}

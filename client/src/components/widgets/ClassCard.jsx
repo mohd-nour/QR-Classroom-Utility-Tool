@@ -33,7 +33,7 @@ function ClassCard(props) {
         state={{ data: props }}
         className="removeUnderline black"
       >
-        <div className="class-card" onClick={() => {dispatch(setCurrentCourse({courseId: props.id, courseName: props.courseName, courseNumber: props.courseNumber, courseStudents: props.students}));} }>
+        <div className="class-card" onMouseOver={() => {dispatch(setCurrentCourse({courseId: props.id, courseName: props.courseName, courseNumber: props.courseNumber, courseStudents: props.students}));} }>
           <h3>
             {props.courseName} {props.courseNumber}
           </h3>

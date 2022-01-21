@@ -8,7 +8,12 @@ function Selection() {
   const dispatch = useDispatch();
   const { data } = location.state;
 
-  const {courseId, courseName, courseNumber} = useSelector((state) => state.currentCourse);
+  const {courseId, courseName, courseNumber, courseStudents} = useSelector((state) => state.currentCourse);
+  console.log(courseStudents);
+  const myObj = {courseId, courseName, courseNumber, courseStudents};
+  const currStudents = useSelector((state) => state.students);
+  console.log(myObj);
+  console.log(currStudents);
   useEffect(() => {
     dispatch(getSessions(courseId));
     dispatch(getStudents(courseId));

@@ -10,11 +10,8 @@ export const signup = (formData, navigate) => async (dispatch) => {
     if (data.error) {
       alert(data.message);
     } else {
-      dispatch({ type: AUTH, data });
-      const uniqueId = JSON.parse(localStorage.getItem("profile")).result._id;
-      localStorage.setItem("currentUserUniqueId", uniqueId);
-      await dispatch(getCourses());
-      navigate("/Home");
+      navigate("/");
+      alert(data.message);
     }
   } catch (error) {
     alert(error.message);
@@ -40,8 +37,16 @@ export const signin = (formData, navigate) => async (dispatch) => {
 
 export const sendEmail = (emailData) => async (dispatch) => {
   try {
-    console.log(emailData);
     await api.sendEmail(emailData);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const verifyAccount = (email, verficationToken) => async (dispatch) => {
+  try {
+    const {data} = await api.verifyAccount(email, verficationToken);
+    console.log(data);
   } catch (error) {
     console.log(error);
   }

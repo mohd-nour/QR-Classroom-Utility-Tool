@@ -44,6 +44,8 @@ export const finalizeSession = (classId, sessionNumber) =>
 
 export const signin = (formData) => API.post("/users/signin", formData);
 export const signup = (formData) => API.post("/users/signup", formData);
+export const verifyAccount = (email, verficationToken) => API.patch("/users/verifyAccount/"+email+"/"+verficationToken);
+
 export const sendEmail = (emailData) =>
   API.post("/forgotPassword/sendEmail", emailData);
 export const resetPasswordClient = (newPassword, id, token) =>

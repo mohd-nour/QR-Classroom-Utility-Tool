@@ -1,12 +1,8 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../models/user.js";
-//import Token from "../models/token.js";
-import emailValidator from "deep-email-validator";
-//import deepValidate from 'deep-email-validator'
-//import EmailValidator from 'email-deep-validator';
-//import emailValidator from 'deep-email-validator-extended'
-
+import crypto from "crypto";
+import mailSend from "../utils/sendEmail.js";
 
 export const signin = async (req, res) => {
   const { email, password } = req.body;
@@ -22,12 +18,17 @@ export const signin = async (req, res) => {
     if (!isPasswordCorrect) {
       return res.json({ message: "Incorrect password", error: true });
     }
-    const token = jwt.sign(
-      { email: existingUser.email, id: existingUser._id },
-      "test",
-      { expiresIn: "1h" }
-    );
-    res.status(200).json({ result: existingUser, token });
+    if (existingUser.verified){
+      const token = jwt.sign(
+        { email: existingUser.email, id: existingUser._id },
+        "test",
+        { expiresIn: "1h" }
+      );
+      res.status(200).json({ result: existingUser, token, error: false });
+    }
+    else {
+      res.status(201).json({ message: 'You are not verified', error: true });
+    }
   } catch (error) {
     res.status(500).json({ message: "Something went wrong!", error: true });
   }
@@ -35,15 +36,7 @@ export const signin = async (req, res) => {
 
 export const signup = async (req, res) => {
   const { name, email, password, confirmPassword, instituteId } = req.body;
-  console.log(email);
   try {
-    const { valid, validators, reason } = await emailValidator.validate(email);
-    //const valid = await deepValidate(email);
-    //const { wellFormed, validDomain, validMailbox } = await emailValidator.verify('foo@bad-domain.com');
-    //let response = await emailValidator.validate(email);
-    const isValid = validators.regex.valid && validators.typo.valid && validators.disposable.valid && validators.mx.valid;
-    if (!isValid)
-      return res.json({ message: "Mail does not exist!", error: true });
     const existingUser = await User.findOne({ email });
     if (existingUser)
       return res.json({
@@ -57,11 +50,14 @@ export const signup = async (req, res) => {
       });
     const hashedPassword = await bcrypt.hash(password, 12);
     var result;
+    const verificationToken = crypto.randomBytes(32).toString("hex");
     if (!instituteId){
+      console.log(verificationToken);
       result = await User.create({
         name: name,
         email: email,
         password: hashedPassword,
+        verificationToken: verificationToken
       });
     }
     else {
@@ -74,20 +70,56 @@ export const signup = async (req, res) => {
         });
       }
       else{
+        console.log(verificationToken);
         result = await User.create({
           name: name,
           email: email,
           password: hashedPassword,
-          instituteId: instituteId
+          instituteId: instituteId,
+          verificationToken: verificationToken
         });
       }
     }
+    const link = "http://localhost:3000/verifyRegistration/" + email + "/" + verificationToken;
+    var mailBody = "Hello "+name+"\nPlease click on the following link to verify that it is you who created this account using this email:\n"+link;
+    await mailSend(email,"Account verification",mailBody);
+    /*
     const token = jwt.sign({ email: result.email, id: result._id }, "test", {
       expiresIn: "1h",
     });
-    res.status(200).json({ result, token });
+    */
+    res.status(200).json({ message: "A verification email has been sent to "+email, error: false });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: "Something went wrong!" });
+    res.status(500).json({ message: "Something went wrong!", error: true });
   }
 };
+
+export const verifyAccountRegistration = async (req, res) => {
+  try {
+    const email = req.params.email;
+    const verificationToken = req.params.verificationToken;
+    const existingUser = await User.findOne({email: email, verificationToken: verificationToken});
+    if (existingUser){
+      User.updateOne(
+        {email: email, verificationToken: verificationToken}, 
+        {$set: { verified: true }},
+        async (err, result) => {
+          if (err){
+            res.send(err);
+          }
+          else{
+            const verifiedUser = await User.findOne({email: email, verificationToken: verificationToken});
+            res.status(200).json({verifiedUser});
+          }
+        }); 
+    }
+    else{
+      res.send(err);
+    }
+  } catch (error) {
+    res.status(200).json({ message: "Something went wrong!" });
+  }
+};
+
+

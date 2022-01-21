@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import StudentCard from "./StudentCard";
 import { useSelector, useDispatch } from "react-redux";
-import { getStudents, addStudent } from "../../actions/courses";
+import { getStudents, addStudent, setCurrentCourse } from "../../actions/courses";
 import swal from "sweetalert";
 
 var createStudentCardWrapped = function (courseIdParam) {
@@ -51,7 +51,9 @@ function EnrollmentWidget() {
           (student) => student.instituteId === studentData.studentId
         ).length === 0
       ) {
+        
         dispatch(addStudent(courseId, studentData.studentId));
+        dispatch(setCurrentCourse({courseId: courseId, courseName: courseName, courseNumber: courseNumber, courseStudents: students}));
       } else {
         swal("Student is already enrolled!", { icon: "warning" });
       }

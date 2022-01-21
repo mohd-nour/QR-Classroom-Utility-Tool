@@ -145,6 +145,7 @@ export const addSession = async (req, res) => {
           if (err) {
             res.send(err);
           } else {
+            console.log(result);
             res.status(200).json(newSession);
           }
         }

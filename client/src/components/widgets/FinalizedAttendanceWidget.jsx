@@ -17,7 +17,11 @@ function FinalizedAttendanceWidget(props) {
   const currentSession = useSelector((state) => state.currentSession);
   const attendedStudents = currentSession.attendedStudents;
   const {courseId, courseName, courseNumber, courseStudents} = useSelector((state) => state.currentCourse);
-  const didntAttend = courseStudents.filter((student) => attendedStudents.find((nestedstudent) => student.name === nestedstudent.name) == null);
+  const currCourseStudents = useSelector((state) => state.students);
+  const didntAttend = currCourseStudents.filter((student) => attendedStudents.find((nestedstudent) => student.name === nestedstudent.name) == null);
+  console.log(attendedStudents);
+  console.log(courseStudents);
+  console.log(didntAttend);
   return (
     <div>
         <div id="lower-section">

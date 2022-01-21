@@ -68,7 +68,7 @@ function AttendanceWidget(props) {
       if (value) {
         dispatch(finalizeSession(courseId, props.sessionNumber));
         dispatch(getSessions(courseId));
-        navigate("/FinalizeAttendance");
+        navigate("/FinalizeAttendance", {replace: true});
       }
     });
   }
