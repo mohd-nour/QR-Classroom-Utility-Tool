@@ -5,6 +5,7 @@ import { SET, CLEAR } from "../constants/actionTypes";
 const currentCourseReducer = (currentCourse = null, action) => {
   switch (action.type) {
     case SET:
+      console.log(action.payload);
       return action.payload;
     case CLEAR:
       return null;

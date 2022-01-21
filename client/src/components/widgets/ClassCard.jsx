@@ -7,23 +7,12 @@ import swal from "sweetalert";
 
 function ClassCard(props) {
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
-
-
-  // edit button must send current course Id to form
-
-  // set a global variable to the current course id
-
-  // onClick, set currentCourseId to props.id
-
-  // when adding a class, clear currentCourseId
-
   return (
     <div className="card-container">
       <button
         onClick={() => {
-          dispatch(setCurrentCourse({courseId: props.id, courseName: props.courseName, courseNumber: props.courseNumber, courseStudents: props.students}));
+          dispatch(setCurrentCourse({courseId: props.id, courseName: props.courseName, courseNumber: props.courseNumber}));
           navigate("/AddClassPage", { replace: true });
         }}
         className="uil uil-ellipsis-h edit-icon"
@@ -33,7 +22,7 @@ function ClassCard(props) {
         state={{ data: props }}
         className="removeUnderline black"
       >
-        <div className="class-card" onMouseOver={() => {dispatch(setCurrentCourse({courseId: props.id, courseName: props.courseName, courseNumber: props.courseNumber, courseStudents: props.students}));} }>
+        <div className="class-card" onMouseOver={() => {dispatch(setCurrentCourse({courseId: props.id, courseName: props.courseName, courseNumber: props.courseNumber}));} }>
           <h3>
             {props.courseName} {props.courseNumber}
           </h3>

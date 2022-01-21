@@ -1,19 +1,12 @@
 import React, { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getSessions, getStudents } from "../../actions/courses";
 
 function Selection() {
-  const location = useLocation();
   const dispatch = useDispatch();
-  const { data } = location.state;
 
-  const {courseId, courseName, courseNumber, courseStudents} = useSelector((state) => state.currentCourse);
-  console.log(courseStudents);
-  const myObj = {courseId, courseName, courseNumber, courseStudents};
-  const currStudents = useSelector((state) => state.students);
-  console.log(myObj);
-  console.log(currStudents);
+  const {courseId} = useSelector((state) => state.currentCourse);
   useEffect(() => {
     dispatch(getSessions(courseId));
     dispatch(getStudents(courseId));

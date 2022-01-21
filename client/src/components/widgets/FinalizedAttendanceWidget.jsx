@@ -16,12 +16,9 @@ function createStudentCard(student) {
 function FinalizedAttendanceWidget(props) {
   const currentSession = useSelector((state) => state.currentSession);
   const attendedStudents = currentSession.attendedStudents;
-  const {courseId, courseName, courseNumber, courseStudents} = useSelector((state) => state.currentCourse);
-  const currCourseStudents = useSelector((state) => state.students);
-  const didntAttend = currCourseStudents.filter((student) => attendedStudents.find((nestedstudent) => student.name === nestedstudent.name) == null);
-  console.log(attendedStudents);
-  console.log(courseStudents);
-  console.log(didntAttend);
+  const {courseId, courseName, courseNumber} = useSelector((state) => state.currentCourse);
+  const courseStudents = useSelector((state) => state.students);
+  const didntAttend = courseStudents.filter((student) => attendedStudents.find((nestedstudent) => student.name === nestedstudent.name) == null);
   return (
     <div>
         <div id="lower-section">

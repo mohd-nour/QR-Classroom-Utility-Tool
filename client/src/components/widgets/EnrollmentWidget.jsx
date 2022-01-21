@@ -38,7 +38,6 @@ function EnrollmentWidget() {
       dispatch(getStudents(courseId));
     }, 1000);
     return () => clearInterval(interval);
-    //dispatch(getStudents(props.data.id));
   }, [courseId, dispatch]);
 
   // if there are no students with an id equal to state, add student
@@ -53,7 +52,6 @@ function EnrollmentWidget() {
       ) {
         
         dispatch(addStudent(courseId, studentData.studentId));
-        dispatch(setCurrentCourse({courseId: courseId, courseName: courseName, courseNumber: courseNumber, courseStudents: students}));
       } else {
         swal("Student is already enrolled!", { icon: "warning" });
       }
