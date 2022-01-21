@@ -217,32 +217,38 @@ export const addStudentToSession = async (req, res) => {
     const sessionNumber = req.params.sessionNumber;
     const { studentId } = req.body;
     const currentCourse = await courseClass.findById(courseId);
-    currentCourse.students.forEach(async (obj) => {
-      if (obj.instituteId == studentId) {
-        enrolled = true;
-        const student = await user.findOne(
-          { instituteId: studentId },
-          { password: 0 }
-        );
-        if (student) {
-          Session.findOneAndUpdate(
-            { sessionNumber: sessionNumber, classId: courseId },
-            { $addToSet: { attendedStudents: student } },
-            function (err, result) {
-              if (err) {
-                res.send(err);
-              } else {
-                res.status(200).json(student);
-              }
-            }
+    const currentSession = await Session.findOne({sessionNumber: sessionNumber, classId: courseId});
+    if (currentSession.closed) {
+      res.json({message: "This session is closed now", error: true});
+    }
+    else {
+      currentCourse.students.forEach(async (obj) => {
+        if (obj.instituteId == studentId) {
+          enrolled = true;
+          const student = await user.findOne(
+            { instituteId: studentId },
+            { password: 0 }
           );
-        } else {
-          res.send(err);
+          if (student) {
+            Session.findOneAndUpdate(
+              { sessionNumber: sessionNumber, classId: courseId },
+              { $addToSet: { attendedStudents: student } },
+              function (err, result) {
+                if (err) {
+                  res.send(err);
+                } else {
+                  res.status(200).json(student);
+                }
+              }
+            );
+          } else {
+            res.send(err);
+          }
         }
+      });
+      if (!enrolled) {
+        res.send(err);
       }
-    });
-    if (!enrolled) {
-      res.send(err);
     }
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -292,6 +298,34 @@ export const finalizeSession = async (req, res) => {
             res.send(err);
           } else {
             res.status(200).json({message: "Session has been finalized"});
+          }
+        }
+      );
+    }
+    else {
+      res.send(err);
+    }
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+}
+
+export const closeSession = async (req, res) => {
+  try {
+    const courseId = req.params.classId;
+    const sessionNumber = req.params.sessionNumber;
+    const {closed} = req.body;
+    if (courseId && sessionNumber) {
+      Session.updateOne(
+        { classId: courseId, sessionNumber: sessionNumber },
+        {
+          $set: { closed: closed }
+        },
+        function (err, result) {
+          if (err) {
+            res.send(err);
+          } else {
+            res.status(200).json({message: "Session has been closed"});
           }
         }
       );

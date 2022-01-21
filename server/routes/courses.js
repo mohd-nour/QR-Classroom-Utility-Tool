@@ -13,7 +13,8 @@ import {
   getStudentsFromSession,
   removeSession,
   finalizeSession,
-  getSingleSession
+  getSingleSession,
+  closeSession
 } from "../controllers/courses.js";
 
 const router = express.Router();
@@ -32,6 +33,7 @@ router.patch("/sessions/addSession/:classId", addSession);
 router.get("/sessions/getSessions/:classId", getSessions);
 router.patch("/sessions/addSession/:classId/:sessionNumber", removeSession);
 router.patch("/sessions/finalizeSession/:classId/:sessionNumber", finalizeSession);
+router.patch("/sessions/closeSession/:classId/:sessionNumber", closeSession);
 
 router.patch(
   "/sessions/markAttendance/:classId/:sessionNumber",

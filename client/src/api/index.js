@@ -42,7 +42,12 @@ export const finalizeSession = (classId, sessionNumber) =>
     "/courses/sessions/finalizeSession/" + classId + "/" + sessionNumber
   );
 
-export const signin = (formData) => API.post("/users/signin", formData);
+export const closeSession = (classId, sessionNumber, closedObject) =>
+  API.patch(
+    "/courses/sessions/closeSession/" + classId + "/" + sessionNumber,
+  closedObject);
+
+export const signin = (formData) => API.post("/users/signin/web", formData);
 export const signup = (formData) => API.post("/users/signup", formData);
 export const verifyAccount = (email, verficationToken) => API.patch("/users/verifyAccount/"+email+"/"+verficationToken);
 

@@ -10,7 +10,8 @@ const sessionSchema = mongoose.Schema({
   sessionNumber: { type: Number, required: true },
   classId: { type: String, required: true },
   attendedStudents: [studentSchema],
-  finalized: { type: Boolean, default: false }
+  finalized: { type: Boolean, default: false },
+  closed: {type: Boolean, default: true}
 });
 
 export default mongoose.model("Session", sessionSchema);

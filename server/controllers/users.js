@@ -6,9 +6,14 @@ import mailSend from "../utils/sendEmail.js";
 
 export const signin = async (req, res) => {
   const { email, password } = req.body;
+  const mode = req.params.mode;
   try {
     const existingUser = await User.findOne({ email });
     if (!existingUser) {
+      return res.json({ message: "You are not registered", error: true });
+    }
+    const instituteId = existingUser.instituteId;
+    if (mode=="web" && instituteId!=null){
       return res.json({ message: "You are not registered", error: true });
     }
     const isPasswordCorrect = await bcrypt.compare(

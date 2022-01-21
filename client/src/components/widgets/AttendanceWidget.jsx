@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import StudentCard from "./StudentCard";
 import { useDispatch, useSelector } from "react-redux";
-import { addStudentToSession, setSingleSession, finalizeSession, getSessions } from "../../actions/courses";
+import { addStudentToSession, setSingleSession, finalizeSession, getSessions, closeSession } from "../../actions/courses";
 import swal from "sweetalert";
 import {useNavigate} from "react-router-dom";
 
@@ -24,11 +24,15 @@ function AttendanceWidget(props) {
   const {courseId, courseName, courseNumber} = useSelector((state) => state.currentCourse);
  
   useEffect(() => { 
+      dispatch(closeSession(courseId,props.sessionNumber,{closed: false}));
       const interval = setInterval(() => {
         console.log("re rendering attendance");
         dispatch(setSingleSession(courseId, props.sessionNumber));
       },2000);
-      return () => clearInterval(interval);
+      return () => {
+        clearInterval(interval);
+        dispatch(closeSession(courseId,props.sessionNumber,{closed: true}));
+      };
   }, [dispatch, props.sessionNumber, courseId]);
 
   const addStudentById = (e) => {

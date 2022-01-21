@@ -59,6 +59,14 @@ export const finalizeSession = (courseId, sessionNumber) => async (dispatch) => 
   }
 }
 
+export const closeSession = (courseId, sessionNumber, closedObj) => async (dispatch) => {
+  try {
+    await api.closeSession(courseId, sessionNumber, closedObj);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export const addStudentToSession =
   (studentId, classId, sessionNumber) => async (dispatch) => {
     try {

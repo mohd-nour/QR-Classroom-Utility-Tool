@@ -3,7 +3,7 @@ import { signin, signup, verifyAccountRegistration } from "../controllers/users.
 
 const router = express.Router();
 
-router.post("/signin", signin);
+router.post("/signin/:mode", signin);
 router.post("/signup", signup);
 router.patch("/verifyAccount/:email/:verificationToken", verifyAccountRegistration);
 
