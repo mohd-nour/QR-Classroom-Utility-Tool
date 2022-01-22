@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { addStudentToSession, setSingleSession, finalizeSession, getSessions, closeSession } from "../../actions/courses";
 import swal from "sweetalert";
 import {useNavigate} from "react-router-dom";
+import io from "socket.io-client";
+const socket = io();
+
 
 function createStudentCard(student) {
   return (
@@ -22,17 +25,22 @@ function AttendanceWidget(props) {
   const [studentData, setStudentData] = useState({ studentId: "" });
   const Students = useSelector((state) => state.currentSession.attendedStudents);
   const {courseId, courseName, courseNumber} = useSelector((state) => state.currentCourse);
- 
+  
   useEffect(() => { 
       dispatch(closeSession(courseId,props.sessionNumber,{closed: false}));
+      socket.on("Attendance", () => {
+        console.log("Added student");
+        dispatch(setSingleSession(courseId, props.sessionNumber));
+      });
+      /*
       const interval = setInterval(() => {
-        console.log("re rendering attendance");
         dispatch(setSingleSession(courseId, props.sessionNumber));
       },2000);
       return () => {
         clearInterval(interval);
         dispatch(closeSession(courseId,props.sessionNumber,{closed: true}));
       };
+      */
   }, [dispatch, props.sessionNumber, courseId]);
 
   const addStudentById = (e) => {

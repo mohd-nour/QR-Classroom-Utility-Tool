@@ -3,6 +3,8 @@ import StudentCard from "./StudentCard";
 import { useSelector, useDispatch } from "react-redux";
 import { getStudents, addStudent, setCurrentCourse } from "../../actions/courses";
 import swal from "sweetalert";
+import io from "socket.io-client";
+const socket = io();
 
 var createStudentCardWrapped = function (courseIdParam) {
   return function createStudentCard(student) {
@@ -29,15 +31,13 @@ function EnrollmentWidget() {
   const [studentData, setStudentData] = useState({
     studentId: "",
   });
-
   const {courseId, courseName, courseNumber} = useSelector((state) => state.currentCourse);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      console.log("Re rendering enrollment");
+    socket.on("Enrollment", () => {
+      console.log("Added student enrollment");
       dispatch(getStudents(courseId));
-    }, 1000);
-    return () => clearInterval(interval);
+    });
   }, [courseId, dispatch]);
 
   // if there are no students with an id equal to state, add student

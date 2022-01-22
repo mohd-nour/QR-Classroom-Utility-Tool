@@ -2,6 +2,7 @@ import courseClass from "../models/courseClass.js";
 import user from "../models/user.js";
 import Session from "../models/session.js";
 import mongoose from "mongoose";
+import io from "../index.js";
 //takes schema from models
 
 //Logic for routes
@@ -80,6 +81,7 @@ export const addStudent = async (req, res) => {
           if (err) {
             res.send(err);
           } else {
+            io.emit("Enrollment");
             res.status(200).json(student);
           }
         }
@@ -201,7 +203,6 @@ export const removeSession = async (req, res) => {
 
 export const addStudentToSession = async (req, res) => {
   try {
-    console.log("adding student to session");
     var enrolled = false;
     const courseId = req.params.classId;
     const sessionNumber = req.params.sessionNumber;
@@ -228,6 +229,7 @@ export const addStudentToSession = async (req, res) => {
                   res.send(err);
                 } else {
                   res.status(200).json(student);
+                  io.emit("Attendance");
                 }
               }
             );
