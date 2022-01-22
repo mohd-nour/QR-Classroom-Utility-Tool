@@ -7,12 +7,16 @@ import bcrypt from "bcryptjs";
 export const sendEmail = async (req, res) => {
   const { email } = req.body;
   const existingUser = await User.findOne({ email });
+  if (!existingUser) {
+    return res.status(404).json({ message: "User does not exist.", error: true });
+  }
   const userId = existingUser._id;
   const name = existingUser.name;
-  if (!existingUser) {
-    return res.status(404).json({ message: "User does not exist." });
-  }
   try {
+    const existingToken = await Token.findOne({userId: userId});
+    if (existingToken!=null) {
+      return res.json({ message: "Your last request to reset your password has not expired!", error: true });
+    }
     const token = crypto.randomBytes(32).toString("hex");
     const link =
       "http://localhost:3000/forgotPass/resetPass/" + userId + "/" + token;
@@ -24,9 +28,10 @@ export const sendEmail = async (req, res) => {
       "\nThis link will expire in 15 minutes";
     mailSend(email, "Reset password", message);
 
-    const addedToken = await Token.create({ id: userId, token: token });
+    const addedToken = await Token.create({ userId: userId, token: token });
+    res.status(200).json({message:"A reset password mail has been sent to your email", error: false})
   } catch (error) {
-    res.status(500).json({ message: "Something went wrong!" });
+    res.status(500).json({ message: "Something went wrong!", error: true });
   }
 };
 
@@ -61,7 +66,7 @@ export const resetPassword = async (req, res) => {
     { password: hashedPassword },
     function (err, docs) {
       if (err) {
-        return res.json({ message: err.message });
+        return res.json({ message: err.message, error: true });
       }
     }
   );

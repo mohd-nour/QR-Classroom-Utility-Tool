@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { sendEmail } from "../actions/auth";
+import {useNavigate} from "react-router-dom";
 
 function SendEmailForgotPassword() {
   const [email, setEmail] = useState({ email: "" });
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const SendEmail = async (e) => {
     e.preventDefault();
     console.log(email);
-    dispatch(sendEmail(email));
+    dispatch(sendEmail(email, navigate));
   };
   return (
     <div>

@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import User from "../models/user.js";
+import User, {UnverifiedUser} from "../models/user.js";
 import crypto from "crypto";
 import mailSend from "../utils/sendEmail.js";
 
@@ -16,6 +16,9 @@ export const signin = async (req, res) => {
     if (mode=="web" && instituteId!=null){
       return res.json({ message: "You are not registered", error: true });
     }
+    if (mode=="mobile" && instituteId==null){
+      return res.json({ message: "You are not registered", error: true });
+    }
     const isPasswordCorrect = await bcrypt.compare(
       password,
       existingUser.password
@@ -23,6 +26,13 @@ export const signin = async (req, res) => {
     if (!isPasswordCorrect) {
       return res.json({ message: "Incorrect password", error: true });
     }
+    const token = jwt.sign(
+      { email: existingUser.email, id: existingUser._id },
+      "test",
+      { expiresIn: "1h" }
+    );
+    res.status(200).json({ result: existingUser, token, error: false });
+    /*
     if (existingUser.verified){
       const token = jwt.sign(
         { email: existingUser.email, id: existingUser._id },
@@ -34,6 +44,7 @@ export const signin = async (req, res) => {
     else {
       res.status(201).json({ message: 'You are not verified', error: true });
     }
+    */
   } catch (error) {
     res.status(500).json({ message: "Something went wrong!", error: true });
   }
@@ -57,8 +68,7 @@ export const signup = async (req, res) => {
     var result;
     const verificationToken = crypto.randomBytes(32).toString("hex");
     if (!instituteId){
-      console.log(verificationToken);
-      result = await User.create({
+      result = await UnverifiedUser.create({
         name: name,
         email: email,
         password: hashedPassword,
@@ -68,15 +78,13 @@ export const signup = async (req, res) => {
     else {
       const existingUser = await User.findOne({instituteId:instituteId});
       if (existingUser){
-        console.log(existingUser);
         return res.json({
           message: "Someone is already registered with this institute ID",
           error: true,
         });
       }
       else{
-        console.log(verificationToken);
-        result = await User.create({
+        result = await UnverifiedUser.create({
           name: name,
           email: email,
           password: hashedPassword,
@@ -88,11 +96,6 @@ export const signup = async (req, res) => {
     const link = "http://localhost:3000/verifyRegistration/" + email + "/" + verificationToken;
     var mailBody = "Hello "+name+"\nPlease click on the following link to verify that it is you who created this account using this email:\n"+link;
     await mailSend(email,"Account verification",mailBody);
-    /*
-    const token = jwt.sign({ email: result.email, id: result._id }, "test", {
-      expiresIn: "1h",
-    });
-    */
     res.status(200).json({ message: "A verification email has been sent to "+email, error: false });
   } catch (error) {
     console.log(error);
@@ -104,7 +107,35 @@ export const verifyAccountRegistration = async (req, res) => {
   try {
     const email = req.params.email;
     const verificationToken = req.params.verificationToken;
-    const existingUser = await User.findOne({email: email, verificationToken: verificationToken});
+    const existingVerifiedUser = await User.findOne({email: email, verificationToken: verificationToken});
+    if (existingVerifiedUser){
+      return res.send({error: true, message:"You are already verified"});
+    }
+    const existingUnverifiedUser = await UnverifiedUser.findOne({email: email, verificationToken: verificationToken});
+    var verifiedUser;
+    if (existingUnverifiedUser){
+      if (existingUnverifiedUser.institudeId){
+        verifiedUser = await User.create({
+          name: existingUnverifiedUser.name,
+          email: existingUnverifiedUser.email,
+          password: existingUnverifiedUser.password,
+          instituteId: existingUnverifiedUser.instituteId
+        });
+      }
+      else{
+        verifiedUser = await User.create({
+          name: existingUnverifiedUser.name,
+          email: existingUnverifiedUser.email,
+          password: existingUnverifiedUser.password
+        });
+      }
+      await UnverifiedUser.findByIdAndDelete(existingUnverifiedUser._id);
+      res.status(200).json({verifiedUser, error: false});
+    }
+    else {
+      res.send({error: true, message:"You did not register"});
+    }
+    /*
     if (existingUser){
       User.updateOne(
         {email: email, verificationToken: verificationToken}, 
@@ -122,8 +153,9 @@ export const verifyAccountRegistration = async (req, res) => {
     else{
       res.send(err);
     }
+    */
   } catch (error) {
-    res.status(200).json({ message: "Something went wrong!" });
+    res.status(200).json({ message: error.message, error: true });
   }
 };
 

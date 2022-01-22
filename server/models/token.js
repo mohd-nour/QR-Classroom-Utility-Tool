@@ -8,7 +8,7 @@ function addHoursToDate() {
 
 const tokenSchema = mongoose.Schema(
   {
-    id: { type: String, required: true },
+    userId: { type: String, required: true },
     token: { type: String, required: true },
     expireAt: { type: Date, default: addHoursToDate() },
     /*
