@@ -157,17 +157,7 @@ export const addSession = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
-/*
-export const getSessions = async (req, res) => {
-  try {
-    const courseId = req.params.classId;
-    const course = await courseClass.findById(courseId);
-    res.status(200).json(course.sessions);
-  } catch (error) {
-    res.status(404).json({ message: error.message });
-  }
-};
-*/
+
 export const getSessions = async (req, res) => {
   try {
     const courseId = req.params.classId;

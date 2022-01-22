@@ -4,7 +4,6 @@ import { removeStudent } from "../../actions/courses";
 
 function StudentCard(props) {
   const dispatch = useDispatch();
-
   return (
     <div className="card-container">
       <div className="student-card">
@@ -12,7 +11,7 @@ function StudentCard(props) {
         <h3 className="student-name">{props.name}</h3>
         <h3 className="student-name">{props.id}</h3>
       </div>
-      {props.mode != "removeDelete" &&
+      {props.mode !== "removeDelete" &&
       <button
         onClick={() => {
           dispatch(removeStudent(props.courseId, props.id));

@@ -1,21 +1,23 @@
 import React from "react";
-import Students from "../../Students";
 import StudentCard from "./StudentCard";
-// import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function createStudentCard(student) {
   return (
     <StudentCard
-      key={student.id}
-      name={student.studentName}
-      mode="AttendanceRecord"
+      key={student._id}
+      name={student.name}
+      id={student.instituteId}
+      mode="removeDelete"
     />
   );
 }
 
 function GradeReport() {
-  //const location = useLocation();
-  //const { data } = location.state;
+  const sessions = useSelector((state) => state.sessions);
+  const Students = useSelector((state) => state.students);
+  console.log(sessions);
+  console.log(Students);
   return (
     <div className="dash-container">
       <h1 className="title">EECE 502 - Attendance Report</h1>
