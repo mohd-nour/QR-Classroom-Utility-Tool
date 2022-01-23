@@ -34,7 +34,7 @@ function EnrollmentWidget() {
   const {courseId, courseName, courseNumber} = useSelector((state) => state.currentCourse);
 
   useEffect(() => {
-    socket.on("Enrollment", () => {
+    socket.on(courseId, () => {
       console.log("Added student enrollment");
       dispatch(getStudents(courseId));
     });

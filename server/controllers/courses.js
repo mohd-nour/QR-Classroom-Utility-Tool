@@ -81,7 +81,7 @@ export const addStudent = async (req, res) => {
           if (err) {
             res.send(err);
           } else {
-            io.emit("Enrollment");
+            io.emit(courseId);
             res.status(200).json(student);
           }
         }
@@ -228,8 +228,8 @@ export const addStudentToSession = async (req, res) => {
                 if (err) {
                   res.send(err);
                 } else {
+                  io.emit(courseId+"/"+sessionNumber);
                   res.status(200).json(student);
-                  io.emit("Attendance");
                 }
               }
             );

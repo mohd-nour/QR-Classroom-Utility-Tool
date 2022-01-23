@@ -8,7 +8,7 @@ function createStudentCard(student) {
       key={student._id}
       name={student.name}
       id={student.instituteId}
-      mode="removeDelete"
+      mode="GradeReport"
     />
   );
 }

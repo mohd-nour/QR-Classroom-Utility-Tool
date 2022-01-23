@@ -28,19 +28,10 @@ function AttendanceWidget(props) {
   
   useEffect(() => { 
       dispatch(closeSession(courseId,props.sessionNumber,{closed: false}));
-      socket.on("Attendance", () => {
-        console.log("Added student");
+      socket.on(courseId+"/"+props.sessionNumber, () => {
+        console.log("Added student to session");
         dispatch(setSingleSession(courseId, props.sessionNumber));
       });
-      /*
-      const interval = setInterval(() => {
-        dispatch(setSingleSession(courseId, props.sessionNumber));
-      },2000);
-      return () => {
-        clearInterval(interval);
-        dispatch(closeSession(courseId,props.sessionNumber,{closed: true}));
-      };
-      */
   }, [dispatch, props.sessionNumber, courseId]);
 
   const addStudentById = (e) => {
