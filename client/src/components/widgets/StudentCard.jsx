@@ -11,7 +11,7 @@ function StudentCard(props) {
         <h3 className="student-name">{props.name}</h3>
         <h3 className="student-name">{props.id}</h3>
         {props.mode === "GradeReport" && (
-          <h3>62/70 sessions attended</h3>
+          <h3>{props.attendanceRecord}/{props.totalNbOfSessions} sessions attended</h3>
       )}
       </div>
       {(props.mode !== "removeDelete" || props.mode!=="GradeReport") &&

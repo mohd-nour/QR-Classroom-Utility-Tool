@@ -10,12 +10,14 @@ function SessionCard(props) {
   const dispatch = useDispatch();
   const {courseId} = useSelector((state) => state.currentCourse);
   const loadStudentsInSession = () => {
+    console.log("Setting current session with "+courseId+" and "+props.sessionNumber);
     dispatch(setSingleSession(courseId, props.sessionNumber));
+    console.log("Current session has been set");
   };
 
   return (
     <div className="card-container">
-      <div className="class-card" onMouseOver={loadStudentsInSession}>
+      <div className="class-card" onMouseEnter={loadStudentsInSession}>
           <Link to={"/Attendance/"+props.sessionNumber}>
             <div className="session-link" >
               <h3 >Session {props.sessionNumber}</h3>

@@ -99,7 +99,7 @@ export const setSingleSession =
   (classId, sessionNumber) => async (dispatch) => {
     try {
       const { data } = await api.getSingleSession(classId, sessionNumber);
-      dispatch({ type: "SET_SESSION_DATA", payload: data });
+      await dispatch({ type: "SET_SESSION_DATA", payload: data });
     } catch (error) {
       console.log(error);
     }

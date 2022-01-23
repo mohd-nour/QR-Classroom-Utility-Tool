@@ -22,16 +22,18 @@ function createStudentCard(student) {
 function AttendanceWidget(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const sessionNumber = useSelector((state) => state.currentSession.sessionNumber);
   const [studentData, setStudentData] = useState({ studentId: "" });
   const Students = useSelector((state) => state.currentSession.attendedStudents);
   const {courseId, courseName, courseNumber} = useSelector((state) => state.currentCourse);
   
   useEffect(() => { 
-      dispatch(closeSession(courseId,props.sessionNumber,{closed: false}));
-      socket.on(courseId+"/"+props.sessionNumber, () => {
+      dispatch(closeSession(courseId,sessionNumber,{closed: false}));
+      socket.on(courseId+"/"+sessionNumber, () => {
         console.log("Added student to session");
         dispatch(setSingleSession(courseId, props.sessionNumber));
       });
+      return () => {dispatch(closeSession(courseId,sessionNumber,{closed: true}));};
   }, [dispatch, props.sessionNumber, courseId]);
 
   const addStudentById = (e) => {
@@ -43,7 +45,7 @@ function AttendanceWidget(props) {
         ).length === 0
       ) {
         dispatch(
-          addStudentToSession(studentData, courseId, props.sessionNumber)
+          addStudentToSession(studentData, courseId, sessionNumber)
         );
       } else {
         swal("This student already took attendance!", { icon: "warning" });
@@ -69,7 +71,7 @@ function AttendanceWidget(props) {
       },
     }).then((value) => {
       if (value) {
-        dispatch(finalizeSession(courseId, props.sessionNumber));
+        dispatch(finalizeSession(courseId, sessionNumber));
         dispatch(getSessions(courseId));
         navigate("/FinalizeAttendance", {replace: true});
       }
@@ -82,7 +84,7 @@ function AttendanceWidget(props) {
           <h1 className="title">
             Taking Attendance -
             {" " + courseName + " " + courseNumber + " "}-
-            Session {props.sessionNumber}
+            Session {sessionNumber}
           </h1>
           <div id="card-section">{Students.map(createStudentCard)}</div>
         </div>
