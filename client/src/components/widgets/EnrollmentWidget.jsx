@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import StudentCard from "./StudentCard";
 import { useSelector, useDispatch } from "react-redux";
-import { getStudents, addStudent, setCurrentCourse } from "../../actions/courses";
+import { getStudents, addStudent } from "../../actions/courses";
 import swal from "sweetalert";
 import io from "socket.io-client";
 const socket = io();
@@ -34,8 +34,7 @@ function EnrollmentWidget() {
   const {courseId, courseName, courseNumber} = useSelector((state) => state.currentCourse);
 
   useEffect(() => {
-    socket.emit("ListenToEnrollment", courseId);
-    socket.on("Enrollment", () => {
+    socket.on(courseId, () => {
       console.log("Added student enrollment");
       dispatch(getStudents(courseId));
     });

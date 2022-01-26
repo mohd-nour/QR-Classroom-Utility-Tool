@@ -82,8 +82,7 @@ export const addStudent = async (req, res) => {
             res.send(err);
           } else {
             res.status(200).json(student);
-            //io.emit(courseId);
-            io.to("Enrollment/"+courseId).emit("Enrollment");
+            io.emit(courseId);
           }
         }
       );

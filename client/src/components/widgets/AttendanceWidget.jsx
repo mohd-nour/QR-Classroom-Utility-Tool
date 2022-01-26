@@ -19,7 +19,7 @@ function createStudentCard(student) {
   );
 }
 
-function AttendanceWidget(props) {
+function AttendanceWidget() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const sessionNumber = useSelector((state) => state.currentSession.sessionNumber);
@@ -31,10 +31,12 @@ function AttendanceWidget(props) {
       dispatch(closeSession(courseId,sessionNumber,{closed: false}));
       socket.on(courseId+"/"+sessionNumber, () => {
         console.log("Added student to session");
-        dispatch(setSingleSession(courseId, props.sessionNumber));
+        dispatch(setSingleSession(courseId, sessionNumber));
       });
-      return () => {dispatch(closeSession(courseId,sessionNumber,{closed: true}));};
-  }, [dispatch, props.sessionNumber, courseId]);
+      return () => {
+        dispatch(closeSession(courseId,sessionNumber,{closed: true})); 
+      };
+  }, [dispatch, sessionNumber, courseId]);
 
   const addStudentById = (e) => {
     e.preventDefault();

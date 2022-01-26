@@ -34,7 +34,6 @@ export const addSession = (courseId) => async (dispatch) => {
   try {
     const { data } = await api.addSession(courseId);
     dispatch({ type: "ADD_SESSION", payload: data });
-    swal("New session created!", { icon: "success" });
   } catch (error) {
     console.log(error);
   }
@@ -44,7 +43,6 @@ export const removeSession = (courseId, sessionNumber) => async (dispatch) => {
   try {
     await api.removeSession(courseId, sessionNumber);
     dispatch({ type: "REMOVE_SESSION", payload: sessionNumber });
-    swal("Session removed!", { icon: "success" });
   } catch (error) {
     console.log(error);
   }

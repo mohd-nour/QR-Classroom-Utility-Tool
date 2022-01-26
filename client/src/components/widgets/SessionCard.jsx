@@ -10,9 +10,7 @@ function SessionCard(props) {
   const dispatch = useDispatch();
   const {courseId} = useSelector((state) => state.currentCourse);
   const loadStudentsInSession = () => {
-    console.log("Setting current session with "+courseId+" and "+props.sessionNumber);
     dispatch(setSingleSession(courseId, props.sessionNumber));
-    console.log("Current session has been set");
   };
 
   return (
