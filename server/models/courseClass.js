@@ -22,6 +22,7 @@ const courseSchema = mongoose.Schema({
   endTime: String,
   sessions: [sessionNestedSchema], //Session
   currentSession: { type: Number, default: 1 },
+  alerts: [String]
 });
 
 //Session {

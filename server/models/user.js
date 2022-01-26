@@ -4,7 +4,8 @@ const userSchema = mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true },
-  instituteId: { type: String }
+  instituteId: { type: String },
+  classes: [String] // Course ids stored in the array
 });
 
 const unverifiedUserSchema = mongoose.Schema({
@@ -12,7 +13,7 @@ const unverifiedUserSchema = mongoose.Schema({
   email: { type: String, required: true },
   password: { type: String, required: true },
   instituteId: { type: String },
-  verificationToken: {type: String}
+  verificationToken: {type: String},
 });
 
 const User = mongoose.model("User", userSchema);
