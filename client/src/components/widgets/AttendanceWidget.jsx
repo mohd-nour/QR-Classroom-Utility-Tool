@@ -4,8 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { addStudentToSession, setSingleSession, finalizeSession, getSessions, closeSession } from "../../actions/courses";
 import swal from "sweetalert";
 import {useNavigate} from "react-router-dom";
-import io from "socket.io-client";
-const socket = io();
+//import io from "socket.io-client";
+//const socket = io();
+
+import { socket } from "../LoginPage";
+
 
 
 function createStudentCard(student) {
@@ -26,14 +29,22 @@ function AttendanceWidget() {
   const [studentData, setStudentData] = useState({ studentId: "" });
   const Students = useSelector((state) => state.currentSession.attendedStudents);
   const {courseId, courseName, courseNumber} = useSelector((state) => state.currentCourse);
-  
+  const [joinedAttendance, setJoinedAttendance] = useState(false);
+
+  const refresh = () => {
+    console.log("Added student to session");
+    dispatch(setSingleSession(courseId, sessionNumber));
+  };
   useEffect(() => { 
       dispatch(closeSession(courseId,sessionNumber,{closed: false}));
-      socket.on(courseId+"/"+sessionNumber, () => {
-        console.log("Added student to session");
-        dispatch(setSingleSession(courseId, sessionNumber));
-      });
+      if (!joinedAttendance){
+        socket.emit("JoinAttendance", {courseId, sessionNumber});
+        socket.on("RefreshSession", refresh);
+        setJoinedAttendance(true);
+      }
       return () => {
+        socket.off("RefreshSession", refresh);
+        socket.emit("LeaveAttendance", {courseId, sessionNumber});
         dispatch(closeSession(courseId,sessionNumber,{closed: true})); 
       };
   }, [dispatch, sessionNumber, courseId]);

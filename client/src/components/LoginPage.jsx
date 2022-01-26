@@ -5,6 +5,10 @@ import { useNavigate, Navigate } from "react-router-dom";
 import { signin } from "../actions/auth";
 import { getCourses } from "../actions/courses";
 
+import io from "socket.io-client";
+
+export const socket = io();
+
 function LoginPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();

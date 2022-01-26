@@ -22,6 +22,22 @@ app.use("/forgotPassword", forgotPasswordRoutes);
 const server = http.createServer(app);
 const io = new Server(server);
 
+io.on("connection", (socket) => {
+  console.log(socket.id+" connected");
+  socket.on("JoinEnrollment", courseId => {
+    socket.join(courseId);
+  });
+  socket.on("LeaveEnrollment", courseId => {
+    socket.leave(courseId);
+  });
+  socket.on("JoinAttendance", ({courseId, sessionNumber}) => {
+    socket.join(courseId+"/"+sessionNumber);
+  });
+  socket.on("LeaveAttendance", ({courseId, sessionNumber}) => {
+    socket.leave(courseId+"/"+sessionNumber);
+  });
+});
+
 const CONNECTION_URL =
   "mongodb+srv://QRCodeAMS:QRCodeAMSQRcodeAMS@cluster0.bula3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const PORT = process.env.PORT || 5000;

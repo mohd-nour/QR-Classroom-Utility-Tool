@@ -3,8 +3,10 @@ import StudentCard from "./StudentCard";
 import { useSelector, useDispatch } from "react-redux";
 import { getStudents, addStudent } from "../../actions/courses";
 import swal from "sweetalert";
-import io from "socket.io-client";
-const socket = io();
+//import io from "socket.io-client";
+//const socket = io();
+
+import { socket } from "../LoginPage";
 
 var createStudentCardWrapped = function (courseIdParam) {
   return function createStudentCard(student) {
@@ -26,18 +28,30 @@ var createStudentCardWrapped = function (courseIdParam) {
 function EnrollmentWidget() {
   const dispatch = useDispatch();
 
+  const [joinedEnrollment, setJoinedEnrollment] = useState(false);
+
   const students = useSelector((state) => state.students);
 
   const [studentData, setStudentData] = useState({
     studentId: "",
   });
-  const {courseId, courseName, courseNumber} = useSelector((state) => state.currentCourse);
+  console.log(joinedEnrollment);
+  const refresh = () => {
+    console.log("Added student enrollment");
+    dispatch(getStudents(courseId));
+  };
 
+  const {courseId, courseName, courseNumber} = useSelector((state) => state.currentCourse);
   useEffect(() => {
-    socket.on(courseId, () => {
-      console.log("Added student enrollment");
-      dispatch(getStudents(courseId));
-    });
+    if (!joinedEnrollment){
+      socket.emit("JoinEnrollment", courseId);
+      socket.on("RefreshEnrollment", refresh);
+      setJoinedEnrollment(true);
+    }
+    return () => {
+      socket.off("RefreshEnrollment", refresh);
+      socket.emit("LeaveEnrollment", courseId);
+    };
   }, [courseId, dispatch]);
 
   // if there are no students with an id equal to state, add student
