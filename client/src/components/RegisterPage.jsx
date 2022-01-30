@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, Navigate } from "react-router-dom";
 import { signup } from "../actions/auth";
+import CompanionX from "./widgets/companionX";
 
 function RegisterPage() {
   const dispatch = useDispatch();
@@ -27,8 +28,8 @@ function RegisterPage() {
       <div className="main-container">
         <div className="form-container">
           <div className="login-form">
-            <h1>Register</h1>
-            <h4 id="login-message">Welcome to the University Companion App</h4>
+            <h1>Sign Up</h1>
+            <h4 id="login-message">Welcome to the University Companion App.</h4>
             <form onSubmit={register}>
               <div className="field-wrapper">
                 <label htmlFor="email">Name</label>
@@ -93,11 +94,15 @@ function RegisterPage() {
                 <a href="/">Already a user? Sign in</a>
               </div>
               <button className="form-button" type="submit">
-                <h4>Register</h4>
+                <h4>Sign Up</h4>
               </button>
             </form>
           </div>
-          <div className="login-image"></div>
+          <div className="login-image">
+            <div className="login-overlay">
+              <CompanionX />
+            </div>
+          </div>
         </div>
       </div>
     </div>

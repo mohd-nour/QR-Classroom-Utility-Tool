@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate, Navigate } from "react-router-dom";
 import { signin } from "../actions/auth";
 import { getCourses } from "../actions/courses";
+import CompanionX from "./widgets/companionX";
 
 import io from "socket.io-client";
 
@@ -48,7 +49,7 @@ function LoginPage() {
         <div className="form-container">
           <div className="login-form">
             <h1>Login</h1>
-            <h4 id="login-message">Welcome to the University Companion App</h4>
+            <h4 id="login-message">Sign in to manage your classes.</h4>
             <GoogleLogin
               clientId="928846196486-ghenpvc40o1ol8cotd2fi78rfvjh5299.apps.googleusercontent.com"
               render={(renderProps) => (
@@ -114,7 +115,11 @@ function LoginPage() {
               <a href="/RegisterPage">Not registered? Sign Up</a>
             </div>
           </div>
-          <div className="login-image"></div>
+          <div className="login-image">
+            <div className="login-overlay">
+              <CompanionX />
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -7,7 +7,8 @@
 html {
   scroll-behavior: smooth;
   font-family: "Roboto", sans-serif;
-  background-color: rgb(237, 242, 247);
+  background-color: #f5f5f5;
+  color: #393c41;
 }
 
 ::-webkit-scrollbar {
@@ -41,7 +42,7 @@ html {
 
 #addClassButton {
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   height: 2.5rem;
   width: 6rem;
   background-color: #24292f;
@@ -82,6 +83,22 @@ ul {
   color: #fff;
 }
 
+.logo-area {
+  top: 0;
+  position: absolute;
+  background-color: #24292f;
+  height: 8rem;
+  width: 5rem;
+}
+
+.companionX-logo-nav {
+  background-color: #24292f;
+  top: 30px;
+  position: absolute;
+  height: 60px;
+  width: 60px;
+}
+
 .nav-item {
   width: 5rem;
   display: flex;
@@ -95,12 +112,6 @@ ul {
   background-color: #3c444e;
 }
 
-.aub-logo {
-  width: 3.8rem;
-  margin-top: 0.5rem;
-  margin-bottom: 2rem;
-}
-
 .grid {
   display: grid;
 }
@@ -111,6 +122,9 @@ ul {
 }
 
 #navBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #24292f;
   height: 100vh;
   width: 5rem;
@@ -188,11 +202,14 @@ ul {
   height: 12rem;
   background-color: #fff;
   text-align: center;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   justify-content: center;
   margin: 0 2rem 2rem;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
-    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+
+.class-card p {
+  font-weight: bold;
+  color: #5c5d61;
 }
 
 .swal-modal .swal-text {
@@ -231,12 +248,10 @@ ul {
   height: 12rem;
   background-color: #fff;
   text-align: center;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   justify-content: center;
   align-items: center;
   margin: 0 2rem 2rem;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
-    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
 .remove-icon {
@@ -267,6 +282,9 @@ ul {
 .selection-container {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .selection-panel {
@@ -284,7 +302,7 @@ ul {
   align-items: center;
   width: 25rem;
   height: 20rem;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   margin: 0 2rem 2rem;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
     rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
@@ -296,14 +314,14 @@ a:-webkit-any-link {
 }
 
 .selection-icon {
-  color: black;
+  color: #393c41;
   font-size: 6rem;
 }
 
 .delete-icon {
   z-index: 10;
   background: none;
-  color: inherit;
+  color: #393c41;
   border: none;
   padding: 5px;
   position: absolute;
@@ -312,19 +330,18 @@ a:-webkit-any-link {
   align-items: center;
   right: 2.6rem;
   bottom: 2.2rem;
-  color: black;
   font-size: 1.1rem;
-  border-radius: 0.5rem;
+  border-radius: 5px;
 }
 
 .delete-icon:hover {
-  background-color: rgb(242, 245, 248);
+  background-color: #f5f5f5;
 }
 
 .edit-icon {
   z-index: 10;
   background: none;
-  color: inherit;
+  color: #393c41;
   border: none;
   padding: 5px;
   position: absolute;
@@ -333,13 +350,12 @@ a:-webkit-any-link {
   align-items: center;
   right: 2.6rem;
   top: 0.3rem;
-  color: black;
   font-size: 1.1rem;
-  border-radius: 0.5rem;
+  border-radius: 5px;
 }
 
 .edit-icon:hover {
-  background-color: rgb(242, 245, 248);
+  background-color: #f5f5f5;
 }
 
 .removeUnderline {
@@ -365,28 +381,32 @@ a:-webkit-any-link {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(237, 242, 247);
+  background-color: #f5f5f5;
   height: 100vh;
 }
 
 .form-container {
   display: flex;
   flex-direction: row;
-  width: 70rem;
+  height: inherit;
+  width: 100%;
   background-color: white;
-  box-shadow: 4.4px 2.8px 2.2px rgba(0, 0, 0, 0.02),
-    10.6px 6.8px 5.3px rgba(0, 0, 0, 0.028),
-    19.9px 12.8px 10px rgba(0, 0, 0, 0.035),
-    35.5px 22.8px 17.9px rgba(0, 0, 0, 0.042),
-    66.4px 42.6px 33.4px rgba(0, 0, 0, 0.05),
-    159px 102px 80px rgba(0, 0, 0, 0.07);
 }
 
-.login-form { 
+.login-form {
   display: flex;
   flex-direction: column;
-  width: 50%;
-  padding: 40px 80px;
+  width: 40%;
+  padding: 40px 8%;
+  justify-content: center;
+}
+
+.login-overlay {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), transparent);
+  z-index: 1;
 }
 
 #login-message {
@@ -402,9 +422,10 @@ a:-webkit-any-link {
   justify-content: center;
   border: 1px solid #ddd9d9;
   height: 50px;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   margin: 2.5rem 0;
   font-weight: bold;
+  min-height: 48px;
 }
 
 .google-button:hover {
@@ -425,7 +446,7 @@ a:-webkit-any-link {
 .divider {
   height: 1px;
   background-color: #ddd9d9;
-  width: 28%;
+  width: 35%;
 }
 
 .optional-message {
@@ -440,15 +461,16 @@ a:-webkit-any-link {
 }
 
 .login-input {
+  background-color: #f5f5f5;
   height: 50px;
   width: 100%;
   padding: 0 10px;
   margin-top: 8px;
   font-size: 14px;
   font-weight: bold;
-  border: 1px solid #ddd9d9;
-  border-radius: 0.5rem;
-  color: black;
+  border: none;
+  border-radius: 5px;
+  color: #393c41;
 }
 
 .addClass-input {
@@ -458,12 +480,10 @@ a:-webkit-any-link {
   margin-top: 8px;
   font-size: 14px;
   font-weight: bold;
-  border: 1px solid #ddd9d9;
-  border-radius: 0.5rem;
-  color: black;
-}
-::placeholder {
-  color: #b8b8b8;
+  border: none;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  color: #393c41;
 }
 
 label {
@@ -474,11 +494,36 @@ label {
 }
 
 .login-image {
-  width: 50%;
+  position: relative;
+  width: 60%;
   background-image: url("../assets/Masri_2.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+}
+
+.companionX-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.companionX-logo {
+  height: 50px;
+  width: 50px;
+  margin: 5px;
+}
+
+.companionX-text {
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.6rem;
+  color: white;
+  font-weight: bold;
 }
 
 .forgot-image {
@@ -500,7 +545,7 @@ label {
   font-size: 14px;
   font-weight: bold;
   border: 1px solid #ddd9d9;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   background-color: #24292f;
   color: white;
 }
@@ -631,10 +676,112 @@ label {
   margin-top: 8px;
   font-size: 14px;
   font-weight: bold;
-  border: 1px solid #ddd9d9;
+  border: none;
+  background-color: #f5f5f5;
   border-radius: 0.5rem;
-  color: black;
+  color: #393c41;
 }
 ::placeholder {
   color: #b8b8b8;
+}
+
+.alert-column {
+  margin: 30px 20%;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: white;
+  min-width: 420px;
+}
+
+.alert-input {
+  height: 60px;
+  padding: 0 10px;
+  margin: 30px 20px 10px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  color: #393c41;
+  width: 100%;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
+.alert-selector {
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  color: #393c41;
+  background-color: #f5f5f5;
+  padding: 11px;
+}
+
+.alert-save {
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  color: #fff;
+  padding: 11px;
+  border-radius: 5px;
+  background-color: #24292f;
+}
+
+.alert-save:hover {
+  background-color: #273647;
+}
+
+.alert-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.alert-suboptions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.date-picker {
+  padding: 9px;
+  font-size: 17px;
+  font-weight: bold;
+  border: none;
+  color: #393c41;
+  margin-left: 10px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+}
+
+[type="date"]::-webkit-calendar-picker-indicator {
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+  color: #bbbbbb;
+  cursor: pointer;
+}
+
+.alert-card {
+  height: 50px;
+  margin: 10px 20%;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: white;
+  min-width: 420px;
 }

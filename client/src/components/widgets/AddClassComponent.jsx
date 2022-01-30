@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  clearCurrentCourse,
-  createCourse,
-  updateCourse,
-} from "../../actions/courses";
+import { createCourse, updateCourse } from "../../actions/courses";
 import { useNavigate } from "react-router-dom";
 
 function AddClassComponent(props) {
@@ -21,7 +17,7 @@ function AddClassComponent(props) {
   const currentCourse = useSelector((state) => state.currentCourse);
 
   const course = useSelector((state) =>
-  currentCourse
+    currentCourse
       ? state.courses.find((course) => course._id === currentCourse.courseId)
       : null
   );
@@ -51,9 +47,7 @@ function AddClassComponent(props) {
     <div id="addClassComponent">
       <form autoComplete="off" noValidate onSubmit={handleSubmit}>
         <div className="addClass-column">
-          <h3 id="form-title">
-            {currentCourse ? "EDIT CLASS" : "ADD CLASS"}
-          </h3>
+          <h3 id="form-title">{currentCourse ? "EDIT CLASS" : "ADD CLASS"}</h3>
           <label>Course Name</label>
           <input
             name="courseName"

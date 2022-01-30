@@ -11,6 +11,7 @@ import AddClassPage from "./AddClassPage";
 import SendEmailForgotPassword from "./SendEmailForgotPassword";
 import ResetPassword from "./ResetPassword";
 import SessionsPage from "./SessionsPage";
+import AlertsPage from "./AlertsPage";
 import FinalizedAttendancePage from "./FinalizedAttendancePage";
 import Verified from "./Verified";
 
@@ -26,9 +27,16 @@ function App() {
         <Route path="/Attendance/:sessionNumber" element={<AttendancePage />} />
         <Route path="/Enroll" element={<EnrollmentPage />} />
         <Route path="/AddClassPage" element={<AddClassPage />} />
+        <Route path="/Alerts" element={<AlertsPage />} />
         <Route path="/SessionsPage" element={<SessionsPage />} />
-        <Route path="/FinalizeAttendance" element={<FinalizedAttendancePage />} />
-        <Route path="/verifyRegistration/:email/:verificationToken" element = {<Verified />}/>
+        <Route
+          path="/FinalizeAttendance"
+          element={<FinalizedAttendancePage />}
+        />
+        <Route
+          path="/verifyRegistration/:email/:verificationToken"
+          element={<Verified />}
+        />
         <Route
           path="/SendEmailForgotPassword"
           element={<SendEmailForgotPassword />}

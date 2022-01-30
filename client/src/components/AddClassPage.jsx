@@ -2,8 +2,7 @@ import React, { useEffect, useRef } from "react";
 import VerticalNavBar from "./widgets/VerticalNavBar";
 import Banner from "./widgets/Banner";
 import AddClassComponent from "./widgets/AddClassComponent";
-import { Navigate, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 
 function AddClassPage(props) {
   const endRef = useRef(null);
