@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate, Navigate } from "react-router-dom";
 import { signin } from "../actions/auth";
 import { getCourses } from "../actions/courses";
+import {fetchAlerts} from "../actions/alerts";
 import CompanionX from "./widgets/companionX";
 
 import io from "socket.io-client";
@@ -25,6 +26,7 @@ function LoginPage() {
       localStorage.setItem("profile", JSON.stringify({ result }));
       localStorage.setItem("currentUserUniqueId", uniqueId);
       await dispatch(getCourses());
+      await dispatch(fetchAlerts(uniqueId));
       navigate("/Home");
     } catch (error) {
       console.log(error);

@@ -55,3 +55,9 @@ export const sendEmail = (emailData) =>
   API.post("/forgotPassword/sendEmail", emailData);
 export const resetPasswordClient = (newPassword, id, token) =>
   API.patch("/forgotPassword/resetPass/" + id + "/" + token, newPassword);
+
+export const fetchAlerts = (professorId) => 
+  API.get("/alerts/getAlerts/"+professorId);
+
+export const addAlert = (professorId, courseId, messageAndTitle) => 
+  API.post("/alerts/addAlert/"+professorId+"/"+courseId, messageAndTitle);
