@@ -59,7 +59,7 @@ function AlertForm(props) {
               ></input>
             </div>
             <button type="submit" className="alert-save">
-              Save
+              Post
             </button>
           </div>
         </div>

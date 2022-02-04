@@ -401,6 +401,12 @@ a:-webkit-any-link {
   justify-content: center;
 }
 
+.alert {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
 .login-overlay {
   position: relative;
   height: 100%;

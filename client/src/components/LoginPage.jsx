@@ -5,6 +5,7 @@ import { useNavigate, Navigate } from "react-router-dom";
 import { signin } from "../actions/auth";
 import { getCourses } from "../actions/courses";
 import CompanionX from "./widgets/companionX";
+import { useForm } from "react-hook-form";
 
 import io from "socket.io-client";
 
@@ -15,6 +16,24 @@ function LoginPage() {
   const navigate = useNavigate();
   const initialState = { email: "", password: "" };
   const [formData, setFormData] = useState(initialState);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => console.log(data);
+
+  // const onSubmit = (data) => {
+  //   console.log(data);
+  //   login();
+  // };
+
+  // const login = async (e) => {
+  //   e.preventDefault();
+  //   dispatch(signin(formData, navigate));
+  // };
 
   const googleSuccess = async (res) => {
     const result = res?.profileObj;
@@ -35,14 +54,10 @@ function LoginPage() {
     console.log("Google sign in was unsucessful");
   };
 
-  const login = async (e) => {
-    e.preventDefault();
-    dispatch(signin(formData, navigate));
-  };
-
   if (localStorage.getItem("profile") != null) {
     return <Navigate to="/Home"></Navigate>;
   }
+
   return (
     <div>
       <div className="main-container">
@@ -75,10 +90,12 @@ function LoginPage() {
               <span className="optional-message">or Sign in with Email</span>
               <div className="divider"></div>
             </div>
-            <form onSubmit={login}>
+            <form autoComplete="new-password" onSubmit={handleSubmit(onSubmit)}>
               <div className="field-wrapper">
                 <label>Email</label>
                 <input
+                  autoComplete="new-password"
+                  {...register("email", { required: true })}
                   type="email"
                   name="email"
                   placeholder="mail@website.com"
@@ -89,20 +106,28 @@ function LoginPage() {
                     setFormData({ ...formData, email: e.target.value })
                   }
                 />
+                {errors.email && <p className="alert">Email is required.</p>}
               </div>
               <div className="field-wrapper">
                 <label>Password</label>
                 <input
+                  autoComplete="new-password"
+                  {...register("password", {
+                    required: "Password is required",
+                  })}
                   type="password"
                   name="password"
                   placeholder="min. 8 characters"
-                  id="passsord"
+                  id="password"
                   className="login-input"
                   value={formData.password}
                   onChange={(e) =>
                     setFormData({ ...formData, password: e.target.value })
                   }
                 />
+                {errors.password && (
+                  <p className="alert">{errors.password.message}</p>
+                )}
               </div>
               <div id="forgotpass-container">
                 <a href="/SendEmailForgotPassword">Forgot Password?</a>
