@@ -95,7 +95,9 @@ function LoginPage() {
                 <label>Email</label>
                 <input
                   autoComplete="new-password"
-                  {...register("email", { required: true })}
+                  {...register("email", {
+                    required: "Email is required.",
+                  })}
                   type="email"
                   name="email"
                   placeholder="mail@website.com"
@@ -106,14 +108,16 @@ function LoginPage() {
                     setFormData({ ...formData, email: e.target.value })
                   }
                 />
-                {errors.email && <p className="alert">Email is required.</p>}
+                {errors.email && (
+                  <p className="alert">{errors.email.message}</p>
+                )}
               </div>
               <div className="field-wrapper">
                 <label>Password</label>
                 <input
                   autoComplete="new-password"
                   {...register("password", {
-                    required: "Password is required",
+                    required: "Password is required.",
                   })}
                   type="password"
                   name="password"
