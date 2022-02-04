@@ -1,6 +1,7 @@
 import { AUTH } from "../constants/actionTypes";
 import * as api from "../api/index.js";
 import {getCourses} from "./courses";
+import {fetchAlerts} from "./alerts";
 import swal from "sweetalert";
 
 
@@ -30,6 +31,7 @@ export const signin = (formData, navigate) => async (dispatch) => {
       const uniqueId = JSON.parse(localStorage.getItem("profile")).result._id;
       localStorage.setItem("currentUserUniqueId", uniqueId);
       await dispatch(getCourses());
+      await dispatch(fetchAlerts(uniqueId));
       navigate("/Home");
     }
   } catch (error) {

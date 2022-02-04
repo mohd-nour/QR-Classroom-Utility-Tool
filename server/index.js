@@ -5,6 +5,7 @@ import cors from "cors";
 import courseRoutes from "./routes/courses.js";
 import userRoutes from "./routes/users.js";
 import forgotPasswordRoutes from "./routes/passwordReset.js";
+import alertsRoutes from "./routes/alerts.js";
 import http from "http";
 import {Server, Socket} from "socket.io";
 
@@ -18,6 +19,7 @@ app.use(cors());
 app.use("/courses", courseRoutes);
 app.use("/users", userRoutes);
 app.use("/forgotPassword", forgotPasswordRoutes);
+app.use("/alerts", alertsRoutes);
 
 const server = http.createServer(app);
 const io = new Server(server);
