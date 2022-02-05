@@ -96,15 +96,16 @@ function LoginPage() {
               <div className="field-wrapper">
                 <label>Email</label>
                 <input
-                  autoComplete="new-password"
+                  autoComplete="off"
                   {...register("email", {
                     required: "Email is required.",
                   })}
                   type="email"
                   name="email"
-                  placeholder="mail@website.com"
                   id="email"
-                  className="login-input"
+                  className={`login-input ${
+                    errors.email ? "invalid-entry" : null
+                  }`}
                   value={formData.email}
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
@@ -117,15 +118,16 @@ function LoginPage() {
               <div className="field-wrapper">
                 <label>Password</label>
                 <input
-                  autoComplete="new-password"
+                  autoComplete="off"
                   {...register("password", {
                     required: "Password is required.",
                   })}
                   type="password"
                   name="password"
-                  placeholder="min. 8 characters"
                   id="password"
-                  className="login-input"
+                  className={`login-input ${
+                    errors.password ? "invalid-entry" : null
+                  }`}
                   value={formData.password}
                   onChange={(e) =>
                     setFormData({ ...formData, password: e.target.value })

@@ -50,7 +50,7 @@ function RegisterPage() {
                 <input
                   type="email"
                   name="registerEmail"
-                  placeholder="mail@website.com"
+                  placeholder="Mail@website.com"
                   id="registerEmail"
                   className="login-input"
                   value={formData.email}
@@ -64,7 +64,7 @@ function RegisterPage() {
                 <input
                   type="password"
                   name="registerPassword"
-                  placeholder="Minimum eight characters"
+                  placeholder="Min. 8 characters"
                   id="registerPassword"
                   className="login-input"
                   value={formData.password}
@@ -78,7 +78,7 @@ function RegisterPage() {
                 <input
                   type="password"
                   name="registerConfirmPassword"
-                  placeholder="min. 8 characters"
+                  placeholder="Confirm password"
                   id="registerConfirmPassword"
                   className="login-input"
                   value={formData.confirmPassword}

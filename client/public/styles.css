@@ -13,7 +13,7 @@ html {
 
 ::-webkit-scrollbar {
   width: 0.6rem;
-  background-color: #24292f;
+  background-color: #161718;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -45,7 +45,7 @@ html {
   border-radius: 5px;
   height: 2.5rem;
   width: 6rem;
-  background-color: #24292f;
+  background-color: #161718;
   color: white;
   font-weight: bold;
   margin-right: 5rem;
@@ -86,13 +86,13 @@ ul {
 .logo-area {
   top: 0;
   position: absolute;
-  background-color: #24292f;
+  background-color: #161718;
   height: 8rem;
   width: 5rem;
 }
 
 .companionX-logo-nav {
-  background-color: #24292f;
+  background-color: #161718;
   top: 30px;
   position: absolute;
   height: 60px;
@@ -125,7 +125,7 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #24292f;
+  background-color: #161718;
   height: 100vh;
   width: 5rem;
   position: fixed;
@@ -456,9 +456,11 @@ a:-webkit-any-link {
 }
 
 .optional-message {
+  display: flex;
   font-size: 0.8rem;
   margin: 0 0.5rem;
   color: #b8b8b8;
+  white-space: nowrap;
 }
 
 .google-logo {
@@ -477,6 +479,10 @@ a:-webkit-any-link {
   border: none;
   border-radius: 5px;
   color: #393c41;
+}
+
+.invalid-entry {
+  border: 1px solid red;
 }
 
 .addClass-input {
@@ -552,12 +558,12 @@ label {
   font-weight: bold;
   border: 1px solid #ddd9d9;
   border-radius: 5px;
-  background-color: #24292f;
+  background-color: #161718;
   color: white;
 }
 
 .form-button:hover {
-  background-color: #273647;
+  background-color: #2f353b;
 }
 
 #forgotpass-container {
@@ -630,14 +636,14 @@ label {
   border-radius: 0.5rem;
   height: 2.5rem;
   width: 20rem;
-  background-color: #24292f;
+  background-color: #161718;
   color: white;
   font-weight: bold;
   margin-top: 38px;
 }
 
 .save-button:hover {
-  background-color: #273647;
+  background-color: #2f353b;
 }
 
 .clear-button {
@@ -738,8 +744,11 @@ button:focus {
   color: #fff;
   padding: 11px;
   border-radius: 5px;
-  background-color: #24292f;
+  background-color: #161718;
 }
+
+/* #161718 */
+/* #2f353b */
 
 .alert-save:hover {
   background-color: #273647;
