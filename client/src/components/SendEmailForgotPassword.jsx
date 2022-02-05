@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { sendEmail } from "../actions/auth";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import CompanionX from "./widgets/companionX";
 
 function SendEmailForgotPassword() {
   const [email, setEmail] = useState({ email: "" });
@@ -39,7 +40,11 @@ function SendEmailForgotPassword() {
               </button>
             </form>
           </div>
-          <div className="forgot-image"></div>
+          <div className="forgot-image">
+            <div className="login-overlay">
+              <CompanionX />
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -15,14 +15,14 @@ export const socket = io();
 function LoginPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const initialState = { email: "", password: "" };
-  const [formData, setFormData] = useState(initialState);
+  // const initialState = { email: "", password: "" };
+  // const [formData, setFormData] = useState(initialState);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({ mode: "onTouched" });
 
   const onSubmit = (data) => console.log(data);
 
@@ -100,16 +100,15 @@ function LoginPage() {
                   {...register("email", {
                     required: "Email is required.",
                   })}
-                  type="email"
                   name="email"
                   id="email"
                   className={`login-input ${
                     errors.email ? "invalid-entry" : null
                   }`}
-                  value={formData.email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
+                  // value={formData.email}
+                  // onChange={(e) =>
+                  //   setFormData({ ...formData, email: e.target.value })
+                  // }
                 />
                 {errors.email && (
                   <p className="alert">{errors.email.message}</p>
@@ -128,10 +127,10 @@ function LoginPage() {
                   className={`login-input ${
                     errors.password ? "invalid-entry" : null
                   }`}
-                  value={formData.password}
-                  onChange={(e) =>
-                    setFormData({ ...formData, password: e.target.value })
-                  }
+                  // value={formData.password}
+                  // onChange={(e) =>
+                  //   setFormData({ ...formData, password: e.target.value })
+                  // }
                 />
                 {errors.password && (
                   <p className="alert">{errors.password.message}</p>

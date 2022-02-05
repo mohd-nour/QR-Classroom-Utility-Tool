@@ -24,7 +24,6 @@ var createStudentCardWrapped = function (courseIdParam) {
   };
 };
 
-
 function EnrollmentWidget() {
   const dispatch = useDispatch();
 
@@ -36,14 +35,16 @@ function EnrollmentWidget() {
     studentId: "",
   });
   console.log(joinedEnrollment);
-  const refresh = () => {
-    console.log("Added student enrollment");
-    dispatch(getStudents(courseId));
-  };
 
-  const {courseId, courseName, courseNumber} = useSelector((state) => state.currentCourse);
+  const { courseId, courseName, courseNumber } = useSelector(
+    (state) => state.currentCourse
+  );
   useEffect(() => {
-    if (!joinedEnrollment){
+    const refresh = () => {
+      console.log("Added student enrollment");
+      dispatch(getStudents(courseId));
+    };
+    if (!joinedEnrollment) {
       socket.emit("JoinEnrollment", courseId);
       socket.on("RefreshEnrollment", refresh);
       setJoinedEnrollment(true);
@@ -52,7 +53,7 @@ function EnrollmentWidget() {
       socket.off("RefreshEnrollment", refresh);
       socket.emit("LeaveEnrollment", courseId);
     };
-  }, [courseId, dispatch]);
+  }, [courseId, dispatch, joinedEnrollment]);
 
   // if there are no students with an id equal to state, add student
 
@@ -64,7 +65,6 @@ function EnrollmentWidget() {
           (student) => student.instituteId === studentData.studentId
         ).length === 0
       ) {
-        
         dispatch(addStudent(courseId, studentData.studentId));
       } else {
         swal("Student is already enrolled!", { icon: "warning" });
@@ -79,8 +79,7 @@ function EnrollmentWidget() {
       <div className="dash-container">
         <div id="lower-section">
           <h1 className="title">
-            Student Enrolment -
-            {" " + courseName + " " + courseNumber}
+            Student Enrolment -{" " + courseName + " " + courseNumber}
           </h1>
           <div id="card-section">
             {students.map(createStudentCardWrapped(courseId))}

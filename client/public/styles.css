@@ -539,8 +539,9 @@ label {
 }
 
 .forgot-image {
-  width: 50%;
-  background-image: url("../assets/IFI_img.jpg");
+  position: relative;
+  width: 60%;
+  background-image: url("../assets/IFI.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -595,6 +596,18 @@ label {
   justify-content: right;
   font-size: 12px;
   padding: 0.8rem 0;
+  font-weight: bold;
+}
+
+.terms-message {
+  align-items: center;
+  margin-top: 35px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.terms-span {
+  color: orange;
   font-weight: bold;
 }
 
