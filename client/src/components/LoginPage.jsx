@@ -24,7 +24,15 @@ function LoginPage() {
     formState: { errors },
   } = useForm({ mode: "onTouched" });
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data)
+    const inputData = JSON.parse(JSON.stringify(data));
+    const formData = {
+      email: inputData.email,
+      password: inputData.password
+    };
+    dispatch(signin(formData, navigate));
+  };
 
   // const onSubmit = (data) => {
   //   console.log(data);

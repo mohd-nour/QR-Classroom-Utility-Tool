@@ -8,6 +8,8 @@ import swal from "sweetalert";
 export const signup = (formData, navigate) => async (dispatch) => {
   try {
     // register the user
+    console.log("reached signup frontend");
+    console.log(formData);
     const { data } = await api.signup(formData);
     console.log(data);
     if (data.error) {
