@@ -51,7 +51,9 @@ export const signin = async (req, res) => {
 };
 
 export const signup = async (req, res) => {
+  console.log("reached signup backend");
   const { name, email, password, confirmPassword, instituteId } = req.body;
+  console.log({ name, email, password, confirmPassword, instituteId });
   try {
     const existingUser = await User.findOne({ email });
     if (existingUser)

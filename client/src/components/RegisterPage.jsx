@@ -25,14 +25,22 @@ function RegisterPage() {
 
   const password = watch("registerPassword", "");
 
-  const onSubmit = (data) => console.log(JSON.stringify(data));
+  const onSubmit = (data) => {
+    const inputData = JSON.parse(JSON.stringify(data));
+    const formData = {
+      name: inputData.name,
+      email: inputData.registerEmail,
+      password: inputData.registerPassword,
+      confirmPassword: inputData.registerConfirmPassword
+    }
+    dispatch(signup(formData, navigate));
+  };
 
   // const register = async (e) => {
   //   e.preventDefault();
   //   dispatch(signup(formData, navigate));
   // };
 
-  console.log(errors);
 
   if (localStorage.getItem("profile") != null) {
     return <Navigate to="/Home"></Navigate>;
@@ -101,7 +109,7 @@ function RegisterPage() {
                     },
                     pattern: {
                       value:
-                        /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/,
+                        /^(?=.*\d)(?=.*[!_@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/,
                       message:
                         "Password must contain atleast one uppercase, special, and numeric character",
                     },
