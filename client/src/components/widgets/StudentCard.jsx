@@ -11,17 +11,19 @@ function StudentCard(props) {
         <h3 className="student-name">{props.name}</h3>
         <h3 className="student-name">{props.id}</h3>
         {props.mode === "GradeReport" && (
-          <h3>{props.attendanceRecord}/{props.totalNbOfSessions} sessions attended</h3>
-      )}
+          <h3>
+            {props.attendanceRecord}/{props.totalNbOfSessions} sessions attended
+          </h3>
+        )}
       </div>
-      {(props.mode !== "removeDelete" || props.mode!=="GradeReport") &&
-      <button
-        onClick={() => {
-          dispatch(removeStudent(props.courseId, props.id));
-        }}
-        className="uil uil-times remove-icon"
-      ></button>
-      }
+      {props.mode === "GradeReport" || (
+        <button
+          onClick={() => {
+            dispatch(removeStudent(props.courseId, props.id));
+          }}
+          className="uil uil-times remove-icon"
+        ></button>
+      )}
     </div>
   );
 }

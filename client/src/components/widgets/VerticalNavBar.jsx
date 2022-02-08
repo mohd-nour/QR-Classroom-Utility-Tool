@@ -76,13 +76,17 @@ c-13 8 -152 88 -310 178 l-288 164 0 353 c0 194 3 353 8 353 4 -1 41 -20 82
           </Link>
           <Link to="/Alerts" className="removeUnderline white">
             <li className="nav-item">
-              <i className="uil uil-exclamation-circle"></i>
-              Alerts
+              <i class="uil uil-comments-alt"></i>
+              Forum
             </li>
           </Link>
           <li className="nav-item">
-            <i className="uil uil-comment-alt"></i>
-            Chats
+            <i class="uil uil-chart-pie-alt"></i>
+            Polls
+          </li>
+          <li className="nav-item">
+            <i class="uil uil-book"></i>
+            Grades
           </li>
           <li className="nav-item" onClick={logout}>
             <i className="uil uil-signout"></i>
