@@ -185,16 +185,6 @@ ul {
   height: 400px;
 }
 
-.right-card-section {
-  display: flex;
-  flex-direction: column;
-  width: 3rem;
-  height: 12rem;
-  justify-content: center;
-  margin: 1rem 2rem 2rem;
-  text-align: center;
-}
-
 .class-card {
   display: flex;
   flex-direction: column;
@@ -251,7 +241,30 @@ ul {
   border-radius: 5px;
   justify-content: center;
   align-items: center;
-  margin: 0 2rem 2rem;
+  margin: 0 1.5rem;
+}
+
+.student-name {
+  font-size: 20px;
+}
+
+.student-id {
+  margin-top: 5px;
+  font-size: 15px;
+}
+
+.grade-section {
+  height: 10rem;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+}
+
+.grade-progress {
+  height: 120px;
+  width: 120px;
+  font-weight: bold;
 }
 
 .remove-icon {
@@ -276,7 +289,11 @@ ul {
 }
 
 .card-container {
+  margin: 10px 20px 20px 0;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .selection-container {
@@ -708,6 +725,10 @@ label {
 }
 ::placeholder {
   color: #b8b8b8;
+}
+
+.without::-webkit-datetime-edit-ampm-field {
+  display: none;
 }
 
 .alert-column {

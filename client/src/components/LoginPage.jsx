@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { GoogleLogin } from "react-google-login";
 import { useDispatch } from "react-redux";
 import { useNavigate, Navigate } from "react-router-dom";
@@ -25,11 +25,11 @@ function LoginPage() {
   } = useForm({ mode: "onTouched" });
 
   const onSubmit = (data) => {
-    console.log(data)
+    console.log(data);
     const inputData = JSON.parse(JSON.stringify(data));
     const formData = {
       email: inputData.email,
-      password: inputData.password
+      password: inputData.password,
     };
     dispatch(signin(formData, navigate));
   };
@@ -113,10 +113,6 @@ function LoginPage() {
                   className={`login-input ${
                     errors.email ? "invalid-entry" : null
                   }`}
-                  // value={formData.email}
-                  // onChange={(e) =>
-                  //   setFormData({ ...formData, email: e.target.value })
-                  // }
                 />
                 {errors.email && (
                   <p className="alert">{errors.email.message}</p>

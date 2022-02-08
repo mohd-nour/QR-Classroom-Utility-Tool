@@ -1,17 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { sendEmail } from "../actions/auth";
 import { useNavigate } from "react-router-dom";
 import CompanionX from "./widgets/companionX";
+import { useForm } from "react-hook-form";
 
 function SendEmailForgotPassword() {
-  const [email, setEmail] = useState({ email: "" });
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const SendEmail = async (e) => {
-    e.preventDefault();
-    console.log(email);
-    dispatch(sendEmail(email, navigate));
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ mode: "onTouched" });
+
+  const sendResetLink = (data) => {
+    const inputData = JSON.parse(JSON.stringify(data));
+    const formData = {
+      email: inputData.email,
+    };
+    dispatch(sendEmail(formData, navigate));
   };
   return (
     <div>
@@ -22,17 +31,28 @@ function SendEmailForgotPassword() {
             <h4 id="login-message">
               Enter your email to recieve a password reset link
             </h4>
-            <form onSubmit={SendEmail}>
+            <form onSubmit={handleSubmit(sendResetLink)}>
               <div className="field-wrapper">
                 <label>Email: </label>
                 <input
-                  type="email"
-                  name="registerConfirmPassword"
+                  autoComplete="off"
+                  {...register("confirmPass", {
+                    required: "Email is required.",
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: "Invalid email address.",
+                    },
+                  })}
+                  name="confirmPass"
                   placeholder="ex: abc123@mail.aub.edu"
-                  id="registerConfirmPassword"
-                  className="login-input"
-                  onChange={(e) => setEmail({ email: e.target.value })}
+                  id="confirmPass"
+                  className={`login-input ${
+                    errors.confirmPass ? "invalid-entry" : null
+                  }`}
                 />
+                {errors.confirmPass && (
+                  <p className="alert">{errors.confirmPass.message}</p>
+                )}
               </div>
               <br />
               <button className="form-button" type="submit">

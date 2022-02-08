@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import StudentCard from "./StudentCard";
+import StudentCard from "./StudentCard/StudentCard";
 import { useDispatch, useSelector } from "react-redux";
 import { addStudentToSession, setSingleSession, finalizeSession, getSessions, closeSession } from "../../actions/courses";
 import swal from "sweetalert";

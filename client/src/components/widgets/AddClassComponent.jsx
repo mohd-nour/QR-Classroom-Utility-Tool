@@ -22,8 +22,6 @@ function AddClassComponent(props) {
       : null
   );
 
-  // when course value changes, run function
-  // if course exists, set courseData to course
   useEffect(() => {
     if (course) {
       setCourseData(course);
@@ -100,10 +98,11 @@ function AddClassComponent(props) {
             <div>
               <label>Starting time</label>
               <input
+                type="time"
                 name="startTime"
                 placeholder="ex: 10:00"
                 id="startTime"
-                className="time-input"
+                className="time-input without"
                 value={courseData.startTime}
                 onChange={(e) =>
                   setCourseData({
@@ -116,10 +115,11 @@ function AddClassComponent(props) {
             <div>
               <label>Ending time</label>
               <input
+                type="time"
                 name="endTime"
                 placeholder="ex: 10:50"
                 id="endTime"
-                className="time-input"
+                className="time-input without"
                 value={courseData.endTime}
                 onChange={(e) =>
                   setCourseData({

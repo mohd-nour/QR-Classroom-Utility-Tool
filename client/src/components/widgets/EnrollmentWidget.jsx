@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import StudentCard from "./StudentCard";
+import StudentCard from "./StudentCard/StudentCard";
 import { useSelector, useDispatch } from "react-redux";
 import { getStudents, addStudent } from "../../actions/courses";
 import swal from "sweetalert";

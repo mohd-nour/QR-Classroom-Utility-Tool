@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, Navigate } from "react-router-dom";
 import { signup } from "../actions/auth";
@@ -8,13 +8,6 @@ import { useForm } from "react-hook-form";
 function RegisterPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const initialState = {
-  //   name: "",
-  //   email: "",
-  //   password: "",
-  //   confirmPassword: "",
-  // };
-  // const [formData, setFormData] = useState(initialState);
 
   const {
     register,
@@ -31,16 +24,10 @@ function RegisterPage() {
       name: inputData.name,
       email: inputData.registerEmail,
       password: inputData.registerPassword,
-      confirmPassword: inputData.registerConfirmPassword
-    }
+      confirmPassword: inputData.registerConfirmPassword,
+    };
     dispatch(signup(formData, navigate));
   };
-
-  // const register = async (e) => {
-  //   e.preventDefault();
-  //   dispatch(signup(formData, navigate));
-  // };
-
 
   if (localStorage.getItem("profile") != null) {
     return <Navigate to="/Home"></Navigate>;
@@ -66,10 +53,6 @@ function RegisterPage() {
                   className={`login-input ${
                     errors.name ? "invalid-entry" : null
                   }`}
-                  // value={formData.name}
-                  // onChange={(e) =>
-                  //   setFormData({ ...formData, name: e.target.value })
-                  // }
                 />
                 {errors.name && <p className="alert">{errors.name.message}</p>}
               </div>
