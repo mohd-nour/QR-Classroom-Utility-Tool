@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { GoogleLogin } from "react-google-login";
 import { useDispatch } from "react-redux";
 import { useNavigate, Navigate } from "react-router-dom";
@@ -7,6 +7,7 @@ import { getCourses } from "../actions/courses";
 import { fetchAlerts } from "../actions/alerts";
 import CompanionX from "./widgets/companionX";
 import { useForm } from "react-hook-form";
+import { CircularProgress } from "@material-ui/core";
 
 import io from "socket.io-client";
 
@@ -15,8 +16,10 @@ export const socket = io();
 function LoginPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const initialState = { email: "", password: "" };
-  // const [formData, setFormData] = useState(initialState);
+
+  const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {}, [submitting]);
 
   const {
     register,
@@ -24,25 +27,16 @@ function LoginPage() {
     formState: { errors },
   } = useForm({ mode: "onTouched" });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    setSubmitting(true);
     const inputData = JSON.parse(JSON.stringify(data));
     const formData = {
       email: inputData.email,
       password: inputData.password,
     };
-    dispatch(signin(formData, navigate));
+    await dispatch(signin(formData, navigate));
+    setSubmitting(false);
   };
-
-  // const onSubmit = (data) => {
-  //   console.log(data);
-  //   login();
-  // };
-
-  // const login = async (e) => {
-  //   e.preventDefault();
-  //   dispatch(signin(formData, navigate));
-  // };
 
   const googleSuccess = async (res) => {
     const result = res?.profileObj;
@@ -73,8 +67,8 @@ function LoginPage() {
       <div className="main-container">
         <div className="form-container">
           <div className="login-form">
-            <h1>Login</h1>
-            <h4 id="login-message">Sign in to manage your classes.</h4>
+            <h1>Sign In</h1>
+            <h4 id="login-message">Sign In to manage your classes.</h4>
             <GoogleLogin
               clientId="928846196486-ghenpvc40o1ol8cotd2fi78rfvjh5299.apps.googleusercontent.com"
               render={(renderProps) => (
@@ -88,7 +82,7 @@ function LoginPage() {
                     src="https://freesvg.org/img/1534129544.png"
                     alt="google-logo"
                   />
-                  <h4 className="google-signin">Sign in with Google</h4>
+                  <h4 className="google-signin">Sign In with Google</h4>
                 </button>
               )}
               onSuccess={googleSuccess}
@@ -97,7 +91,7 @@ function LoginPage() {
             />
             <div className="form-divider">
               <div className="divider"></div>
-              <span className="optional-message">or Sign in with Email</span>
+              <span className="optional-message">or Sign In with Email</span>
               <div className="divider"></div>
             </div>
             <form autoComplete="new-password" onSubmit={handleSubmit(onSubmit)}>
@@ -143,8 +137,16 @@ function LoginPage() {
               <div id="forgotpass-container">
                 <a href="/SendEmailForgotPassword">Forgot Password?</a>
               </div>
-              <button className="form-button" type="submit">
-                <h4>Login</h4>
+              <button
+                className="form-button"
+                type="submit"
+                disabled={submitting}
+              >
+                {submitting ? (
+                  <CircularProgress className="form-loader" color="inherit" />
+                ) : (
+                  <h4>Sign In</h4>
+                )}
               </button>
             </form>
             <div id="signup-container">

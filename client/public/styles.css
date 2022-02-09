@@ -231,6 +231,11 @@ ul {
   justify-content: space-between;
 }
 
+.form-loader {
+  padding: 10px;
+  color: white;
+}
+
 .student-card {
   display: flex;
   flex-direction: column;
