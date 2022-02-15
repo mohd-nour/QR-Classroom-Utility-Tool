@@ -34,7 +34,6 @@ function EnrollmentWidget() {
   const [studentData, setStudentData] = useState({
     studentId: "",
   });
-  console.log(joinedEnrollment);
 
   const { courseId, courseName, courseNumber } = useSelector(
     (state) => state.currentCourse

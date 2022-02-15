@@ -18,8 +18,9 @@ function SendEmailForgotPassword() {
   const sendResetLink = (data) => {
     const inputData = JSON.parse(JSON.stringify(data));
     const formData = {
-      email: inputData.email,
+      email: inputData.confirmPass
     };
+    console.log(inputData);
     dispatch(sendEmail(formData, navigate));
   };
   return (
