@@ -15,7 +15,6 @@ function createStudentCard(student) {
 
 function FinalizedAttendanceWidget(props) {
   const currentSession = useSelector((state) => state.currentSession);
-  console.log(currentSession);
   const attendedStudents = currentSession.attendedStudents;
   const { courseName, courseNumber } = useSelector(
     (state) => state.currentCourse
