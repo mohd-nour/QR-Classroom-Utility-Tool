@@ -71,7 +71,10 @@ function ClassesWidget(props) {
         </div>
         {!courses.length ? (
           <div className="empty-classes">
-            <h3 className="noclass-title">Oops, no classes yet!</h3>
+            <h3 className="noclass-title">
+              Oops, no classes yet! Add a class to get started.
+            </h3>
+
             <Svg className="classSVG"></Svg>
           </div>
         ) : (
