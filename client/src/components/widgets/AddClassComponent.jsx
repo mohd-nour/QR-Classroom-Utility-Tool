@@ -133,9 +133,6 @@ function AddClassComponent(props) {
           <button type="submit" className="save-button">
             Save
           </button>
-          <button type="submit" className="clear-button">
-            Clear
-          </button>
         </div>
       </form>
     </div>

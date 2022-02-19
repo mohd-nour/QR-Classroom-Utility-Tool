@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import ClassCard from "./ClassCard";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { CircularProgress } from "@material-ui/core";
 import { getCourses, clearCurrentCourse } from "../../actions/courses";
+import { ReactComponent as Svg } from "../../svg/undraw2.svg";
 
 function createCard(course) {
   return (
@@ -23,6 +23,16 @@ function createCard(course) {
 function ClassesWidget(props) {
   // fetch state of courses from store
 
+  const endRef = useRef(null);
+
+  const scrollToBottom = () => {
+    endRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, []);
+
   const courses = useSelector((state) => state.courses);
 
   const dispatch = useDispatch();
@@ -38,11 +48,10 @@ function ClassesWidget(props) {
   return (
     <div>
       <div id="lower-section">
-        <h1 className="title">
-          Welcome, {user == null ? "No account" : user.result.name}
-        </h1>
         <div className="main-panel">
-          <h2 className="sub-title">Your classes</h2>
+          <h1 className="title">
+            Welcome, {user == null ? "No account" : user.result.name}
+          </h1>
           <button
             id="addClassButton"
             onClick={() => {
@@ -53,12 +62,23 @@ function ClassesWidget(props) {
             Add a class
           </button>
         </div>
+        <div>
+          {!courses.length ? (
+            <div></div>
+          ) : (
+            <h2 className="sub-title">Your classes</h2>
+          )}
+        </div>
         {!courses.length ? (
-          <CircularProgress className="circular-progress" />
+          <div className="empty-classes">
+            <h3 className="noclass-title">Oops, no classes yet!</h3>
+            <Svg className="classSVG"></Svg>
+          </div>
         ) : (
           <div id="card-section">{courses.map(createCard)}</div>
         )}
       </div>
+      <div ref={endRef}></div>
     </div>
   );
 }
