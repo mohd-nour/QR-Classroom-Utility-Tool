@@ -48,11 +48,13 @@ function AddClassComponent(props) {
   };
   return (
     <div id="addClassComponent">
-      <form autoComplete="off" noValidate onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="addClass-column">
           <h3 id="form-title">{currentCourse ? "EDIT CLASS" : "ADD CLASS"}</h3>
           <div className="input-container">
             <label>Course Name</label>
+            {/* MOHAMAD ABD I NEED YOUR HELP */}
+            {/* in edit mode, hook form does not detect input value from state on mount, so we need to disable validation in each field until a change is detected in it */}
             <input
               {...register("courseName", {
                 required: "Course name is required.",
