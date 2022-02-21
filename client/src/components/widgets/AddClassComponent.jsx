@@ -8,7 +8,8 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import TimePicker from "@mui/lab/TimePicker";
 
 function AddClassComponent(props) {
-  const [value, setValue] = React.useState(null);
+  const [value1, setValue1] = React.useState(null);
+  const [value2, setValue2] = React.useState(null);
 
   const [courseData, setCourseData] = useState({
     courseName: "",
@@ -126,9 +127,9 @@ function AddClassComponent(props) {
               ></input> */}
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <TimePicker
-                  value={value}
+                  value={value1}
                   onChange={(newValue) => {
-                    setValue(newValue);
+                    setValue1(newValue);
                   }}
                   renderInput={(params) => (
                     <TextField
@@ -165,9 +166,9 @@ function AddClassComponent(props) {
               ></input> */}
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <TimePicker
-                  value={value}
+                  value={value2}
                   onChange={(newValue) => {
-                    setValue(newValue);
+                    setValue2(newValue);
                   }}
                   renderInput={(params) => (
                     <TextField
