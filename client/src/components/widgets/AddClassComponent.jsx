@@ -2,15 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createCourse, updateCourse } from "../../actions/courses";
 import { useNavigate } from "react-router-dom";
-import TextField from "@mui/material/TextField";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import TimePicker from "@mui/lab/TimePicker";
+import { useForm } from "react-hook-form";
 
 function AddClassComponent(props) {
-  const [value1, setValue1] = React.useState(null);
-  const [value2, setValue2] = React.useState(null);
-
   const [courseData, setCourseData] = useState({
     courseName: "",
     courseNumber: "",
@@ -35,13 +29,17 @@ function AddClassComponent(props) {
     }
   }, [course]);
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ mode: "onTouched" });
+
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  const onSubmit = (e) => {
     if (currentCourse) {
       dispatch(updateCourse(currentCourse.courseId, courseData, navigate));
     } else {
@@ -50,16 +48,19 @@ function AddClassComponent(props) {
   };
   return (
     <div id="addClassComponent">
-      <form autoComplete="off" noValidate onSubmit={handleSubmit}>
+      <form autoComplete="off" noValidate onSubmit={handleSubmit(onSubmit)}>
         <div className="addClass-column">
           <h3 id="form-title">{currentCourse ? "EDIT CLASS" : "ADD CLASS"}</h3>
           <div className="input-container">
             <label>Course Name</label>
             <input
+              {...register("courseName", {
+                required: "Course name is required.",
+              })}
+              className={`addClass-input ${
+                errors.courseName ? "invalid-entry" : null
+              }`}
               name="courseName"
-              placeholder="ex: EECE"
-              id="courseName"
-              className="addClass-input"
               value={courseData.courseName}
               onChange={(e) =>
                 setCourseData({
@@ -68,14 +69,20 @@ function AddClassComponent(props) {
                 })
               }
             ></input>
+            {errors.courseName && (
+              <p className="alert">{errors.courseName.message}</p>
+            )}
           </div>
           <div className="input-container">
             <label>Course Number</label>
             <input
+              {...register("courseNumber", {
+                required: "Course number is required.",
+              })}
+              className={`addClass-input ${
+                errors.courseNumber ? "invalid-entry" : null
+              }`}
               name="courseNumber"
-              placeholder="ex: 502"
-              id="courseName"
-              className="addClass-input"
               value={courseData.courseNumber}
               onChange={(e) =>
                 setCourseData({
@@ -84,6 +91,9 @@ function AddClassComponent(props) {
                 })
               }
             ></input>
+            {errors.courseNumber && (
+              <p className="alert">{errors.courseNumber.message}</p>
+            )}
           </div>
           <div className="input-container">
             <label>Schedule</label>
@@ -110,12 +120,14 @@ function AddClassComponent(props) {
           <div className="time-container">
             <div>
               <label>Starting time</label>
-              {/* <input
+              <input
+                {...register("startTime", {
+                  required: "Start time is required.",
+                })}
                 name="startTime"
                 type="time"
                 placeholder="ex: 10:00"
                 id="startTime"
-                className="time-input without"
                 value={courseData.startTime}
                 onChange={(e) => {
                   console.log(courseData);
@@ -124,37 +136,25 @@ function AddClassComponent(props) {
                     startTime: e.target.value,
                   });
                 }}
-              ></input> */}
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <TimePicker
-                  value={value1}
-                  onChange={(newValue) => {
-                    setValue1(newValue);
-                  }}
-                  renderInput={(params) => (
-                    <TextField
-                      required
-                      style={{
-                        height: 50,
-                        width: 165,
-                        marginTop: 5,
-                        marginRight: 10,
-                        color: "#393c41",
-                      }}
-                      {...params}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
+                className={`time-input ${
+                  errors.startTime ? "invalid-entry" : null
+                }`}
+              ></input>
+              {errors.startTime && (
+                <p className="alert">{errors.startTime.message}</p>
+              )}
             </div>
+            <div id="time-spacer"></div>
             <div>
               <label>Ending time</label>
-              {/* <input
+              <input
+                {...register("endTime", {
+                  required: "End time is required.",
+                })}
                 name="endTime"
                 type="time"
                 placeholder="ex: 10:50"
                 id="endTime"
-                className="time-input without"
                 value={courseData.endTime}
                 onChange={(e) => {
                   console.log(courseData);
@@ -163,30 +163,13 @@ function AddClassComponent(props) {
                     endTime: e.target.value,
                   });
                 }}
-              ></input> */}
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <TimePicker
-                  value={value2}
-                  onChange={(newValue) => {
-                    setValue2(newValue);
-                  }}
-                  renderInput={(params) => (
-                    <TextField
-                      required
-                      InputProps={{
-                        disableUnderline: true,
-                      }}
-                      style={{
-                        height: 50,
-                        width: 165,
-                        marginTop: 5,
-                        color: "#393c41",
-                      }}
-                      {...params}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
+                className={`time-input ${
+                  errors.endTime ? "invalid-entry" : null
+                }`}
+              ></input>
+              {errors.endTime && (
+                <p className="alert">{errors.endTime.message}</p>
+              )}
             </div>
           </div>
           <button type="submit" className="save-button">

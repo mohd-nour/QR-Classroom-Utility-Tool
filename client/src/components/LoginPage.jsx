@@ -125,10 +125,6 @@ function LoginPage() {
                   className={`login-input ${
                     errors.password ? "invalid-entry" : null
                   }`}
-                  // value={formData.password}
-                  // onChange={(e) =>
-                  //   setFormData({ ...formData, password: e.target.value })
-                  // }
                 />
                 {errors.password && (
                   <p className="alert">{errors.password.message}</p>

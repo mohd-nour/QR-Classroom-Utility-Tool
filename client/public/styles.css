@@ -519,8 +519,21 @@ a:-webkit-any-link {
   color: #393c41;
 }
 
-.invalid-entry {
-  border: 1px solid red;
+.time-input {
+  background-color: #f5f5f5;
+  height: 50px;
+  width: 100%;
+  padding: 0 10px;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  color: #393c41;
+}
+
+#time-spacer {
+  width: 30px;
 }
 
 .addClass-input {
@@ -534,6 +547,10 @@ a:-webkit-any-link {
   background-color: #f5f5f5;
   border-radius: 5px;
   color: #393c41;
+}
+
+.invalid-entry {
+  border: 1px solid red;
 }
 
 .input-container {
@@ -735,26 +752,6 @@ label {
 .time-container {
   display: flex;
   justify-content: space-between;
-}
-
-.time-input {
-  height: 50px;
-  width: 8rem;
-  padding: 0 10px;
-  margin-top: 8px;
-  font-size: 9px;
-  font-weight: bold;
-  border: none;
-  background-color: #f5f5f5;
-  border-radius: 0.5rem;
-  color: #393c41;
-}
-::placeholder {
-  color: #b8b8b8;
-}
-
-.without::-webkit-datetime-edit-ampm-field {
-  display: none;
 }
 
 .alert-column {
