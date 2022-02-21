@@ -4,9 +4,7 @@ function Banner() {
   return (
     <div id="banner">
       <div className="banner-overlay">
-        <h1 className="banner-caption">
-          MSFEA - American University of Beirut
-        </h1>
+        <h1 className="banner-caption">American University of Beirut</h1>
       </div>
     </div>
   );

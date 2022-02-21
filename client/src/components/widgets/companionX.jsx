@@ -2,7 +2,7 @@ import React from "react";
 
 function CompanionX() {
   return (
-    <div className="companionX-container">
+    <div className="companionX-container white">
       <svg
         className="companionX-logo"
         version="1.0"
@@ -38,7 +38,6 @@ c-13 8 -152 88 -310 178 l-288 164 0 353 c0 194 3 353 8 353 4 -1 41 -20 82
           />
         </g>
       </svg>
-
       <span className="companionX-text">CompanionX</span>
     </div>
   );
