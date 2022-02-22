@@ -6,6 +6,9 @@ import { useForm } from "react-hook-form";
 
 function AddClassComponent(props) {
   const [nameEdited, setNameEdited] = useState(false);
+  const [noEdited, setNoEdited] = useState(false);
+  const [startEdited, setStartEdited] = useState(false);
+  const [endEdited, setEndEdited] = useState(false);
 
   const [courseData, setCourseData] = useState({
     courseName: "",
@@ -29,7 +32,7 @@ function AddClassComponent(props) {
     if (course) {
       setCourseData(course);
     }
-  }, [course, nameEdited]);
+  }, [course]);
 
   const {
     register,
@@ -58,11 +61,12 @@ function AddClassComponent(props) {
             {/* MOHAMAD ABD I NEED YOUR HELP */}
             {/* in edit mode, hook form does not detect input value from state on mount, so we need to disable validation in each field until a change is detected in it */}
             {/* if in edit mode and edited state is false, then disable validation on field. if not in edit mode enable validation. */}
-            {currentCourse ? (
+            {currentCourse && !nameEdited ? (
               <input
                 name="courseName"
                 value={courseData.courseName}
                 onChange={(e) => {
+                  setNameEdited(true);
                   setCourseData({
                     ...courseData,
                     courseName: e.target.value,
@@ -95,11 +99,12 @@ function AddClassComponent(props) {
 
           <div className="input-container">
             <label>Course Number</label>
-            {currentCourse ? (
+            {currentCourse && !noEdited ? (
               <input
                 name="courseNumber"
                 value={courseData.courseNumber}
                 onChange={(e) => {
+                  setNoEdited(true);
                   setCourseData({
                     ...courseData,
                     courseNumber: e.target.value,
@@ -117,7 +122,7 @@ function AddClassComponent(props) {
                 onChange={(e) => {
                   setCourseData({
                     ...courseData,
-                    courseName: e.target.value,
+                    courseNumber: e.target.value,
                   });
                 }}
                 className={`addClass-input ${
@@ -154,7 +159,7 @@ function AddClassComponent(props) {
           <div className="time-container">
             <div>
               <label>Starting time</label>
-              {currentCourse ? (
+              {currentCourse && !startEdited ? (
                 <input
                   name="startTime"
                   type="time"
@@ -199,7 +204,7 @@ function AddClassComponent(props) {
             <div id="time-spacer"></div>
             <div>
               <label>Ending time</label>
-              {currentCourse ? (
+              {currentCourse && !endEdited ? (
                 <input
                   name="endTime"
                   type="time"
