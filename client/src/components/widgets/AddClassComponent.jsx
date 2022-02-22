@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 function AddClassComponent(props) {
+  const [nameEdited, setNameEdited] = useState(false);
+
   const [courseData, setCourseData] = useState({
     courseName: "",
     courseNumber: "",
@@ -27,7 +29,7 @@ function AddClassComponent(props) {
     if (course) {
       setCourseData(course);
     }
-  }, [course]);
+  }, [course, nameEdited]);
 
   const {
     register,
@@ -55,44 +57,74 @@ function AddClassComponent(props) {
             <label>Course Name</label>
             {/* MOHAMAD ABD I NEED YOUR HELP */}
             {/* in edit mode, hook form does not detect input value from state on mount, so we need to disable validation in each field until a change is detected in it */}
-            <input
-              {...register("courseName", {
-                required: "Course name is required.",
-              })}
-              className={`addClass-input ${
-                errors.courseName ? "invalid-entry" : null
-              }`}
-              name="courseName"
-              value={courseData.courseName}
-              onChange={(e) =>
-                setCourseData({
-                  ...courseData,
-                  courseName: e.target.value,
-                })
-              }
-            ></input>
+            {/* if in edit mode and edited state is false, then disable validation on field. if not in edit mode enable validation. */}
+            {currentCourse ? (
+              <input
+                name="courseName"
+                value={courseData.courseName}
+                onChange={(e) => {
+                  setCourseData({
+                    ...courseData,
+                    courseName: e.target.value,
+                  });
+                }}
+                className="addClass-input"
+              ></input>
+            ) : (
+              <input
+                {...register("courseName", {
+                  required: "Course name is required.",
+                })}
+                name="courseName"
+                value={courseData.courseName}
+                onChange={(e) => {
+                  setCourseData({
+                    ...courseData,
+                    courseName: e.target.value,
+                  });
+                }}
+                className={`addClass-input ${
+                  errors.courseName ? "invalid-entry" : null
+                }`}
+              ></input>
+            )}
             {errors.courseName && (
               <p className="alert">{errors.courseName.message}</p>
             )}
           </div>
+
           <div className="input-container">
             <label>Course Number</label>
-            <input
-              {...register("courseNumber", {
-                required: "Course number is required.",
-              })}
-              className={`addClass-input ${
-                errors.courseNumber ? "invalid-entry" : null
-              }`}
-              name="courseNumber"
-              value={courseData.courseNumber}
-              onChange={(e) =>
-                setCourseData({
-                  ...courseData,
-                  courseNumber: e.target.value,
-                })
-              }
-            ></input>
+            {currentCourse ? (
+              <input
+                name="courseNumber"
+                value={courseData.courseNumber}
+                onChange={(e) => {
+                  setCourseData({
+                    ...courseData,
+                    courseNumber: e.target.value,
+                  });
+                }}
+                className="addClass-input"
+              ></input>
+            ) : (
+              <input
+                {...register("courseNumber", {
+                  required: "Course number is required.",
+                })}
+                name="courseNumber"
+                value={courseData.courseNumber}
+                onChange={(e) => {
+                  setCourseData({
+                    ...courseData,
+                    courseName: e.target.value,
+                  });
+                }}
+                className={`addClass-input ${
+                  errors.courseNumber ? "invalid-entry" : null
+                }`}
+              ></input>
+            )}
             {errors.courseNumber && (
               <p className="alert">{errors.courseNumber.message}</p>
             )}
@@ -122,26 +154,44 @@ function AddClassComponent(props) {
           <div className="time-container">
             <div>
               <label>Starting time</label>
-              <input
-                {...register("startTime", {
-                  required: "Start time is required.",
-                })}
-                name="startTime"
-                type="time"
-                placeholder="ex: 10:00"
-                id="startTime"
-                value={courseData.startTime}
-                onChange={(e) => {
-                  console.log(courseData);
-                  setCourseData({
-                    ...courseData,
-                    startTime: e.target.value,
-                  });
-                }}
-                className={`time-input ${
-                  errors.startTime ? "invalid-entry" : null
-                }`}
-              ></input>
+              {currentCourse ? (
+                <input
+                  name="startTime"
+                  type="time"
+                  placeholder="ex: 10:00"
+                  id="startTime"
+                  value={courseData.startTime}
+                  onChange={(e) => {
+                    console.log(courseData);
+                    setCourseData({
+                      ...courseData,
+                      startTime: e.target.value,
+                    });
+                  }}
+                  className="addClass-input"
+                ></input>
+              ) : (
+                <input
+                  {...register("startTime", {
+                    required: "Start time is required.",
+                  })}
+                  name="startTime"
+                  type="time"
+                  placeholder="ex: 10:00"
+                  id="startTime"
+                  value={courseData.startTime}
+                  onChange={(e) => {
+                    console.log(courseData);
+                    setCourseData({
+                      ...courseData,
+                      startTime: e.target.value,
+                    });
+                  }}
+                  className={`time-input ${
+                    errors.startTime ? "invalid-entry" : null
+                  }`}
+                ></input>
+              )}
               {errors.startTime && (
                 <p className="alert">{errors.startTime.message}</p>
               )}
@@ -149,26 +199,44 @@ function AddClassComponent(props) {
             <div id="time-spacer"></div>
             <div>
               <label>Ending time</label>
-              <input
-                {...register("endTime", {
-                  required: "End time is required.",
-                })}
-                name="endTime"
-                type="time"
-                placeholder="ex: 10:50"
-                id="endTime"
-                value={courseData.endTime}
-                onChange={(e) => {
-                  console.log(courseData);
-                  setCourseData({
-                    ...courseData,
-                    endTime: e.target.value,
-                  });
-                }}
-                className={`time-input ${
-                  errors.endTime ? "invalid-entry" : null
-                }`}
-              ></input>
+              {currentCourse ? (
+                <input
+                  name="endTime"
+                  type="time"
+                  placeholder="ex: 10:50"
+                  id="endTime"
+                  value={courseData.endTime}
+                  onChange={(e) => {
+                    console.log(courseData);
+                    setCourseData({
+                      ...courseData,
+                      endTime: e.target.value,
+                    });
+                  }}
+                  className="addClass-input"
+                ></input>
+              ) : (
+                <input
+                  {...register("endTime", {
+                    required: "End time is required.",
+                  })}
+                  name="endTime"
+                  type="time"
+                  placeholder="ex: 10:50"
+                  id="endTime"
+                  value={courseData.endTime}
+                  onChange={(e) => {
+                    console.log(courseData);
+                    setCourseData({
+                      ...courseData,
+                      endTime: e.target.value,
+                    });
+                  }}
+                  className={`time-input ${
+                    errors.endTime ? "invalid-entry" : null
+                  }`}
+                ></input>
+              )}
               {errors.endTime && (
                 <p className="alert">{errors.endTime.message}</p>
               )}
