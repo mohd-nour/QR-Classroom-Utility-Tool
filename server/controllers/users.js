@@ -116,7 +116,9 @@ export const verifyAccountRegistration = async (req, res) => {
     const existingUnverifiedUser = await UnverifiedUser.findOne({email: email, verificationToken: verificationToken});
     var verifiedUser;
     if (existingUnverifiedUser){
-      if (existingUnverifiedUser.institudeId){
+      if (existingUnverifiedUser.instituteId){
+        console.log("With id");
+        console.log(existingUnverifiedUser);
         verifiedUser = await User.create({
           name: existingUnverifiedUser.name,
           email: existingUnverifiedUser.email,
@@ -125,6 +127,8 @@ export const verifyAccountRegistration = async (req, res) => {
         });
       }
       else{
+        console.log("Without id");
+        console.log(existingUnverifiedUser);
         verifiedUser = await User.create({
           name: existingUnverifiedUser.name,
           email: existingUnverifiedUser.email,

@@ -17,9 +17,9 @@ const mailSend = async (email, subject, text) => {
     };
     transport.sendMail(mailOptions, function(err, info) {
       if (err) {
-        console.log(err)
+        //console.log(err)
       } else {
-        console.log(info);
+        //console.log(info);
       }
   });
     } catch (error) {
