@@ -65,7 +65,7 @@ function AlertForm(props) {
                   })
                 }
               >
-                <option value="">None</option>
+                <option value="">Select a class</option>
                 {courses.map(courseOption)}
               </select>
             </div>

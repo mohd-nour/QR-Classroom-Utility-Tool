@@ -3,7 +3,7 @@ import ClassCard from "./ClassCard";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getCourses, clearCurrentCourse } from "../../actions/courses";
-import { ReactComponent as Svg } from "../../svg/undraw2.svg";
+// import { ReactComponent as Svg } from "../../images/undraw-prof.svg";
 
 function createCard(course) {
   return (
@@ -72,10 +72,10 @@ function ClassesWidget(props) {
         {!courses.length ? (
           <div className="empty-classes">
             <h3 className="noclass-title">
-              Oops, no classes yet! Add a class to get started.
+              No classes yet! Add a class to get started.
             </h3>
-
-            <Svg className="classSVG"></Svg>
+            {/* <Svg className="classSVG"></Svg> */}
+            <div className="classPNG"></div>
           </div>
         ) : (
           <div id="card-section">{courses.map(createCard)}</div>
