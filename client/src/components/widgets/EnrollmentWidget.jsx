@@ -27,7 +27,7 @@ var createStudentCardWrapped = function (courseIdParam) {
 function EnrollmentWidget() {
   const dispatch = useDispatch();
 
-  const [joinedEnrollment, setJoinedEnrollment] = useState(false);
+  //const [joinedEnrollment, setJoinedEnrollment] = useState(false);
 
   const students = useSelector((state) => state.students);
 
@@ -38,21 +38,20 @@ function EnrollmentWidget() {
   const { courseId, courseName, courseNumber } = useSelector(
     (state) => state.currentCourse
   );
+  
   useEffect(() => {
     const refresh = () => {
       console.log("Added student enrollment");
       dispatch(getStudents(courseId));
     };
-    if (!joinedEnrollment) {
-      socket.emit("JoinEnrollment", courseId);
-      socket.on("RefreshEnrollment", refresh);
-      setJoinedEnrollment(true);
-    }
+    socket.emit("JoinEnrollment", courseId);
+    socket.on("RefreshEnrollment", refresh);
+    
     return () => {
       socket.off("RefreshEnrollment", refresh);
       socket.emit("LeaveEnrollment", courseId);
     };
-  }, [courseId, dispatch, joinedEnrollment]);
+  }, [dispatch, courseId]);
 
   // if there are no students with an id equal to state, add student
 

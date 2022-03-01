@@ -70,6 +70,7 @@ export const getStudents = async (req, res) => {
 
 export const addStudent = async (req, res) => {
   try {
+    console.log("adding student to class");
     const courseId = req.params.id;
     const studentId = req.params.studentId;
     const student = await user.findOne({ instituteId: studentId });
@@ -83,7 +84,9 @@ export const addStudent = async (req, res) => {
           } else {
             res.status(200).json(student);
             //io.emit(courseId);
+            console.log("before emitting");
             io.to(courseId).emit("RefreshEnrollment");
+            console.log("after emitting");
           }
         }
       );
