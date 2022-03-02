@@ -1,4 +1,5 @@
 import courseClass from "../models/courseClass.js";
+import GradeSheet from "../models/gradeSheet.js";
 import user from "../models/user.js";
 import Session from "../models/session.js";
 import mongoose from "mongoose";
@@ -17,6 +18,16 @@ export const getCourses = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+
+export const getGradeSheets = async (req, res) => {
+  try {
+    const {courseId} = req.body;
+    const gradeSheets = await GradeSheet.find({courseId: courseId});
+    res.status(200).json(gradeSheets);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+}
 
 export const createCourse = async (req, res) => {
   const course = req.body;
