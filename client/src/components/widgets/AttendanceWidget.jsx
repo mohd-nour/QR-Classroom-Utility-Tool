@@ -39,19 +39,15 @@ function AttendanceWidget() {
   const { courseId, courseName, courseNumber } = useSelector(
     (state) => state.currentCourse
   );
-  const [joinedAttendance, setJoinedAttendance] = useState(false);
 
-  const refresh = () => {
-    console.log("Added student to session");
-    dispatch(setSingleSession(courseId, sessionNumber));
-  };
   useEffect(() => {
+    const refresh = () => {
+      console.log("Added student to session");
+      dispatch(setSingleSession(courseId, sessionNumber));
+    };
     dispatch(closeSession(courseId, sessionNumber, { closed: false }));
-    if (!joinedAttendance) {
-      socket.emit("JoinAttendance", { courseId, sessionNumber });
-      socket.on("RefreshSession", refresh);
-      setJoinedAttendance(true);
-    }
+    socket.emit("JoinAttendance", { courseId, sessionNumber });
+    socket.on("RefreshSession", refresh);
     return () => {
       socket.off("RefreshSession", refresh);
       socket.emit("LeaveAttendance", { courseId, sessionNumber });
