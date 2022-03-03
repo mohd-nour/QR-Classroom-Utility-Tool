@@ -34,6 +34,12 @@ function Selection() {
               <h2> Gradebook </h2>
             </div>
           </Link>
+          <Link to="/GradeSheets">
+            <div className="selection">
+              <div className="selection-icon uil uil-book-open"> </div>
+              <h2> Grade sheets </h2>
+            </div>
+          </Link>
         </div>
       </div>
     </div>

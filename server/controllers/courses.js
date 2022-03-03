@@ -29,6 +29,21 @@ export const getGradeSheets = async (req, res) => {
   }
 }
 
+export const postGradeSheet = async (req, res) => {
+  try {
+    const {deliverable, courseId, students_grades} = req.body;
+    const newGradeSheet = new GradeSheet({
+      students: students_grades,
+      courseId: courseId,
+      deliverable: deliverable
+    }); // {name: "Mohamad", instituteId: "201902730", grade: "87"}
+    await newGradeSheet.save();
+    res.status(201).json(newGradeSheet);
+  } catch (error) {
+    res.status(409).json({message: error.message});
+  }
+}
+
 export const createCourse = async (req, res) => {
   const course = req.body;
 

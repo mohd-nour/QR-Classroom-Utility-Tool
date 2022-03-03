@@ -12,6 +12,7 @@ import SendEmailForgotPassword from "./SendEmailForgotPassword";
 import ResetPassword from "./ResetPassword";
 import SessionsPage from "./SessionsPage";
 import AlertsPage from "./AlertsPage";
+import GradeSheets from "./GradeSheets";
 import FinalizedAttendancePage from "./FinalizedAttendancePage";
 import Verified from "./Verified";
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/Home" element={<Home />} />
         <Route path="/Selection" element={<SelectionPage />} />
         <Route path="/Gradebook" element={<GradeReportPage />} />
+        <Route path="/GradeSheets" element={<GradeSheets/>} />
         <Route path="/Attendance/:sessionNumber" element={<AttendancePage />} />
         <Route path="/Enroll" element={<EnrollmentPage />} />
         <Route path="/AddClassPage" element={<AddClassPage />} />
