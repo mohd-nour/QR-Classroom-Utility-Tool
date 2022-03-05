@@ -37,7 +37,7 @@ router.patch("/sessions/addSession/:classId/:sessionNumber", removeSession);
 router.patch("/sessions/finalizeSession/:classId/:sessionNumber", finalizeSession);
 router.patch("/sessions/closeSession/:classId/:sessionNumber", closeSession);
 
-router.get("/fetchGradeSheets", getGradeSheets);
+router.get("/fetchGradeSheets/:courseId", getGradeSheets);
 router.post("/postGradeSheet", postGradeSheet);
 
 router.patch(

@@ -8,6 +8,7 @@ import sessions from "./sessions";
 import currentSessionStudents from "./currentSessionStudents";
 import currentSession from "./currentSession";
 import alertReducer from "./alerts";
+import gradeSheetsReducer from "./gradesheets";
 
 export default combineReducers({
   courses,
@@ -17,5 +18,6 @@ export default combineReducers({
   sessions,
   currentSessionStudents,
   currentSession,
-  alertReducer
+  alertReducer,
+  gradeSheetsReducer
 });

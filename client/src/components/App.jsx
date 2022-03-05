@@ -12,9 +12,10 @@ import SendEmailForgotPassword from "./SendEmailForgotPassword";
 import ResetPassword from "./ResetPassword";
 import SessionsPage from "./SessionsPage";
 import AlertsPage from "./AlertsPage";
-import GradeSheets from "./GradeSheets";
+import GradeSheets from "./GradeSheetsPage";
 import FinalizedAttendancePage from "./FinalizedAttendancePage";
 import Verified from "./Verified";
+import NewGradeSheetPage from "./NewGradeSheetPage";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/AddClassPage" element={<AddClassPage />} />
         <Route path="/Alerts" element={<AlertsPage />} />
         <Route path="/SessionsPage" element={<SessionsPage />} />
+        <Route path="/CreateGradeSheet" element={<NewGradeSheetPage />} />
         <Route
           path="/FinalizeAttendance"
           element={<FinalizedAttendancePage />}

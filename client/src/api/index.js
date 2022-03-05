@@ -61,3 +61,9 @@ export const fetchAlerts = (professorId) =>
 
 export const addAlert = (professorId, courseId, messageAndTitle) => 
   API.post("/alerts/addAlert/"+professorId+"/"+courseId, messageAndTitle);
+
+
+export const fetchGradeSheets = (courseId) => API.get("/courses/fetchGradeSheets/"+courseId);
+
+export const postGradeSheet = (courseId, deliverable, students_grades) => 
+  API.post("/courses/postGradeSheet/",{courseId: courseId, deliverable: deliverable, students_grades: students_grades});

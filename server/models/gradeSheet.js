@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
 const gradeEntry = mongoose.Schema({
-    studentId: { type: String, required: true },
-    studentName: { type: String, required: true },
+    instituteId: { type: String, required: true },
+    name: { type: String, required: true },
     grade: { type: Number, required: true }
 });
 

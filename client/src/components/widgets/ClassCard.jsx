@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { deleteCourse, setCurrentCourse } from "../../actions/courses";
+import { deleteCourse, setCurrentCourse, fetchGradeSheets } from "../../actions/courses";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
@@ -22,7 +22,10 @@ function ClassCard(props) {
         state={{ data: props }}
         className="removeUnderline black"
       >
-        <div className="class-card" onMouseEnter={() => {dispatch(setCurrentCourse({courseId: props.id, courseName: props.courseName, courseNumber: props.courseNumber}));} }>
+        <div className="class-card" onMouseEnter={() => {
+          dispatch(setCurrentCourse({courseId: props.id, courseName: props.courseName, courseNumber: props.courseNumber}));
+          dispatch(fetchGradeSheets(props.id));
+          } }>
           <h3>
             {props.courseName} {props.courseNumber}
           </h3>

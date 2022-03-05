@@ -21,7 +21,8 @@ export const getCourses = async (req, res) => {
 
 export const getGradeSheets = async (req, res) => {
   try {
-    const {courseId} = req.body;
+    console.log("entered grade sheets fetch");
+    const courseId = req.params.courseId;
     const gradeSheets = await GradeSheet.find({courseId: courseId});
     res.status(200).json(gradeSheets);
   } catch (error) {
@@ -31,6 +32,7 @@ export const getGradeSheets = async (req, res) => {
 
 export const postGradeSheet = async (req, res) => {
   try {
+    console.log(req.body);
     const {deliverable, courseId, students_grades} = req.body;
     const newGradeSheet = new GradeSheet({
       students: students_grades,

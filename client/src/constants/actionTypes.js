@@ -20,3 +20,6 @@ export const CLEAR_SESSION_DATA = "CLEAR_SESSION_DATA";
 
 export const FETCH_ALERTS = "FETCH_ALERTS";
 export const ADD_ALERT = "ADD_ALERT";
+
+export const FETCH_GRADE_SHEETS = "FETCH_GRADE_SHEETS";
+export const POST_GRADE_SHEET = "POST_GRADE_SHEET";

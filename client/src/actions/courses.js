@@ -30,6 +30,27 @@ export const addStudent = (courseId, studentId) => async (dispatch) => {
   }
 };
 
+export const fetchGradeSheets = (courseId) => async (dispatch) => {
+  try {
+    const {data} = await api.fetchGradeSheets(courseId);
+    console.log("Reached fetch grade sheets frontend");
+    console.log(data);
+    dispatch({type: "FETCH_GRADE_SHEETS", payload: data});
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const postGradeSheet = (courseId, deliverable, gradeSheet) => async (dispatch) => {
+  try {
+    console.log(gradeSheet);
+    const {data} = await api.postGradeSheet (courseId, deliverable, gradeSheet);
+    dispatch({type: "POST_GRADE_SHEET", payload: data});
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const addSession = (courseId) => async (dispatch) => {
   try {
     const { data } = await api.addSession(courseId);
