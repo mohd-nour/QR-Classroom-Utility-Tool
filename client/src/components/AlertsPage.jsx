@@ -12,13 +12,13 @@ function createAlertBox(alert){
   const hours = Math.floor(minutes/60);
   const days = Math.floor(hours/24);
   var createdSince;
-  if (minutes>1){
+  if (minutes>=1){
     createdSince = minutes > 2 ? `${minutes} minutes ago` : `${minutes} minute ago`;
   }
-  if (hours>1){
+  if (hours>=1){
     createdSince = hours > 2 ? `${hours} hours ago` : `${hours} hour ago`;
   }
-  if (days>1){
+  if (days>=1){
     createdSince = days > 2 ? `${days} days ago` : `${days} day ago`;
   }
   return <AlertWidget alertData={alert} key={alert._id} createdSince={createdSince}/>
