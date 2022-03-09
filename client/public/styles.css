@@ -6,7 +6,7 @@
 
 html {
   scroll-behavior: smooth;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   background-color: #f5f5f5;
   color: #393c41;
 }
@@ -16,7 +16,7 @@ html {
 }
 
 .classPNG {
-  background-image: url("../assets/box.png");
+  background-image: url('../assets/box.png');
   height: 290px;
   width: 290px;
   background-repeat: no-repeat;
@@ -178,7 +178,7 @@ ul {
 #banner {
   background-color: #b8b8b8;
   height: 27rem;
-  background-image: url("../assets/collegehall_img.jpg");
+  background-image: url('../assets/collegehall_img.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -241,7 +241,7 @@ ul {
 }
 
 .avatar {
-  background-image: url("../assets/default-avatar.jpg");
+  background-image: url('../assets/default-avatar.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -470,7 +470,7 @@ a:-webkit-any-link {
 }
 
 .google-button {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   background-color: white;
   display: flex;
   align-items: center;
@@ -578,13 +578,13 @@ label {
 .login-image {
   position: relative;
   width: 60%;
-  background-image: url("../assets/Masri_2.jpg");
+  background-image: url('../assets/Masri_2.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
 
-.companionX-container {
+.sensei-container {
   padding: 20px;
   display: flex;
   flex-direction: row;
@@ -601,17 +601,18 @@ label {
   margin: 5px;
 }
 
-.companionX-text {
-  font-family: "Orbitron", sans-serif;
-  font-size: 1.6rem;
+.sensei-text {
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: 2.5rem;
   color: white;
-  font-weight: bold;
+  font-weight: 500;
+  letter-spacing: 2px;
 }
 
 .forgot-image {
   position: relative;
   width: 60%;
-  background-image: url("../assets/IFI.jpg");
+  background-image: url('../assets/IFI.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -778,7 +779,7 @@ label {
 }
 
 .post-avatar {
-  background-image: url("../assets/default-avatar.jpg");
+  background-image: url('../assets/default-avatar.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -859,7 +860,7 @@ button:focus {
   border-radius: 5px;
 }
 
-[type="date"]::-webkit-calendar-picker-indicator {
+[type='date']::-webkit-calendar-picker-indicator {
   font-size: 14px;
   padding: 0;
   margin: 0;
@@ -900,5 +901,3 @@ button:focus {
   display: flex;
   flex-direction: column;
 }
-
-

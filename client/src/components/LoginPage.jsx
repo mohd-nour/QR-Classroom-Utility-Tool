@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { GoogleLogin } from "react-google-login";
-import { useDispatch } from "react-redux";
-import { useNavigate, Navigate } from "react-router-dom";
-import { signin } from "../actions/auth";
-import { getCourses } from "../actions/courses";
-import { fetchAlerts } from "../actions/alerts";
-import CompanionX from "./widgets/companionX";
-import { useForm } from "react-hook-form";
-import { CircularProgress } from "@material-ui/core";
+import React, { useState, useEffect } from 'react';
+import { GoogleLogin } from 'react-google-login';
+import { useDispatch } from 'react-redux';
+import { useNavigate, Navigate } from 'react-router-dom';
+import { signin } from '../actions/auth';
+import { getCourses } from '../actions/courses';
+import { fetchAlerts } from '../actions/alerts';
+import Sensei from './widgets/Sensei';
+import { useForm } from 'react-hook-form';
+import { CircularProgress } from '@material-ui/core';
 
-import io from "socket.io-client";
+import io from 'socket.io-client';
 
 export const socket = io();
 
@@ -25,7 +25,7 @@ function LoginPage() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ mode: "onTouched" });
+  } = useForm({ mode: 'onTouched' });
 
   const onSubmit = async (data) => {
     setSubmitting(true);
@@ -42,23 +42,23 @@ function LoginPage() {
     const result = res?.profileObj;
     const token = res?.tokenId;
     try {
-      dispatch({ type: "GoogleAUTH", data: { result, token } });
+      dispatch({ type: 'GoogleAUTH', data: { result, token } });
       const uniqueId = result.googleId;
-      localStorage.setItem("profile", JSON.stringify({ result }));
-      localStorage.setItem("currentUserUniqueId", uniqueId);
+      localStorage.setItem('profile', JSON.stringify({ result }));
+      localStorage.setItem('currentUserUniqueId', uniqueId);
       await dispatch(getCourses());
       await dispatch(fetchAlerts(uniqueId));
-      navigate("/Home");
+      navigate('/Home');
     } catch (error) {
       console.log(error);
     }
   };
 
   const googleFailure = () => {
-    console.log("Google sign in was unsucessful");
+    console.log('Google sign in was unsucessful');
   };
 
-  if (localStorage.getItem("profile") != null) {
+  if (localStorage.getItem('profile') != null) {
     return <Navigate to="/Home"></Navigate>;
   }
 
@@ -99,13 +99,13 @@ function LoginPage() {
                 <label>Email</label>
                 <input
                   autoComplete="off"
-                  {...register("email", {
-                    required: "Email is required.",
+                  {...register('email', {
+                    required: 'Email is required.',
                   })}
                   name="email"
                   id="email"
                   className={`login-input ${
-                    errors.email ? "invalid-entry" : null
+                    errors.email ? 'invalid-entry' : null
                   }`}
                 />
                 {errors.email && (
@@ -116,14 +116,14 @@ function LoginPage() {
                 <label>Password</label>
                 <input
                   autoComplete="off"
-                  {...register("password", {
-                    required: "Password is required.",
+                  {...register('password', {
+                    required: 'Password is required.',
                   })}
                   type="password"
                   name="password"
                   id="password"
                   className={`login-input ${
-                    errors.password ? "invalid-entry" : null
+                    errors.password ? 'invalid-entry' : null
                   }`}
                 />
                 {errors.password && (
@@ -151,7 +151,7 @@ function LoginPage() {
           </div>
           <div className="login-image">
             <div className="login-overlay">
-              <CompanionX />
+              <Sensei />
             </div>
           </div>
         </div>

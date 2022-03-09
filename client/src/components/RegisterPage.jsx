@@ -1,9 +1,9 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate, Navigate } from "react-router-dom";
-import { signup } from "../actions/auth";
-import CompanionX from "./widgets/companionX";
-import { useForm } from "react-hook-form";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate, Navigate } from 'react-router-dom';
+import { signup } from '../actions/auth';
+import Sensei from './widgets/Sensei';
+import { useForm } from 'react-hook-form';
 
 function RegisterPage() {
   const dispatch = useDispatch();
@@ -14,9 +14,9 @@ function RegisterPage() {
     handleSubmit,
     formState: { errors },
     watch,
-  } = useForm({ mode: "onTouched" });
+  } = useForm({ mode: 'onTouched' });
 
-  const password = watch("registerPassword", "");
+  const password = watch('registerPassword', '');
 
   const onSubmit = (data) => {
     const inputData = JSON.parse(JSON.stringify(data));
@@ -29,7 +29,7 @@ function RegisterPage() {
     dispatch(signup(formData, navigate));
   };
 
-  if (localStorage.getItem("profile") != null) {
+  if (localStorage.getItem('profile') != null) {
     return <Navigate to="/Home"></Navigate>;
   }
   return (
@@ -43,15 +43,15 @@ function RegisterPage() {
               <div className="field-wrapper">
                 <label htmlFor="email">Name</label>
                 <input
-                  {...register("name", {
-                    required: "Name is required.",
+                  {...register('name', {
+                    required: 'Name is required.',
                   })}
                   type="text"
                   name="name"
                   placeholder="First and last name"
                   id="registername"
                   className={`login-input ${
-                    errors.name ? "invalid-entry" : null
+                    errors.name ? 'invalid-entry' : null
                   }`}
                 />
                 {errors.name && <p className="alert">{errors.name.message}</p>}
@@ -59,18 +59,18 @@ function RegisterPage() {
               <div className="field-wrapper">
                 <label htmlFor="email">Email</label>
                 <input
-                  {...register("registerEmail", {
-                    required: "Email is required.",
+                  {...register('registerEmail', {
+                    required: 'Email is required.',
                     pattern: {
                       value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      message: "Invalid email address",
+                      message: 'Invalid email address',
                     },
                   })}
                   name="registerEmail"
                   placeholder="Mail@website.com"
                   id="registerEmail"
                   className={`login-input ${
-                    errors.registerEmail ? "invalid-entry" : null
+                    errors.registerEmail ? 'invalid-entry' : null
                   }`}
                   // value={formData.registerEmail}
                   // onChange={(e) =>
@@ -84,17 +84,17 @@ function RegisterPage() {
               <div className="field-wrapper">
                 <label htmlFor="password">Password</label>
                 <input
-                  {...register("registerPassword", {
-                    required: "Password is required.",
+                  {...register('registerPassword', {
+                    required: 'Password is required.',
                     minLength: {
                       value: 8,
-                      message: "Password must have a minimum of 8 characters.",
+                      message: 'Password must have a minimum of 8 characters.',
                     },
                     pattern: {
                       value:
                         /^(?=.*\d)(?=.*[!_@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/,
                       message:
-                        "Password must contain atleast one uppercase, special, and numeric character",
+                        'Password must contain atleast one uppercase, special, and numeric character',
                     },
                   })}
                   type="password"
@@ -102,7 +102,7 @@ function RegisterPage() {
                   placeholder="Min. 8 characters"
                   id="registerPassword"
                   className={`login-input ${
-                    errors.registerPassword ? "invalid-entry" : null
+                    errors.registerPassword ? 'invalid-entry' : null
                   }`}
                   // value={formData.password}
                   // onChange={(e) =>
@@ -116,17 +116,17 @@ function RegisterPage() {
               <div className="field-wrapper">
                 <label htmlFor="confirmPassword">Confirm Password</label>
                 <input
-                  {...register("registerConfirmPassword", {
-                    required: "Please confirm your password",
+                  {...register('registerConfirmPassword', {
+                    required: 'Please confirm your password',
                     validate: (value) =>
-                      value === password || "The passwords do not match",
+                      value === password || 'The passwords do not match',
                   })}
                   type="password"
                   name="registerConfirmPassword"
                   placeholder="Confirm password"
                   id="registerConfirmPassword"
                   className={`login-input ${
-                    errors.registerConfirmPassword ? "invalid-entry" : null
+                    errors.registerConfirmPassword ? 'invalid-entry' : null
                   }`}
                   // value={formData.confirmPassword}
                   // onChange={(e) =>
@@ -157,7 +157,7 @@ function RegisterPage() {
           </div>
           <div className="login-image">
             <div className="login-overlay">
-              <CompanionX />
+              <Sensei />
             </div>
           </div>
         </div>
