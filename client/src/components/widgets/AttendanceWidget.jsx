@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
-import StudentCard from "./StudentCard/StudentCard";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState, useEffect } from 'react';
+import StudentCard from './StudentCard/StudentCard';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   addStudentToSession,
   setSingleSession,
   finalizeSession,
   getSessions,
   closeSession,
-} from "../../actions/courses";
-import swal from "sweetalert";
-import { useNavigate } from "react-router-dom";
+} from '../../actions/courses';
+import swal from 'sweetalert';
+import { useNavigate } from 'react-router-dom';
 //import io from "socket.io-client";
 //const socket = io();
 
-import { socket } from "../LoginPage";
+import { socket } from '../LoginPage';
 
 function createStudentCard(student) {
   return (
@@ -32,7 +32,7 @@ function AttendanceWidget() {
   const sessionNumber = useSelector(
     (state) => state.currentSession.sessionNumber
   );
-  const [studentData, setStudentData] = useState({ studentId: "" });
+  const [studentData, setStudentData] = useState({ studentId: '' });
   const Students = useSelector(
     (state) => state.currentSession.attendedStudents
   );
@@ -42,22 +42,22 @@ function AttendanceWidget() {
 
   useEffect(() => {
     const refresh = () => {
-      console.log("Added student to session");
+      console.log('Added student to session');
       dispatch(setSingleSession(courseId, sessionNumber));
     };
     dispatch(closeSession(courseId, sessionNumber, { closed: false }));
-    socket.emit("JoinAttendance", { courseId, sessionNumber });
-    socket.on("RefreshSession", refresh);
+    socket.emit('JoinAttendance', { courseId, sessionNumber });
+    socket.on('RefreshSession', refresh);
     return () => {
-      socket.off("RefreshSession", refresh);
-      socket.emit("LeaveAttendance", { courseId, sessionNumber });
+      socket.off('RefreshSession', refresh);
+      socket.emit('LeaveAttendance', { courseId, sessionNumber });
       dispatch(closeSession(courseId, sessionNumber, { closed: true }));
     };
   }, [dispatch, sessionNumber, courseId]);
 
   const addStudentById = (e) => {
     e.preventDefault();
-    if (studentData.studentId !== "" && studentData.studentId.length === 9) {
+    if (studentData.studentId !== '' && studentData.studentId.length === 9) {
       if (
         Students.filter(
           (student) => student.instituteId === studentData.studentId
@@ -65,25 +65,25 @@ function AttendanceWidget() {
       ) {
         dispatch(addStudentToSession(studentData, courseId, sessionNumber));
       } else {
-        swal("This student already took attendance!", { icon: "warning" });
+        swal('This student already took attendance!', { icon: 'warning' });
       }
     } else {
-      swal("Invalid entry!", { icon: "warning" });
+      swal('Invalid entry!', { icon: 'warning' });
     }
   };
 
   const FinalizeAttendance = () => {
     swal(
-      "Are you sure you would like to finalize taking attendance for this session?",
+      'Are you sure you would like to finalize taking attendance for this session?',
       {
         buttons: {
           cancel: {
-            text: "Cancel",
+            text: 'Cancel',
             value: false,
             visible: true,
           },
           confirm: {
-            text: "Yes",
+            text: 'Yes',
             value: true,
             visible: true,
           },
@@ -93,7 +93,7 @@ function AttendanceWidget() {
       if (value) {
         dispatch(finalizeSession(courseId, sessionNumber));
         dispatch(getSessions(courseId));
-        navigate("/FinalizeAttendance", { replace: true });
+        navigate('/FinalizeAttendance', { replace: true });
       }
     });
   };
@@ -101,16 +101,16 @@ function AttendanceWidget() {
     <div className="primary-container">
       <div className="dash-container">
         <div id="lower-section">
-          <h1 className="title">
-            Taking Attendance -{" " + courseName + " " + courseNumber + " "}-
+          <h2 className="title">
+            Taking Attendance -{' ' + courseName + ' ' + courseNumber + ' '}-
             Session {sessionNumber}
-          </h1>
+          </h2>
           <div id="card-section">{Students.map(createStudentCard)}</div>
         </div>
       </div>
       <form autoComplete="off" noValidate onSubmit={addStudentById}>
         <div className="addStudent-column">
-          <h3 id="form-title">Add Student</h3>
+          <h4 id="form-title">ADD ATTENDANCE</h4>
           <label>Student ID</label>
           <input
             name="studentId"
@@ -123,19 +123,19 @@ function AttendanceWidget() {
           <button type="submit" className="save-button">
             Add
           </button>
-          <button
+          {/* <button
             type="button"
             className="clear-button"
-            onClick={() => setStudentData({ studentId: "" })}
+            onClick={() => setStudentData({ studentId: '' })}
           >
             Clear
-          </button>
+          </button> */}
           <button
             type="button"
             className="finalize-button"
             onClick={FinalizeAttendance}
           >
-            Finalize attendance
+            Finalize
           </button>
         </div>
       </form>

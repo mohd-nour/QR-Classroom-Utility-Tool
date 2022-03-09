@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import StudentCard from "./StudentCard/StudentCard";
-import { useSelector, useDispatch } from "react-redux";
-import { getStudents, addStudent } from "../../actions/courses";
-import swal from "sweetalert";
+import React, { useState, useEffect } from 'react';
+import StudentCard from './StudentCard/StudentCard';
+import { useSelector, useDispatch } from 'react-redux';
+import { getStudents, addStudent } from '../../actions/courses';
+import swal from 'sweetalert';
 //import io from "socket.io-client";
 //const socket = io();
 
-import { socket } from "../LoginPage";
+import { socket } from '../LoginPage';
 
 var createStudentCardWrapped = function (courseIdParam) {
   return function createStudentCard(student) {
@@ -32,24 +32,24 @@ function EnrollmentWidget() {
   const students = useSelector((state) => state.students);
 
   const [studentData, setStudentData] = useState({
-    studentId: "",
+    studentId: '',
   });
 
   const { courseId, courseName, courseNumber } = useSelector(
     (state) => state.currentCourse
   );
-  
+
   useEffect(() => {
     const refresh = () => {
-      console.log("Added student enrollment");
+      console.log('Added student enrollment');
       dispatch(getStudents(courseId));
     };
-    socket.emit("JoinEnrollment", courseId);
-    socket.on("RefreshEnrollment", refresh);
-    
+    socket.emit('JoinEnrollment', courseId);
+    socket.on('RefreshEnrollment', refresh);
+
     return () => {
-      socket.off("RefreshEnrollment", refresh);
-      socket.emit("LeaveEnrollment", courseId);
+      socket.off('RefreshEnrollment', refresh);
+      socket.emit('LeaveEnrollment', courseId);
     };
   }, [dispatch, courseId]);
 
@@ -57,7 +57,7 @@ function EnrollmentWidget() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (studentData.studentId !== "" && studentData.studentId.length === 9) {
+    if (studentData.studentId !== '' && studentData.studentId.length === 9) {
       if (
         students.filter(
           (student) => student.instituteId === studentData.studentId
@@ -65,10 +65,10 @@ function EnrollmentWidget() {
       ) {
         dispatch(addStudent(courseId, studentData.studentId));
       } else {
-        swal("Student is already enrolled!", { icon: "warning" });
+        swal('Student is already enrolled!', { icon: 'warning' });
       }
     } else {
-      swal("Invalid Entry", { icon: "warning" });
+      swal('Invalid Entry', { icon: 'warning' });
     }
   };
 
@@ -76,9 +76,9 @@ function EnrollmentWidget() {
     <div className="primary-container">
       <div className="dash-container">
         <div id="lower-section">
-          <h1 className="title">
-            Student Enrolment -{" " + courseName + " " + courseNumber}
-          </h1>
+          <h2 className="title">
+            Student Enrolment -{' ' + courseName + ' ' + courseNumber}
+          </h2>
           <div id="card-section">
             {students.map(createStudentCardWrapped(courseId))}
           </div>
@@ -86,7 +86,7 @@ function EnrollmentWidget() {
       </div>
       <form autoComplete="off" noValidate onSubmit={handleSubmit}>
         <div className="addStudent-column">
-          <h3 id="form-title">Add Student</h3>
+          <h4 id="form-title">ADD STUDENT</h4>
           <label>Student ID</label>
           <input
             name="studentId"
@@ -104,7 +104,6 @@ function EnrollmentWidget() {
           <button type="submit" className="save-button">
             Add
           </button>
-          <button className="clear-button">Clear</button>
         </div>
       </form>
     </div>

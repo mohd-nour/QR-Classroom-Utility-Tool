@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { CircularProgress } from "@material-ui/core";
-import SessionCard from "./SessionCard";
-import { getSessions, addSession } from "../../actions/courses";
-import { useSelector, useDispatch } from "react-redux";
-import swal from "sweetalert";
+import React, { useEffect } from 'react';
+import { CircularProgress } from '@material-ui/core';
+import SessionCard from './SessionCard';
+import { getSessions, addSession } from '../../actions/courses';
+import { useSelector, useDispatch } from 'react-redux';
+import swal from 'sweetalert';
 
 var createSessionCardWrapped = function (courseData) {
   return function createSessionCard(session) {
@@ -22,7 +22,9 @@ var createSessionCardWrapped = function (courseData) {
 function SessionsWidget(props) {
   const dispatch = useDispatch();
   const sessions = useSelector((state) => state.sessions);
-  const {courseId, courseName, courseNumber} = useSelector((state) => state.currentCourse);
+  const { courseId, courseName, courseNumber } = useSelector(
+    (state) => state.currentCourse
+  );
 
   useEffect(() => {
     dispatch(getSessions(courseId));
@@ -30,15 +32,15 @@ function SessionsWidget(props) {
 
   const createNewSession = (e) => {
     e.preventDefault();
-    swal("Are you sure you would like to create a session?", {
+    swal('Are you sure you would like to create a session?', {
       buttons: {
         cancel: {
-          text: "Cancel",
+          text: 'Cancel',
           value: false,
           visible: true,
         },
         confirm: {
-          text: "Yes",
+          text: 'Yes',
           value: true,
           visible: true,
         },
@@ -53,14 +55,12 @@ function SessionsWidget(props) {
   return (
     <div>
       <div id="lower-section">
-        <h1 className="title">
-          {courseName + " " + courseNumber} - Sessions
-        </h1>
+        <h2 className="title">{courseName + ' ' + courseNumber} - Sessions</h2>
         <div className="main-panel">
-          <h2 className="sub-title">Your sessions</h2>
+          <h3 className="sub-title">Your sessions</h3>
           <form onSubmit={createNewSession}>
-            <button id="addClassButton" type="submit">
-              Create a session
+            <button className="session-button" type="submit">
+              Create Session
             </button>
           </form>
         </div>
@@ -68,7 +68,9 @@ function SessionsWidget(props) {
           <CircularProgress className="circular-progress" />
         ) : (
           <div id="card-section">
-            {sessions.map(createSessionCardWrapped({courseId, courseName, courseNumber}))}
+            {sessions.map(
+              createSessionCardWrapped({ courseId, courseName, courseNumber })
+            )}
           </div>
         )}
       </div>

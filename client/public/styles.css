@@ -77,6 +77,18 @@ html {
   margin-right: 5rem;
 }
 
+.session-button {
+  border: none;
+  font-size: 12px;
+  border-radius: 5px;
+  height: 2.3rem;
+  width: 7.5rem;
+  background-color: #161718;
+  color: white;
+  font-weight: bold;
+  margin-right: 5rem;
+}
+
 .circular-progress {
   position: absolute;
   margin-left: auto;
@@ -209,7 +221,7 @@ ul {
   text-align: center;
   background-color: #fff;
   width: 100%;
-  height: 500px;
+  height: 350px;
 }
 
 .QR-Panel img {
@@ -354,8 +366,8 @@ ul {
   flex-direction: column;
   background-color: #fff;
   align-items: center;
-  width: 25rem;
-  height: 20rem;
+  width: 18rem;
+  height: 14rem;
   border-radius: 5px;
   margin: 0 2rem 2rem;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
@@ -369,7 +381,7 @@ a:-webkit-any-link {
 
 .selection-icon {
   color: #393c41;
-  font-size: 6rem;
+  font-size: 5rem;
 }
 
 .delete-icon {
@@ -557,7 +569,7 @@ a:-webkit-any-link {
   width: 100%;
   padding: 0 10px;
   margin-top: 8px;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
   border: none;
   background-color: #f5f5f5;
@@ -711,9 +723,10 @@ label {
 }
 
 .addStudent-column {
-  margin: 102px 80px;
+  margin: 50px 80px;
   padding: 0 40px 30px;
   display: flex;
+  width: 300px;
   flex-direction: column;
   justify-content: center;
   border-radius: 0.5rem;
@@ -738,20 +751,32 @@ label {
 
 .clear-button {
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   height: 2.5rem;
-  width: 20rem;
+  width: 100%;
   background-color: #d31f1f;
   color: white;
   font-weight: bold;
   margin-top: 20px;
 }
 
+.save-button {
+  border: none;
+  border-radius: 5px;
+  height: 2.5rem;
+  width: 100%;
+  background-color: #161718;
+  color: white;
+  font-weight: bold;
+  margin-top: 38px;
+  font-size: 12px;
+}
+
 .finalize-button {
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   height: 2.5rem;
-  width: 20rem;
+  width: 100%;
   background-color: green;
   color: white;
   font-weight: bold;
