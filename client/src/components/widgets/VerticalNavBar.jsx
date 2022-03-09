@@ -70,26 +70,26 @@ c-13 8 -152 88 -310 178 l-288 164 0 353 c0 194 3 353 8 353 4 -1 41 -20 82
         <ul className="nav-list grid">
           <Link to="/Home" className="removeUnderline white">
             <li className="nav-item">
-              <i className="uil uil-estate"></i>
+              <i className="icons uil uil-estate"></i>
               Home
             </li>
           </Link>
           <Link to="/Alerts" className="removeUnderline white">
             <li className="nav-item">
-              <i class="uil uil-meeting-board"></i>
+              <i class="icons uil uil-meeting-board"></i>
               Bulletin
             </li>
           </Link>
           <li className="nav-item">
-            <i className="uil uil-chart-pie-alt"></i>
+            <i className="icons uil uil-chart-pie-alt"></i>
             Polls
           </li>
           <li className="nav-item">
-            <i className="uil uil-book"></i>
+            <i className="icons uil uil-book"></i>
             Grades
           </li>
           <li className="nav-item" onClick={logout}>
-            <i className="uil uil-signout"></i>
+            <i className="icons uil uil-signout"></i>
             Logout
           </li>
         </ul>

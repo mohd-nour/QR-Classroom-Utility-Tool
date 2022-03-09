@@ -1,9 +1,13 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { deleteCourse, setCurrentCourse, fetchGradeSheets } from "../../actions/courses";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import swal from "sweetalert";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import {
+  deleteCourse,
+  setCurrentCourse,
+  fetchGradeSheets,
+} from '../../actions/courses';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 function ClassCard(props) {
   const dispatch = useDispatch();
@@ -12,8 +16,14 @@ function ClassCard(props) {
     <div className="card-container">
       <button
         onClick={() => {
-          dispatch(setCurrentCourse({courseId: props.id, courseName: props.courseName, courseNumber: props.courseNumber}));
-          navigate("/AddClassPage", { replace: true });
+          dispatch(
+            setCurrentCourse({
+              courseId: props.id,
+              courseName: props.courseName,
+              courseNumber: props.courseNumber,
+            })
+          );
+          navigate('/AddClassPage', { replace: true });
         }}
         className="uil uil-ellipsis-h edit-icon"
       ></button>
@@ -22,13 +32,22 @@ function ClassCard(props) {
         state={{ data: props }}
         className="removeUnderline black"
       >
-        <div className="class-card" onMouseEnter={() => {
-          dispatch(setCurrentCourse({courseId: props.id, courseName: props.courseName, courseNumber: props.courseNumber}));
-          dispatch(fetchGradeSheets(props.id));
-          } }>
-          <h3>
+        <div
+          className="class-card"
+          onMouseEnter={() => {
+            dispatch(
+              setCurrentCourse({
+                courseId: props.id,
+                courseName: props.courseName,
+                courseNumber: props.courseNumber,
+              })
+            );
+            dispatch(fetchGradeSheets(props.id));
+          }}
+        >
+          <h4>
             {props.courseName} {props.courseNumber}
-          </h3>
+          </h4>
           <p>
             {props.startTime} - {props.endTime}
           </p>
@@ -38,15 +57,15 @@ function ClassCard(props) {
       </Link>
       <button
         onClick={() => {
-          swal("Are you sure you would like to delete this course?", {
+          swal('Are you sure you would like to delete this course?', {
             buttons: {
               cancel: {
-                text: "Cancel",
+                text: 'Cancel',
                 value: false,
                 visible: true,
               },
               confirm: {
-                text: "Yes",
+                text: 'Yes',
                 value: true,
                 visible: true,
               },
