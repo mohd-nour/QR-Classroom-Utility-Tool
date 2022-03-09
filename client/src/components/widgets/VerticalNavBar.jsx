@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
-import * as actionType from "../../constants/actionTypes";
-import decode from "jwt-decode";
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useNavigate, useLocation } from 'react-router-dom';
+import * as actionType from '../../constants/actionTypes';
+import decode from 'jwt-decode';
 
 function VerticalNavBar() {
   const dispatch = useDispatch();
@@ -11,10 +11,10 @@ function VerticalNavBar() {
   const location = useLocation();
   const logout = () => {
     dispatch({ type: actionType.LOGOUT });
-    navigate("/");
+    navigate('/');
   };
 
-  const user = JSON.parse(localStorage.getItem("profile"));
+  const user = JSON.parse(localStorage.getItem('profile'));
 
   useEffect(() => {
     const token = user?.token;
@@ -23,7 +23,7 @@ function VerticalNavBar() {
       const decodedToken = decode(token);
       if (decodedToken.exp * 1000 < new Date().getTime()) {
         dispatch({ type: actionType.LOGOUT });
-        navigate("/");
+        navigate('/');
       }
     }
   }, [dispatch, navigate, location, user?.token]);
@@ -76,8 +76,8 @@ c-13 8 -152 88 -310 178 l-288 164 0 353 c0 194 3 353 8 353 4 -1 41 -20 82
           </Link>
           <Link to="/Alerts" className="removeUnderline white">
             <li className="nav-item">
-              <i className="uil uil-comments-alt"></i>
-              Forum
+              <i class="uil uil-meeting-board"></i>
+              Bulletin
             </li>
           </Link>
           <li className="nav-item">

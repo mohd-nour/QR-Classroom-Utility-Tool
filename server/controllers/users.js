@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import User, {UnverifiedUser} from "../models/user.js";
+import User, { UnverifiedUser } from "../models/user.js";
 import crypto from "crypto";
 import mailSend from "../utils/sendEmail.js";
 
@@ -10,14 +10,23 @@ export const signin = async (req, res) => {
   try {
     const existingUser = await User.findOne({ email });
     if (!existingUser) {
-      return res.json({ message: "You are not registered", error: true });
+      return res.json({
+        message: "This account is not registered",
+        error: true,
+      });
     }
     const instituteId = existingUser.instituteId;
-    if (mode=="web" && instituteId!=null){
-      return res.json({ message: "You are not registered", error: true });
+    if (mode == "web" && instituteId != null) {
+      return res.json({
+        message: "This account is not registered",
+        error: true,
+      });
     }
-    if (mode=="mobile" && instituteId==null){
-      return res.json({ message: "You are not registered", error: true });
+    if (mode == "mobile" && instituteId == null) {
+      return res.json({
+        message: "This account is not registered",
+        error: true,
+      });
     }
     const isPasswordCorrect = await bcrypt.compare(
       password,
@@ -69,36 +78,45 @@ export const signup = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 12);
     var result;
     const verificationToken = crypto.randomBytes(32).toString("hex");
-    if (!instituteId){
+    if (!instituteId) {
       result = await UnverifiedUser.create({
         name: name,
         email: email,
         password: hashedPassword,
-        verificationToken: verificationToken
+        verificationToken: verificationToken,
       });
-    }
-    else {
-      const existingUser = await User.findOne({instituteId:instituteId});
-      if (existingUser){
+    } else {
+      const existingUser = await User.findOne({ instituteId: instituteId });
+      if (existingUser) {
         return res.json({
           message: "Someone is already registered with this institute ID",
           error: true,
         });
-      }
-      else{
+      } else {
         result = await UnverifiedUser.create({
           name: name,
           email: email,
           password: hashedPassword,
           instituteId: instituteId,
-          verificationToken: verificationToken
+          verificationToken: verificationToken,
         });
       }
     }
-    const link = "http://localhost:3000/verifyRegistration/" + email + "/" + verificationToken;
-    var mailBody = "Hello "+name+"\nPlease click on the following link to verify that it is you who created this account using this email:\n"+link;
-    await mailSend(email,"Account verification",mailBody);
-    res.status(200).json({ message: "A verification email has been sent to "+email, error: false });
+    const link =
+      "http://localhost:3000/verifyRegistration/" +
+      email +
+      "/" +
+      verificationToken;
+    var mailBody =
+      "Hello " +
+      name +
+      "\nPlease click on the following link to verify that it is you who created this account using this email:\n" +
+      link;
+    await mailSend(email, "Account verification", mailBody);
+    res.status(200).json({
+      message: "A verification email has been sent to " + email,
+      error: false,
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Something went wrong!", error: true });
@@ -109,37 +127,41 @@ export const verifyAccountRegistration = async (req, res) => {
   try {
     const email = req.params.email;
     const verificationToken = req.params.verificationToken;
-    const existingVerifiedUser = await User.findOne({email: email, verificationToken: verificationToken});
-    if (existingVerifiedUser){
-      return res.send({error: true, message:"You are already verified"});
+    const existingVerifiedUser = await User.findOne({
+      email: email,
+      verificationToken: verificationToken,
+    });
+    if (existingVerifiedUser) {
+      return res.send({ error: true, message: "You are already verified" });
     }
-    const existingUnverifiedUser = await UnverifiedUser.findOne({email: email, verificationToken: verificationToken});
+    const existingUnverifiedUser = await UnverifiedUser.findOne({
+      email: email,
+      verificationToken: verificationToken,
+    });
     var verifiedUser;
-    if (existingUnverifiedUser){
-      if (existingUnverifiedUser.instituteId){
+    if (existingUnverifiedUser) {
+      if (existingUnverifiedUser.instituteId) {
         console.log("With id");
         console.log(existingUnverifiedUser);
         verifiedUser = await User.create({
           name: existingUnverifiedUser.name,
           email: existingUnverifiedUser.email,
           password: existingUnverifiedUser.password,
-          instituteId: existingUnverifiedUser.instituteId
+          instituteId: existingUnverifiedUser.instituteId,
         });
-      }
-      else{
+      } else {
         console.log("Without id");
         console.log(existingUnverifiedUser);
         verifiedUser = await User.create({
           name: existingUnverifiedUser.name,
           email: existingUnverifiedUser.email,
-          password: existingUnverifiedUser.password
+          password: existingUnverifiedUser.password,
         });
       }
       await UnverifiedUser.findByIdAndDelete(existingUnverifiedUser._id);
-      res.status(200).json({verifiedUser, error: false});
-    }
-    else {
-      res.send({error: true, message:"You did not register"});
+      res.status(200).json({ verifiedUser, error: false });
+    } else {
+      res.send({ error: true, message: "You did not register" });
     }
     /*
     if (existingUser){
@@ -164,5 +186,3 @@ export const verifyAccountRegistration = async (req, res) => {
     res.status(200).json({ message: error.message, error: true });
   }
 };
-
-
