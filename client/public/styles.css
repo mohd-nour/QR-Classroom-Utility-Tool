@@ -603,10 +603,10 @@ label {
 
 .sensei-text {
   font-family: 'Montserrat Alternates', sans-serif;
+  font-style: italic;
   font-size: 2.5rem;
   color: white;
   font-weight: 500;
-  letter-spacing: 2px;
 }
 
 .forgot-image {
