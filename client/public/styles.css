@@ -129,7 +129,7 @@ ul {
   width: 5rem;
 }
 
-.companionX-logo-nav {
+.sensei-logo-nav {
   background-color: #161718;
   top: 30px;
   position: absolute;
@@ -143,12 +143,12 @@ ul {
   flex-direction: column;
   align-items: center;
   padding: 0.8rem 0;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   box-sizing: border-box;
 }
 
 .icons {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
 }
 
 .nav-item:hover {
@@ -620,9 +620,10 @@ label {
 
 .sensei-text {
   font-family: 'Montserrat Alternates', sans-serif;
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: white;
   font-weight: 500;
+  margin-left: 7px;
 }
 
 .forgot-image {
