@@ -1,6 +1,6 @@
-import React from "react";
-import StudentCard from "./StudentCard/StudentCard";
-import { useSelector } from "react-redux";
+import React from 'react';
+import StudentCard from './StudentCard/StudentCard';
+import { useSelector } from 'react-redux';
 
 function createStudentCard(student) {
   return (
@@ -29,16 +29,16 @@ function FinalizedAttendanceWidget(props) {
   return (
     <div>
       <div id="lower-section">
-        <h1 className="title">
-          {courseName + " " + courseNumber + " "}- Session{" "}
-          {currentSession.sessionNumber + " "} results
-        </h1>
+        <h2 className="title">
+          {courseName + ' ' + courseNumber + ' '}- Session{' '}
+          {currentSession.sessionNumber + ' '} results
+        </h2>
         <div className="main-panel">
-          <h2 className="sub-title">Students who attended</h2>
+          <h3 className="sub-title">Students who attended</h3>
         </div>
         <div id="card-section">{attendedStudents.map(createStudentCard)}</div>
         <div className="main-panel">
-          <h2 className="sub-title">Students who didn't attend</h2>
+          <h3 className="sub-title">Students who didn't attend</h3>
         </div>
         <div id="card-section">{didntAttend.map(createStudentCard)}</div>
       </div>

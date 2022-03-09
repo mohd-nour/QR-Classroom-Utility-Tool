@@ -1,6 +1,6 @@
-import React from "react";
-import StudentCard from "./StudentCard/StudentCard";
-import { useSelector } from "react-redux";
+import React from 'react';
+import StudentCard from './StudentCard/StudentCard';
+import { useSelector } from 'react-redux';
 
 function createStudentCard(student) {
   return (
@@ -21,10 +21,14 @@ function GradeReport() {
   const totalNbOfSessions = sessions.length;
   console.log(sessions);
   console.log(Students);
-  Students.forEach(student => {
-    var attendanceRecord=0;
-    sessions.forEach(session => {
-      if (session.attendedStudents.find(sessionStudent => sessionStudent._id === student._id)){
+  Students.forEach((student) => {
+    var attendanceRecord = 0;
+    sessions.forEach((session) => {
+      if (
+        session.attendedStudents.find(
+          (sessionStudent) => sessionStudent._id === student._id
+        )
+      ) {
         attendanceRecord += 1;
       }
     });
@@ -34,7 +38,7 @@ function GradeReport() {
   });
   return (
     <div className="dash-container">
-      <h1 className="title">EECE 502 - Attendance Report</h1>
+      <h2 className="title">EECE 502 - Attendance Report</h2>
       <div id="card-section">{Students.map(createStudentCard)}</div>
     </div>
   );

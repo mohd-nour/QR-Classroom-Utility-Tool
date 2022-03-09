@@ -1,37 +1,37 @@
-import React from "react";
-import { CircularProgress } from "@material-ui/core";
-import { useEffect } from "react";
-import swal from "sweetalert";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchGradeSheets } from "../../actions/courses";
-import { useNavigate } from "react-router-dom";
-
-
+import React from 'react';
+import { CircularProgress } from '@material-ui/core';
+import { useEffect } from 'react';
+import swal from 'sweetalert';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchGradeSheets } from '../../actions/courses';
+import { useNavigate } from 'react-router-dom';
 
 function GradeSheetWidget() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {courseId, courseName, courseNumber} = useSelector((state) => state.currentCourse);
+  const { courseId, courseName, courseNumber } = useSelector(
+    (state) => state.currentCourse
+  );
   const gradeSheets = useSelector((state) => state.gradeSheetsReducer);
   //console.log(gradeSheets);
   const createNewSheet = (e) => {
     e.preventDefault();
-    swal("Are you sure you would like to create a new grade sheet?", {
+    swal('Are you sure you would like to create a new grade sheet?', {
       buttons: {
         cancel: {
-          text: "Cancel",
+          text: 'Cancel',
           value: false,
           visible: true,
         },
         confirm: {
-          text: "Yes",
+          text: 'Yes',
           value: true,
           visible: true,
         },
       },
     }).then((value) => {
       if (value) {
-        navigate("/CreateGradeSheet");
+        navigate('/CreateGradeSheet');
       }
     });
   };
@@ -42,11 +42,11 @@ function GradeSheetWidget() {
   return (
     <div>
       <div id="lower-section">
-        <h1 className="title">
-        {courseName + " " + courseNumber} - Grade sheets
-        </h1>
+        <h2 className="title">
+          {courseName + ' ' + courseNumber} - Grade sheets
+        </h2>
         <div className="main-panel">
-          <h2 className="sub-title">Your sessions</h2>
+          <h3 className="sub-title">Your grade sheets</h3>
           <form onSubmit={createNewSheet}>
             <button id="addClassButton" type="submit">
               Create a grade sheet
