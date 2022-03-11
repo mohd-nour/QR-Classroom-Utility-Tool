@@ -21,7 +21,6 @@ html {
   width: 250px;
   background-repeat: no-repeat;
   background-size: contain;
-  /* background-position: center; */
 }
 
 .noclass-title {
@@ -193,7 +192,7 @@ ul {
 
 #banner {
   background-color: #b8b8b8;
-  height: 22rem;
+  height: 21rem;
   background-image: url('../assets/collegehall_img.jpg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -592,6 +591,15 @@ label {
   font-weight: bold;
 }
 
+.signup-image {
+  position: relative;
+  width: 60%;
+  background-image: url('../assets/AUB_Church.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
 .login-image {
   position: relative;
   width: 60%;
@@ -623,7 +631,7 @@ label {
   font-size: 1.8rem;
   color: white;
   font-weight: 500;
-  margin-left: 7px;
+  margin-left: 5px;
 }
 
 .forgot-image {

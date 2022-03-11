@@ -155,7 +155,7 @@ function RegisterPage() {
               </p>
             </form>
           </div>
-          <div className="login-image">
+          <div className="signup-image">
             <div className="login-overlay">
               <Sensei />
             </div>
