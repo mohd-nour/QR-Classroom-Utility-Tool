@@ -10,6 +10,7 @@ import {
 } from '../../actions/courses';
 import swal from 'sweetalert';
 import { useNavigate } from 'react-router-dom';
+import { CircularProgress } from '@material-ui/core';
 //import io from "socket.io-client";
 //const socket = io();
 
@@ -105,7 +106,13 @@ function AttendanceWidget() {
             Taking Attendance -{' ' + courseName + ' ' + courseNumber + ' '}-
             Session {sessionNumber}
           </h2>
-          <div id="card-section">{Students.map(createStudentCard)}</div>
+          {!Students.length ? (
+            <div>
+              <CircularProgress className="circular-progress" />
+            </div>
+          ) : (
+            <div id="card-section">{Students.map(createStudentCard)}</div>
+          )}
         </div>
       </div>
       <form autoComplete="off" noValidate onSubmit={addStudentById}>
@@ -123,13 +130,6 @@ function AttendanceWidget() {
           <button type="submit" className="save-button">
             Add
           </button>
-          {/* <button
-            type="button"
-            className="clear-button"
-            onClick={() => setStudentData({ studentId: '' })}
-          >
-            Clear
-          </button> */}
           <button
             type="button"
             className="finalize-button"

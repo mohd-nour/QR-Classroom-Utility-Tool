@@ -3,6 +3,7 @@ import StudentCard from './StudentCard/StudentCard';
 import { useSelector, useDispatch } from 'react-redux';
 import { getStudents, addStudent } from '../../actions/courses';
 import swal from 'sweetalert';
+import { CircularProgress } from '@material-ui/core';
 //import io from "socket.io-client";
 //const socket = io();
 
@@ -79,9 +80,15 @@ function EnrollmentWidget() {
           <h2 className="title">
             Student Enrolment -{' ' + courseName + ' ' + courseNumber}
           </h2>
-          <div id="card-section">
-            {students.map(createStudentCardWrapped(courseId))}
-          </div>
+          {!students.length ? (
+            <div>
+              <CircularProgress className="circular-progress" />
+            </div>
+          ) : (
+            <div id="card-section">
+              {students.map(createStudentCardWrapped(courseId))}
+            </div>
+          )}
         </div>
       </div>
       <form autoComplete="off" noValidate onSubmit={handleSubmit}>

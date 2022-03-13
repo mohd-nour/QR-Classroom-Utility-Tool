@@ -23,6 +23,24 @@ html {
   background-size: contain;
 }
 
+.sessionPNG {
+  background-image: url('../assets/clapperboard.png');
+  margin-top: 10px;
+  height: 200px;
+  width: 200px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.sheetPNG {
+  background-image: url('../assets/papertray.png');
+  margin-top: 10px;
+  height: 200px;
+  width: 200px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 .noclass-title {
   color: #8d8d8d;
   font-size: 14px;
@@ -919,8 +937,8 @@ label {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   background-color: #8d8d8d;
   border-radius: 50%;
 }
@@ -1044,7 +1062,8 @@ button:focus {
 }
 
 .post-content {
-  font-size: 0.85rem;
+  margin-left: 51px;
+  font-size: 0.8rem;
   padding: 10px 0;
   display: flex;
   flex-direction: column;

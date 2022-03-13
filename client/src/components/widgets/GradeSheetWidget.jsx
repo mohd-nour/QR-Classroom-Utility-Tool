@@ -49,11 +49,14 @@ function GradeSheetWidget() {
           <h3 className="sub-title">Your grade sheets</h3>
           <form onSubmit={createNewSheet}>
             <button id="addClassButton" type="submit">
-              Create a grade sheet
+              Create a sheet
             </button>
           </form>
         </div>
-        <CircularProgress className="circular-progress" />
+        <div className="empty-classes">
+          <h3 className="noclass-title">No grade sheets yet!</h3>
+          <div className="sheetPNG"></div>
+        </div>
       </div>
     </div>
   );

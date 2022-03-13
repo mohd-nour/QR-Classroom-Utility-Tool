@@ -1,8 +1,13 @@
 import React from 'react';
 import Sensei from '../images/Sensei.png';
 import { Link } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 function LandingPage() {
+  if (localStorage.getItem('profile') != null) {
+    return <Navigate to="/Home"></Navigate>;
+  }
+
   return (
     <div id="landing-page">
       <nav className="landing-header">

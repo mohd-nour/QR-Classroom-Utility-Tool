@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { CircularProgress } from '@material-ui/core';
 import SessionCard from './SessionCard';
 import { getSessions, addSession } from '../../actions/courses';
 import { useSelector, useDispatch } from 'react-redux';
@@ -65,7 +64,10 @@ function SessionsWidget(props) {
           </form>
         </div>
         {!sessions.length ? (
-          <CircularProgress className="circular-progress" />
+          <div className="empty-classes">
+            <h3 className="noclass-title">No sessions yet!</h3>
+            <div className="sessionPNG"></div>
+          </div>
         ) : (
           <div id="card-section">
             {sessions.map(

@@ -74,7 +74,6 @@ function ClassesWidget(props) {
             <h3 className="noclass-title">
               No classes yet! Add a class to get started.
             </h3>
-            {/* <Svg className="classSVG"></Svg> */}
             <div className="classPNG"></div>
           </div>
         ) : (
