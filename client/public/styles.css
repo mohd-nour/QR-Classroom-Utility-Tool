@@ -930,6 +930,17 @@ label {
   width: 100%;
 }
 
+.bulletin-container {
+  margin-left: 5rem;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 2rem;
+}
+
+.scroll::-webkit-scrollbar {
+  display: none;
+}
+
 input:focus,
 select:focus,
 textarea:focus,

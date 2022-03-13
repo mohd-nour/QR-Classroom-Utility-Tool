@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import swal from "sweetalert";
-import { addAlert } from "../../actions/alerts";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import swal from 'sweetalert';
+import { addAlert } from '../../actions/alerts';
 
 function courseOption(course) {
   return (
     <option key={course._id} value={course._id}>
-      {course.courseName + " " + course.courseNumber}
+      {course.courseName + ' ' + course.courseNumber}
     </option>
   );
 }
@@ -14,10 +14,10 @@ function courseOption(course) {
 function AlertForm(props) {
   const dispatch = useDispatch();
   const [alertData, setAlertData] = useState({
-    course: "",
-    message: "",
-    creator: localStorage.getItem("currentUserUniqueId"),
-    courseTitle: "",
+    course: '',
+    message: '',
+    creator: localStorage.getItem('currentUserUniqueId'),
+    courseTitle: '',
   });
   const courses = useSelector((state) => state.courses);
 
@@ -30,8 +30,9 @@ function AlertForm(props) {
           courseTitle: alertData.courseTitle,
         })
       );
+      alertData.message = '';
     } else {
-      swal("You did not pick a course", { icon: "warning" });
+      swal('You did not pick a course', { icon: 'warning' });
     }
   };
 
@@ -43,7 +44,7 @@ function AlertForm(props) {
             name="alert"
             placeholder="What's happening?"
             id="alertInput"
-            className="alert-input"
+            className="alert-input scroll"
             value={alertData.message}
             onChange={(e) =>
               setAlertData({
