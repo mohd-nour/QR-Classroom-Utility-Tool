@@ -8,6 +8,7 @@ import { fetchAlerts } from '../actions/alerts';
 import Sensei from './widgets/Sensei';
 import { useForm } from 'react-hook-form';
 import { CircularProgress } from '@material-ui/core';
+import Google from '../images/Google.png';
 
 import io from 'socket.io-client';
 
@@ -77,11 +78,7 @@ function LoginPage() {
                   onClick={renderProps.onClick}
                   disabled={renderProps.disabled}
                 >
-                  <img
-                    className="google-logo"
-                    src="https://freesvg.org/img/1534129544.png"
-                    alt="google-logo"
-                  />
+                  <img className="google-logo" src={Google} alt="google-logo" />
                   <h4 className="google-signin">Sign In with Google</h4>
                 </button>
               )}

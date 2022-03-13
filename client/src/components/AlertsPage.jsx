@@ -44,7 +44,7 @@ function AlertsPage(props) {
   return (
     <div>
       <VerticalNavBar />
-      <div className="dash-container">
+      <div className="bulletin-container">
         <AlertForm />
         {alerts ? alerts.slice(0).reverse().map(createAlertBox) : null}
       </div>
