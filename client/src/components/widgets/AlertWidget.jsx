@@ -8,15 +8,15 @@ function AlertWidget(props) {
         <div className="creator-section">
           <div className="post-avatar"></div>
           <div className="post-info">
-            <h4>{user.result.name}</h4>
+            <h5>{user.result.name}</h5>
             {props.createdSince ? (
-              <h5 className="sub-info">
+              <h6 className="sub-info">
                 {props.createdSince} • {props.alertData.courseTitle}
-              </h5>
+              </h6>
             ) : (
-              <h5 className="sub-info">
+              <h6 className="sub-info">
                 Just now • {props.alertData.courseTitle}
-              </h5>
+              </h6>
             )}
           </div>
         </div>

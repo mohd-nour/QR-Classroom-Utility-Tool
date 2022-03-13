@@ -6,7 +6,10 @@ function LandingPage() {
   return (
     <div id="landing-page">
       <nav className="landing-header">
-        <span className="sensei-landing-logo">Sensei</span>
+        <div className="header-logo">
+          <span className="sensei-landing-logo">Sensei</span>
+          <h5>for AUB</h5>
+        </div>
       </nav>
       <div className="landing-panel">
         <div class="landing-text">

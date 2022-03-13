@@ -680,7 +680,7 @@ label {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  animation: float 4s ease-in-out infinite;
+  animation: float 3.5s ease-in-out infinite;
 }
 
 .landing-header {
@@ -688,6 +688,13 @@ label {
   align-items: center;
   width: 100%;
   padding: 50px 0 20px 0;
+}
+
+.header-logo {
+  margin-left: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .landing-button {
@@ -719,7 +726,6 @@ label {
 }
 
 .sensei-landing-logo {
-  margin-left: 150px;
   font-size: 30px;
   font-family: 'Montserrat Alternates', sans-serif;
   font-weight: 500;
@@ -1038,6 +1044,7 @@ button:focus {
 }
 
 .post-content {
+  font-size: 0.85rem;
   padding: 10px 0;
   display: flex;
   flex-direction: column;
