@@ -21,7 +21,6 @@ export const getCourses = async (req, res) => {
 
 export const getGradeSheets = async (req, res) => {
   try {
-    console.log("entered grade sheets fetch");
     const courseId = req.params.courseId;
     const gradeSheets = await GradeSheet.find({courseId: courseId});
     res.status(200).json(gradeSheets);

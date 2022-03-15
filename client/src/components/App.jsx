@@ -1,22 +1,22 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import LandingPage from './LandingPage.jsx';
-import Home from './Home';
-import SelectionPage from './SelectionPage';
-import GradeReportPage from './GradeReportPage';
-import AttendancePage from './AttendancePage';
-import EnrollmentPage from './EnrollmentPage.jsx';
-import LoginPage from './LoginPage';
-import RegisterPage from './RegisterPage';
-import AddClassPage from './AddClassPage';
-import SendEmailForgotPassword from './SendEmailForgotPassword';
-import ResetPassword from './ResetPassword';
-import SessionsPage from './SessionsPage';
-import AlertsPage from './AlertsPage';
-import GradeSheets from './GradeSheetsPage';
-import FinalizedAttendancePage from './FinalizedAttendancePage';
-import Verified from './Verified';
-import NewGradeSheetPage from './NewGradeSheetPage';
+import LandingPage from './Authentication/LandingPage';
+import Home from './Courses/Home';
+import SelectionPage from './Selection/SelectionPage';
+import GradeReportPage from './Grade reports/GradeReportPage';
+import AttendancePage from './Attendance/AttendancePage';
+import EnrollmentPage from './Enrollment/EnrollmentPage';
+import LoginPage from './Authentication/LoginPage';
+import RegisterPage from './Authentication/RegisterPage';
+import AddClassPage from './Courses/AddClassPage';
+import SendEmailForgotPassword from './Authentication/SendEmailForgotPassword';
+import ResetPassword from './Authentication/ResetPassword';
+import SessionsPage from './Attendance/SessionsPage';
+import AlertsPage from './Alerts/AlertsPage';
+import GradeSheets from './Grade sheets/GradeSheetsPage';
+import FinalizedAttendancePage from './Attendance/FinalizedAttendancePage';
+import Verified from './Authentication/Verified';
+import NewGradeSheetPage from './Grade sheets/NewGradeSheetPage';
 
 function App() {
   return (

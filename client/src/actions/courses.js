@@ -33,7 +33,6 @@ export const addStudent = (courseId, studentId) => async (dispatch) => {
 export const fetchGradeSheets = (courseId) => async (dispatch) => {
   try {
     const {data} = await api.fetchGradeSheets(courseId);
-    console.log("Reached fetch grade sheets frontend");
     console.log(data);
     dispatch({type: "FETCH_GRADE_SHEETS", payload: data});
   } catch (error) {
