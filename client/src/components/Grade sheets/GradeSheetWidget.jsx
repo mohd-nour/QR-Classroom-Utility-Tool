@@ -7,8 +7,8 @@ import { fetchGradeSheets } from '../../actions/courses';
 import { useNavigate } from 'react-router-dom';
 import GradeSheetCard from './GradeSheetCard';
 
-function createGradeSheetCard(gradeSheet){
-  return <GradeSheetCard cardName={gradeSheet.deliverable}/>
+function createGradeSheetCard(gradeSheet) {
+  return <GradeSheetCard cardName={gradeSheet.deliverable} />;
 }
 
 function GradeSheetWidget() {
@@ -57,14 +57,14 @@ function GradeSheetWidget() {
             </button>
           </form>
         </div>
-          {gradeSheets.length!==0? 
-            <div id="card-section">{gradeSheets.map(createGradeSheetCard)}</div>
-            :
-            <div>
-              <h3 className="noclass-title">No grade sheets yet!</h3>
-              <div className="sheetPNG"></div>
-            </div>
-          }
+        {gradeSheets.length !== 0 ? (
+          <div id="card-section">{gradeSheets.map(createGradeSheetCard)}</div>
+        ) : (
+          <div className="empty-classes">
+            <h3 className="noclass-title">No grade sheets yet!</h3>
+            <div className="sheetPNG"></div>
+          </div>
+        )}
       </div>
     </div>
   );

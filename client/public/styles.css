@@ -653,7 +653,7 @@ label {
 #landing-page {
   display: flex;
   height: 100vh;
-  background-image: url('../assets/temp-bg-2.jpg');
+  background-image: url('../assets/bg.PNG');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -677,7 +677,7 @@ label {
     transform: translatey(0px);
   }
   50% {
-    transform: translatey(-20px);
+    transform: translatey(-30px);
   }
   100% {
     transform: translatey(0px);
