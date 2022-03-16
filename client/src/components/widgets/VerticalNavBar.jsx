@@ -65,8 +65,8 @@ function VerticalNavBar() {
             Polls
           </li>
           <li className="nav-item">
-            <i className="icons uil uil-book"></i>
-            Grades
+            <i class="icons uil uil-key-skeleton-alt"></i>
+            Capacity
           </li>
           <li className="nav-item" onClick={logout}>
             <i className="icons uil uil-signout"></i>
