@@ -387,8 +387,6 @@ ul {
   height: 14rem;
   border-radius: 5px;
   margin: 0 2rem 2rem;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
-    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
 a:-webkit-any-link {
@@ -655,7 +653,7 @@ label {
 #landing-page {
   display: flex;
   height: 100vh;
-  background-image: url('../assets/temp-bg-2.jpg');
+  background-image: url('../assets/bg.PNG');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -679,7 +677,7 @@ label {
     transform: translatey(0px);
   }
   50% {
-    transform: translatey(-20px);
+    transform: translatey(-30px);
   }
   100% {
     transform: translatey(0px);
