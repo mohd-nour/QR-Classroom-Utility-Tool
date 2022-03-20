@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import GradeSheetCard from './GradeSheetCard';
 
 function createGradeSheetCard(gradeSheet){
-  return <GradeSheetCard cardName={gradeSheet.deliverable}/>
+  return <GradeSheetCard key={gradeSheet._id} customId={gradeSheet._id} cardName={gradeSheet.deliverable}/>
 }
 
 function GradeSheetWidget() {
@@ -18,6 +18,7 @@ function GradeSheetWidget() {
     (state) => state.currentCourse
   );
   const gradeSheets = useSelector((state) => state.gradeSheetsReducer);
+  console.log(gradeSheets);
   const createNewSheet = (e) => {
     e.preventDefault();
     swal('Are you sure you would like to create a new grade sheet?', {
@@ -35,7 +36,7 @@ function GradeSheetWidget() {
       },
     }).then((value) => {
       if (value) {
-        navigate('/CreateGradeSheet');
+        navigate('/CreateGradeSheet/New');
       }
     });
   };
@@ -60,7 +61,7 @@ function GradeSheetWidget() {
           {gradeSheets.length!==0? 
             <div id="card-section">{gradeSheets.map(createGradeSheetCard)}</div>
             :
-            <div>
+            <div className="empty-classes">
               <h3 className="noclass-title">No grade sheets yet!</h3>
               <div className="sheetPNG"></div>
             </div>

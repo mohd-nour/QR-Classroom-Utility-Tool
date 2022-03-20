@@ -34,7 +34,7 @@ function App() {
         <Route path="/AddClassPage" element={<AddClassPage />} />
         <Route path="/Alerts" element={<AlertsPage />} />
         <Route path="/SessionsPage" element={<SessionsPage />} />
-        <Route path="/CreateGradeSheet" element={<NewGradeSheetPage />} />
+        <Route path="/CreateGradeSheet/:mode" element={<NewGradeSheetPage />} />
         <Route
           path="/FinalizeAttendance"
           element={<FinalizedAttendancePage />}

@@ -23,3 +23,4 @@ export const ADD_ALERT = "ADD_ALERT";
 
 export const FETCH_GRADE_SHEETS = "FETCH_GRADE_SHEETS";
 export const POST_GRADE_SHEET = "POST_GRADE_SHEET";
+export const SET_GRADE_SHEET = "SET_GRADE_SHEET";

@@ -9,10 +9,15 @@ function GradeSheetCard(props) {
   const dispatch = useDispatch();
   const {courseId} = useSelector((state) => state.currentCourse);
 
+  const loadGradeSheet = () => {
+    
+    //dispatch({type: "SET_GRADE_SHEET", payload: })
+  }
+
   return (
     <div className="card-container">
       <div className="class-card">
-          <Link to={""}>
+          <Link to={"/CreateGradeSheet/Old"} onMouseEnter={loadGradeSheet}>
             <div className="session-link" >
               <h3 >{props.cardName}</h3>
             </div>

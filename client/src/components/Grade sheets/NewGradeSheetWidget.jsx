@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
+import { useParams } from "react-router-dom";
 import {postGradeSheet} from "../../actions/courses";
 
 
@@ -18,6 +19,7 @@ function createStudentGrade(student) {
 
 function NewGradeSheetWidget() {
   const dispatch = useDispatch();
+  const {mode} = useParams();
   const {courseId, courseName, courseNumber} = useSelector((state) => state.currentCourse);
   var students = useSelector((state) => state.students.map(({password, email, ...others}) => others));
   const [gradeSheetDescription, setGradeSheetDescription] = useState("");
@@ -29,7 +31,7 @@ function NewGradeSheetWidget() {
   }
   return (
     <div className="dash-container">
-      <h1 className="title">Creating a new grade sheet for {courseName+" "+courseNumber} </h1>
+      <h1 className="title">{mode==="New"? "Creating a new grade sheet": "Viewing grade sheet"} for {courseName+" "+courseNumber} </h1>
       <form onSubmit={submitGradeSheet}>
         <div id="lower-section">
             <h2>Grade sheet description: </h2>
