@@ -33,7 +33,7 @@ function VerticalNavBar() {
       <div className="logo-area"></div>
       <div className="nav-menu">
         <svg
-          class="sensei-logo-nav"
+          className="sensei-logo-nav"
           viewBox="0 0 110 109"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +56,7 @@ function VerticalNavBar() {
           </Link>
           <Link to="/Alerts" className="removeUnderline white">
             <li className="nav-item">
-              <i class="icons uil uil-meeting-board"></i>
+              <i className="icons uil uil-meeting-board"></i>
               Bulletin
             </li>
           </Link>
@@ -65,7 +65,7 @@ function VerticalNavBar() {
             Polls
           </li>
           <li className="nav-item">
-            <i class="icons uil uil-key-skeleton-alt"></i>
+            <i className="icons uil uil-key-skeleton-alt"></i>
             Capacity
           </li>
           <li className="nav-item" onClick={logout}>

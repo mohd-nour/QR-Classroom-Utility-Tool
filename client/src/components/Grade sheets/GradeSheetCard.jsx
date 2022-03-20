@@ -17,7 +17,7 @@ function GradeSheetCard(props) {
   return (
     <div className="card-container">
       <div className="class-card">
-          <Link to={"/CreateGradeSheet/Old"} onMouseEnter={loadGradeSheet}>
+          <Link to={"/CreateGradeSheet/Old"} onMouseEnter={loadGradeSheet} state={{id: props.id}}>
             <div className="session-link" >
               <h3 >{props.cardName}</h3>
             </div>
