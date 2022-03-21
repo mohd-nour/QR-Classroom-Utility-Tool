@@ -5,15 +5,18 @@ import {postGradeSheet} from "../../actions/courses";
 
 
 function createStudentGrade(student) {
-    const [temp] = this.gradeSheet;
-    const students = temp.students;
-    //const currentStudentGrade = students.filter((currStudent) => currStudent._id === student._id);
+    console.log(this);
     var grade;
-    students.forEach(stud => {
-      if (stud.instituteId === student.instituteId){
-        grade = stud.grade;
-      }
-    });
+    if (this.mode==="Old"){
+      const [temp] = this.gradeSheet;
+      const students = temp.students;
+      students.forEach(stud => {
+        if (stud.instituteId === student.instituteId){
+          grade = stud.grade;
+        }
+      });
+    }
+    
     console.log(grade);
     return (
         <div key={student._id}>
@@ -21,7 +24,7 @@ function createStudentGrade(student) {
             <input type="number" 
             placeholder="Grade" 
             onChange = {(e) => student.grade = e.target.value}
-            value = {this.mode === "Old" && grade}
+            value = {this.mode === "Old" && grade? grade: null}
             required
             />
         </div>
@@ -38,8 +41,10 @@ function NewGradeSheetWidget() {
   const submitGradeSheet = (e) => {
       e.preventDefault();
       students = students.map(({_id, ...others}) => others)
-      console.log(students);
       dispatch(postGradeSheet(courseId, gradeSheetDescription, students));
+  }
+  const saveGradeSheet = (e) => {
+    e.preventDefault();
   }
   var gradeSheets = useSelector((state) => state.gradeSheetsReducer);
   var id;
@@ -52,7 +57,7 @@ function NewGradeSheetWidget() {
   return (
     <div className="dash-container">
       <h1 className="title">{mode==="New"? "Creating a new grade sheet for "+courseName+" "+courseNumber: "Viewing grade sheet"}</h1>
-      <form onSubmit={submitGradeSheet}>
+      <form onSubmit={mode==="New"? submitGradeSheet: saveGradeSheet}>
         <div id="lower-section">
             <h2>Grade sheet description: </h2>
             <input 
@@ -64,7 +69,7 @@ function NewGradeSheetWidget() {
             {students.map(createStudentGrade, {gradeSheet: gradeSheet, mode: mode})}
         </div>
         <br></br>
-        <button type="submit">Submit grade sheet</button>
+        <button type="submit">{mode==="New"? "Submit grade sheet": "Save grade sheet"}</button>
       </form>
 
     </div>
