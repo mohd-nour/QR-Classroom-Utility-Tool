@@ -67,3 +67,6 @@ export const fetchGradeSheets = (courseId) => API.get("/courses/fetchGradeSheets
 
 export const postGradeSheet = (courseId, deliverable, students_grades) => 
   API.post("/courses/postGradeSheet/",{courseId: courseId, deliverable: deliverable, students_grades: students_grades});
+
+export const updateGradeSheet = (courseId, deliverable, students_grades, gradeSheetId) =>
+  API.patch("/courses/updateGradeSheet/", {courseId: courseId, deliverable: deliverable, students_grades: students_grades, gradeSheetId: gradeSheetId});

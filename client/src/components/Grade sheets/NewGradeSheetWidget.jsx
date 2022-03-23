@@ -1,11 +1,10 @@
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import { useParams, useLocation } from "react-router-dom";
-import {postGradeSheet} from "../../actions/courses";
+import {postGradeSheet, updateGradeSheet} from "../../actions/courses";
 
 
 function createStudentGrade(student) {
-    console.log(this);
     var grade;
     if (this.mode==="Old"){
       const [temp] = this.gradeSheet;
@@ -16,15 +15,15 @@ function createStudentGrade(student) {
         }
       });
     }
-    
-    console.log(grade);
+    student.grade = grade;
     return (
         <div key={student._id}>
             <h2>{student.name}</h2>
             <input type="number" 
             placeholder="Grade" 
             onChange = {(e) => student.grade = e.target.value}
-            value = {this.mode === "Old" && grade? grade: null}
+            //value = {this.mode === "Old" && grade? grade: null}
+            defaultValue = {this.mode === "Old" && grade? grade: null}
             required
             />
         </div>
@@ -37,15 +36,6 @@ function NewGradeSheetWidget() {
   const {state} = useLocation();
   const {courseId, courseName, courseNumber} = useSelector((state) => state.currentCourse);
   var students = useSelector((state) => state.students.map(({password, email, ...others}) => others));
-  const [gradeSheetDescription, setGradeSheetDescription] = useState("");
-  const submitGradeSheet = (e) => {
-      e.preventDefault();
-      students = students.map(({_id, ...others}) => others)
-      dispatch(postGradeSheet(courseId, gradeSheetDescription, students));
-  }
-  const saveGradeSheet = (e) => {
-    e.preventDefault();
-  }
   var gradeSheets = useSelector((state) => state.gradeSheetsReducer);
   var id;
   var gradeSheet;
@@ -53,7 +43,19 @@ function NewGradeSheetWidget() {
     id = state.id;
     gradeSheet = gradeSheets.filter((gradeSheet) => gradeSheet._id===id);
   }
-
+  const [gradeSheetDescription, setGradeSheetDescription] = useState(gradeSheet && gradeSheet[0].deliverable);
+  const submitGradeSheet = (e) => {
+      e.preventDefault();
+      students = students.map(({_id, ...others}) => others)
+      dispatch(postGradeSheet(courseId, gradeSheetDescription, students));
+  }
+  const saveGradeSheet = (e) => {
+    e.preventDefault();
+    const [updatedGradeSheet] = gradeSheet;
+    updatedGradeSheet.students=students;
+    updatedGradeSheet.deliverable = gradeSheetDescription;
+    dispatch(updateGradeSheet(updatedGradeSheet));
+  }
   return (
     <div className="dash-container">
       <h1 className="title">{mode==="New"? "Creating a new grade sheet for "+courseName+" "+courseNumber: "Viewing grade sheet"}</h1>
@@ -63,7 +65,7 @@ function NewGradeSheetWidget() {
             <input 
             type="text" 
             placeholder="Grade sheet description" 
-            value={gradeSheetDescription} 
+            defaultValue={mode==="Old"? gradeSheet[0].deliverable: gradeSheetDescription}
             onChange={(e) => setGradeSheetDescription(e.target.value)} 
             />
             {students.map(createStudentGrade, {gradeSheet: gradeSheet, mode: mode})}

@@ -45,6 +45,20 @@ export const postGradeSheet = async (req, res) => {
   }
 }
 
+export const updateGradeSheet = async (req, res) => {
+  try {
+    console.log("reached backend update grade sheet");
+    const {deliverable, courseId, students_grades, gradeSheetId} = req.body;
+    const updatedSheet = await GradeSheet.findByIdAndUpdate(gradeSheetId, {
+      deliverable: deliverable,
+      students: students_grades
+    });
+    console.log(updatedSheet);
+  } catch (error) {
+    res.status(409).json({message: error.message});
+  }
+};
+
 export const createCourse = async (req, res) => {
   const course = req.body;
 

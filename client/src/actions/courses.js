@@ -49,6 +49,17 @@ export const postGradeSheet = (courseId, deliverable, gradeSheet) => async (disp
   }
 };
 
+export const updateGradeSheet = (updatedGradeSheet) => async (dispatch) => {
+  try {
+    console.log(updatedGradeSheet);
+    const {data} = await api.updateGradeSheet(updatedGradeSheet.courseId, updatedGradeSheet.deliverable, updatedGradeSheet.students, updatedGradeSheet._id);
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
 export const addSession = (courseId) => async (dispatch) => {
   try {
     const { data } = await api.addSession(courseId);

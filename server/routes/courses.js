@@ -16,7 +16,8 @@ import {
   getSingleSession,
   closeSession,
   getGradeSheets,
-  postGradeSheet
+  postGradeSheet,
+  updateGradeSheet
 } from "../controllers/courses.js";
 
 const router = express.Router();
@@ -39,6 +40,7 @@ router.patch("/sessions/closeSession/:classId/:sessionNumber", closeSession);
 
 router.get("/fetchGradeSheets/:courseId", getGradeSheets);
 router.post("/postGradeSheet", postGradeSheet);
+router.patch("/updateGradeSheet", updateGradeSheet);
 
 router.patch(
   "/sessions/markAttendance/:classId/:sessionNumber",
