@@ -65,7 +65,7 @@ function SessionsWidget(props) {
         </div>
         {!sessions.length ? (
           <div className="empty-classes">
-            <h3 className="noclass-title">No sessions yet!</h3>
+            <h3 className="noclass-title no-attendance">No sessions yet!</h3>
             <div className="sessionPNG"></div>
           </div>
         ) : (

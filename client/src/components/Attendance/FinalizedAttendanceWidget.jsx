@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import StudentCard from '../StudentCard/StudentCard';
 import { useSelector } from 'react-redux';
 
@@ -14,6 +14,15 @@ function createStudentCard(student) {
 }
 
 function FinalizedAttendanceWidget(props) {
+  const endRef = useRef(null);
+  const scrollToBottom = () => {
+    endRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, []);
+
   const currentSession = useSelector((state) => state.currentSession);
   const attendedStudents = currentSession.attendedStudents;
   const { courseName, courseNumber } = useSelector(
@@ -33,14 +42,36 @@ function FinalizedAttendanceWidget(props) {
           {courseName + ' ' + courseNumber + ' '}- Session{' '}
           {currentSession.sessionNumber + ' '} results
         </h2>
-        <div className="main-panel">
-          <h3 className="sub-title">Students who attended</h3>
-        </div>
-        <div id="card-section">{attendedStudents.map(createStudentCard)}</div>
-        <div className="main-panel">
-          <h3 className="sub-title">Students who didn't attend</h3>
-        </div>
-        <div id="card-section">{didntAttend.map(createStudentCard)}</div>
+        {!courseStudents.length ? (
+          <div className="empty-classes">
+            <h3 className="noclass-title">
+              No students have been enrolled yet!
+            </h3>
+            <div className="alertPNG"></div>
+          </div>
+        ) : (
+          <>
+            <div className="main-panel">
+              <h3 className="sub-title">Students who attended</h3>
+            </div>
+            {!attendedStudents.length ? (
+              <div>
+                <h3 className="noclass-title sub-title">
+                  No students have taken attendance yet.
+                </h3>
+              </div>
+            ) : (
+              <div id="card-section">
+                {attendedStudents.map(createStudentCard)}
+              </div>
+            )}
+            <div ref={endRef}></div>
+            <div className="main-panel">
+              <h3 className="sub-title">Students who didn't attend</h3>
+            </div>
+            <div id="card-section">{didntAttend.map(createStudentCard)}</div>
+          </>
+        )}
       </div>
     </div>
   );

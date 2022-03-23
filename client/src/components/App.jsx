@@ -17,6 +17,7 @@ import GradeSheets from './Grade sheets/GradeSheetsPage';
 import FinalizedAttendancePage from './Attendance/FinalizedAttendancePage';
 import Verified from './Authentication/Verified';
 import NewGradeSheetPage from './Grade sheets/NewGradeSheetPage';
+import GradeSheetReportPage from './Grade sheets/GradeSheetReportPage';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path="/Alerts" element={<AlertsPage />} />
         <Route path="/SessionsPage" element={<SessionsPage />} />
         <Route path="/CreateGradeSheet/:mode" element={<NewGradeSheetPage />} />
+        <Route path="/SheetReport" element={<GradeSheetReportPage />} />
         <Route
           path="/FinalizeAttendance"
           element={<FinalizedAttendancePage />}

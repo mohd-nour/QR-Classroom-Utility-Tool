@@ -38,7 +38,7 @@ function RegisterPage() {
         <div className="form-container">
           <div className="login-form">
             <h1>Sign Up</h1>
-            <h4 id="login-message">Welcome to the University Companion App.</h4>
+            <h4 id="login-message">Sign up to get started.</h4>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="field-wrapper">
                 <label htmlFor="email">Name</label>
