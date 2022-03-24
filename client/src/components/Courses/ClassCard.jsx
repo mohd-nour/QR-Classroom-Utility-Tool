@@ -44,6 +44,16 @@ function ClassCard(props) {
             );
             dispatch(fetchGradeSheets(props.id));
           }}
+          onClick={() => {
+            dispatch(
+              setCurrentCourse({
+                courseId: props.id,
+                courseName: props.courseName,
+                courseNumber: props.courseNumber,
+              })
+            );
+            dispatch(fetchGradeSheets(props.id));
+          }}
         >
           <h4>
             {props.courseName} {props.courseNumber}

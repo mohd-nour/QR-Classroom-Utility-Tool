@@ -75,7 +75,7 @@ function NewGradeSheetWidget() {
     const [updatedGradeSheet] = gradeSheet;
     updatedGradeSheet.students = students;
     updatedGradeSheet.deliverable = gradeSheetDescription;
-    dispatch(updateGradeSheet(updatedGradeSheet));
+    dispatch(updateGradeSheet(updatedGradeSheet, navigate));
   };
   return (
     <div className="dash-container">
@@ -97,6 +97,7 @@ function NewGradeSheetWidget() {
                   : gradeSheetDescription
               }
               onChange={(e) => setGradeSheetDescription(e.target.value)}
+              required
             />
           </div>
           <div className="sheet-cards">

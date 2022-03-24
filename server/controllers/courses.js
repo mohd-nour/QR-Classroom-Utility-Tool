@@ -18,7 +18,7 @@ export const getCourses = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
-
+/*
 export const getGradeSheets = async (req, res) => {
   try {
     const courseId = req.params.courseId;
@@ -31,7 +31,6 @@ export const getGradeSheets = async (req, res) => {
 
 export const postGradeSheet = async (req, res) => {
   try {
-    console.log(req.body);
     const {deliverable, courseId, students_grades} = req.body;
     const newGradeSheet = new GradeSheet({
       students: students_grades,
@@ -53,12 +52,12 @@ export const updateGradeSheet = async (req, res) => {
       deliverable: deliverable,
       students: students_grades
     });
-    console.log(updatedSheet);
+    res.status(201).json(updatedSheet);
   } catch (error) {
     res.status(409).json({message: error.message});
   }
 };
-
+*/
 export const createCourse = async (req, res) => {
   const course = req.body;
 

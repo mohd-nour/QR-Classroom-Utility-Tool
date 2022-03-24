@@ -63,10 +63,10 @@ export const addAlert = (professorId, courseId, messageAndTitle) =>
   API.post("/alerts/addAlert/"+professorId+"/"+courseId, messageAndTitle);
 
 
-export const fetchGradeSheets = (courseId) => API.get("/courses/fetchGradeSheets/"+courseId);
+export const fetchGradeSheets = (courseId) => API.get("/gradeSheets/fetchGradeSheets/"+courseId);
 
 export const postGradeSheet = (courseId, deliverable, students_grades) => 
-  API.post("/courses/postGradeSheet/",{courseId: courseId, deliverable: deliverable, students_grades: students_grades});
+  API.post("/gradeSheets/postGradeSheet/",{courseId: courseId, deliverable: deliverable, students_grades: students_grades});
 
-export const updateGradeSheet = (courseId, deliverable, students_grades, gradeSheetId) =>
-  API.patch("/courses/updateGradeSheet/", {courseId: courseId, deliverable: deliverable, students_grades: students_grades, gradeSheetId: gradeSheetId});
+export const updateGradeSheet = (courseId, deliverable, students_grades, gradeSheetId) => 
+  API.patch("/gradeSheets/updateGradeSheet", {courseId: courseId, deliverable: deliverable, students_grades: students_grades, gradeSheetId: gradeSheetId});

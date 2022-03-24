@@ -6,6 +6,7 @@ import courseRoutes from "./routes/courses.js";
 import userRoutes from "./routes/users.js";
 import forgotPasswordRoutes from "./routes/passwordReset.js";
 import alertsRoutes from "./routes/alerts.js";
+import gradeSheetsRoutes from "./routes/gradesheets.js";
 import http from "http";
 import {Server, Socket} from "socket.io";
 
@@ -15,11 +16,12 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
-// Every route inside of courseRoutes will start with /course
+// Every route inside of courseRoutes will start with /courses
 app.use("/courses", courseRoutes);
 app.use("/users", userRoutes);
 app.use("/forgotPassword", forgotPasswordRoutes);
 app.use("/alerts", alertsRoutes);
+app.use("/gradeSheets", gradeSheetsRoutes);
 
 const server = http.createServer(app);
 const io = new Server(server);

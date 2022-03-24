@@ -49,7 +49,7 @@ export const postGradeSheet =
         gradeSheet
       );
       dispatch({ type: 'POST_GRADE_SHEET', payload: data });
-      navigate('/SheetReport', { replace: true });
+      navigate('/SheetReport');
     } catch (error) {
       console.log(error);
     }
@@ -65,7 +65,7 @@ export const updateGradeSheet =
         updatedGradeSheet.students,
         updatedGradeSheet._id
       );
-      navigate('/SheetReport', { replace: true });
+      navigate('/SheetReport');
       console.log(data);
     } catch (error) {
       console.log(error);

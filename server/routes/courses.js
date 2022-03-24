@@ -14,10 +14,7 @@ import {
   removeSession,
   finalizeSession,
   getSingleSession,
-  closeSession,
-  getGradeSheets,
-  postGradeSheet,
-  updateGradeSheet
+  closeSession
 } from "../controllers/courses.js";
 
 const router = express.Router();
@@ -37,10 +34,6 @@ router.get("/sessions/getSessions/:classId", getSessions);
 router.patch("/sessions/addSession/:classId/:sessionNumber", removeSession);
 router.patch("/sessions/finalizeSession/:classId/:sessionNumber", finalizeSession);
 router.patch("/sessions/closeSession/:classId/:sessionNumber", closeSession);
-
-router.get("/fetchGradeSheets/:courseId", getGradeSheets);
-router.post("/postGradeSheet", postGradeSheet);
-router.patch("/updateGradeSheet", updateGradeSheet);
 
 router.patch(
   "/sessions/markAttendance/:classId/:sessionNumber",
