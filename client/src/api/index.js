@@ -69,4 +69,4 @@ export const postGradeSheet = (courseId, deliverable, students_grades) =>
   API.post("/gradeSheets/postGradeSheet/",{courseId: courseId, deliverable: deliverable, students_grades: students_grades});
 
 export const updateGradeSheet = (courseId, deliverable, students_grades, gradeSheetId) => 
-  API.patch("/gradeSheets/updateGradeSheet", {courseId: courseId, deliverable: deliverable, students_grades: students_grades, gradeSheetId: gradeSheetId});
+  API.patch("/gradeSheets/updateGradeSheet/", {courseId: courseId, deliverable: deliverable, students_grades: students_grades, gradeSheetId: gradeSheetId});

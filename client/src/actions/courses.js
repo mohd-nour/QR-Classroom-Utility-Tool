@@ -49,7 +49,7 @@ export const postGradeSheet =
         gradeSheet
       );
       dispatch({ type: 'POST_GRADE_SHEET', payload: data });
-      navigate('/SheetReport');
+      navigate('/GradeSheets');
     } catch (error) {
       console.log(error);
     }
@@ -58,15 +58,13 @@ export const postGradeSheet =
 export const updateGradeSheet =
   (updatedGradeSheet, navigate) => async (dispatch) => {
     try {
-      console.log(updatedGradeSheet);
       const { data } = await api.updateGradeSheet(
         updatedGradeSheet.courseId,
         updatedGradeSheet.deliverable,
         updatedGradeSheet.students,
         updatedGradeSheet._id
       );
-      navigate('/SheetReport');
-      console.log(data);
+      navigate('/SheetReport', {state:{gradeSheet: updatedGradeSheet}});
     } catch (error) {
       console.log(error);
     }
