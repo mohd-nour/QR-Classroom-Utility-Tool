@@ -170,7 +170,7 @@ ul {
 }
 
 .icons {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
 }
 
 .nav-item:hover {
@@ -285,6 +285,7 @@ ul {
   background-size: cover;
   background-position: center;
   width: 60px;
+  min-width: 60px;
   height: 60px;
   background-color: #8d8d8d;
   border-radius: 50%;
@@ -398,17 +399,92 @@ ul {
 .report-panel {
   display: flex;
   flex-direction: row;
-  height: 100vh;
 }
 
 .report-left {
   width: 70%;
-  background-color: red;
+  background-color: white;
+  margin: 1rem 2rem;
+  border-radius: 10px;
 }
 
 .report-right {
   width: 30%;
-  background-color: blue;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.stats-left {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.stat-header {
+  margin: 1.5rem;
+}
+
+.report-title {
+  margin: 2rem 2rem 1rem;
+}
+
+.stat-card-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 0.5rem;
+  min-width: 15rem;
+}
+
+.stat-card-right h1 {
+  font-size: 4rem;
+}
+
+.stat-bargraph {
+  margin: 0.5rem 2rem;
+}
+
+.stat-title {
+  margin: 0.5rem;
+}
+
+.stat-profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 12rem;
+}
+
+.stat-identity {
+  font-size: 0.8rem;
+}
+
+.vertical {
+  border-left: 1px solid black;
+}
+
+.stat-card {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.average-stat {
+  display: flex;
+  justify-content: baseline;
+  align-items: baseline;
+}
+
+.average-stat h5 {
+  margin-left: 0.1rem;
 }
 
 .description-input {

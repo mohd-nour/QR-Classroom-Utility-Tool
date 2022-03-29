@@ -48,6 +48,10 @@ function VerticalNavBar() {
           />
         </svg>
         <ul className="nav-list grid">
+          <li className="nav-item">
+            <i class="icons uil uil-user"></i>
+            Profile
+          </li>
           <Link to="/Home" className="removeUnderline white">
             <li className="nav-item">
               <i className="icons uil uil-estate"></i>
