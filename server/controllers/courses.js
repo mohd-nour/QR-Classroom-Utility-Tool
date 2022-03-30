@@ -1,9 +1,11 @@
 import courseClass from "../models/courseClass.js";
-import GradeSheet from "../models/gradeSheet.js";
 import user from "../models/user.js";
 import Session from "../models/session.js";
 import mongoose from "mongoose";
 import io from "../index.js";
+import GradeSheet from "../models/gradeSheet.js";
+import ProfessorAlert from "../models/professorAlert.js";
+
 //takes schema from models
 
 //Logic for routes
@@ -18,6 +20,19 @@ export const getCourses = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+
+export const getCoursesForStudents = async (req, res) => {
+  try {
+    const arrayOfClassesIds = req.body; // Assuming that arrayOfClassesIds is an array of classes Ids
+    const courses = await courseClass.find({ 
+      _id: {
+          $in: arrayOfClassesIds
+      }
+  });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+}
 /*
 export const getGradeSheets = async (req, res) => {
   try {
@@ -94,6 +109,8 @@ export const deleteCourse = async (req, res) => {
   } else {
     await courseClass.findByIdAndRemove(id);
     await Session.deleteMany({ classId: id });
+    await GradeSheet.deleteMany({ courseId: id });
+    await ProfessorAlert.deleteMany({ classId: id});
     res.json({ message: "Post deleted successfully" });
   }
 };
@@ -122,11 +139,25 @@ export const addStudent = async (req, res) => {
           if (err) {
             res.send(err);
           } else {
-            res.status(200).json(student);
+            user.updateOne({ instituteId: studentId}, {
+              $addToSet: {
+                classes: courseId
+              }
+            }, function(err, result){
+              if (err){
+                res.send(err);
+              }
+              else{
+                res.status(200).json(student);
+                //io.emit(courseId);
+                io.to(courseId).emit("RefreshEnrollment");
+              }
+            });
+            //res.status(200).json(student);
             //io.emit(courseId);
-            console.log("before emitting");
-            io.to(courseId).emit("RefreshEnrollment");
-            console.log("after emitting");
+            //console.log("before emitting");
+            //io.to(courseId).emit("RefreshEnrollment");
+            //console.log("after emitting");
           }
         }
       );
