@@ -57,9 +57,12 @@ function NewGradeSheetWidget() {
     id = state.id;
     gradeSheet = gradeSheets.filter((gradeSheet) => gradeSheet._id === id);
   }
+  /*
   const [gradeSheetDescription, setGradeSheetDescription] = useState(
     gradeSheet && gradeSheet[0].deliverable
   );
+    */
+  var gradeSheetDesc = gradeSheet && gradeSheet[0].deliverable;
 
   const navigate = useNavigate();
   
@@ -67,14 +70,14 @@ function NewGradeSheetWidget() {
     e.preventDefault();
     students = students.map(({ _id, ...others }) => others);
     dispatch(
-      postGradeSheet(courseId, gradeSheetDescription, students, navigate)
+      postGradeSheet(courseId, gradeSheetDesc, students, navigate)
     );
   };
   const saveGradeSheet = (e) => {
     e.preventDefault();
     const [updatedGradeSheet] = gradeSheet;
     updatedGradeSheet.students = students;
-    updatedGradeSheet.deliverable = gradeSheetDescription;
+    updatedGradeSheet.deliverable = gradeSheetDesc;
     dispatch(updateGradeSheet(updatedGradeSheet, navigate));
   };
   return (
@@ -91,12 +94,8 @@ function NewGradeSheetWidget() {
               className="description-input"
               type="text"
               placeholder="Quiz X"
-              defaultValue={
-                mode === 'Old'
-                  ? gradeSheet[0].deliverable
-                  : gradeSheetDescription
-              }
-              onChange={(e) => setGradeSheetDescription(e.target.value)}
+              defaultValue={gradeSheetDesc}
+              onChange={(e) => {gradeSheetDesc = e.target.value}}
               required
             />
           </div>
@@ -118,3 +117,13 @@ function NewGradeSheetWidget() {
 }
 
 export default NewGradeSheetWidget;
+
+
+
+/*
+defaultValue={
+                mode === 'Old'
+                  ? gradeSheet[0].deliverable
+                  : gradeSheetDesc
+}
+*/
