@@ -64,6 +64,7 @@ export const updateGradeSheet =
         updatedGradeSheet.students,
         updatedGradeSheet._id
       );
+      dispatch(fetchGradeSheets(updatedGradeSheet.courseId));
       navigate('/SheetReport', {state:{gradeSheet: updatedGradeSheet}});
     } catch (error) {
       console.log(error);
