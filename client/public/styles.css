@@ -11,6 +11,16 @@ html {
   color: #393c41;
 }
 
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center-screen {
+
+}
+
 .classSVG {
   height: 310px;
 }
@@ -346,6 +356,7 @@ ul {
 .student-sheet-name {
   margin: 0 5px;
 }
+
 .student-sheet-id {
   margin-left: 2rem;
 }
@@ -895,9 +906,11 @@ label {
   0% {
     transform: translatey(0px);
   }
+
   50% {
     transform: translatey(-30px);
   }
+
   100% {
     transform: translatey(0px);
   }
@@ -1282,6 +1295,23 @@ button:focus {
   margin-left: 51px;
   font-size: 0.8rem;
   padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* <---------------- Polls ----------------> */
+
+.polls-panel {
+  flex-direction: column;
+}
+
+.poll-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+}
+
+.answer-options {
   display: flex;
   flex-direction: column;
 }

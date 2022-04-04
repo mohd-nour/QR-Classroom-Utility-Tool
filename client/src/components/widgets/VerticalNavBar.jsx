@@ -64,10 +64,12 @@ function VerticalNavBar() {
               Bulletin
             </li>
           </Link>
+          <Link to="/Poll" className="removeUnderline white">
           <li className="nav-item">
             <i className="icons uil uil-chart-pie-alt"></i>
             Polls
           </li>
+          </Link>
           <li className="nav-item">
             <i className="icons uil uil-key-skeleton-alt"></i>
             Capacity

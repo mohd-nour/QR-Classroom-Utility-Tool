@@ -18,6 +18,7 @@ import FinalizedAttendancePage from './Attendance/FinalizedAttendancePage';
 import Verified from './Authentication/Verified';
 import NewGradeSheetPage from './Grade sheets/NewGradeSheetPage';
 import GradeSheetReportPage from './Grade sheets/GradeSheetReportPage';
+import PollsPage from './Polls/PollPage';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <Route path="/SessionsPage" element={<SessionsPage />} />
         <Route path="/CreateGradeSheet/:mode" element={<NewGradeSheetPage />} />
         <Route path="/SheetReport" element={<GradeSheetReportPage />} />
+        <Route path="/Poll" element={<PollsPage />} />
         <Route
           path="/FinalizeAttendance"
           element={<FinalizedAttendancePage />}
