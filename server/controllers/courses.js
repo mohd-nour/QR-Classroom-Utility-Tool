@@ -28,51 +28,27 @@ export const getCoursesForStudents = async (req, res) => {
       _id: {
           $in: arrayOfClassesIds
       }
-  });
-  } catch (error) {
-    res.status(404).json({ message: error.message });
-  }
-}
-/*
-export const getGradeSheets = async (req, res) => {
-  try {
-    const courseId = req.params.courseId;
-    const gradeSheets = await GradeSheet.find({courseId: courseId});
-    res.status(200).json(gradeSheets);
-  } catch (error) {
-    res.status(404).json({ message: error.message });
-  }
-}
-
-export const postGradeSheet = async (req, res) => {
-  try {
-    const {deliverable, courseId, students_grades} = req.body;
-    const newGradeSheet = new GradeSheet({
-      students: students_grades,
-      courseId: courseId,
-      deliverable: deliverable
-    }); // {name: "Mohamad", instituteId: "201902730", grade: "87"}
-    await newGradeSheet.save();
-    res.status(201).json(newGradeSheet);
-  } catch (error) {
-    res.status(409).json({message: error.message});
-  }
-}
-
-export const updateGradeSheet = async (req, res) => {
-  try {
-    console.log("reached backend update grade sheet");
-    const {deliverable, courseId, students_grades, gradeSheetId} = req.body;
-    const updatedSheet = await GradeSheet.findByIdAndUpdate(gradeSheetId, {
-      deliverable: deliverable,
-      students: students_grades
     });
-    res.status(201).json(updatedSheet);
+    res.status(200).json(courses);
   } catch (error) {
-    res.status(409).json({message: error.message});
+    res.status(404).json({ message: error.message });
   }
-};
-*/
+}
+
+export const getAlertsForStudents = async (req, res) => {
+  try {
+    const arrayOfClassesIds = req.body; // Assuming that arrayOfClassesIds is an array of classes Ids
+    const alerts = await ProfessorAlert.find({ 
+      classId: {
+          $in: arrayOfClassesIds
+      }
+    });
+    res.status(200).json(alerts);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+}
+
 export const createCourse = async (req, res) => {
   const course = req.body;
 
