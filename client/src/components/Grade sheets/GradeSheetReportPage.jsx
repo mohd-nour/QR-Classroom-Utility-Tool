@@ -8,57 +8,75 @@ const computeStatistics = (studentsList) => {
   var grades = [];
   var IDs = [];
   var minGrade = 100;
-  var minID = "";
-  var minName = "";
+  var minID = '';
+  var minName = '';
   var maxGrade = 0;
-  var maxID = "";
-  var maxName = "";
+  var maxID = '';
+  var maxName = '';
   const median = (arr) => {
     let middle = Math.floor(arr.length / 2);
-      arr = [...arr].sort((a, b) => a - b);
-    return arr.length % 2 !== 0 ? arr[middle] : (arr[middle - 1] + arr[middle]) / 2;
+    arr = [...arr].sort((a, b) => a - b);
+    return arr.length % 2 !== 0
+      ? arr[middle]
+      : (arr[middle - 1] + arr[middle]) / 2;
   };
 
   const getStandardDeviation = (arr) => {
-    const n = arr.length
-    const mean = arr.reduce((a, b) => a + b) / n
-    return Math.sqrt(arr.map(x => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / n)
+    const n = arr.length;
+    const mean = arr.reduce((a, b) => a + b) / n;
+    return Math.sqrt(
+      arr.map((x) => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / n
+    );
   };
 
-  for (var i = 0; i < studentsList.length; i++){
+  for (var i = 0; i < studentsList.length; i++) {
     grades.push(parseFloat(studentsList[i].grade));
     IDs.push(studentsList[i].instituteId);
-    if (minGrade >= studentsList[i].grade){
+    if (minGrade >= studentsList[i].grade) {
       minGrade = studentsList[i].grade;
       minID = studentsList[i].instituteId;
       minName = studentsList[i].name;
     }
-    if (maxGrade <= studentsList[i].grade){
+    if (maxGrade <= studentsList[i].grade) {
       maxGrade = studentsList[i].grade;
       maxID = studentsList[i].instituteId;
       maxName = studentsList[i].name;
     }
   }
   var average = 0;
-  for (var i = 0; i < grades.length ; i++) {
+  for (var i = 0; i < grades.length; i++) {
     average += grades[i];
   }
-  average = average/grades.length;
+  average = average / grades.length;
   console.log(grades);
 
   var below_avg = 0;
   var above_avg = 0;
-  for (var i = 0; i < grades.length ; i++) {
-    if (grades[i] >= average){
+  for (var i = 0; i < grades.length; i++) {
+    if (grades[i] >= average) {
       above_avg += 1;
     }
-    if (grades[i] < average){
+    if (grades[i] < average) {
       below_avg += 1;
     }
   }
 
-  return [grades, IDs, minGrade, minID, minName, maxGrade, maxID, maxName, average.toFixed(2), median(grades), getStandardDeviation(grades).toFixed(2), below_avg, above_avg];
-}
+  return [
+    grades,
+    IDs,
+    minGrade,
+    minID,
+    minName,
+    maxGrade,
+    maxID,
+    maxName,
+    average.toFixed(2),
+    median(grades),
+    getStandardDeviation(grades).toFixed(2),
+    below_avg,
+    above_avg,
+  ];
+};
 
 const GradeReport = () => {
   const location = useLocation();
@@ -66,11 +84,24 @@ const GradeReport = () => {
     return <Navigate to="/"></Navigate>;
   }
   const studentsList = location.state.gradeSheet.students;
-  const [grades, IDs, minGrade, minID, minName, maxGrade, maxID, maxName, average, median, deviation, below_avg, above_avg] = computeStatistics(studentsList);
+  const [
+    grades,
+    IDs,
+    minGrade,
+    minID,
+    minName,
+    maxGrade,
+    maxID,
+    maxName,
+    average,
+    median,
+    deviation,
+    below_avg,
+    above_avg,
+  ] = computeStatistics(studentsList);
 
-  
   const state = {
-   labels: IDs,
+    labels: IDs,
     datasets: [
       {
         label: 'Grade',
@@ -149,7 +180,9 @@ const GradeReport = () => {
                 <h3>Below Average</h3>
                 <div className="average-stat">
                   <h1>{below_avg}</h1>
-                  <h5>({(below_avg*100/studentsList.length).toFixed(2)}%)</h5>
+                  <h5>
+                    ({((below_avg * 100) / studentsList.length).toFixed(2)}%)
+                  </h5>
                 </div>
               </div>
               <div className="vertical"></div>
@@ -157,7 +190,9 @@ const GradeReport = () => {
                 <h3>Above Average</h3>
                 <div className="average-stat">
                   <h1>{above_avg}</h1>
-                  <h5>({(above_avg*100/studentsList.length).toFixed(2)}%)</h5>
+                  <h5>
+                    ({((above_avg * 100) / studentsList.length).toFixed(2)}%)
+                  </h5>
                 </div>
               </div>
             </div>

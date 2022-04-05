@@ -30,7 +30,6 @@ function VerticalNavBar() {
 
   return (
     <div id="navBar">
-      <div className="logo-area"></div>
       <div className="nav-menu">
         <svg
           className="sensei-logo-nav"
@@ -47,11 +46,7 @@ function VerticalNavBar() {
             fill="white"
           />
         </svg>
-        <ul className="nav-list grid">
-          <li className="nav-item">
-            <i className="icons uil uil-user"></i>
-            Profile
-          </li>
+        <ul>
           <Link to="/Home" className="removeUnderline white">
             <li className="nav-item">
               <i className="icons uil uil-estate"></i>
@@ -65,14 +60,15 @@ function VerticalNavBar() {
             </li>
           </Link>
           <Link to="/Poll" className="removeUnderline white">
-          <li className="nav-item">
-            <i className="icons uil uil-chart-pie-alt"></i>
-            Polls
-          </li>
+            <li className="nav-item">
+              <i className="icons uil uil-chart-pie-alt"></i>
+              Polls
+            </li>
           </Link>
+        </ul>
+        <ul>
           <li className="nav-item">
-            <i className="icons uil uil-key-skeleton-alt"></i>
-            Capacity
+            <div className="post-avatar"></div>
           </li>
           <li className="nav-item" onClick={logout}>
             <i className="icons uil uil-signout"></i>

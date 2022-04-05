@@ -38,9 +38,9 @@ function RegisterPage() {
         <div className="form-container">
           <div className="login-form">
             <h1>Sign Up</h1>
-            <h4 id="login-message">Sign up to get started.</h4>
+            <h4 id="auth-message">Sign up to get started.</h4>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <div className="field-wrapper">
+              <div className="input-container">
                 <label htmlFor="email">Name</label>
                 <input
                   {...register('name', {
@@ -50,13 +50,11 @@ function RegisterPage() {
                   name="name"
                   placeholder="First and last name"
                   id="registername"
-                  className={`login-input ${
-                    errors.name ? 'invalid-entry' : null
-                  }`}
+                  className={`std-input ${errors.name ? 'invalid-entry' : ''}`}
                 />
                 {errors.name && <p className="alert">{errors.name.message}</p>}
               </div>
-              <div className="field-wrapper">
+              <div className="input-container">
                 <label htmlFor="email">Email</label>
                 <input
                   {...register('registerEmail', {
@@ -69,19 +67,15 @@ function RegisterPage() {
                   name="registerEmail"
                   placeholder="Mail@website.com"
                   id="registerEmail"
-                  className={`login-input ${
-                    errors.registerEmail ? 'invalid-entry' : null
+                  className={`std-input ${
+                    errors.registerEmail ? 'invalid-entry' : ''
                   }`}
-                  // value={formData.registerEmail}
-                  // onChange={(e) =>
-                  //   setFormData({ ...formData, email: e.target.value })
-                  // }
                 />
                 {errors.registerEmail && (
                   <p className="alert">{errors.registerEmail.message}</p>
                 )}
               </div>
-              <div className="field-wrapper">
+              <div className="input-container">
                 <label htmlFor="password">Password</label>
                 <input
                   {...register('registerPassword', {
@@ -101,19 +95,15 @@ function RegisterPage() {
                   name="registerPassword"
                   placeholder="Min. 8 characters"
                   id="registerPassword"
-                  className={`login-input ${
-                    errors.registerPassword ? 'invalid-entry' : null
+                  className={`std-input ${
+                    errors.registerPassword ? 'invalid-entry' : ''
                   }`}
-                  // value={formData.password}
-                  // onChange={(e) =>
-                  //   setFormData({ ...formData, password: e.target.value })
-                  // }
                 />
                 {errors.registerPassword && (
                   <p className="alert">{errors.registerPassword.message}</p>
                 )}
               </div>
-              <div className="field-wrapper">
+              <div className="input-container">
                 <label htmlFor="confirmPassword">Confirm Password</label>
                 <input
                   {...register('registerConfirmPassword', {
@@ -125,16 +115,9 @@ function RegisterPage() {
                   name="registerConfirmPassword"
                   placeholder="Confirm password"
                   id="registerConfirmPassword"
-                  className={`login-input ${
-                    errors.registerConfirmPassword ? 'invalid-entry' : null
+                  className={`std-input ${
+                    errors.registerConfirmPassword ? 'invalid-entry' : ''
                   }`}
-                  // value={formData.confirmPassword}
-                  // onChange={(e) =>
-                  //   setFormData({
-                  //     ...formData,
-                  //     confirmPassword: e.target.value,
-                  //   })
-                  // }
                 />
                 {errors.registerConfirmPassword && (
                   <p className="alert">
@@ -142,8 +125,8 @@ function RegisterPage() {
                   </p>
                 )}
               </div>
-              <div id="forgotpass-container">
-                <a href="/">Already a user? Sign in</a>
+              <div id="alternate-option">
+                <a href="/LoginPage">Already a user? Sign in</a>
               </div>
               <button className="form-button" type="submit">
                 <h4>Sign Up</h4>

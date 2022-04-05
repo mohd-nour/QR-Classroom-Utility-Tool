@@ -11,20 +11,450 @@ html {
   color: #393c41;
 }
 
+/* <---------------- General ----------------> */
+
+::-webkit-scrollbar {
+  width: 0.6rem;
+  background-color: #161718;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #425c7a;
+  border-radius: 0.5rem;
+}
+
 .flex-center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.center-screen {
-
+.form-button {
+  height: 42px;
+  width: 100%;
+  padding: 0 10px;
+  margin-top: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  border: 1px solid #ddd9d9;
+  border-radius: 5px;
+  background-color: #161718;
+  color: white;
 }
 
-.classSVG {
-  height: 310px;
+.form-button:hover {
+  background-color: #2f353b;
 }
 
+.dash-button {
+  border: none;
+  font-size: 12px;
+  border-radius: 5px;
+  height: 2.3rem;
+  background-color: #161718;
+  color: white;
+  font-weight: bold;
+  margin-right: 5rem;
+  padding: 0 10px;
+}
+
+.sensei-logo-nav {
+  background-color: #161718;
+  height: 35px;
+  width: 35px;
+  margin-top: 2rem;
+}
+
+.nav-item {
+  width: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.8rem 0;
+  font-size: 0.7rem;
+  box-sizing: border-box;
+}
+
+.icons {
+  font-size: 1.3rem;
+}
+
+.nav-item:hover {
+  background-color: #3c444e;
+}
+
+#navBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #161718;
+  height: 100vh;
+  width: 5rem;
+  position: fixed;
+}
+
+.banner-overlay {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
+  z-index: 1;
+}
+
+.banner-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 1.5rem 3rem;
+  color: white;
+  font-size: 2rem;
+}
+
+#banner {
+  background-color: #b8b8b8;
+  height: 21rem;
+  background-image: url('../assets/collegehall_img.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.dash-container {
+  margin-left: 5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.empty-alert {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-text {
+  color: #8d8d8d;
+  font-size: 14px;
+}
+
+.title {
+  padding: 2rem 3rem;
+  display: inline-block;
+}
+
+.sub-title {
+  margin: 0 3rem 2rem;
+}
+
+/* <----- Inputs ------> */
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
+.input-container {
+  width: 100%;
+}
+
+.std-input {
+  background-color: #f5f5f5;
+  height: 42px;
+  width: 100%;
+  padding: 0 10px;
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  color: #393c41;
+}
+
+.sheet-input {
+  text-align: center;
+  background-color: #f5f5f5;
+  height: 42px;
+  width: 8rem;
+  padding: 0 10px;
+  margin-right: 1rem;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  color: #393c41;
+}
+
+.alert-input {
+  height: 60px;
+  padding: 0 10px;
+  margin: 30px 20px 10px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  color: #393c41;
+  width: 100%;
+}
+
+/* <----- Inputs ------> */
+
+/* <---------------- General ----------------> */
+
+/* ============================================ */
+
+/* <---------------- Landing ----------------> */
+
+#landing-page {
+  display: flex;
+  height: 100vh;
+  background-image: url('../assets/bg.PNG');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.landing-panel {
+  padding: 0 150px 80px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+}
+
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+
+  50% {
+    transform: translatey(-30px);
+  }
+
+  100% {
+    transform: translatey(0px);
+  }
+}
+
+.landing-text {
+  max-width: 30%;
+  min-width: 200px;
+}
+
+.landing-image {
+  height: 300px;
+  width: 300px;
+  margin-right: 10%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  animation: float 3.5s ease-in-out infinite;
+}
+
+.landing-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 50px 0 20px 0;
+}
+
+.landing-button {
+  display: inline-block;
+  padding: 10px 30px;
+  margin-top: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 5px;
+  background-color: #161718;
+  color: white;
+  transition: 0.3s;
+  opacity: 1;
+}
+
+.landing-button:hover {
+  background-color: #2f353b;
+  transition: 0.3s;
+}
+
+.landing-title {
+  margin-bottom: 25px;
+  font-size: 30px;
+}
+
+.landing-sub-title {
+  color: #767676;
+  margin-bottom: 25px;
+}
+
+.sensei-landing-logo {
+  font-size: 30px;
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-weight: 500;
+}
+
+.header-logo {
+  margin-left: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+/* <---------------- Landing ----------------> */
+
+/* ============================================ */
+
+/* <---------------- Log In ----------------> */
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  padding: 40px 8%;
+  justify-content: center;
+}
+
+.login-overlay {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), transparent);
+  z-index: 1;
+}
+
+#auth-message {
+  color: #8d8d8d;
+  margin-top: 0.5rem;
+}
+
+.google-button:hover {
+  background-color: rgb(237, 242, 247);
+}
+
+.google-signin {
+  color: black;
+}
+
+.form-divider {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.divider {
+  height: 1px;
+  background-color: #ddd9d9;
+  width: 35%;
+}
+
+.optional-message {
+  display: flex;
+  font-size: 0.8rem;
+  margin: 0 0.5rem;
+  color: #b8b8b8;
+  white-space: nowrap;
+}
+
+.google-logo {
+  height: 1.5rem;
+  margin-right: 0.8rem;
+}
+
+.login-image {
+  position: relative;
+  width: 60%;
+  background-image: url('../assets/Masri_2.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+#alternate-option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: right;
+  font-size: 12px;
+  padding: 0.8rem 0;
+  font-weight: bold;
+}
+
+#signup-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: left;
+  font-size: 12px;
+  padding: 0.8rem 0;
+  font-weight: bold;
+}
+
+/* <---------------- Log In ----------------> */
+
+/* ============================================ */
+
+/* <---------------- Sign Up ----------------> */
+
+.signup-image {
+  position: relative;
+  width: 60%;
+  background-image: url('../assets/AUB_Church.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.google-button {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd9d9;
+  height: 50px;
+  border-radius: 5px;
+  margin: 2.5rem 0;
+  font-weight: bold;
+  min-height: 48px;
+}
+
+.terms-message {
+  align-items: center;
+  margin-top: 35px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.terms-span {
+  color: orange;
+  font-weight: bold;
+}
+
+/* <---------------- Sign Up ----------------> */
+
+/* ============================================ */
+
+/* <---------------- Forgot Password ----------------> */
+
+.forgot-image {
+  position: relative;
+  width: 60%;
+  background-image: url('../assets/IFI.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+/* <---------------- Forgot Password ----------------> */
+
+/* ============================================ */
+
+/* <---------------- PNG ----------------> */
 .classPNG {
   background-image: url('../assets/box.png');
   height: 250px;
@@ -60,66 +490,9 @@ html {
   background-size: contain;
 }
 
-.noclass-title {
-  color: #8d8d8d;
-  font-size: 14px;
-}
+/* <---------------- PNG ----------------> */
 
-.empty-classes {
-  flex-direction: column;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-::-webkit-scrollbar {
-  width: 0.6rem;
-  background-color: #161718;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #425c7a;
-  border-radius: 0.5rem;
-}
-
-.dash-container {
-  margin-left: 5rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.title {
-  padding: 2rem 3rem;
-  display: inline-block;
-}
-
-.sub-title {
-  margin: 0 3rem 2rem;
-}
-
-#addClassButton {
-  border: none;
-  font-size: 12px;
-  border-radius: 5px;
-  height: 2.3rem;
-  background-color: #161718;
-  color: white;
-  font-weight: bold;
-  margin-right: 5rem;
-  padding: 0 10px;
-}
-
-.session-button {
-  border: none;
-  font-size: 12px;
-  border-radius: 5px;
-  height: 2.3rem;
-  padding: 0 10px;
-  background-color: #161718;
-  color: white;
-  font-weight: bold;
-  margin-right: 5rem;
-}
+/* ============================================ */
 
 .circular-progress {
   position: absolute;
@@ -145,91 +518,12 @@ ul {
 }
 
 .nav-menu {
-  padding: 1rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   color: #fff;
-}
-
-.logo-area {
-  top: 0;
-  position: absolute;
-  background-color: #161718;
-  height: 8rem;
-  width: 5rem;
-}
-
-.sensei-logo-nav {
-  background-color: #161718;
-  top: 30px;
-  position: absolute;
-  height: 50px;
-  width: 50px;
-}
-
-.nav-item {
-  width: 5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0.8rem 0;
-  font-size: 0.7rem;
-  box-sizing: border-box;
-}
-
-.icons {
-  font-size: 1.5rem;
-}
-
-.nav-item:hover {
-  background-color: #3c444e;
-}
-
-.grid {
-  display: grid;
-}
-
-.nav-list {
-  grid-template-rows: repeat(3, 1fr);
-  align-items: center;
-}
-
-#navBar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #161718;
   height: 100vh;
-  width: 5rem;
-  position: fixed;
-}
-
-.banner-overlay {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
-  z-index: 1;
-}
-
-.banner-caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  margin: 1.5rem 5rem;
-  color: white;
-  font-size: 2rem;
-}
-
-#banner {
-  background-color: #b8b8b8;
-  height: 21rem;
-  background-image: url('../assets/collegehall_img.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
 }
 
 #card-section {
@@ -498,19 +792,6 @@ ul {
   margin-left: 0.1rem;
 }
 
-.description-input {
-  background-color: #f5f5f5;
-  height: 42px;
-  width: 10rem;
-  padding: 0 10px;
-  margin-top: 8px;
-  font-size: 1.4rem;
-  font-weight: bold;
-  border: none;
-  border-radius: 5px;
-  color: #393c41;
-}
-
 .sheet-avatar {
   background-image: url('../assets/default-avatar.jpg');
   background-repeat: no-repeat;
@@ -531,21 +812,6 @@ ul {
 
 .student-sheet-id {
   margin-right: 5rem;
-}
-
-.sheet-input {
-  text-align: center;
-  background-color: #f5f5f5;
-  height: 42px;
-  width: 8rem;
-  padding: 0 10px;
-
-  margin-right: 1rem;
-  font-size: 14px;
-  font-weight: bold;
-  border: none;
-  border-radius: 5px;
-  color: #393c41;
 }
 
 .sheet-absent-checkbox {
@@ -684,10 +950,6 @@ a:-webkit-any-link {
   color: black;
 }
 
-.white {
-  color: white;
-}
-
 .main-container {
   display: flex;
   justify-content: center;
@@ -704,130 +966,14 @@ a:-webkit-any-link {
   background-color: white;
 }
 
-.login-form {
-  display: flex;
-  flex-direction: column;
-  width: 40%;
-  padding: 40px 8%;
-  justify-content: center;
-}
-
 .alert {
   color: red;
   font-size: 12px;
   margin-top: 5px;
 }
 
-.login-overlay {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), transparent);
-  z-index: 1;
-}
-
-#login-message {
-  color: #8d8d8d;
-  margin-top: 0.5rem;
-}
-
-.google-button {
-  font-family: 'Roboto', sans-serif;
-  background-color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #ddd9d9;
-  height: 50px;
-  border-radius: 5px;
-  margin: 2.5rem 0;
-  font-weight: bold;
-  min-height: 48px;
-}
-
-.google-button:hover {
-  background-color: rgb(237, 242, 247);
-}
-
-.google-signin {
-  color: black;
-}
-
-.form-divider {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-.divider {
-  height: 1px;
-  background-color: #ddd9d9;
-  width: 35%;
-}
-
-.optional-message {
-  display: flex;
-  font-size: 0.8rem;
-  margin: 0 0.5rem;
-  color: #b8b8b8;
-  white-space: nowrap;
-}
-
-.google-logo {
-  height: 1.5rem;
-  margin-right: 0.8rem;
-}
-
-.login-input {
-  background-color: #f5f5f5;
-  height: 42px;
-  width: 100%;
-  padding: 0 10px;
-  margin-top: 8px;
-  font-size: 12px;
-  font-weight: bold;
-  border: none;
-  border-radius: 5px;
-  color: #393c41;
-}
-
-.time-input {
-  background-color: #f5f5f5;
-  height: 42px;
-  width: 100%;
-  padding: 0 10px;
-  margin-top: 8px;
-  font-size: 14px;
-  font-weight: bold;
-  border: none;
-  border-radius: 5px;
-  color: #393c41;
-}
-
-#time-spacer {
-  width: 30px;
-}
-
-.addClass-input {
-  height: 42px;
-  width: 100%;
-  padding: 0 10px;
-  margin-top: 8px;
-  font-size: 12px;
-  font-weight: bold;
-  border: none;
-  background-color: #f5f5f5;
-  border-radius: 5px;
-  color: #393c41;
-}
-
 .invalid-entry {
   border: 1px solid red;
-}
-
-.input-container {
-  width: 100%;
 }
 
 label {
@@ -835,24 +981,6 @@ label {
   margin-top: 30px;
   font-size: 14px;
   font-weight: bold;
-}
-
-.signup-image {
-  position: relative;
-  width: 60%;
-  background-image: url('../assets/AUB_Church.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-
-.login-image {
-  position: relative;
-  width: 60%;
-  background-image: url('../assets/Masri_2.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
 }
 
 .sensei-container {
@@ -880,156 +1008,6 @@ label {
   margin-left: 5px;
 }
 
-#landing-page {
-  display: flex;
-  height: 100vh;
-  background-image: url('../assets/bg.PNG');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.landing-panel {
-  padding: 0 150px 80px;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  flex-grow: 1;
-}
-
-@keyframes float {
-  0% {
-    transform: translatey(0px);
-  }
-
-  50% {
-    transform: translatey(-30px);
-  }
-
-  100% {
-    transform: translatey(0px);
-  }
-}
-
-.landing-text {
-  max-width: 30%;
-  min-width: 200px;
-}
-
-.landing-image {
-  height: 300px;
-  width: 300px;
-  margin-right: 10%;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  animation: float 3.5s ease-in-out infinite;
-}
-
-.landing-header {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 50px 0 20px 0;
-}
-
-.header-logo {
-  margin-left: 150px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-
-.landing-button {
-  display: inline-block;
-  padding: 10px 30px;
-  margin-top: 20px;
-  font-size: 12px;
-  font-weight: bold;
-  border-radius: 5px;
-  background-color: #161718;
-  color: white;
-  transition: 0.3s;
-  opacity: 1;
-}
-
-.landing-button:hover {
-  background-color: #2f353b;
-  transition: 0.3s;
-}
-
-.landing-title {
-  margin-bottom: 25px;
-  font-size: 30px;
-}
-
-.landing-sub-title {
-  color: #767676;
-  margin-bottom: 25px;
-}
-
-.sensei-landing-logo {
-  font-size: 30px;
-  font-family: 'Montserrat Alternates', sans-serif;
-  font-weight: 500;
-}
-
-.forgot-image {
-  position: relative;
-  width: 60%;
-  background-image: url('../assets/IFI.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-
-.form-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 42px;
-  width: 100%;
-  padding: 0 10px;
-  margin-top: 5px;
-  font-size: 12px;
-  font-weight: bold;
-  border: 1px solid #ddd9d9;
-  border-radius: 5px;
-  background-color: #161718;
-  color: white;
-}
-
-.form-button:hover {
-  background-color: #2f353b;
-}
-
-#forgotpass-container {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: right;
-  font-size: 12px;
-  padding: 0.8rem 0;
-  font-weight: bold;
-}
-
-#signup-container {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: left;
-  font-size: 12px;
-  padding: 0.8rem 0;
-  font-weight: bold;
-}
-
 .left-register {
   width: 100%;
   display: flex;
@@ -1037,18 +1015,6 @@ label {
   justify-content: right;
   font-size: 12px;
   padding: 0.8rem 0;
-  font-weight: bold;
-}
-
-.terms-message {
-  align-items: center;
-  margin-top: 35px;
-  font-size: 12px;
-  text-align: center;
-}
-
-.terms-span {
-  color: orange;
   font-weight: bold;
 }
 
@@ -1087,16 +1053,12 @@ label {
   background-color: white;
 }
 
+#time-spacer {
+  width: 30px;
+}
+
 .save-button {
-  border: none;
-  border-radius: 5px;
-  height: 2.5rem;
-  width: 100%;
-  background-color: #161718;
-  color: white;
-  font-weight: bold;
   margin-top: 38px;
-  font-size: 12px;
 }
 
 .save-button:hover {
@@ -1173,17 +1135,6 @@ label {
   border-radius: 50%;
 }
 
-.alert-input {
-  height: 60px;
-  padding: 0 10px;
-  margin: 30px 20px 10px;
-  font-size: 14px;
-  font-weight: bold;
-  border: none;
-  color: #393c41;
-  width: 100%;
-}
-
 .bulletin-container {
   margin-left: 5rem;
   display: flex;
@@ -1193,13 +1144,6 @@ label {
 
 .scroll::-webkit-scrollbar {
   display: none;
-}
-
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-  outline: none;
 }
 
 .alert-selector {
@@ -1309,9 +1253,12 @@ button:focus {
   display: flex;
   flex-direction: column;
   background-color: #fff;
+  padding: 2rem;
 }
 
 .answer-options {
   display: flex;
   flex-direction: column;
 }
+
+/* <---------------- Polls ----------------> */

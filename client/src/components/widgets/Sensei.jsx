@@ -2,7 +2,7 @@ import React from 'react';
 
 function Sensei() {
   return (
-    <div className="sensei-container white">
+    <div className="sensei-container">
       <svg
         width="30"
         height="29"

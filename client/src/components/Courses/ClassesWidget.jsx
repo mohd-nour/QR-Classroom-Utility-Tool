@@ -46,14 +46,14 @@ function ClassesWidget(props) {
 
   const [user] = useState(JSON.parse(localStorage.getItem('profile')));
   return (
-    <div>
+    <>
       <div id="lower-section">
         <div className="main-panel">
           <h2 className="title">
             Welcome, {user == null ? 'No account' : user.result.name}
           </h2>
           <button
-            id="addClassButton"
+            className="dash-button"
             onClick={() => {
               dispatch(clearCurrentCourse());
               navigate('/AddClassPage', { replace: true });
@@ -64,14 +64,14 @@ function ClassesWidget(props) {
         </div>
         <div>
           {!courses.length ? (
-            <div></div>
+            <></>
           ) : (
             <h3 className="sub-title">Your classes</h3>
           )}
         </div>
         {!courses.length ? (
-          <div className="empty-classes">
-            <h3 className="noclass-title">
+          <div className="empty-alert">
+            <h3 className="empty-text">
               No classes yet! Add a class to get started.
             </h3>
             <div className="classPNG"></div>
@@ -81,7 +81,7 @@ function ClassesWidget(props) {
         )}
       </div>
       <div ref={endRef}></div>
-    </div>
+    </>
   );
 }
 

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { createCourse, updateCourse } from "../../actions/courses";
-import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { createCourse, updateCourse } from '../../actions/courses';
+import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 
 function AddClassComponent(props) {
   const [nameEdited, setNameEdited] = useState(false);
@@ -11,13 +11,13 @@ function AddClassComponent(props) {
   const [endEdited, setEndEdited] = useState(false);
 
   const [courseData, setCourseData] = useState({
-    courseName: "",
-    courseNumber: "",
-    creator: localStorage.getItem("currentUserUniqueId"),
-    schedule: "MWF",
+    courseName: '',
+    courseNumber: '',
+    creator: localStorage.getItem('currentUserUniqueId'),
+    schedule: 'MWF',
     students: [],
-    startTime: "",
-    endTime: "",
+    startTime: '',
+    endTime: '',
   });
 
   const currentCourse = useSelector((state) => state.currentCourse);
@@ -38,7 +38,7 @@ function AddClassComponent(props) {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ mode: "onTouched" });
+  } = useForm({ mode: 'onTouched' });
 
   const dispatch = useDispatch();
 
@@ -55,12 +55,9 @@ function AddClassComponent(props) {
     <div id="addClassComponent">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="addClass-column">
-          <h3 id="form-title">{currentCourse ? "EDIT CLASS" : "ADD CLASS"}</h3>
+          <h3 id="form-title">{currentCourse ? 'EDIT CLASS' : 'ADD CLASS'}</h3>
           <div className="input-container">
             <label>Course Name</label>
-            {/* MOHAMAD ABD I NEED YOUR HELP */}
-            {/* in edit mode, hook form does not detect input value from state on mount, so we need to disable validation in each field until a change is detected in it */}
-            {/* if in edit mode and edited state is false, then disable validation on field. if not in edit mode enable validation. */}
             {currentCourse && !nameEdited ? (
               <input
                 name="courseName"
@@ -76,8 +73,8 @@ function AddClassComponent(props) {
               ></input>
             ) : (
               <input
-                {...register("courseName", {
-                  required: "Course name is required.",
+                {...register('courseName', {
+                  required: 'Course name is required.',
                 })}
                 name="courseName"
                 value={courseData.courseName}
@@ -87,8 +84,8 @@ function AddClassComponent(props) {
                     courseName: e.target.value,
                   });
                 }}
-                className={`addClass-input ${
-                  errors.courseName ? "invalid-entry" : null
+                className={`std-input ${
+                  errors.courseName ? 'invalid-entry' : ''
                 }`}
               ></input>
             )}
@@ -110,12 +107,12 @@ function AddClassComponent(props) {
                     courseNumber: e.target.value,
                   });
                 }}
-                className="addClass-input"
+                className="std-input"
               ></input>
             ) : (
               <input
-                {...register("courseNumber", {
-                  required: "Course number is required.",
+                {...register('courseNumber', {
+                  required: 'Course number is required.',
                 })}
                 name="courseNumber"
                 value={courseData.courseNumber}
@@ -125,8 +122,8 @@ function AddClassComponent(props) {
                     courseNumber: e.target.value,
                   });
                 }}
-                className={`addClass-input ${
-                  errors.courseNumber ? "invalid-entry" : null
+                className={`std-input ${
+                  errors.courseNumber ? 'invalid-entry' : null
                 }`}
               ></input>
             )}
@@ -137,7 +134,7 @@ function AddClassComponent(props) {
           <div className="input-container">
             <label>Schedule</label>
             <select
-              className="addClass-input"
+              className="std-input"
               value={courseData.schedule}
               onChange={(e) =>
                 setCourseData({
@@ -173,12 +170,12 @@ function AddClassComponent(props) {
                       startTime: e.target.value,
                     });
                   }}
-                  className="addClass-input"
+                  className="std-input"
                 ></input>
               ) : (
                 <input
-                  {...register("startTime", {
-                    required: "Start time is required.",
+                  {...register('startTime', {
+                    required: 'Start time is required.',
                   })}
                   name="startTime"
                   type="time"
@@ -192,8 +189,8 @@ function AddClassComponent(props) {
                       startTime: e.target.value,
                     });
                   }}
-                  className={`time-input ${
-                    errors.startTime ? "invalid-entry" : null
+                  className={`std-input ${
+                    errors.startTime ? 'invalid-entry' : null
                   }`}
                 ></input>
               )}
@@ -218,12 +215,12 @@ function AddClassComponent(props) {
                       endTime: e.target.value,
                     });
                   }}
-                  className="addClass-input"
+                  className="std-input"
                 ></input>
               ) : (
                 <input
-                  {...register("endTime", {
-                    required: "End time is required.",
+                  {...register('endTime', {
+                    required: 'End time is required.',
                   })}
                   name="endTime"
                   type="time"
@@ -237,8 +234,8 @@ function AddClassComponent(props) {
                       endTime: e.target.value,
                     });
                   }}
-                  className={`time-input ${
-                    errors.endTime ? "invalid-entry" : null
+                  className={`std-input ${
+                    errors.endTime ? 'invalid-entry' : null
                   }`}
                 ></input>
               )}
@@ -247,7 +244,7 @@ function AddClassComponent(props) {
               )}
             </div>
           </div>
-          <button type="submit" className="save-button">
+          <button type="submit" className="form-button">
             Save
           </button>
         </div>

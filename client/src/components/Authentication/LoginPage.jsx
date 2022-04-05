@@ -69,7 +69,7 @@ function LoginPage() {
         <div className="form-container">
           <div className="login-form">
             <h1>Sign In</h1>
-            <h4 id="login-message">Sign In to manage your classes.</h4>
+            <h4 id="auth-message">Sign In to manage your classes.</h4>
             <GoogleLogin
               clientId="928846196486-ghenpvc40o1ol8cotd2fi78rfvjh5299.apps.googleusercontent.com"
               render={(renderProps) => (
@@ -92,7 +92,7 @@ function LoginPage() {
               <div className="divider"></div>
             </div>
             <form autoComplete="new-password" onSubmit={handleSubmit(onSubmit)}>
-              <div className="field-wrapper">
+              <div className="input-container">
                 <label>Email</label>
                 <input
                   autoComplete="off"
@@ -101,15 +101,13 @@ function LoginPage() {
                   })}
                   name="email"
                   id="email"
-                  className={`login-input ${
-                    errors.email ? 'invalid-entry' : null
-                  }`}
+                  className={`std-input ${errors.email ? 'invalid-entry' : ''}`}
                 />
                 {errors.email && (
                   <p className="alert">{errors.email.message}</p>
                 )}
               </div>
-              <div className="field-wrapper">
+              <div className="input-container">
                 <label>Password</label>
                 <input
                   autoComplete="off"
@@ -119,15 +117,15 @@ function LoginPage() {
                   type="password"
                   name="password"
                   id="password"
-                  className={`login-input ${
-                    errors.password ? 'invalid-entry' : null
+                  className={`std-input ${
+                    errors.password ? 'invalid-entry' : ''
                   }`}
                 />
                 {errors.password && (
                   <p className="alert">{errors.password.message}</p>
                 )}
               </div>
-              <div id="forgotpass-container">
+              <div id="alternate-option">
                 <a href="/SendEmailForgotPassword">Forgot Password?</a>
               </div>
               <button
