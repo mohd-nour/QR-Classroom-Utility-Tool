@@ -23,12 +23,19 @@ export const getCourses = async (req, res) => {
 
 export const getCoursesForStudents = async (req, res) => {
   try {
+    console.log("entered getCoursesForStudents");
     const arrayOfClassesIds = req.body; // Assuming that arrayOfClassesIds is an array of classes Ids
+    console.log(arrayOfClassesIds);
     const courses = await courseClass.find({ 
       _id: {
           $in: arrayOfClassesIds
       }
+    }, {
+      currentSession: 0,
+      students: 0,
+      sessions: 0
     });
+    console.log(courses);
     res.status(200).json(courses);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -158,11 +165,16 @@ export const removeStudent = async (req, res) => {
         function (err, result) {
           if (err) {
             res.send(err);
-          } else {
-            res.status(200).json(student);
           }
         }
       );
+      user.findOneAndUpdate({instituteId: studentId}, { $pull: { classes: { $in: [ courseId ] } } }, function (err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.status(200).json(student);
+        }
+      });
     } else {
       res.send(err);
     }
