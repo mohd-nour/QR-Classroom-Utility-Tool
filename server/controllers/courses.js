@@ -21,11 +21,25 @@ export const getCourses = async (req, res) => {
   }
 };
 
+export const getCoursesIds = async (req, res) => {
+  try {
+    const instituteId = req.params.instituteId;
+    const currentUser = await user.findOne({
+      instituteId: instituteId
+    }, {
+      password: 0
+    });
+    console.log("Showing classes:");
+    console.log(currentUser.classes);
+    res.status(200).json(currentUser.classes);
+  } catch (error) {
+    res.status(400).json({message: error.message});
+  }
+}
+
 export const getCoursesForStudents = async (req, res) => {
   try {
-    console.log("entered getCoursesForStudents");
     const arrayOfClassesIds = req.body; // Assuming that arrayOfClassesIds is an array of classes Ids
-    console.log(arrayOfClassesIds);
     const courses = await courseClass.find({ 
       _id: {
           $in: arrayOfClassesIds
@@ -35,7 +49,6 @@ export const getCoursesForStudents = async (req, res) => {
       students: 0,
       sessions: 0
     });
-    console.log(courses);
     res.status(200).json(courses);
   } catch (error) {
     res.status(404).json({ message: error.message });

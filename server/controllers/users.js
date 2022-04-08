@@ -7,6 +7,7 @@ import mailSend from "../utils/sendEmail.js";
 export const signin = async (req, res) => {
   const { email, password } = req.body;
   const mode = req.params.mode;
+  console.log("signin backend");
   try {
     const existingUser = await User.findOne({ email });
     if (!existingUser) {

@@ -15,7 +15,8 @@ import {
   finalizeSession,
   getSingleSession,
   closeSession,
-  getCoursesForStudents
+  getCoursesForStudents,
+  getCoursesIds
 } from "../controllers/courses.js";
 
 const router = express.Router();
@@ -23,6 +24,7 @@ const router = express.Router();
 //instead of writing logic in routes file, import from controllers
 router.get("/:id", getCourses);
 router.post("/getCoursesForStudents", getCoursesForStudents);
+router.get("/getCoursesIds/:instituteId", getCoursesIds);
 
 router.post("/", createCourse);
 router.patch("/:id", updateCourse);
