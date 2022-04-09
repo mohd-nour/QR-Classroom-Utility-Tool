@@ -67,9 +67,11 @@ function VerticalNavBar() {
           </Link>
         </ul>
         <ul>
-          <li className="nav-item">
-            <div className="post-avatar"></div>
-          </li>
+          <Link to="/Profile">
+            <li className="nav-item">
+              <div className="post-avatar"></div>
+            </li>
+          </Link>
           <li className="nav-item" onClick={logout}>
             <i className="icons uil uil-signout"></i>
             Logout
