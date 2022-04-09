@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 import User, { UnverifiedUser } from "../models/user.js";
 import crypto from "crypto";
 import mailSend from "../utils/sendEmail.js";
+import ProfilePicture from "../models/profilepicture.js";
 
 export const signin = async (req, res) => {
   const { email, password } = req.body;
@@ -59,6 +60,36 @@ export const signin = async (req, res) => {
     res.status(500).json({ message: "Something went wrong!", error: true });
   }
 };
+
+export const setProfilePicture = async (req, res) => {
+  try {
+    const {userId, image} = req.body;
+    console.log(userId);
+    console.log("reached backend set image");
+    const existingImage = await ProfilePicture.findOne({userId, userId});
+    if (existingImage){
+      ProfilePicture.findOneAndUpdate({userId: userId}, {
+        image: image
+      }, function(err, result){
+        if (err){
+          res.send(err);
+        }
+        else{
+          res.status(200).send(result);
+        }
+      });
+    }
+    else {
+      result = await ProfilePicture.create({
+        userId: userId,
+        image: image
+      });
+      res.status(200).send(result);
+    }
+  } catch (error) {
+    res.status(404).json({message: error.message});
+  }
+}
 
 export const signup = async (req, res) => {
   console.log("reached signup backend");

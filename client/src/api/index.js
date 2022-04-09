@@ -49,6 +49,7 @@ export const closeSession = (classId, sessionNumber, closedObject) =>
 
 export const signin = (formData) => API.post("/users/signin/web", formData);
 export const signup = (formData) => API.post("/users/signup", formData);
+export const setProfilePicture = (userId, image) => API.post("/users/setProfilePicture", {userId, image});
 export const verifyAccount = (email, verficationToken) => API.patch("/users/verifyAccount/"+email+"/"+verficationToken);
 
 export const sendEmail = (emailData) =>
