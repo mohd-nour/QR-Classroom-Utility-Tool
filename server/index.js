@@ -7,6 +7,7 @@ import userRoutes from "./routes/users.js";
 import forgotPasswordRoutes from "./routes/passwordReset.js";
 import alertsRoutes from "./routes/alerts.js";
 import gradeSheetsRoutes from "./routes/gradesheets.js";
+import pollsRoutes from "./routes/polls.js";
 import http from "http";
 import {Server, Socket} from "socket.io";
 
@@ -22,6 +23,7 @@ app.use("/users", userRoutes);
 app.use("/forgotPassword", forgotPasswordRoutes);
 app.use("/alerts", alertsRoutes);
 app.use("/gradeSheets", gradeSheetsRoutes);
+app.use("/polls", pollsRoutes);
 
 const server = http.createServer(app);
 const io = new Server(server);
