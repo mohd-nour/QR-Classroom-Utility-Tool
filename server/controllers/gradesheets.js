@@ -27,7 +27,6 @@ export const postGradeSheet = async (req, res) => {
   
 export const updateGradeSheet = async (req, res) => {
     try {
-      console.log("reached backend update grade sheet");
       const {deliverable, courseId, students_grades, gradeSheetId} = req.body;
       const updatedSheet = await GradeSheet.findByIdAndUpdate(gradeSheetId, {
         deliverable: deliverable,
@@ -41,7 +40,6 @@ export const updateGradeSheet = async (req, res) => {
 
 export const getStudentGrades = async (req, res) => {
   try {
-      console.log("get grades student");
       const instituteId = req.params.instituteId;
       const gradeSheets = await GradeSheet.find();
       var currentSheet;
@@ -53,7 +51,8 @@ export const getStudentGrades = async (req, res) => {
           if (currentSheet[j].instituteId === instituteId){
             appendedObject = {
               grade: currentSheet[j].grade,
-              deliverable: gradeSheets[i].deliverable
+              deliverable: gradeSheets[i].deliverable,
+              classId: gradeSheets[i].courseId
             }
             result.push(appendedObject);
           }

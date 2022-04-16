@@ -29,8 +29,6 @@ export const getCoursesIds = async (req, res) => {
     }, {
       password: 0
     });
-    console.log("Showing classes:");
-    console.log(currentUser.classes);
     res.status(200).json(currentUser.classes);
   } catch (error) {
     res.status(400).json({message: error.message});
@@ -123,7 +121,6 @@ export const getStudents = async (req, res) => {
 
 export const addStudent = async (req, res) => {
   try {
-    console.log("adding student to class");
     const courseId = req.params.id;
     const studentId = req.params.studentId;
     const student = await user.findOne({ instituteId: studentId });
@@ -151,14 +148,11 @@ export const addStudent = async (req, res) => {
             });
             //res.status(200).json(student);
             //io.emit(courseId);
-            //console.log("before emitting");
             //io.to(courseId).emit("RefreshEnrollment");
-            //console.log("after emitting");
           }
         }
       );
     } else {
-      console.log(err);
       res.send(err);
     }
   } catch (error) {
@@ -223,7 +217,6 @@ export const addSession = async (req, res) => {
           if (err) {
             res.send(err);
           } else {
-            console.log(result);
             res.status(200).json(newSession);
           }
         }
