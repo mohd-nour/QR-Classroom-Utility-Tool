@@ -92,23 +92,25 @@ function EnrollmentWidget() {
         </div>
       </div>
       <form autoComplete="off" noValidate onSubmit={handleSubmit}>
-        <div className="addStudent-column">
+        <div className="form-column">
           <h4 id="form-title">ADD STUDENT</h4>
-          <label>Student ID</label>
-          <input
-            name="studentId"
-            placeholder="ex: 2021XXXXX"
-            id="studentId"
-            className="addClass-input"
-            value={studentData.studentId}
-            onChange={(e) =>
-              setStudentData({
-                ...studentData,
-                studentId: e.target.value,
-              })
-            }
-          ></input>
-          <button type="submit" className="save-button">
+          <div className="input-container">
+            <label>Student ID</label>
+            <input
+              name="studentId"
+              placeholder="ex: 2021XXXXX"
+              id="studentId"
+              className="std-input"
+              value={studentData.studentId}
+              onChange={(e) =>
+                setStudentData({
+                  ...studentData,
+                  studentId: e.target.value,
+                })
+              }
+            ></input>
+          </div>
+          <button type="submit" className="form-button">
             Add
           </button>
         </div>

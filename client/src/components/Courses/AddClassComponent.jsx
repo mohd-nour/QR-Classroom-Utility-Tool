@@ -54,7 +54,7 @@ function AddClassComponent(props) {
   return (
     <div id="addClassComponent">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="addClass-column">
+        <div className="form-column">
           <h3 id="form-title">{currentCourse ? 'EDIT CLASS' : 'ADD CLASS'}</h3>
           <div className="input-container">
             <label>Course Name</label>
@@ -69,7 +69,7 @@ function AddClassComponent(props) {
                     courseName: e.target.value,
                   });
                 }}
-                className="addClass-input"
+                className="std-input"
               ></input>
             ) : (
               <input
@@ -123,7 +123,7 @@ function AddClassComponent(props) {
                   });
                 }}
                 className={`std-input ${
-                  errors.courseNumber ? 'invalid-entry' : null
+                  errors.courseNumber ? 'invalid-entry' : ''
                 }`}
               ></input>
             )}
@@ -190,7 +190,7 @@ function AddClassComponent(props) {
                     });
                   }}
                   className={`std-input ${
-                    errors.startTime ? 'invalid-entry' : null
+                    errors.startTime ? 'invalid-entry' : ''
                   }`}
                 ></input>
               )}
@@ -235,7 +235,7 @@ function AddClassComponent(props) {
                     });
                   }}
                   className={`std-input ${
-                    errors.endTime ? 'invalid-entry' : null
+                    errors.endTime ? 'invalid-entry' : ''
                   }`}
                 ></input>
               )}

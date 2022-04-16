@@ -58,7 +58,7 @@ function GradeSheetWidget() {
         <div className="main-panel">
           <h3 className="sub-title">Your grade sheets</h3>
           <form onSubmit={createNewSheet}>
-            <button id="addClassButton" type="submit">
+            <button className="dash-button" type="submit">
               Create a sheet
             </button>
           </form>
@@ -66,8 +66,8 @@ function GradeSheetWidget() {
         {gradeSheets.length !== 0 ? (
           <div id="card-section">{gradeSheets.map(createGradeSheetCard)}</div>
         ) : (
-          <div className="empty-classes">
-            <h3 className="noclass-title">No grade sheets yet!</h3>
+          <div className="empty-alert">
+            <h3 className="empty-title">No grade sheets yet!</h3>
             <div className="sheetPNG"></div>
           </div>
         )}

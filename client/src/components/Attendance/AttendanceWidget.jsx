@@ -116,23 +116,25 @@ function AttendanceWidget() {
         </div>
       </div>
       <form autoComplete="off" noValidate onSubmit={addStudentById}>
-        <div className="addStudent-column">
+        <div className="form-column">
           <h4 id="form-title">ADD ATTENDANCE</h4>
-          <label>Student ID</label>
-          <input
-            name="studentId"
-            placeholder="ex: 2021XXXXX"
-            id="studentId"
-            className="addClass-input"
-            value={studentData.studentId}
-            onChange={(e) => setStudentData({ studentId: e.target.value })}
-          ></input>
-          <button type="submit" className="save-button">
+          <div className="input-container">
+            <label>Student ID</label>
+            <input
+              name="studentId"
+              placeholder="ex: 2021XXXXX"
+              id="studentId"
+              className="std-input"
+              value={studentData.studentId}
+              onChange={(e) => setStudentData({ studentId: e.target.value })}
+            ></input>
+          </div>
+          <button type="submit" className="form-button">
             Add
           </button>
           <button
             type="button"
-            className="finalize-button"
+            className="secondary-button form-button"
             onClick={FinalizeAttendance}
           >
             Finalize

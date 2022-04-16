@@ -57,15 +57,13 @@ function SessionsWidget(props) {
         <h2 className="title">{courseName + ' ' + courseNumber} - Sessions</h2>
         <div className="main-panel">
           <h3 className="sub-title">Your sessions</h3>
-          <form onSubmit={createNewSession}>
-            <button className="session-button" type="submit">
-              Create Session
-            </button>
-          </form>
+          <button className="dash-button" onClick={createNewSession}>
+            Create Session
+          </button>
         </div>
         {!sessions.length ? (
-          <div className="empty-classes">
-            <h3 className="noclass-title no-attendance">No sessions yet!</h3>
+          <div className="empty-alert">
+            <h3 className="empty-text">No sessions yet!</h3>
             <div className="sessionPNG"></div>
           </div>
         ) : (

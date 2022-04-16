@@ -24,7 +24,7 @@ function createStudentGrade(student) {
       <div className="sheet-inputs">
         <h3 className="student-sheet-id">{student.instituteId}</h3>
         <input
-          className="sheet-input"
+          className="sheet-input std-input"
           type="number"
           placeholder="Grade"
           onChange={(e) => (student.grade = e.target.value)}
@@ -65,13 +65,11 @@ function NewGradeSheetWidget() {
   var gradeSheetDesc = gradeSheet && gradeSheet[0].deliverable;
 
   const navigate = useNavigate();
-  
+
   const submitGradeSheet = (e) => {
     e.preventDefault();
     students = students.map(({ _id, ...others }) => others);
-    dispatch(
-      postGradeSheet(courseId, gradeSheetDesc, students, navigate)
-    );
+    dispatch(postGradeSheet(courseId, gradeSheetDesc, students, navigate));
   };
   const saveGradeSheet = (e) => {
     e.preventDefault();
@@ -89,13 +87,15 @@ function NewGradeSheetWidget() {
       </h1>
       <form onSubmit={mode === 'New' ? submitGradeSheet : saveGradeSheet}>
         <div id="lower-section">
-          <div className="sheet-description">
+          <div className="sheet-description  fit-content">
             <input
-              className="description-input"
+              className="desc-input std-input"
               type="text"
               placeholder="Quiz X"
               defaultValue={gradeSheetDesc}
-              onChange={(e) => {gradeSheetDesc = e.target.value}}
+              onChange={(e) => {
+                gradeSheetDesc = e.target.value;
+              }}
               required
             />
           </div>
@@ -117,13 +117,3 @@ function NewGradeSheetWidget() {
 }
 
 export default NewGradeSheetWidget;
-
-
-
-/*
-defaultValue={
-                mode === 'Old'
-                  ? gradeSheet[0].deliverable
-                  : gradeSheetDesc
-}
-*/
