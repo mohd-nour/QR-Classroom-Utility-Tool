@@ -29,6 +29,9 @@ export const fetchPollsForStudent = async (req, res) => {
 export const createPoll = async (req, res) => {
     try {
       const {classId, options, professorId} = req.body;
+      console.log(classId);
+      console.log(options);
+      console.log(professorId);
       const poll = await Poll.create({
         createdBy: professorId,
         classId: classId,
@@ -42,20 +45,36 @@ export const createPoll = async (req, res) => {
 
 export const updatePoll = async (req, res) => {
   try {
-      const { optionNumber, pollId } = req.body;
-      const poll = Poll.findById(pollId);
-      var options = poll.options;
-      options.optionNumber += 1;
-      Poll.findByIdAndUpdate(pollId, {
-        options: options
-      }, function(err, result){
-        if (err){
-          res.send(err);
+      const { optionNumber, pollId, instituteId } = req.body;
+      const poll = await Poll.findById(pollId);
+      if (poll){
+        const studentIds = poll.studentIds;
+        for (var j=0; j<studentIds.length; j++){
+          if (studentIds[j] === instituteId){
+            return res.status(400).json({message: "This student already answered this poll"});
+          }
         }
-        else{
-          res.status(200).send(result);
+        const options = poll.options;
+        for (var i=0; i<options.length; i++){
+          if (options[i].optionNumber === optionNumber){
+            options[i].optionVotes += 1;
+          }
         }
-      });
+        Poll.findByIdAndUpdate(pollId, {
+          options: options,
+          $addToSet: {studentIds: instituteId}
+        }, function(err, result){
+          if (err){
+            res.send(err);
+          }
+          else{
+            res.status(200).send(result);
+          }
+        });
+      }
+      else{
+        res.status(400).json({message: "Poll not found"});
+      }
   } catch (error) {
     res.status(500).json({message: error.message});
   }

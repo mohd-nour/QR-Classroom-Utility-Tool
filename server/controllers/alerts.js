@@ -14,6 +14,18 @@ export const getAlertsProfessor = async (req, res) => {
     }
 };
 
+export const getAlertsStudent = async (req, res) => {
+    try {
+        const arrayOfClassesIds = req.body;
+        const alerts = await ProfessorAlert.find({
+            classId: { $in: arrayOfClassesIds }
+        });
+        res.status(200).json(alerts);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
+
 export const addAlert = async (req, res) => {
     try {
         const professorId = req.params.professorId;
