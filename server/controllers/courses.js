@@ -272,10 +272,13 @@ export const removeSession = async (req, res) => {
 
 export const addStudentToSession = async (req, res) => {
   try {
+    console.log("adding student to session");
     var enrolled = false;
     const courseId = req.params.classId;
     const sessionNumber = req.params.sessionNumber;
     const { studentId } = req.body;
+    console.log(courseId);
+    console.log(sessionNumber);
     const currentCourse = await courseClass.findById(courseId);
     const currentSession = await Session.findOne({sessionNumber: sessionNumber, classId: courseId});
     if (currentSession.closed) {

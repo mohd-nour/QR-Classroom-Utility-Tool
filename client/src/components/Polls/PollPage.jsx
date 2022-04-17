@@ -1,6 +1,8 @@
 import React from 'react';
 import VerticalNavBar from '../widgets/VerticalNavBar';
 import { Navigate } from 'react-router-dom';
+
+
 const Poll = () => {
   if (localStorage.getItem('profile') == null) {
     return <Navigate to="/"></Navigate>;
@@ -17,8 +19,8 @@ const Poll = () => {
               <input className="std-input"></input>
             </div>
             <div>
+              <label className="answer-options">Answer Options</label>
               <div className="input-container">
-                <label className="answer-options">Answer Options</label>
                 <input className="std-input" placeholder="Option 1"></input>
               </div>
               <div className="input-container">
