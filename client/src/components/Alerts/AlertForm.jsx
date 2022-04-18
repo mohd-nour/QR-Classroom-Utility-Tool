@@ -13,11 +13,13 @@ function courseOption(course) {
 
 function AlertForm(props) {
   const dispatch = useDispatch();
+  const [user] = useState(JSON.parse(localStorage.getItem('profile')));
+  const name = user? user.result.name : ""
   const [alertData, setAlertData] = useState({
     course: '',
     message: '',
     creator: localStorage.getItem('currentUserUniqueId'),
-    courseTitle: '',
+    courseTitle: ''
   });
   const courses = useSelector((state) => state.courses);
 
@@ -28,6 +30,7 @@ function AlertForm(props) {
         addAlert(alertData.creator, alertData.course, {
           message: alertData.message,
           courseTitle: alertData.courseTitle,
+          professorName: name
         })
       );
       alertData.message = '';

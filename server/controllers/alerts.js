@@ -30,12 +30,13 @@ export const addAlert = async (req, res) => {
     try {
         const professorId = req.params.professorId;
         const courseId = req.params.courseId;
-        const { message, courseTitle } = req.body;
+        const { message, courseTitle, professorName } = req.body;
         const newAlert = new ProfessorAlert({
         message: message,
         classId: courseId,
         professorId: professorId,
-        courseTitle: courseTitle
+        courseTitle: courseTitle,
+        professorName: professorName
         });
         await newAlert.save();
         res.json(newAlert);

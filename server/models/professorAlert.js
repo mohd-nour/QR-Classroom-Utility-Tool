@@ -5,7 +5,8 @@ const alertSchema = mongoose.Schema({
   classId: { type: String, required: true },
   courseTitle: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
-  professorId: { type: String, required: true }
+  professorId: { type: String, required: true },
+  professorName: { type: String }
 });
 
 
