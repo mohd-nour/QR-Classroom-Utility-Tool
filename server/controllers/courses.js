@@ -53,6 +53,20 @@ export const getCoursesForStudents = async (req, res) => {
   }
 }
 
+export const getAttendanceRecordsForStudent = async (req, res) => {
+  try {
+    const arrayOfClassesIds = req.body;
+    const sessions = await Session.find({
+      classId: {
+        $in: arrayOfClassesIds
+      }
+    });
+    
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+}
+
 export const getAlertsForStudents = async (req, res) => {
   try {
     const arrayOfClassesIds = req.body; // Assuming that arrayOfClassesIds is an array of classes Ids
