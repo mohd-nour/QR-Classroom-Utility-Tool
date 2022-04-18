@@ -14,12 +14,12 @@ function courseOption(course) {
 function AlertForm(props) {
   const dispatch = useDispatch();
   const [user] = useState(JSON.parse(localStorage.getItem('profile')));
-  const name = user? user.result.name : ""
+  const name = user ? user.result.name : '';
   const [alertData, setAlertData] = useState({
     course: '',
     message: '',
     creator: localStorage.getItem('currentUserUniqueId'),
-    courseTitle: ''
+    courseTitle: '',
   });
   const courses = useSelector((state) => state.courses);
 
@@ -30,7 +30,7 @@ function AlertForm(props) {
         addAlert(alertData.creator, alertData.course, {
           message: alertData.message,
           courseTitle: alertData.courseTitle,
-          professorName: name
+          professorName: name,
         })
       );
       alertData.message = '';
@@ -59,7 +59,7 @@ function AlertForm(props) {
           <div className="alert-options">
             <div className="alert-suboptions">
               <select
-                className="alert-selector"
+                className="selector"
                 value={alertData.course}
                 onChange={(e) =>
                   setAlertData({
@@ -84,31 +84,3 @@ function AlertForm(props) {
 }
 
 export default AlertForm;
-
-/*
-<input
-                className="date-picker"
-                type="date"
-                name="dueDate"
-                id="startTime"
-                value={alertData.date}
-                onChange={(e) =>
-                  setAlertData({
-                    ...alertData,
-                    date: e.target.value,
-                  })
-                }
-              ></input>
-            </div>
-            <button type="submit" className="alert-save">
-              Post
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
-  );
-}
-
-export default AlertForm;
-*/

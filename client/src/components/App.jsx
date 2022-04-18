@@ -20,6 +20,7 @@ import NewGradeSheetPage from './Grade sheets/NewGradeSheetPage';
 import GradeSheetReportPage from './Grade sheets/GradeSheetReportPage';
 import PollsPage from './Polls/PollPage';
 import Profile from './Profile/Profile';
+import ViewPolls from './Polls/ViewPollsPage';
 
 function App() {
   return (
@@ -40,7 +41,8 @@ function App() {
         <Route path="/CreateGradeSheet/:mode" element={<NewGradeSheetPage />} />
         <Route path="/SheetReport" element={<GradeSheetReportPage />} />
         <Route path="/Poll" element={<PollsPage />} />
-        <Route path="/Profile" element={<Profile/>}/>
+        <Route path="/Polls" element={<ViewPolls />} />
+        <Route path="/Profile" element={<Profile />} />
         <Route
           path="/FinalizeAttendance"
           element={<FinalizedAttendancePage />}

@@ -41,6 +41,7 @@ html {
   background-color: #161718;
   color: white;
   transition: 0.3s;
+  white-space: nowrap;
 }
 
 .secondary-button {
@@ -58,7 +59,7 @@ html {
 }
 
 .form-button:hover {
-  background-color: #2f353b;
+  opacity: 0.85;
   transition: 0.3s;
 }
 
@@ -1117,7 +1118,7 @@ label {
   display: none;
 }
 
-.alert-selector {
+.selector {
   font-size: 12px;
   font-weight: bold;
   border: none;
@@ -1216,11 +1217,51 @@ label {
 
 /* <---------------- Polls ----------------> */
 
+.poll-view-button {
+  position: absolute;
+  bottom: -3.5rem;
+  right: 0;
+  padding: 0 2rem;
+  background-color: #3b43d6;
+}
+
+.flex-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.view-poll-title {
+  margin: 2rem 0;
+}
+
+.poll-card {
+  padding: 20px 40px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  background-color: white;
+  min-width: 420px;
+  margin-bottom: 1rem;
+}
+
+.poll-title {
+  margin-left: 50px;
+}
+
+.view-polls-column {
+  margin: 0 20%;
+}
+
+.poll-selector {
+  margin-right: 1rem;
+}
+
 .polls-panel {
   flex-direction: column;
 }
 
 .poll-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   background-color: #fff;

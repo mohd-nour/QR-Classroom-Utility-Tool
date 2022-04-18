@@ -1,27 +1,37 @@
 import React, { useState } from 'react';
 import VerticalNavBar from '../widgets/VerticalNavBar';
 import { Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const createOptionBox = (option) => {
   return (
     <div className="input-container" key={option.optionNumber}>
-      <input className="std-input" placeholder={"Option "+option.optionNumber} onChange={(e) => {
-        option.optionValue = e.target.value
-      }}></input>
+      <input
+        className="std-input"
+        placeholder={'Option ' + option.optionNumber}
+        onChange={(e) => {
+          option.optionValue = e.target.value;
+        }}
+      ></input>
     </div>
-  )
-}
-
+  );
+};
 
 const Poll = () => {
   const [currentOptionNumber, setCurrentOptionNumber] = useState(3);
-  const [options, setOptions] = useState([{optionNumber: 1, optionValue: ""}, {optionNumber: 2, optionValue: ""}]);
+  const [options, setOptions] = useState([
+    { optionNumber: 1, optionValue: '' },
+    { optionNumber: 2, optionValue: '' },
+  ]);
   const addOptionBox = () => {
-    setOptions([...options, {
-      optionNumber: currentOptionNumber,
-      optionValue: ""
-    }])
-    setCurrentOptionNumber((prev) => prev+1);
+    setOptions([
+      ...options,
+      {
+        optionNumber: currentOptionNumber,
+        optionValue: '',
+      },
+    ]);
+    setCurrentOptionNumber((prev) => prev + 1);
   };
   if (localStorage.getItem('profile') == null) {
     return <Navigate to="/"></Navigate>;
@@ -42,15 +52,30 @@ const Poll = () => {
               {options.map(createOptionBox)}
             </div>
             <div className="add-option">
-              <button className="form-button fit-content flex-center" onClick={addOptionBox}>
+              <button
+                className="form-button fit-content flex-center"
+                onClick={addOptionBox}
+              >
                 <i className="icons uil uil-plus"></i>
                 <span className="poll-button-text">Add option</span>
               </button>
             </div>
             <div className="create-poll">
-              <button type="submit" className="form-button fit-content" onClick={() => console.log(options)}>
+              <select className="selector poll-selector">
+                <option value="">Select a class</option>
+              </select>
+              <button
+                type="submit"
+                className="form-button fit-content"
+                onClick={() => console.log(options)}
+              >
                 Create poll
               </button>
+              <Link to="/Polls" className="removeUnderline white">
+                <button className="form-button fit-content poll-view-button">
+                  <span>View Polls</span>
+                </button>
+              </Link>
             </div>
           </div>
         </div>
