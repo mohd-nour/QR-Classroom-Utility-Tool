@@ -41,10 +41,22 @@ const Profile = () => {
               </h5>
             </div>
             <div className="profile-stats">
-              <div className="stat-card">Active Classes</div>
-              <div className="stat-card">Polls Administered</div>
-              <div className="stat-card">Sheets Graded</div>
-              <div className="stat-card">Students</div>
+              <div className="stat-card">
+                <h4 className="stat-card-title">Active Classes</h4>
+                <h1>4</h1>
+              </div>
+              <div className="stat-card">
+                <h4 className="stat-card-title">Polls Administered</h4>
+                <h1>5</h1>
+              </div>
+              <div className="stat-card">
+                <h4 className="stat-card-title">Sheets Graded</h4>
+                <h1>7</h1>
+              </div>
+              <div className="stat-card">
+                <h4 className="stat-card-title">Students</h4>
+                <h1>80</h1>
+              </div>
             </div>
           </div>
         </div>
