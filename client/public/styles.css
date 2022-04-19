@@ -1222,7 +1222,7 @@ label {
   bottom: -3.5rem;
   right: 0;
   padding: 0 2rem;
-  background-color: #3b43d6;
+  background-color: #3b5998;
 }
 
 .flex-row {
@@ -1297,6 +1297,7 @@ label {
 }
 
 .profile-picture {
+  position: relative;
   min-height: 200px;
   min-width: 200px;
   max-height: 200px;
@@ -1380,6 +1381,28 @@ label {
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
+}
+
+.upload-picture {
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  background-color: white;
+  border-radius: 50%;
+  bottom: -7px;
+  right: -7px;
+  background-color: #3b5998;
+  transition: 0.3s;
+}
+
+.upload-picture i {
+  color: white;
+  font-size: 1.1rem;
+}
+
+.upload-picture:hover {
+  background-color: #5072ba;
+  transition: 0.3s;
 }
 
 /* <---------------- Profile ----------------> */

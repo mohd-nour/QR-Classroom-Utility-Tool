@@ -24,7 +24,11 @@ const Profile = () => {
       <VerticalNavBar />
       <div className="dash-container profile-page">
         <div className="profile-header">
-          <div className="profile-picture"></div>
+          <div className="profile-picture">
+            <div className="upload-picture flex-center">
+              <i class="uil uil-camera"></i>
+            </div>
+          </div>
           <div className="information-section">
             <div>
               <h2 className="profile-heading">Ali El Hajj</h2>
