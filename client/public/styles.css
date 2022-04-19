@@ -610,7 +610,7 @@ ul {
 }
 
 .avatar {
-  background-image: url('../assets/default-avatar.jpg');
+  background-image: url('../assets/avatar.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -817,7 +817,7 @@ ul {
 }
 
 .sheet-avatar {
-  background-image: url('../assets/default-avatar.jpg');
+  background-image: url('../assets/avatar.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -1097,7 +1097,7 @@ label {
 }
 
 .post-avatar {
-  background-image: url('../assets/default-avatar.jpg');
+  background-image: url('../assets/avatar.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -1302,7 +1302,7 @@ label {
   min-width: 200px;
   max-height: 200px;
   max-width: 200px;
-  background-image: url('../assets/professor.jpg');
+  background-image: url('../assets/avatar.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
