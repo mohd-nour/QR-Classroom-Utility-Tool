@@ -1289,3 +1289,97 @@ label {
 }
 
 /* <---------------- Polls ----------------> */
+
+/* <---------------- Profile ----------------> */
+
+.profile-header {
+  display: flex;
+}
+
+.profile-picture {
+  min-height: 200px;
+  min-width: 200px;
+  max-height: 200px;
+  max-width: 200px;
+  background-image: url('../assets/professor.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 5px;
+}
+
+.profile-page {
+  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.information-section {
+  width: 100%;
+  margin: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.profile-heading {
+  margin-bottom: 0.2rem;
+}
+
+.profile-subheading {
+  color: #8d8d8d;
+  margin-bottom: 0.2rem;
+}
+
+.profile-sidebar {
+  min-width: 200px;
+  max-width: 200px;
+}
+
+.profile-body {
+  display: flex;
+  flex-direction: row;
+  margin: 2rem 0;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 1.5rem 2rem 2rem;
+  margin: 0 2rem;
+}
+
+.sidebar-row {
+  margin-top: 0.5rem;
+}
+
+.location-icon {
+  color: #8d8d8d;
+  align-items: center;
+  font-size: 14px;
+  margin-left: 2px;
+}
+
+.profile-form-column {
+  width: 100%;
+  padding: 0 0.5rem;
+}
+
+.stat-card {
+  padding: 2rem;
+  border-radius: 5px;
+  min-width: 220px;
+}
+
+.profile-stats {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* <---------------- Profile ----------------> */

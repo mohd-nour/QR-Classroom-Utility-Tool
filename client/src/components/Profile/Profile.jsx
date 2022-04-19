@@ -1,12 +1,12 @@
- import React, { useState } from 'react';
+import React, { useState } from 'react';
 import VerticalNavBar from '../widgets/VerticalNavBar';
 import { Navigate, useNavigate } from 'react-router-dom';
-import FileBase64 from "react-file-base64";
+import FileBase64 from 'react-file-base64';
 import { setProfilePicture } from '../../actions/auth';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Profile = () => {
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userId = localStorage.getItem('currentUserUniqueId');
@@ -18,19 +18,86 @@ const Profile = () => {
     console.log(image);
     console.log(userId);
     dispatch(setProfilePicture(userId, image, navigate));
-  }
+  };
   return (
     <div>
       <VerticalNavBar />
-      <div className="dash-container">
-        <FileBase64
-        type="file"
-        multiple= {false}
-        onDone = {({ base64 }) => setImage(base64)}
-        >
-        </FileBase64>
-        <img style={{ width: '20%', height: 300 }} src={image}/>
-        <button  style={{ width: '20%', height: 100 }} onClick={setProfilePic}>Set profile picture!</button>
+      <div className="dash-container profile-page">
+        <div className="profile-header">
+          <div className="profile-picture"></div>
+          <div className="information-section">
+            <div>
+              <h2 className="profile-heading">Ali El Hajj</h2>
+              <h5 className="profile-subheading">
+                American University of Beirut
+              </h5>
+              <h5 className="profile-subheading">
+                Beirut
+                <i class="location-icon uil uil-map-marker"></i>
+              </h5>
+            </div>
+            <div className="profile-stats">
+              <div className="stat-card">Active Classes</div>
+              <div className="stat-card">Polls Administered</div>
+              <div className="stat-card">Sheets Graded</div>
+              <div className="stat-card">Students</div>
+            </div>
+          </div>
+        </div>
+        <div className="profile-body">
+          <div className="profile-sidebar">
+            <div className="sidebar-row">
+              <h4 className="sidebar-heading">Role</h4>
+              <h5 className="profile-subheading">Assistant Professor</h5>
+            </div>
+            <div className="sidebar-row">
+              <h4 className="sidebar-heading">Department</h4>
+              <h5 className="profile-subheading">Electrical & Computer</h5>
+            </div>
+            <div className="sidebar-row">
+              <h4 className="sidebar-heading">Email</h4>
+              <h5 className="profile-subheading">elhajj@aub.edu.lb</h5>
+            </div>
+            <div className="sidebar-row">
+              <h4 className="sidebar-heading">Extension</h4>
+              <h5 className="profile-subheading">4456</h5>
+            </div>
+            <div className="sidebar-row">
+              <h4 className="sidebar-heading">Office</h4>
+              <h5 className="profile-subheading">Bechtel 502</h5>
+            </div>
+          </div>
+          <div className="profile-form">
+            <div className="profile-form-column">
+              <div className="input-container">
+                <label>Name</label>
+                <input className="std-input"></input>
+              </div>
+              <div className="input-container">
+                <label>Department</label>
+                <input className="std-input"></input>
+              </div>
+              <div className="input-container">
+                <label>City</label>
+                <input className="std-input"></input>
+              </div>
+            </div>
+            <div className="profile-form-column">
+              <div className="input-container">
+                <label>Role</label>
+                <input className="std-input"></input>
+              </div>
+              <div className="input-container">
+                <label>Extension</label>
+                <input className="std-input"></input>
+              </div>
+              <div className="input-container">
+                <label>Office</label>
+                <input className="std-input"></input>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
