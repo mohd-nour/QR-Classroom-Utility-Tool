@@ -55,13 +55,33 @@ export const getCoursesForStudents = async (req, res) => {
 
 export const getAttendanceRecordsForStudent = async (req, res) => {
   try {
+    console.log("entered attendance records");
     const arrayOfClassesIds = req.body;
+    const instituteId = req.params.instituteId;
     const sessions = await Session.find({
       classId: {
         $in: arrayOfClassesIds
       }
     });
-    
+    var result = [];
+    var classSessions;
+    for (var i=0; i<arrayOfClassesIds.length;i++){
+      classSessions = sessions.filter((session) => session.classId === arrayOfClassesIds[i]);
+      var attendanceRecord = 0;
+      for (var j=0; j<classSessions.length;j++){
+        console.log(classSessions[j]);
+        var attended = classSessions[j].attendedStudents.filter((student) => student.instituteId = instituteId);
+        if (attended.length !== 0){
+          attendanceRecord += 1;
+        }
+      }
+      result.push({
+        classId: arrayOfClassesIds[i],
+        attendanceRecord: attendanceRecord,
+        numberOfSessions: classSessions.length
+      });
+    }
+    res.status(200).json(result);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
