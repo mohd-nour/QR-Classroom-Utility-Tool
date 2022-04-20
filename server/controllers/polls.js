@@ -51,7 +51,7 @@ export const updatePoll = async (req, res) => {
         const studentIds = poll.studentIds;
         for (var j=0; j<studentIds.length; j++){
           if (studentIds[j] === instituteId){
-            return res.send({message: "This student already answered this poll", error:true});
+            return res.send({message: "You already casted your vote for this poll!", error:true});
           }
         }
         const options = poll.options;
@@ -68,12 +68,12 @@ export const updatePoll = async (req, res) => {
             res.send(err);
           }
           else{
-            res.status(200).send({message: "Vote submited successfully!", error:false});
+            res.status(200).send({message: "Your vote on this poll has been successfully casted!", error:false});
           }
         });
       }
       else{
-        res.send({message: "Poll not found", error: true});
+        res.send({message: "This poll was either not found or deleted", error: true});
       }
   } catch (error) {
     res.status(500).json({message: error.message, error: true});

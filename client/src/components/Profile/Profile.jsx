@@ -6,19 +6,39 @@ import { setProfilePicture } from '../../actions/auth';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Profile = () => {
-  const [image, setImage] = useState('');
+  const [img, setImage] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userId = localStorage.getItem('currentUserUniqueId');
-  if (localStorage.getItem('profile') == null) {
-    return <Navigate to="/"></Navigate>;
-  }
+  const hiddenFileInput = React.useRef(null);
 
+  const handleClick = (e) => {
+    hiddenFileInput.current.click();
+  };
+
+  const handleChange = (e) => {
+    const fileUploaded = e.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      // Use a regex to remove data url part
+      const base64String = reader.result
+          .replace('data:', '')
+          .replace(/^.+,/, '');
+
+      console.log(base64String);
+      setImage(base64String);
+      // Logs wL2dvYWwgbW9yZ...
+    };
+    reader.readAsDataURL(fileUploaded);
+  };
+  /*
   const setProfilePic = () => {
     console.log(image);
-    console.log(userId);
-    dispatch(setProfilePicture(userId, image, navigate));
+    dispatch(setProfilePicture(localStorage.getItem('currentUserUniqueId'), image, navigate));
   };
+  */
+  const hidden = {
+    display: 'none'
+  }
   return (
     <div>
       <VerticalNavBar />
@@ -26,18 +46,19 @@ const Profile = () => {
         <div className="profile-header">
           <div className="profile-picture">
             <div className="upload-picture flex-center">
-              <i class="uil uil-camera"></i>
+              <i className="uil uil-camera" onClick={handleClick}></i>
+              <input type="file" style={hidden} ref={hiddenFileInput} onChange={handleChange}></input>
             </div>
           </div>
           <div className="information-section">
             <div>
-              <h2 className="profile-heading">Ali El Hajj</h2>
+              <h2 className="profile-heading" >Ali El Hajj</h2>
               <h5 className="profile-subheading">
                 American University of Beirut
               </h5>
               <h5 className="profile-subheading">
                 Beirut
-                <i class="location-icon uil uil-map-marker"></i>
+                <i className="location-icon uil uil-map-marker"></i>
               </h5>
             </div>
             <div className="profile-stats">

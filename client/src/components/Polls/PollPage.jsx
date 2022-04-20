@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import VerticalNavBar from '../widgets/VerticalNavBar';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
-import { createPoll } from '../../actions/polls';
+import { createPoll, fetchPolls } from '../../actions/polls';
 
 
 function courseOption(course) {
@@ -63,6 +63,11 @@ const Poll = () => {
       swal('You did not pick a course', { icon: 'warning' });
     }
   };
+
+  useEffect(() => {
+    dispatch(fetchPolls(localStorage.getItem('currentUserUniqueId')));
+  }, [dispatch]);
+
   if (localStorage.getItem('profile') == null) {
     return <Navigate to="/"></Navigate>;
   }

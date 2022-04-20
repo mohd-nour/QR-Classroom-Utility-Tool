@@ -66,7 +66,7 @@ export const setProfilePicture = async (req, res) => {
     const {userId, image} = req.body;
     console.log(userId);
     console.log("reached backend set image");
-    const existingImage = await ProfilePicture.findOne({userId, userId});
+    const existingImage = await ProfilePicture.findOne({userId: userId});
     if (existingImage){
       ProfilePicture.findOneAndUpdate({userId: userId}, {
         image: image
@@ -80,7 +80,7 @@ export const setProfilePicture = async (req, res) => {
       });
     }
     else {
-      result = await ProfilePicture.create({
+      const result = await ProfilePicture.create({
         userId: userId,
         image: image
       });
