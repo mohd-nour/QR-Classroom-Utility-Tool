@@ -29,9 +29,6 @@ export const fetchPollsForStudent = async (req, res) => {
 export const createPoll = async (req, res) => {
     try {
       const {classId, options, professorId, title, professorName, courseTitle} = req.body;
-      console.log(classId);
-      console.log(options);
-      console.log(professorId);
       const poll = await Poll.create({
         createdBy: professorId,
         classId: classId,
@@ -54,7 +51,7 @@ export const updatePoll = async (req, res) => {
         const studentIds = poll.studentIds;
         for (var j=0; j<studentIds.length; j++){
           if (studentIds[j] === instituteId){
-            return res.status(400).json({message: "This student already answered this poll"});
+            return res.send({message: "This student already answered this poll", error:true});
           }
         }
         const options = poll.options;
@@ -71,14 +68,14 @@ export const updatePoll = async (req, res) => {
             res.send(err);
           }
           else{
-            res.status(200).send(result);
+            res.status(200).send({message: "Vote submited successfully!", error:false});
           }
         });
       }
       else{
-        res.status(400).json({message: "Poll not found"});
+        res.send({message: "Poll not found", error: true});
       }
   } catch (error) {
-    res.status(500).json({message: error.message});
+    res.status(500).json({message: error.message, error: true});
   }
 };

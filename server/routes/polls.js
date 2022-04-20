@@ -6,7 +6,7 @@ const router = express.Router();
 router.post("/createPoll", createPoll);
 router.get("/fetchPollsForProfessor/:professorId", fetchPollsForProfessor);
 router.post("/fetchPollsForStudent", fetchPollsForStudent);
-router.post("/updatePoll", updatePoll);
+router.patch("/updatePoll", updatePoll);
 
 
 
