@@ -28,18 +28,21 @@ export const fetchPollsForStudent = async (req, res) => {
   
 export const createPoll = async (req, res) => {
     try {
-      const {classId, options, professorId} = req.body;
+      const {classId, options, professorId, title, professorName, courseTitle} = req.body;
       console.log(classId);
       console.log(options);
       console.log(professorId);
       const poll = await Poll.create({
         createdBy: professorId,
         classId: classId,
-        options: options
+        options: options,
+        title: title,
+        professorName: professorName,
+        courseTitle: courseTitle
       });
-      res.status(201).json(poll);
+      res.status(201).json({result:poll, error: false});
     } catch (error) {
-      res.status(409).json({message: error.message});
+      res.status(409).json({message: error.message, error: true});
     }
 };
 

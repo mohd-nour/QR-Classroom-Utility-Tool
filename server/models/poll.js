@@ -8,9 +8,12 @@ const optionSchema = mongoose.Schema({
 
 const pollSchema = mongoose.Schema({
     createdBy: {type: String, required: true},
+    professorName: {type: String, required: true},
+    title: {type: String, required: true},
     classId: {type: String, required: true},
     options: [optionSchema],
-    studentIds: [String]
+    studentIds: [String],
+    courseTitle: {type: String, required: true},
 });
 
 export default mongoose.model("poll", pollSchema);

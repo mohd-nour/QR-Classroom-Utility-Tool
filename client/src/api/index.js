@@ -71,3 +71,10 @@ export const postGradeSheet = (courseId, deliverable, students_grades) =>
 
 export const updateGradeSheet = (courseId, deliverable, students_grades, gradeSheetId) => 
   API.patch("/gradeSheets/updateGradeSheet/", {courseId: courseId, deliverable: deliverable, students_grades: students_grades, gradeSheetId: gradeSheetId});
+
+
+export const createPoll = (classId, options, professorId, title, professorName, courseTitle) => 
+  API.post("/polls/createPoll", {classId, options, professorId, title, professorName, courseTitle});
+
+export const fetchPolls = (professorId) =>
+  API.get("/polls/fetchPollsForProfessor/"+professorId);

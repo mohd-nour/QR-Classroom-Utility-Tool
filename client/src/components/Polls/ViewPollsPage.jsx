@@ -1,70 +1,45 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import VerticalNavBar from '../widgets/VerticalNavBar';
-import { Navigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPolls } from '../../actions/polls';
+
+const createPollCard = (poll) => {
+  return (
+    <div className="poll-card" key={poll._id}>
+      <h2>{poll.title}</h2>
+      <div className="flex-row">
+        <div className="creator-section">
+          <div className="post-avatar"></div>
+          <div className="post-info">
+            <h5>{poll.professorName}</h5>
+            <h6 className="sub-info">40 minutes ago • {poll.courseTitle}</h6>
+          </div>
+        </div>
+        <Link to="/Polls" className="removeUnderline white">
+          <button className="form-button fit-content">
+            <span>View Results</span>
+          </button>
+        </Link>
+      </div>
+    </div>
+  );
+}
 
 const ViewPolls = () => {
-  if (localStorage.getItem('profile') == null) {
-    return <Navigate to="/"></Navigate>;
-  }
+  const dispatch = useDispatch();
+  const polls = useSelector((state) => state.polls);
+  console.log(polls);
+  useEffect(() => {
+    dispatch(fetchPolls(localStorage.getItem('currentUserUniqueId')));
+  }, [dispatch]);
   return (
     <div>
       <VerticalNavBar />
       <div className="dash-container">
         <div className="view-polls-column">
           <h2 className="view-poll-title">Your Polls</h2>
-          <div className="poll-card">
-            <h2>Quiz 1 Date</h2>
-            <div className="flex-row">
-              <div className="creator-section">
-                <div className="post-avatar"></div>
-                <div className="post-info">
-                  <h5>Ali El Hajj</h5>
-                  <h6 className="sub-info">40 minutes ago • EECE 490</h6>
-                </div>
-              </div>
-              <Link to="/Polls" className="removeUnderline white">
-                <button className="form-button fit-content">
-                  <span>View Results</span>
-                </button>
-              </Link>
-            </div>
-          </div>
-
-          <div className="poll-card">
-            <h2>Quiz 1 Date</h2>
-            <div className="flex-row">
-              <div className="creator-section">
-                <div className="post-avatar"></div>
-                <div className="post-info">
-                  <h5>Ali El Hajj</h5>
-                  <h6 className="sub-info">40 minutes ago • EECE 490</h6>
-                </div>
-              </div>
-              <Link to="/Polls" className="removeUnderline white">
-                <button className="form-button fit-content">
-                  <span>View Results</span>
-                </button>
-              </Link>
-            </div>
-          </div>
-
-          <div className="poll-card">
-            <h2>Quiz 1 Date</h2>
-            <div className="flex-row">
-              <div className="creator-section">
-                <div className="post-avatar"></div>
-                <div className="post-info">
-                  <h5>Ali El Hajj</h5>
-                  <h6 className="sub-info">40 minutes ago • EECE 490</h6>
-                </div>
-              </div>
-              <Link to="/Polls" className="removeUnderline white">
-                <button className="form-button fit-content">
-                  <span>View Results</span>
-                </button>
-              </Link>
-            </div>
-          </div>
+          {polls.map(createPollCard)}
         </div>
       </div>
     </div>
