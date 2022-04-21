@@ -11,6 +11,7 @@ import alertReducer from "./alerts";
 import gradeSheetsReducer from "./gradesheets";
 import gradeSheetReducer from "./gradesheet";
 import polls from "./polls";
+import profile from "./profile";
 
 export default combineReducers({
   courses,
@@ -23,5 +24,6 @@ export default combineReducers({
   alertReducer,
   gradeSheetsReducer,
   gradeSheetReducer,
-  polls
+  polls,
+  profile
 });

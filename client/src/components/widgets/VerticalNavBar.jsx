@@ -1,15 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import * as actionType from '../../constants/actionTypes';
 import decode from 'jwt-decode';
+import {clearProfile, getProfile} from '../../actions/auth';
 
 function VerticalNavBar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const [userId] = useState(localStorage.getItem('currentUserUniqueId'));
   const logout = () => {
+    dispatch(clearProfile());
     dispatch({ type: actionType.LOGOUT });
     navigate('/');
   };
@@ -17,8 +20,8 @@ function VerticalNavBar() {
   const user = JSON.parse(localStorage.getItem('profile'));
 
   useEffect(() => {
+    dispatch(getProfile(userId));
     const token = user?.token;
-
     if (token) {
       const decodedToken = decode(token);
       if (decodedToken.exp * 1000 < new Date().getTime()) {
@@ -26,7 +29,7 @@ function VerticalNavBar() {
         navigate('/');
       }
     }
-  }, [dispatch, navigate, location, user?.token]);
+  }, [dispatch, navigate, location, user?.token, userId]);
 
   return (
     <div id="navBar">

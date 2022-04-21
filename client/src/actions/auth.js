@@ -23,12 +23,34 @@ export const signup = (formData, navigate) => async (dispatch) => {
   }
 };
 
-export const setProfilePicture = (userId, image, navigate) => async (dispatch) => {
+export const setProfile = (formData) => async (dispatch) => {
   try {
-    const {data} = await api.setProfilePicture(userId, image);
-    console.log("Before api call");
-    console.log(data);
-    console.log("After api call");
+    const {data} = await api.setProfile(formData);
+    if (data) {
+      console.log(data);
+      dispatch({type: "SET_PROFILE", payload: data});
+      swal("Your profile has been saved!", {icon: "success"});
+    }
+    else {
+      swal("An error occured while saving your profile!", {icon: "warning"});
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getProfile = (userId) => async (dispatch) => {
+  try {
+    const {data} = await api.getProfile(userId);
+    dispatch({type: "GET_PROFILE", payload: data});
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const clearProfile = () => async (dispatch) => {
+  try {
+    dispatch({type: "CLEAR_PROFILE"});
   } catch (error) {
     console.log(error);
   }

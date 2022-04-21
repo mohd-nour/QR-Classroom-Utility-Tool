@@ -64,7 +64,8 @@ export const signin = async (req, res) => {
 export const setProfile = async (req, res) => {
   try {
     const data = req.body;
-    const existingProfile = await Profile.findOne({userId: userId});
+    console.log(data);
+    const existingProfile = await Profile.findOne({userId: data.userId});
     if (existingProfile){
       Profile.findOneAndUpdate({userId: data.userId}, data, function(err, result){
         if (err){
@@ -75,8 +76,24 @@ export const setProfile = async (req, res) => {
         }
       });
     }
+    else{
+      const profile = await Profile.create(data);
+      res.status(200).send(profile);
+    }
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.log(error);
+    res.status(400).json({ message: error.message });
+  }
+};
+
+export const getProfile = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    console.log(userId);
+    const existingProfile = await Profile.findOne({userId: userId});
+    res.status(200).send(existingProfile);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
   }
 }
 

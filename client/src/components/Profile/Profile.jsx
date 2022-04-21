@@ -1,24 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import VerticalNavBar from '../widgets/VerticalNavBar';
-import { Navigate, useNavigate } from 'react-router-dom';
+//import { Navigate, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { setProfile, getProfile, clearProfile } from '../../actions/auth';
 
 const Profile = () => {
+  const dispatch = useDispatch();
+  const hiddenFileInput = React.useRef(null);
+  const profile = useSelector((state) => state.profile);
+  const [userId] = useState(localStorage.getItem('currentUserUniqueId'));
   const [user] = useState(JSON.parse(localStorage.getItem('profile')));
   const name = user ? user.result.name : '';
   const email = user? user.result.email : '';
   const [formData, setFormData] = useState({
-    image: "",
-    userId: localStorage.getItem('currentUserUniqueId'),
-    name: name,
+    image: profile? profile.image: "",
+    userId: userId,
+    name: profile? profile.name: name,
     email: email,
-    role: "",
-    department: "",
-    extension: "",
-    office: ""
+    role: profile? profile.role: "",
+    department: profile? profile.department: "",
+    extension: profile? profile.extension: "",
+    office: profile? profile.office: ""
   });
-  const dispatch = useDispatch();
-  const hiddenFileInput = React.useRef(null);
+
 
   const handleClick = (e) => {
     hiddenFileInput.current.click();
@@ -32,8 +36,6 @@ const Profile = () => {
       const base64String = reader.result
           .replace('data:', '')
           .replace(/^.+,/, '');
-
-      console.log(base64String);
       setFormData({...formData, image: base64String});
       // Logs wL2dvYWwgbW9yZ...
     };
@@ -41,12 +43,9 @@ const Profile = () => {
   };
 
   const saveProfile = () => {
-    console.log(formData);
-  }
+    dispatch(setProfile(formData));
+  };
 
-  const hidden = {
-    display: 'none'
-  }
   return (
     <div>
       <VerticalNavBar />
@@ -55,7 +54,7 @@ const Profile = () => {
           <div className="profile-picture">
             <div className="upload-picture flex-center">
               <i className="uil uil-camera" onClick={handleClick}></i>
-              <input type="file" style={hidden} ref={hiddenFileInput} onChange={handleChange}></input>
+              <input type="file" style={{ display: 'none '}} ref={hiddenFileInput} onChange={handleChange}></input>
             </div>
           </div>
           <div className="information-section">
