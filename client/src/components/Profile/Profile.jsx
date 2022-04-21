@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
 import VerticalNavBar from '../widgets/VerticalNavBar';
 import { Navigate, useNavigate } from 'react-router-dom';
-import FileBase64 from 'react-file-base64';
-import { setProfilePicture } from '../../actions/auth';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Profile = () => {
-  const [img, setImage] = useState('');
+  const [user] = useState(JSON.parse(localStorage.getItem('profile')));
+  const name = user ? user.result.name : '';
+  const email = user? user.result.email : '';
+  const [formData, setFormData] = useState({
+    image: "",
+    userId: localStorage.getItem('currentUserUniqueId'),
+    name: name,
+    email: email,
+    role: "",
+    department: "",
+    extension: "",
+    office: ""
+  });
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const hiddenFileInput = React.useRef(null);
 
   const handleClick = (e) => {
@@ -25,17 +34,16 @@ const Profile = () => {
           .replace(/^.+,/, '');
 
       console.log(base64String);
-      setImage(base64String);
+      setFormData({...formData, image: base64String});
       // Logs wL2dvYWwgbW9yZ...
     };
     reader.readAsDataURL(fileUploaded);
   };
-  /*
-  const setProfilePic = () => {
-    console.log(image);
-    dispatch(setProfilePicture(localStorage.getItem('currentUserUniqueId'), image, navigate));
-  };
-  */
+
+  const saveProfile = () => {
+    console.log(formData);
+  }
+
   const hidden = {
     display: 'none'
   }
@@ -52,7 +60,7 @@ const Profile = () => {
           </div>
           <div className="information-section">
             <div>
-              <h2 className="profile-heading" >Ali El Hajj</h2>
+              <h2 className="profile-heading" >{name}</h2>
               <h5 className="profile-subheading">
                 American University of Beirut
               </h5>
@@ -85,52 +93,54 @@ const Profile = () => {
           <div className="profile-sidebar">
             <div className="sidebar-row">
               <h4 className="sidebar-heading">Role</h4>
-              <h5 className="profile-subheading">Assistant Professor</h5>
+              <h5 className="profile-subheading">{formData.role}</h5>
             </div>
             <div className="sidebar-row">
               <h4 className="sidebar-heading">Department</h4>
-              <h5 className="profile-subheading">Electrical & Computer</h5>
+              <h5 className="profile-subheading">{formData.department}</h5>
             </div>
             <div className="sidebar-row">
               <h4 className="sidebar-heading">Email</h4>
-              <h5 className="profile-subheading">elhajj@aub.edu.lb</h5>
+              <h5 className="profile-subheading">{formData.email}</h5>
             </div>
             <div className="sidebar-row">
               <h4 className="sidebar-heading">Extension</h4>
-              <h5 className="profile-subheading">4456</h5>
+              <h5 className="profile-subheading">{formData.extension}</h5>
             </div>
             <div className="sidebar-row">
               <h4 className="sidebar-heading">Office</h4>
-              <h5 className="profile-subheading">Bechtel 502</h5>
+              <h5 className="profile-subheading">{formData.office}</h5>
             </div>
           </div>
           <div className="profile-form">
             <div className="profile-form-column">
               <div className="input-container">
                 <label>Name</label>
-                <input className="std-input"></input>
+                <input className="std-input" defaultValue={name} onChange={(e) => setFormData({...formData, name: e.target.value})}></input>
               </div>
               <div className="input-container">
                 <label>Department</label>
-                <input className="std-input"></input>
+                <input className="std-input" defaultValue={formData.department} onChange={(e) => setFormData({...formData, department: e.target.value})}></input>
               </div>
               <div className="input-container">
-                <label>City</label>
-                <input className="std-input"></input>
+                <label>Office</label>
+                <input className="std-input" defaultValue={formData.office} onChange={(e) => setFormData({...formData, office: e.target.value})}></input>
               </div>
             </div>
             <div className="profile-form-column">
               <div className="input-container">
                 <label>Role</label>
-                <input className="std-input"></input>
+                <input className="std-input" defaultValue={formData.role} onChange={(e) => setFormData({...formData, role: e.target.value})}></input>
               </div>
               <div className="input-container">
                 <label>Extension</label>
-                <input className="std-input"></input>
+                <input className="std-input" defaultValue={formData.extension} onChange={(e) => setFormData({...formData, extension: e.target.value})}></input>
               </div>
               <div className="input-container">
-                <label>Office</label>
-                <input className="std-input"></input>
+                <label style={{visibility:'hidden'}}>Save button</label>
+                <button type="submit" className="form-button" onClick={saveProfile}>
+                  Save profile
+                </button>
               </div>
             </div>
           </div>
