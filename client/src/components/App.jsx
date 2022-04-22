@@ -19,6 +19,7 @@ import Verified from './Authentication/Verified';
 import NewGradeSheetPage from './Grade sheets/NewGradeSheetPage';
 import GradeSheetReportPage from './Grade sheets/GradeSheetReportPage';
 import PollsPage from './Polls/PollPage';
+import PollResults from './Polls/PollResults';
 import Profile from './Profile/Profile';
 import ViewPolls from './Polls/ViewPollsPage';
 
@@ -43,6 +44,7 @@ function App() {
         <Route path="/Poll" element={<PollsPage />} />
         <Route path="/Polls" element={<ViewPolls />} />
         <Route path="/Profile" element={<Profile />} />
+        <Route path="/Results" element={<PollResults />} />
         <Route
           path="/FinalizeAttendance"
           element={<FinalizedAttendancePage />}

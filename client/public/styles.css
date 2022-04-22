@@ -1081,7 +1081,7 @@ label {
 .time-container {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 0.8rem;
+  margin: 10px 0;
 }
 
 .alert-column {
@@ -1254,6 +1254,60 @@ label {
 
 .poll-selector {
   margin-right: 1rem;
+}
+
+.result-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.answer-container {
+  padding: 20px 20px 10px;
+}
+
+.question {
+  padding: 20px;
+  color: #111;
+  font-size: 22px;
+  border-bottom: 1px solid #eee;
+}
+
+.percentage-value {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 40px;
+  transform: translateY(-50%);
+  color: #111;
+  font-size: 15px;
+}
+
+.percentage-bar {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  height: 40px;
+  background-color: #ccd8f1;
+  z-index: -1;
+  transition: width 700ms ease-in-out;
+  border-radius: 5px;
+}
+
+.answer {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  padding: 0 10px;
+  line-height: 40px;
+  color: #111;
+  margin-bottom: 10px;
+  border: 1px solid #d4d4d4;
+  border-radius: 5px;
 }
 
 .polls-panel {

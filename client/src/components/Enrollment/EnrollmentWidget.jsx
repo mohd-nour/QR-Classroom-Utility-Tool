@@ -78,7 +78,7 @@ function EnrollmentWidget() {
       <div className="dash-container">
         <div id="lower-section">
           <h2 className="title">
-            Student Enrolment -{' ' + courseName + ' ' + courseNumber}
+            Student Enrollment -{' ' + courseName + ' ' + courseNumber}
           </h2>
           {!students.length ? (
             <div>

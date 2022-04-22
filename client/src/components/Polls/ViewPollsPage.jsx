@@ -16,7 +16,7 @@ const createPollCard = (poll) => {
             <h6 className="sub-info">40 minutes ago • {poll.courseTitle}</h6>
           </div>
         </div>
-        <Link to="/Polls" className="removeUnderline white">
+        <Link to="/Results" className="removeUnderline white">
           <button className="form-button fit-content">
             <span>View Results</span>
           </button>
@@ -24,7 +24,7 @@ const createPollCard = (poll) => {
       </div>
     </div>
   );
-}
+};
 
 const ViewPolls = () => {
   const dispatch = useDispatch();
