@@ -16,7 +16,7 @@ const createPollCard = (poll) => {
             <h6 className="sub-info">40 minutes ago • {poll.courseTitle}</h6>
           </div>
         </div>
-        <Link to="/Results" className="removeUnderline white">
+        <Link to="/Results" className="removeUnderline white" state={{data: poll._id}}>
           <button className="form-button fit-content">
             <span>View Results</span>
           </button>
@@ -29,7 +29,6 @@ const createPollCard = (poll) => {
 const ViewPolls = () => {
   const dispatch = useDispatch();
   const polls = useSelector((state) => state.polls);
-  console.log(polls);
   useEffect(() => {
     dispatch(fetchPolls(localStorage.getItem('currentUserUniqueId')));
   }, [dispatch]);

@@ -54,6 +54,10 @@ const Poll = () => {
     ]);
     setCurrentOptionNumber((prev) => prev + 1);
   };
+  const removeOptionBox = () => {
+    setOptions(options.filter((option) => option.optionNumber !== (currentOptionNumber-1)));
+    setCurrentOptionNumber((prev) => prev - 1);
+  }
   const createNewPoll = () => {
     if (selectedCourse.course !== '') {
       dispatch(
@@ -70,10 +74,11 @@ const Poll = () => {
       swal('You did not pick a course', { icon: 'warning' });
     }
   };
+  
 
   useEffect(() => {
     dispatch(fetchPolls(localStorage.getItem('currentUserUniqueId')));
-  }, [dispatch]);
+  }, [dispatch, currentOptionNumber]);
 
   if (localStorage.getItem('profile') == null) {
     return <Navigate to="/"></Navigate>;
@@ -110,7 +115,7 @@ const Poll = () => {
               <div className="option-box">
                 <button
                   className="form-button fit-content flex-center warning"
-                  onClick
+                  onClick={removeOptionBox}
                 >
                   <i className="uil uil-minus"></i>
                   <span className="poll-button-text">Remove</span>
