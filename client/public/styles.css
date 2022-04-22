@@ -916,7 +916,7 @@ a:-webkit-any-link {
 
 .selection-icon {
   color: #393c41;
-  font-size: 5rem;
+  font-size: 4rem;
 }
 
 .delete-icon {
@@ -1357,7 +1357,6 @@ label {
 
 .option-box {
   margin: 0.5rem 0.5rem 0 0;
-  ma
 }
 
 .option-box i {
