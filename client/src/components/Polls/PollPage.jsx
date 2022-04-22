@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
 import { createPoll, fetchPolls } from '../../actions/polls';
 
-
 function courseOption(course) {
   return (
     <option key={course._id} value={course._id}>
@@ -36,10 +35,10 @@ const Poll = () => {
   const [user] = useState(JSON.parse(localStorage.getItem('profile')));
   const professorName = user ? user.result.name : '';
   const [selectedCourse, setSelectedCourse] = useState({
-    course: "",
-    courseTitle: ""
+    course: '',
+    courseTitle: '',
   });
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState('');
   const [currentOptionNumber, setCurrentOptionNumber] = useState(3);
   const [options, setOptions] = useState([
     { optionNumber: 1, optionValue: '' },
@@ -56,10 +55,18 @@ const Poll = () => {
     setCurrentOptionNumber((prev) => prev + 1);
   };
   const createNewPoll = () => {
-    if (selectedCourse.course !== ""){
-      dispatch(createPoll(selectedCourse.course, options, localStorage.getItem('currentUserUniqueId'), title, professorName, selectedCourse.courseTitle));
-    }
-    else{
+    if (selectedCourse.course !== '') {
+      dispatch(
+        createPoll(
+          selectedCourse.course,
+          options,
+          localStorage.getItem('currentUserUniqueId'),
+          title,
+          professorName,
+          selectedCourse.courseTitle
+        )
+      );
+    } else {
       swal('You did not pick a course', { icon: 'warning' });
     }
   };
@@ -80,35 +87,52 @@ const Poll = () => {
           <div className="poll-container">
             <div className="input-container">
               <label>Title</label>
-              <input required className="std-input" onChange={(e) => setTitle(e.target.value)}></input>
+              <input
+                required
+                className="std-input"
+                onChange={(e) => setTitle(e.target.value)}
+              ></input>
             </div>
             <div>
               <label className="answer-options">Answer Options</label>
               {options.map(createOptionBox)}
             </div>
-            <div className="add-option">
-              <button
-                className="form-button fit-content flex-center"
-                onClick={addOptionBox}
-              >
-                <i className="icons uil uil-plus"></i>
-                <span className="poll-button-text">Add option</span>
-              </button>
+            <div className="option-container">
+              <div className="option-box">
+                <button
+                  className="form-button fit-content flex-center"
+                  onClick={addOptionBox}
+                >
+                  <i className="uil uil-plus"></i>
+                  <span className="poll-button-text">Add</span>
+                </button>
+              </div>
+              <div className="option-box">
+                <button
+                  className="form-button fit-content flex-center warning"
+                  onClick
+                >
+                  <i className="uil uil-minus"></i>
+                  <span className="poll-button-text">Remove</span>
+                </button>
+              </div>
             </div>
             <div className="create-poll">
-              <select 
-              className="selector poll-selector"
-              onChange={(e) => setSelectedCourse({
-                course: e.target.value,
-                courseTitle: e.target.selectedOptions[0].text
-              })}
+              <select
+                className="selector poll-selector"
+                onChange={(e) =>
+                  setSelectedCourse({
+                    course: e.target.value,
+                    courseTitle: e.target.selectedOptions[0].text,
+                  })
+                }
               >
                 <option value="">Select a class</option>
                 {courses.map(courseOption)}
               </select>
               <button
                 type="submit"
-                className="form-button fit-content"
+                className="form-button fit-content secondary-button"
                 onClick={createNewPoll}
               >
                 Create poll

@@ -1222,7 +1222,20 @@ label {
   bottom: -3.5rem;
   right: 0;
   padding: 0 2rem;
-  background-color: #3b5998;
+}
+
+.secondary-button {
+  color: #161718;
+  background-color: transparent;
+  border: solid 2px #161718;
+  transition: 0.3s;
+}
+
+.secondary-button:hover {
+  color: #fff;
+  background-color: #161718;
+  border: solid 1px #161718;
+  transition: 0.3s;
 }
 
 .flex-row {
@@ -1334,8 +1347,21 @@ label {
   margin-right: 0;
 }
 
-.add-option {
-  margin: 0.5rem 0;
+.warning {
+  background-color: #ff0033;
+}
+
+.option-container {
+  display: flex;
+}
+
+.option-box {
+  margin: 0.5rem 0.5rem 0 0;
+  ma
+}
+
+.option-box i {
+  font-size: 1rem;
 }
 
 .poll-button-text {
