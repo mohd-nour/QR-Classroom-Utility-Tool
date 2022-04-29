@@ -45,13 +45,26 @@ const Profile = () => {
   const saveProfile = () => {
     dispatch(setProfile(formData));
   };
+  /*
+  const styles =  {
+    position: relative;
+    min-height: "200px",
+    min-width: 200px;
+    max-height: 200px;
+    max-width: 200px;
+    background-image: url('../assets/avatar.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+  };*/
 
   return (
     <div>
       <VerticalNavBar />
       <div className="dash-container profile-page">
         <div className="profile-header">
-          <div className="profile-picture">
+          <div className="profile-picture" styles={{backgroundImage:`url("${formData.image}")`}}>
             <div className="upload-picture flex-center">
               <i className="uil uil-camera" onClick={handleClick}></i>
               <input type="file" style={{ display: 'none '}} ref={hiddenFileInput} onChange={handleChange}></input>

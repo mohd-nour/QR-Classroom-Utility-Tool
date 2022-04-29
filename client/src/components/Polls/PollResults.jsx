@@ -40,7 +40,7 @@ const PollResults = () => {
   const poll = useSelector((state) => state.polls).filter((poll) => poll._id === pollId);
   const options = poll[0].options;
   const totalVotes = computeTotalVotes(options);
-  console.log(poll[0].title);
+  console.log(poll);
   return (
     <div>
       <VerticalNavBar />

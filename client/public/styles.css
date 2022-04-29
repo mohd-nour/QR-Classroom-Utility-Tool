@@ -1277,6 +1277,7 @@ label {
   background-color: #fff;
   border-radius: 5px;
   padding: 10px;
+  min-width: 400px;
 }
 
 .answer-container {

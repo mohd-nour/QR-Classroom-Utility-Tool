@@ -139,6 +139,9 @@ export const deleteCourse = async (req, res) => {
     await Session.deleteMany({ classId: id });
     await GradeSheet.deleteMany({ courseId: id });
     await ProfessorAlert.deleteMany({ classId: id});
+    await user.updateMany({},
+      {$pull: { classes: id} } 
+    );
     res.json({ message: "Post deleted successfully" });
   }
 };
